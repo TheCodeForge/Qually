@@ -184,15 +184,15 @@ def before_request():
     g.nonce=generate_hash(f'{g.timestamp}+{session.get("session_id")}')
     g.db = db_session()
 
-    if request.method.lower() != "get" and app.config["READ_ONLY"] and request.path != "/login":
-        return jsonify({"error":f"{app.config['SITE_NAME']} is currently in read-only mode."}), 400
+    if "session_id" not in session:
+        session["session_id"] = token_hex(16)
 
     g.timestamp = int(time.time())
 
     g.db = db_session()
-    g.ip=None
-    g.ua=None
-    g.is_archive=False
+    # g.ip=None
+    # g.ua=None
+    # g.is_archive=False
     # g.is_tor=request.headers.get("cf-ipcountry")=="T1"
 
     # ip_ban= get_ip(request.remote_addr)
