@@ -52,7 +52,7 @@ app.config['DATABASE_URL'] = environ.get("DATABASE_URL","").replace("postgres://
 app.config['SECRET_KEY'] = environ.get('SECRET_KEY')
 app.config["ADMIN_EMAIL"]=environ.get("ADMIN_EMAIL","").lstrip().rstrip()
 
-app.config["SERVER_NAME"] = environ.get("SERVER_NAME", environ.get("domain", "qually.herokuapp.com")).lstrip().rstrip() 
+app.config["SERVER_NAME"] = environ.get("SERVER_NAME", environ.get("domain", f"{app.config['SITE_NAME'].lower()}.herokuapp.com")).lstrip().rstrip() 
 
 # Cookie stuff
 app.config["SESSION_COOKIE_NAME"] = f"__Host-{app.config['SERVER_NAME']}"
