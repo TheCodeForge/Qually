@@ -1,7 +1,16 @@
 from qually.helpers.base36 import *
 from qually.helpers.lazy import lazy
 
+from qually.__main__ import Base
+
 class core_mixin():
+
+    def __init__(self, **kwargs):
+
+        if "created_utc" not in kwargs:
+            kwargs["created_utc"] = g.timestamp
+
+        Base.__init__(**kwargs)
 
     @property
     @lazy
