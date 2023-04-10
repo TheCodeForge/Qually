@@ -2,13 +2,14 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask import g, session, abort, request
 from sqlalchemy import Column, Integer, BigInteger, String, Boolean, ForeignKey, FetchedValue, Index, and_, or_, select, func
 from sqlalchemy.orm import relationship, deferred, joinedload, lazyload, contains_eager, aliased, Load, load_only
-from os import environ
 from secrets import token_hex
 from pyotp import TOTP
 
-from syzitus.__main__ import Base, cache, app, g, db_session, debug
+from .mixins import core_mixin
 
-class User(Base, standard_mixin, age_mixin):
+from qually.__main__ import Base, cache, app, g, db_session, debug
+
+class User(Base, core_mixin):
 
     __tablename__ = "users"
 
@@ -22,6 +23,7 @@ class User(Base, standard_mixin, age_mixin):
     referred_by = Column(Integer, default=None)
     is_active = Column(Boolean, default=True)
     has_license = Column(Boolean, default=False)
+    organization_id = Column(Integer, ForeignKey("organizations.id"))
 
     #security
     login_nonce = Column(Integer, default=0)
