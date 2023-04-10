@@ -49,12 +49,6 @@ app.config["SYSPATH"]=environ.get("SYSPATH", path.dirname(path.realpath(__file__
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['DATABASE_URL'] = environ.get("DATABASE_URL","").replace("postgres://", "postgresql://")
 
-# app.config['SQLALCHEMY_READ_URIS'] = [
-#     environ.get("DATABASE_CONNECTION_READ_01_URL"),
-#     environ.get("DATABASE_CONNECTION_READ_02_URL"),
-#     environ.get("DATABASE_CONNECTION_READ_03_URL")
-# ]
-
 app.config['SECRET_KEY'] = environ.get('SECRET_KEY')
 app.config["ADMIN_EMAIL"]=environ.get("ADMIN_EMAIL","").lstrip().rstrip()
 
