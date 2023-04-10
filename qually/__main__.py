@@ -36,7 +36,7 @@ app.config["PROXYFIX_X_FOR"]=int(environ.get("PROXYFIX", "2").lstrip().rstrip())
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=app.config["PROXYFIX_X_FOR"])
 app.url_map.strict_slashes = False
 
-app.config["SITE_NAME"]=environ.get("SITE_NAME", "Syzitus").lstrip().rstrip()
+app.config["SITE_NAME"]=environ.get("SITE_NAME", "Qually").lstrip().rstrip()
 app.config["TAGLINE"]=environ.get("TAGLINE", "Set a TAGLINE!").lstrip().rstrip()
 app.config["SUBTITLE"]=environ.get("SUBTITLE", "").lstrip().rstrip()
 
