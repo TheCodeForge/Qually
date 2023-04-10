@@ -10,7 +10,7 @@ class core_mixin():
         if "created_utc" not in kwargs:
             kwargs["created_utc"] = g.timestamp
 
-        Base.__init__(**kwargs)
+        Base.__init__(self, **kwargs)
 
     @property
     @lazy
