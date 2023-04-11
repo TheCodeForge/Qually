@@ -37,12 +37,8 @@ app.wsgi_app = ProxyFix(app.wsgi_app, x_for=app.config["PROXYFIX_X_FOR"])
 app.url_map.strict_slashes = False
 
 app.config["SITE_NAME"]=environ.get("SITE_NAME", "Qually").lstrip().rstrip()
-app.config["TAGLINE"]=environ.get("TAGLINE", "Set a TAGLINE!").lstrip().rstrip()
+app.config["TAGLINE"]=environ.get("TAGLINE", "Alpha").lstrip().rstrip()
 app.config["SUBTITLE"]=environ.get("SUBTITLE", "").lstrip().rstrip()
-
-app.config["COLOR_PRIMARY"]=environ.get("COLOR_PRIMARY", "805AD5").lstrip().rstrip()
-app.config["COLOR_SECONDARY"]=environ.get("COLOR_SECONDARY", "E2E8F0").lstrip().rstrip()
-app.config["COLOR_PRIMARY_NAME"]=environ.get("COLOR_PRIMARY_NAME","Porpl").lstrip().rstrip()
 
 app.config["SYSPATH"]=environ.get("SYSPATH", path.dirname(path.realpath(__file__)))
 
