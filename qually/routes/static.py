@@ -1,10 +1,10 @@
 from jinja2.exceptions import TemplateNotFound
-from pyotp import random_base32 as pyotp_random_base32
-from flask import g, session, abort, render_template, jsonify, make_response, request, send_file, Response, redirect
+import pyotp
+from flask import *
 from werkzeug.security import safe_join
 
 from qually.helpers.wrappers import *
-from qually.helpers.markdown import *
+#from qually.helpers.markdown import *
 from qually.classes import *
 #from qually.mail import *
 
@@ -93,7 +93,7 @@ def settings():
 @auth_required
 def settings_security():
 
-    mfa_secret=pyotp_random_base32() if not g.user.mfa_secret else None
+    mfa_secret=pyotp.random_base32() if not g.user.mfa_secret else None
 
     if mfa_secret:
         recovery=f"{mfa_secret}+{g.user.id}+{g.user.original_username}"
