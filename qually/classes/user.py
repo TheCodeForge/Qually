@@ -44,7 +44,7 @@ class User(Base, core_mixin):
             postgresql_ops={
                 'email':'gin_trgm_ops'
                 }
-            )
+            ),
         )
 
     def __init__(self, **kwargs):
