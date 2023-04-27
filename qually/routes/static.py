@@ -84,34 +84,7 @@ def robots_txt():
     return send_file("./assets/robots.txt")
 
 
-@app.route("/settings", methods=["GET"])
-@auth_required
-def settings():
-    return redirect("/settings/profile")
 
-@app.route("/settings/security", methods=["GET"])
-@auth_required
-def settings_security():
-
-    mfa_secret=pyotp.random_base32() if not g.user.mfa_secret else None
-
-    if mfa_secret:
-        recovery=f"{mfa_secret}+{g.user.id}+{g.user.original_username}"
-        recovery=generate_hash(recovery)
-        recovery=base36encode(int(recovery,16) % int('z'*25, 36))
-        while len(recovery)<25:
-            recovery="0"+recovery
-        recovery=" ".join([recovery[i:i+5] for i in range(0,len(recovery),5)])
-    else:
-        recovery=None
-
-    return render_template(
-            "settings_security.html",
-            mfa_secret=mfa_secret,
-            recovery=recovery,
-            error=request.args.get("error") or None,
-            msg=request.args.get("msg") or None
-        )
 
 
 @app.route("/help/<path:path>", methods=["GET"])
@@ -130,40 +103,6 @@ def help_path(path):
 def help_home():
     return render_template("help.html")
 
-
-@app.route("/help/submit_contact", methods=["POST"])
-@is_not_banned
-def press_inquiry():
-
-    data = [(x, request.form[x]) for x in request.form if x != "formkey"]
-    data.append(("username", g.user.username))
-    data.append(("email", g.user.email))
-
-    data = sorted(data, key=lambda x: x[0])
-
-    if request.form.get("press"):
-        email_template = "email/press.html"
-    else:
-        email_template = "email/contactform.html"
-
-    try:
-        send_mail(environ.get("admin_email"),
-                  "Press Submission",
-                  render_template(email_template,
-                                  data=data
-                                  ),
-                  plaintext=str(data)
-                  )
-    except BaseException:
-        return render_template(
-            "message.html",
-            title="Unable to save",
-            error="Unable to save your inquiry. Please try again later.")
-
-    return render_template(
-        "message.html",
-        title="Inquiry submitted",
-        message=f"Your inquiry has been sent to {app.config['SITE_NAME']} staff.")
 
 
 # @app.route("/help/docs")
