@@ -156,7 +156,7 @@ from qually.routes import *
 #from qually.helpers.get import *
 
 #purge css from cache
-cache.delete_memoized(qually.routes.main_css)
+#cache.delete_memoized(qually.routes.main_css)
 
 # enforce https
 @app.before_request
