@@ -3,7 +3,7 @@ from flask import *
 from sqlalchemy import *
 from sqlalchemy.orm import *
 from secrets import token_hex
-from pyotp import TOTP
+import pyotp
 
 from qually.helpers.lazy import lazy
 
@@ -65,7 +65,7 @@ class User(Base, core_mixin):
 
     def validate_2fa(self, token):
 
-        x = TOTP(self.mfa_secret)
+        x = pyotp.TOTP(self.mfa_secret)
         return x.verify(token, valid_window=1)
 
     @property
