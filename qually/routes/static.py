@@ -12,47 +12,33 @@ from qually.__main__ import app, limiter, debug, cache
 
 # take care of misc pages that never really change (much)
 
-# @app.route("/assets/style/<color>/<file>.css", methods=["GET"])
-# @cf_cache
-# @cache.memoize()
-# def main_css(color, file, n=None):
+@app.route("/assets/style/<color>/<file>.css", methods=["GET"])
+@cf_cache
+@cache.memoize()
+def main_css(color, file, n=None):
 
-#     #print(file, color)
+    #print(file, color)
 
-#     if file not in ["light", "dark"]:
-#         abort(404)
+    if file not in ["light", "dark"]:
+        abort(404)
 
-#     name=f"{app.config['RUQQUSPATH']}/assets/style/{file}.scss"
-#     #print(name)
-#     with open(name, "r") as file:
-#         output = file.read()
+    name=f"{app.config['SYSPATH']}/assets/style/{file}.scss"
+    #print(name)
+    with open(name, "r") as file:
+        output = file.read()
 
-#     # This doesn't use python's string formatting because
-#     # of some odd behavior with css files
+    # This doesn't use python's string formatting because
+    # of some odd behavior with css files
 
-#     downvote_color = hex(0xFFFFFF - int(color,16))[2:]
-#     while len(downvote_color)<6:
-#         downvote_color=f"0{downvote_color}"
-#     output = output.replace("{primary}", color)
+    output = output.replace("{primary}", color)
 
-#     output = output.replace("{secondary}", app.config["COLOR_SECONDARY"])
-#     output = output.replace("{main}", app.config["COLOR_PRIMARY"])
-#     output = output.replace("{downvote}", downvote_color)
+    #compile the regular css
+    output=sass.compile(string=output)
 
-#     #compile the regular css
-#     output=sass.compile(string=output)
-
-#     #add title classes
-
-#     output +="\n\n"
-
-#     colors=list(set([TITLES[x].color for x in TITLES]))
-
-#     output += "\n".join([f".title-color-{x}"+"{color: #"+x+";}" for x in colors])
-
-#     resp = Response(output, mimetype='text/css')
-#     del output
-#     return resp
+    resp = Response(output, mimetype='text/css')
+    
+    del output
+    return resp
 
 @app.get('/assets/<path:path>')
 @limiter.exempt

@@ -2,24 +2,22 @@ import gevent.monkey
 gevent.monkey.patch_all()
 
 from os import environ, path
+import time
 from secrets import token_hex
+from redis import BlockingConnectionPool, ConnectionPool
+import sass
+
 from flask import *
 from flask_caching import Cache
 from flask_limiter import Limiter
-from flask_minify import Minify
-import time
 
 from flaskext.markdown import Markdown
+
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.exc import *
 from sqlalchemy.orm import Session, sessionmaker, scoped_session
 from sqlalchemy import create_engine
 from sqlalchemy.pool import QueuePool
-#import threading
-#import random
-from redis import Redis
-
-from redis import BlockingConnectionPool, ConnectionPool
 
 from werkzeug.middleware.proxy_fix import ProxyFix
 
@@ -39,6 +37,7 @@ app.config["TAGLINE"]=environ.get("TAGLINE", "Alpha").lstrip().rstrip()
 app.config["SUBTITLE"]=environ.get("SUBTITLE", "").lstrip().rstrip()
 
 app.config['COLOR_PRIMARY']=environ.get("COLOR_PRIMARY",'a9cbb7')
+app.config['CSS_URL_LIGHT']=f"/assets/style/{app.config['COLOR_PRIMARY']}/light.css"
 
 app.config["SYSPATH"]=environ.get("SYSPATH", path.dirname(path.realpath(__file__)))
 
@@ -108,9 +107,6 @@ app.config["CLOUDFLARE_TURNSTILE_SECRET"]=environ.get("CLOUDFLARE_TURNSTILE_SECR
 
 Markdown(app)
 cache = Cache(app)
-
-if bool(int(environ.get("MINIFY",0))):
-    Minify(app)
 
 # app.config["CACHE_REDIS_URL"]
 app.config["RATELIMIT_STORAGE_URI"] = environ.get("REDIS_URL", 'memory://').lstrip().rstrip()
@@ -235,3 +231,4 @@ def www_redirect(path):
 @app.get("/")
 def get_home():
     return render_template("home.html")
+
