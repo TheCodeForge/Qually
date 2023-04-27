@@ -4,7 +4,7 @@ from os import environ
 import time
 from random import uniform
 
-from syzitus.__main__ import app
+from qually.__main__ import app
 
 def generate_hash(string):
 
