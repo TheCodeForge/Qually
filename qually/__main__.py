@@ -148,9 +148,9 @@ def debug(text):
         print(text)
 
 # import and bind all classes, routes, and template filters functions
+from qually.helpers.security import generate_hash
 import qually.classes
 from qually.routes import *
-from qually.helpers.security import generate_hash
 #import qually.helpers.jinja2
 #from qually.helpers.get import *
 
