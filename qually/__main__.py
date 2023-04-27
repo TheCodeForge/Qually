@@ -40,6 +40,8 @@ app.config["SITE_NAME"]=environ.get("SITE_NAME", "Qually").lstrip().rstrip()
 app.config["TAGLINE"]=environ.get("TAGLINE", "Alpha").lstrip().rstrip()
 app.config["SUBTITLE"]=environ.get("SUBTITLE", "").lstrip().rstrip()
 
+app.config['COLOR_PRIMARY']=environ.get("COLOR_PRIMARY",'a9cbb7')
+
 app.config["SYSPATH"]=environ.get("SYSPATH", path.dirname(path.realpath(__file__)))
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
