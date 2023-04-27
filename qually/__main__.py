@@ -161,13 +161,14 @@ from qually.routes import *
 # enforce https
 @app.before_request
 def before_request():
+    
+    if "session_id" not in session:
+        session["session_id"] = token_hex(16)
 
     g.timestamp = int(time.time())
     g.nonce=generate_hash(f'{g.timestamp}+{session.get("session_id")}')
     g.db = db_session()
 
-    if "session_id" not in session:
-        session["session_id"] = token_hex(16)
 
     g.timestamp = int(time.time())
 
