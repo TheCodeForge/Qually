@@ -25,6 +25,16 @@ target_metadata = None
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
+def include_object(object, name, type_, reflected, compare_to):
+
+    if type=="sequence" and reflected==True:
+        return False
+
+    if type_ == "column" and str(object.__dict__.get("server_default"))=="FetchedValue()":
+        #print(object.__dict__["key"], object.__dict__.get("server_default"))
+        return False
+
+    return True
 
 def run_migrations_offline() -> None:
     """Run migrations in 'offline' mode.
