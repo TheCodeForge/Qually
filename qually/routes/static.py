@@ -2,6 +2,7 @@ from jinja2.exceptions import TemplateNotFound
 import pyotp
 from flask import *
 from werkzeug.security import safe_join
+import sass
 
 from qually.helpers.wrappers import *
 #from qually.helpers.markdown import *
@@ -36,7 +37,7 @@ def main_css(color, file, n=None):
     output=sass.compile(string=output)
 
     resp = Response(output, mimetype='text/css')
-    
+
     del output
     return resp
 
