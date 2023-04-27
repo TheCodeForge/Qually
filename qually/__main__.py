@@ -149,21 +149,14 @@ def debug(text):
     if app.config["DEBUG"]:
         print(text)
 
-# import and bind all routing functions
+# import and bind all classes, routes, and template filters functions
 import qually.classes
 from qually.routes import *
-import qually.helpers.jinja2
-from qually.helpers.get import *
+#import qually.helpers.jinja2
+#from qually.helpers.get import *
 
 #purge css from cache
 cache.delete_memoized(qually.routes.main_css)
-
-# def drop_connection():
-
-#     g.db.rollback()
-#     g.db.close()
-#     gevent.getcurrent().kill()
-
 
 # enforce https
 @app.before_request
@@ -179,58 +172,10 @@ def before_request():
     g.timestamp = int(time.time())
 
     g.db = db_session()
-    # g.ip=None
-    # g.ua=None
-    # g.is_archive=False
-    # g.is_tor=request.headers.get("cf-ipcountry")=="T1"
-
-    # ip_ban= get_ip(request.remote_addr)
-
-    # if ip_ban and ip_ban.unban_utc and ip_ban.unban_utc > g.timestamp:
-    #     ip_ban.unban_utc = g.timestamp + 60*60
-    #     g.db.add(ip_ban)
-    #     g.db.commit()
-    #     return jsonify({"error":"Your ban has been reset for another hour. Slow down."}), 429
-    # elif ip_ban and "archive" in ip_ban.reason:
-    #     g.ip=ip_ban
-    #     g.is_archive=True
-    # elif ip_ban and ip_ban.reason=="malicious scraper honeypot" and session.get("user_id"):
-    #     pass
-
-    # elif ip_ban:
-    #     return jsonify({"error":"Refused due to your previous malicious conduct"}), 424
 
     session.permanent = True
 
     useragent=request.headers.get("User-Agent", "NoAgent")
-
-    # ua_ban = g.db.query(
-    #     syzitus.classes.Agent).filter(
-    #         or_(
-    #             syzitus.classes.Agent.kwd.in_(useragent.split()),
-    #             syzitus.classes.Agent.kwd.ilike(useragent)
-    #             )
-    #         ).first()
-
-    # if ua_ban and ua_ban.instaban:
-    #     existing_ban=get_ip(request.remote_addr)
-    #     if not existing_ban:
-    #         new_ip=syzitus.classes.IP(
-    #             addr=request.remote_addr,
-    #             unban_utc=None,
-    #             reason="archive instaban",
-    #             banned_by=1
-    #             )
-    #         g.db.add(new_ip)
-    #         try:
-    #             g.db.commit()
-    #         except IntegrityError:
-    #             pass    
-    # if ua_ban and "archive" in ua_ban.reason:
-    #         g.db.ua=ua_ban
-    #         g.is_archive=True
-    # elif ua_ban and request.path != "/robots.txt":
-    #     return ua_ban.mock, ua_ban.status_code
 
     if app.config["FORCE_HTTPS"] and request.url.startswith(
             "http://") and "localhost" not in app.config["SERVER_NAME"]:
