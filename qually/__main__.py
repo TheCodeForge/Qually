@@ -231,3 +231,7 @@ def teardown_request(resp):
 def www_redirect(path):
 
     return redirect(f"https://{app.config['SERVER_NAME']}/{path}")
+
+@app.get("/")
+def get_home():
+    return render_template("home.html")
