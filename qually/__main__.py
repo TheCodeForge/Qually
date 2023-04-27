@@ -147,7 +147,7 @@ def debug(text):
 from qually.helpers.security import generate_hash
 import qually.classes
 from qually.routes import *
-#import qually.helpers.jinja2
+import qually.helpers.jinja2
 #from qually.helpers.get import *
 
 #purge css from cache
