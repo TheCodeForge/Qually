@@ -8,6 +8,7 @@ from flask_caching import Cache
 from flask_limiter import Limiter
 from flask_minify import Minify
 import time
+from qually.helpers.security import generate_hash
 
 from flaskext.markdown import Markdown
 from sqlalchemy.ext.declarative import declarative_base
