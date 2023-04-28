@@ -3,7 +3,7 @@ from os import environ
 from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 from sqlalchemy.orm import relationship, deferred
 from flask import abort, g
-from .mix_ins import *
+from .mixins import *
 
 from syzitus.__main__ import Base, app
 
@@ -147,7 +147,7 @@ class PayPalClient():
 		return status=="COMPLETED"
 
 
-class PayPalTxn(Base, standard_mixin, age_mixin):
+class PayPalTxn(Base, core_mixin):
 
 	__tablename__="paypal_txns"
 
