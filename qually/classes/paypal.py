@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship, deferred
 from flask import abort, g
 from .mixins import *
 
-from syzitus.__main__ import Base, app
+from qually.__main__ import Base, app
 
 PAYPAL_ID=environ.get("PAYPAL_CLIENT_ID", "").rstrip()
 PAYPAL_SECRET=environ.get("PAYPAL_CLIENT_SECRET", "").rstrip()
