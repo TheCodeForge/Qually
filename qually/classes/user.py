@@ -1,5 +1,4 @@
-from werkzeug.security import generate_password_hash, check_password_hash
-from flask import *
+from flask import g
 from sqlalchemy import *
 from sqlalchemy.orm import *
 from secrets import token_hex
@@ -82,13 +81,6 @@ class User(Base, core_mixin):
             removal_code="0"+removal_code
 
         return removal_code
-
-    def hash_password(self, password):
-        return generate_password_hash(
-            password, method='pbkdf2:sha512', salt_length=8)
-
-    def verifyPass(self, password):
-        return check_password_hash(self.passhash, password)
 
     @property
     def formkey(self):
