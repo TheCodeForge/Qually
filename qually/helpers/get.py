@@ -1,8 +1,8 @@
 from .base36 import base36encode, base36decode
 
 from flask import g, abort
-from sqlalchemy import *
-from sqlalchemy.orm import *
+# from sqlalchemy import *
+# from sqlalchemy.orm import *
 
 from qually.classes import *
 
