@@ -13,15 +13,10 @@ from qually.__main__ import app, limiter, debug, cache
 
 # take care of misc pages that never really change (much)
 
-@app.route("/assets/style/<color>/<file>.css", methods=["GET"])
+@app.route("/assets/style/<color>.css", methods=["GET"])
 @cf_cache
 @cache.memoize()
-def main_css(color, file, n=None):
-
-    #print(file, color)
-
-    if file not in ["light", "dark"]:
-        abort(404)
+def main_css(color, n=None):
 
     name=f"{app.config['SYSPATH']}/assets/style/{file}.scss"
     #print(name)
