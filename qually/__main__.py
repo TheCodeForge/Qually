@@ -73,7 +73,7 @@ if not environ.get("REDIS_URL"):
 else:
     app.config["CACHE_TYPE"] = environ.get("CACHE_TYPE", 'NullCache').lstrip().rstrip()
 
-app.config["CACHE_DIR"] = environ.get("CACHE_DIR", "ruqquscache")
+app.config["CACHE_DIR"] = environ.get("CACHE_DIR", "tempcache")
 
 # Redis configs
 app.config["CACHE_REDIS_URL"] = environ.get("REDIS_URL","").rstrip().lstrip()
