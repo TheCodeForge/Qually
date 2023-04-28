@@ -130,3 +130,7 @@ dmypy.json
 
 # Alembic
 alembic.ini
+
+#redis cache
+tempcache/*
+*/tempcache/*
