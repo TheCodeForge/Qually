@@ -7,7 +7,7 @@ from secrets import token_hex
 from redis import BlockingConnectionPool, ConnectionPool
 import sass
 
-from flask import *
+from flask import g, session, Flask, request, redirect
 from flask_caching import Cache
 from flask_limiter import Limiter
 
