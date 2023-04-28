@@ -1,0 +1,18 @@
+from .base36 import base36encode, base36decode
+
+from flask import *
+from sqlalchemy import *
+from sqlalchemy.orm import *
+
+from qually.classes import *
+
+def get_account(b36uid, graceful=False):
+
+    id=base36decode(b36uid)
+
+    user=g.db.query(User).filter_by(id=id).first()
+
+    if not user and not graceful:
+        abort(404)
+
+    return user

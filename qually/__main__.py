@@ -117,7 +117,7 @@ app.config["RATELIMIT_DEFAULTS_EXEMPT_WHEN"]=lambda:False
 app.config["RATELIMIT_HEADERS_ENABLED"]=True
 
 limiter = Limiter(
-    lambda: request.remote_addr,
+    key_func = lambda: request.remote_addr,
     app=app,
     application_limits=["60/minute"],
     headers_enabled=True,
@@ -148,7 +148,7 @@ from qually.helpers.security import generate_hash
 import qually.classes
 from qually.routes import *
 import qually.helpers.jinja2
-#from qually.helpers.get import *
+from qually.helpers.get import *
 
 #purge css from cache
 #cache.delete_memoized(qually.routes.main_css)
@@ -156,33 +156,29 @@ import qually.helpers.jinja2
 # enforce https
 @app.before_request
 def before_request():
-    
-    if "session_id" not in session:
-        session["session_id"] = token_hex(16)
 
-    g.timestamp = int(time.time())
-    g.nonce=generate_hash(f'{g.timestamp}+{session.get("session_id")}')
-    g.db = db_session()
-
-
-    g.timestamp = int(time.time())
-
-    g.db = db_session()
-
-    session.permanent = True
-
-    useragent=request.headers.get("User-Agent", "NoAgent")
-
+    #Force SSL
     if app.config["FORCE_HTTPS"] and request.url.startswith(
             "http://") and "localhost" not in app.config["SERVER_NAME"]:
         url = request.url.replace("http://", "https://", 1)
         return redirect(url), 301
-
-    if not session.get("session_id"):
+    
+    #cookie stuff
+    session.permanent = True
+    if "session_id" not in session:
         session["session_id"] = token_hex(16)
+
+    #request values
+    g.timestamp = int(time.time())
+    g.nonce=generate_hash(f'{g.timestamp}+{session.get("session_id")}')
+    g.db = db_session()
 
     #default user to none
     g.user=None
+
+    #Check for authentication
+    if session.get("user_id"):
+        g.user = get_account(session["user_id"], graceful=True)
 
 
 @app.after_request
