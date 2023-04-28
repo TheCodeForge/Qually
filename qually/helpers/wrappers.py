@@ -8,96 +8,11 @@ from qually.classes import User
 from qually.__main__ import Base, app, g, debug
 
 
-def get_logged_in_user():
-
-    uid = session.get("user_id")
-    nonce = session.get("login_nonce", 0)
-    if not uid:
-        g.user=None
-        return
-
-    user=g.db.query(User).filter_by(
-        id=uid,
-        is_active=True
-        ).first()
-
-    if not user:
-        g.user=None
-        return
-
-    if nonce < user.login_nonce:
-        g.user=None
-        return
-
-    g.user=user
-
-
-#this isn't a wrapper; it's just called by them
-def validate_csrf_token():
-
-    if request.method not in ["POST", "PUT", "PATCH", "DELETE"]:
-        #req does not need csrf
-        return
-
-    if not request.url_rule:
-        #req is 404 due to nonexistent function, does not need csrf.
-        #needed to properly 404 and/or honeypot malicious POST scrapers
-        return
-
-    submitted_key = request.values.get("formkey", "none")
-
-    #logged in users
-    if g.user:
-        if not validate_hash(f"{session['session_id']}+{self.id}+{self.login_nonce}", formkey):
-            # debug('logged in user, failed token')
-            abort(403)
-
-    else:
-        #logged out users
-        t=int(request.values.get("time", 0))
-
-        if g.timestamp-t > 3600:
-            # debug('logged out user, token expired')
-            abort(403)
-
-        if not validate_hash(f"{t}+{session['session_id']}", submitted_key):
-            # debug('logged out user, invalid token')
-            abort(403)
-
-    # debug(f"successful csrf, user {g.user} on {request.path}")
-
-
 # Wrappers
-def auth_desired(f):
-    # decorator for any view that changes if user is logged in (most pages)
-
-    def wrapper(*args, **kwargs):
-
-        get_logged_in_user()
-
-        validate_csrf_token()
-
-        resp = make_response(f(*args, **kwargs))
-        if g.user:
-            resp.headers.add("Cache-Control", "private")
-            resp.headers.add(
-                "Access-Control-Allow-Origin",
-                app.config["SERVER_NAME"])
-        return resp
-
-    wrapper.__name__ = f.__name__
-    wrapper.__doc__ = f.__doc__
-    return wrapper
-
-
 def auth_required(f):
     # decorator for any view that requires login (ex. settings)
 
     def wrapper(*args, **kwargs):
-
-        get_logged_in_user()
-
-        validate_csrf_token()
 
         if not g.user:
             abort(401)
@@ -120,15 +35,11 @@ def is_active(f):
 
     def wrapper(*args, **kwargs):
 
-        get_logged_in_user()
-
         if not g.user:
             abort(401)
 
         if not g.user.is_active:
             abort(403)
-
-        validate_csrf_token()
 
         resp = make_response(f(*args, **kwargs))
         resp.headers.add("Cache-Control", "private")
