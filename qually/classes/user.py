@@ -1,6 +1,6 @@
 from flask import g
-from sqlalchemy import *
-from sqlalchemy.orm import *
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
+from sqlalchemy.orm import deferred, relationship
 from secrets import token_hex
 import pyotp
 
@@ -35,6 +35,8 @@ class User(Base, core_mixin):
     profile_nonce = Column(Integer, default=0)
 
     ## === RELATIONSHIPS ===
+
+    organization = relationship("Organization", lazy="joined", innerjoin=True)
 
     __table_args__=(
         Index(

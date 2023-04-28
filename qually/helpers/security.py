@@ -2,7 +2,7 @@ from hmac import new as hmac_new, compare_digest as hmac_compare_digest
 from werkzeug.security import generate_password_hash
 from os import environ
 import time
-from random import uniform
+import random
 
 from qually.__main__ import app
 
@@ -36,6 +36,6 @@ def safe_compare(x, y):
     
     after=time.time()
     
-    time.sleep(uniform(0.0, 0.1)-(after-before))
+    time.sleep(random.uniform(0.0, 0.1)-(after-before))
     
     return returnval

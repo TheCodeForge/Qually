@@ -1,5 +1,5 @@
 from flask import g, abort
-from sqlalchemy import *
+from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.orm import *
 
 from .mixins import core_mixin
