@@ -5,6 +5,7 @@ from secrets import token_hex
 import pyotp
 
 from qually.helpers.lazy import lazy
+from qually.helpers.security import generate_hash, validate_hash
 
 from .mixins import core_mixin
 
@@ -69,6 +70,10 @@ class User(Base, core_mixin):
         x = pyotp.TOTP(self.mfa_secret)
         return x.verify(token, valid_window=1)
 
+    def validate_csrf_token(self, token):
+
+        return validate_hash(f"{session['session_id']}+{self.id}+{self.login_nonce}", token)
+
     @property
     def mfa_removal_code(self):
 
@@ -85,7 +90,7 @@ class User(Base, core_mixin):
         return removal_code
 
     @property
-    def formkey(self):
+    def csrf_token(self):
 
         msg = f"{session['session_id']}+{self.id}+{self.login_nonce}"
 

@@ -149,6 +149,7 @@ import qually.classes
 from qually.routes import *
 import qually.helpers.jinja2
 from qually.helpers.get import *
+from qually.helpers.security import generate_hash, validate_hash
 
 #purge css from cache
 #cache.delete_memoized(qually.routes.main_css)
@@ -179,6 +180,22 @@ def before_request():
     #Check for authentication
     if session.get("user_id"):
         g.user = get_account(session["user_id"], graceful=True)
+
+    #for non-idempotent requests, check csrf token
+    if request.method in ["POST", "PUT", "PATCH", "DELETE"] and request.url_rule:
+
+        submitted_key = request.values.get("csrf_token")
+
+        if g.user:
+            if not g.user.validate_csrf_token(submitted_key):
+                abort(403)
+        
+        else:
+            t=int(request.values.get("time",0))
+            if g.timestamp - t > 3600:
+                abort(403)
+            if not validate_hash(f"{t}+{session['session_id']}", submitted_key):
+                abort(403)
 
 
 @app.after_request
