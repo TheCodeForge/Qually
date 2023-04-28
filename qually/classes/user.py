@@ -1,5 +1,5 @@
 from flask import g
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Index
 from sqlalchemy.orm import deferred, relationship
 from secrets import token_hex
 import pyotp
