@@ -17,49 +17,7 @@
   {% block content %}
   {% endblock %}
   
-  <!--Clipboard JS-->
-  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
-
-  <!-- Instantiate clipboard by passing a string selector -->
-  <script type="text/javascript" nonce="{{ g.nonce }}">
-    var clipboard = new ClipboardJS('.copy-link');
-    clipboard.on('success', function(e) {
-
-      jQuery(function($) {
-        $('#toast-copy-success').toast('show');
-      })
-      console.log(e);
-    });
-    clipboard.on('error', function(e) {
-
-      jQuery(function($) {
-        $('#toast-copy-error').toast('show');
-      })
-      console.log(e);
-    });
-  </script>
+  {% include "elements/clipboard.html" %}
+  {% include "elements/toasts.html" %}
   
-  <!--Toasts-->
-  <div class="toast clipboard" id="toast-copy-success" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="true" data-delay="5000">
-    <div class="toast-body text-center">
-      <i class="fas fa-check-circle text-success mr-2"></i>Copied link to clipboard
-    </div>
-  </div>
-
-  <div class="toast clipboard" id="toast-copy-error" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="true" data-delay="5000">
-    <div class="toast-body text-center">
-      <i class="fas fa-exclamation-circle text-danger mr-2"></i>Unable to copy link
-    </div>
-  </div>
-
-  <div class="toast" id="toast-success" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="true" data-delay="5000">
-    <div class="toast-body bg-success text-center text-white">
-      <i class="fas fa-comment-alt-smile mr-2"></i><span class="toast-text"></span>
-    </div>
-  </div>
-  <div class="toast" id="toast-error" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="true" data-delay="5000">
-    <div class="toast-body bg-danger text-center text-white">
-      <i class="fas fa-exclamation-circle mr-2"></i><span class="toast-text"></span>
-    </div>
-  </div>
 </body>
