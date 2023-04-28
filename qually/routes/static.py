@@ -18,7 +18,7 @@ from qually.__main__ import app, limiter, debug, cache
 @cache.memoize()
 def main_css(color, n=None):
 
-    name=f"{app.config['SYSPATH']}/assets/style/{file}.scss"
+    name=f"{app.config['SYSPATH']}/assets/style/main.scss"
     #print(name)
     with open(name, "r") as file:
         output = file.read()
