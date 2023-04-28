@@ -4,8 +4,8 @@ from PIL import ImageFont, ImageDraw
 from werkzeug.security import safe_join
 from io import BytesIO
 
-from syzitus.classes import *
-from syzitus.__main__ import app, limiter, debug, cache
+from qually.classes import *
+from qually.__main__ import app, limiter, debug, cache
 
 @app.get(app.config["IMG_URL_LOGO_MAIN"])
 @cf_cache
