@@ -1,6 +1,6 @@
 from .base36 import base36encode, base36decode
 
-from flask import *
+from flask import g
 from sqlalchemy import *
 from sqlalchemy.orm import *
 
