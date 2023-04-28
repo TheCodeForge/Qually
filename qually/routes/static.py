@@ -75,7 +75,6 @@ def robots_txt():
 
 
 @app.route("/help/<path:path>", methods=["GET"])
-@auth_desired
 def help_path(path):
     try:
         to_render=safe_join("help/", f"{path}.html")
@@ -86,11 +85,8 @@ def help_path(path):
 
 
 @app.route("/help", methods=["GET"])
-@auth_desired
 def help_home():
     return render_template("help.html")
-
-
 
 # @app.route("/help/docs")
 # @cache.memoize(10)
