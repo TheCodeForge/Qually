@@ -5,7 +5,7 @@ from werkzeug.security import safe_join
 from io import BytesIO
 
 from qually.classes import *
-from quallly.helpers.wrappers import cf_cache
+from qually.helpers.wrappers import cf_cache
 from qually.__main__ import app, limiter, debug, cache
 
 @app.get(app.config["IMG_URL_LOGO_MAIN"])
