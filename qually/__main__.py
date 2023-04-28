@@ -37,7 +37,7 @@ app.config["TAGLINE"]=environ.get("TAGLINE", "Alpha").lstrip().rstrip()
 app.config["SUBTITLE"]=environ.get("SUBTITLE", "").lstrip().rstrip()
 
 app.config['COLOR_PRIMARY']=environ.get("COLOR_PRIMARY",'a9cbb7')
-app.config['CSS_URL_LIGHT']=f"/assets/style/{app.config['COLOR_PRIMARY']}/light.css"
+app.config['CSS_URL']=f"/assets/style/{app.config['COLOR_PRIMARY']}.css"
 
 app.config["SYSPATH"]=environ.get("SYSPATH", path.dirname(path.realpath(__file__)))
 
