@@ -18,6 +18,10 @@
   <nav class="navbar bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">{{ 'SITE_NAME' | app_config }}</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <a class="btn btn-border btn-secondary" href="/login">Log In</a>
+        <a class="btn btn-primary" href="/signup">Free Trial</a>
+      </div>
     </div>
   </nav>
   {% block content %}
