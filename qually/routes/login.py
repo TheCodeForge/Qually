@@ -119,7 +119,7 @@ def post_sign_in():
 @logged_in
 def post_logout():
     session.pop("user_id")
-    return redirect("/")
+    return toast_redirect("/")
 
 @app.get("/set_otp")
 @logged_in
