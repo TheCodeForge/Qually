@@ -29,7 +29,11 @@
       <div class="collapse navbar-collapse" id="navbarToggler">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           
-          {% if not g.user %}
+          {% if g.user %}
+          <li class="nav-item mx-1">
+            <a class="btn btn-primary w-100 post-toast" data-post-url="/logout"><i class="fas fa-right-from-bracket fa-fw"></i></a>
+          </li>
+          {% else %}
           <li class="nav-item mx-1">
             <a class="btn btn-primary w-100" href="/register">Free Trial</a>
           </li>
