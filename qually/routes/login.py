@@ -19,12 +19,19 @@ def post_register():
         
     if not request.form.get("name"):
         return toast_error("Your name is required")
-        
-    if not request.form.get("email"):
+    
+    email=request.form.get("email")
+    if not email:
         return toast_error("Email address is required")
 
     if not request.form.get("org_name"):
         return toast_error("Organization name is required")
+
+    if not re.fullmatch(valid_email_regex, email):
+        return toast_error("Invalid email address")
+
+    if not re.fullmatch(valid_email_regex, request.form.get("password")):
+        return toast_error("Password must be at least 8 characters")
 
     existing=g.db.query(User).filter(User.email.ilike(request.form.get("email")))
     if existing:
@@ -49,7 +56,7 @@ def post_register():
         organization_id=new_org.id,
         is_org_admin=True
         )
-    
+
     g.db.add(new_user)
     g.db.commit()
 
