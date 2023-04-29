@@ -19,7 +19,13 @@ def get_account(b36uid, graceful=False):
 
 def get_account_by_email(email, graceful=False):
 
-    email=email.replace("@", r"\@")
+    if email.enswith("@gmail.com"):
+        gmail_username=email.split('@')[0]
+        gmail_username=gmail_username.split('+')[0]
+        gmail_username=gmail_username.replace('.','')
+        email=f"{gmail_username}@gmail.com"
+
+    email=email.replace("%", r"\%")
     email=email.replace("_", r"\_")
 
     user=g.db.query(User).filter(User.email.ilike(email)).first()
