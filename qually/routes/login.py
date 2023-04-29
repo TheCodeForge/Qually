@@ -1,5 +1,13 @@
 from qually.helpers.route_imports import *
 
+@app.get("/register")
+def get_register():
+
+    if g.user:
+        return redirect("/")
+
+    return render_template("/register.html")
+
 @app.get("/login")
 def get_login():
 
