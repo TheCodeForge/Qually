@@ -3,48 +3,44 @@
 {% block title %}Two-Factor Setup | {{ 'SITE_NAME' | app_config }}{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center mx-0">
-  <div class="col-12 col-md-6 col-xl-4 my-auto p-3">
-    <div id="signup-form">
-      <h1 class="h2">Set up Two-Factor Authentication</h1>
-      {% if g.user.organization.requires_otp %}
-      <p>{{ g.user.organization.name }} requires the use of two-factor authentication.</p>
-      {% endif %}
+<div id="signup-form">
+  <h1 class="h2">Set up Two-Factor Authentication</h1>
+  {% if g.user.organization.requires_otp %}
+  <p>{{ g.user.organization.name }} requires the use of two-factor authentication.</p>
+  {% endif %}
 
-      <form action="/set_otp" method="post">
+  <form action="/set_otp" method="post">
 
-        <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-        <input type="hidden" name="otp_secret" value="{{ otp_secret }}">
+    <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+    <input type="hidden" name="otp_secret" value="{{ otp_secret }}">
 
-        <p>
-          <span class="fw-bold text-primary">1:</span> Scan this barcode (or enter the code) using a two-factor authentication app such as Google Authenticator or Authy.
-        </p>
-        <div class="text-center mb-3">
-          <img class="img-fluid w-75" src="{{ otp_secret | otp_qrcode }}">
-          <div class="text-small text-muted">
-            <p>Or, enter this code into your authenticator app:</p>
-            <p><span class="font-monospace">{{ otp_secret }}</span></p>
-          </div>
-        </div>
-
-        <p>
-          <span class="fw-bold text-primary">2:</span> Write down your Two-Factor Recovery Code and store it in a safe place. This code will <span class="fw-bold">never</span> be shown again. <span class="text-danger">If you lose your two-factor device, you will not be able to recover your account without this code.</span>
-        </p>
-        <p class="fw-bold text-primary text-center font-monospace text-uppercase">{{ recovery }}</p>
-        <p>
-          <span class="fw-bold text-primary">3:</span> Enter your account password and the six digit code generated in your authenticator app
-        </p>
-
-        <label for="2fa_input_password">Password</label>
-        <input type="password" autocomplete="new-password" class="form-control mb-2" id="2fa_input_password" name="password" oninput="document.getElementById('enable2faButton').disabled=false" autocomplete="off" required>
-
-        <label for="2fa_input">6-digit code</label>
-        <input type="text" class="form-control mb-2" id="2fa_input" name="otp_code" placeholder="# # # # # #" required>
-
-        <button class="btn btn-primary login w-100 mt-3" id="register_button">Continue</button>
-
-      </form>
+    <p>
+      <span class="fw-bold text-primary">1:</span> Scan this barcode (or enter the code) using a two-factor authentication app such as Google Authenticator or Authy.
+    </p>
+    <div class="text-center mb-3">
+      <img class="img-fluid w-75" src="{{ otp_secret | otp_qrcode }}">
+      <div class="text-small text-muted">
+        <p>Or, enter this code into your authenticator app:</p>
+        <p><span class="font-monospace">{{ otp_secret }}</span></p>
+      </div>
     </div>
-  </div>
+
+    <p>
+      <span class="fw-bold text-primary">2:</span> Write down your Two-Factor Recovery Code and store it in a safe place. This code will <span class="fw-bold">never</span> be shown again. <span class="text-danger">If you lose your two-factor device, you will not be able to recover your account without this code.</span>
+    </p>
+    <p class="fw-bold text-primary text-center font-monospace text-uppercase">{{ recovery }}</p>
+    <p>
+      <span class="fw-bold text-primary">3:</span> Enter your account password and the six digit code generated in your authenticator app
+    </p>
+
+    <label for="2fa_input_password">Password</label>
+    <input type="password" autocomplete="new-password" class="form-control mb-2" id="2fa_input_password" name="password" oninput="document.getElementById('enable2faButton').disabled=false" autocomplete="off" required>
+
+    <label for="2fa_input">6-digit code</label>
+    <input type="text" class="form-control mb-2" id="2fa_input" name="otp_code" placeholder="# # # # # #" required>
+
+    <button class="btn btn-primary login w-100 mt-3" id="register_button">Continue</button>
+
+  </form>
 </div>
 {% endblock %}
