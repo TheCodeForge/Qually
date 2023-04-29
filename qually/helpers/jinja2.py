@@ -2,11 +2,17 @@ import base64
 import io
 import qrcode
 
+from qually.helpers.security import generate_hash
+
 from qually.__main__ import app
 
 @app.template_filter("app_config")
 def app_config(x):
     return app.config.get(x)
+
+@app.template_filter("csrf_token")
+def logged_out_formkey(t):
+    return generate_hash(f"{t}+{session['session_id']}")
 
 @app.template_filter('qrcode_img_data')
 def qrcode_filter(x):
