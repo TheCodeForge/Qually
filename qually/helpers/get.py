@@ -19,7 +19,7 @@ def get_account(b36uid, graceful=False):
 
 def get_account_by_email(email, graceful=False):
 
-    if email.enswith("@gmail.com"):
+    if email.endswith("@gmail.com"):
         gmail_username=email.split('@')[0]
         gmail_username=gmail_username.split('+')[0]
         gmail_username=gmail_username.replace('.','')
