@@ -35,8 +35,9 @@ def post_register():
     if not re.fullmatch(valid_password_regex, request.form.get("password")):
         return toast_error("Password must be at least 8 characters")
 
-    existing=g.db.query(User).filter(User.email.ilike(request.form.get("email")))
+    existing=get_account_by_email(email)
     if existing:
+        debug(existing)
         return toast_error("That email is already in use.")
 
     #validate cloudflare anti-bot
