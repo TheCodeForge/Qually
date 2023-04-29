@@ -182,7 +182,7 @@ def before_request():
 
     #Check for authentication
     if session.get("user_id"):
-        g.user = get_account(session["user_id"], graceful=True)
+        g.user = user=g.db.query(User).options(joinedload(User.organization)).filter_by(id=session.get("user_id")).first()
 
     #for non-idempotent requests, check csrf token
     if request.method in ["POST", "PUT", "PATCH", "DELETE"] and request.url_rule:
@@ -199,6 +199,10 @@ def before_request():
                 abort(403)
             if not validate_hash(f"{t}+{session['session_id']}", submitted_key):
                 abort(403)
+
+    if g.user and g.user.organization.requires_otp and not g.user.otp_secret and request.path not in ["set_otp"]:
+        return redirect("/set_otp")
+
 
 
 @app.after_request
