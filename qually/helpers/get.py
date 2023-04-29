@@ -16,3 +16,15 @@ def get_account(b36uid, graceful=False):
         abort(404)
 
     return user
+
+def get_account_by_email(email, graceful=False):
+
+    email=email.replace("@", r"\@")
+    email=email.replace("_", r"\_")
+
+    user=g.db.query(User).filter(User.email.ilike(email)).first()
+
+    if not user and not graceful:
+        abort(404)
+
+    return user
