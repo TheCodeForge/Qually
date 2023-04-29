@@ -1,4 +1,4 @@
-from hmac import new as hmac_new, compare_digest as hmac_compare_digest
+import hmac
 from werkzeug.security import generate_password_hash
 from os import environ
 import time
@@ -12,7 +12,7 @@ def generate_hash(string):
 
     msg = bytes(string, "utf-16")
 
-    return hmac_new(key=bytes(app.config["SECRET_KEY"], "utf-16"),
+    return hmac.new(key=bytes(app.config["SECRET_KEY"], "utf-16"),
                     msg=msg,
                     digestmod='sha256'
                     ).hexdigest()
@@ -20,7 +20,7 @@ def generate_hash(string):
 
 def validate_hash(string, hashstr):
 
-    return hmac_compare_digest(hashstr, generate_hash(string))
+    return hmac.compare_digest(hashstr, generate_hash(string))
 
 
 def hash_password(password):
@@ -46,7 +46,7 @@ def otp_recovery_code(user, otp_secret):
 
     hashstr = generate_hash(f"{otp_secret}+{user.id}")
 
-    removal_code = base36encode(int(hashstr,16))
+    removal_code = base36encode(int(hashstr,16) % 36**25)
     
     while len(removal_code)<25:
         removal_code="0"+removal_code
