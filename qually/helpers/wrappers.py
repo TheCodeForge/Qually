@@ -32,6 +32,26 @@ def logged_in(f):
     wrapper.__doc__ = f.__doc__
     return wrapper
 
+def logged_in(f):
+    # decorator for any view that requires not being logged in (ex. signup)
+
+    def wrapper(*args, **kwargs):
+
+        if g.user:
+            return redirect("/")
+
+        resp = make_response(f(*args, **kwargs))
+
+        resp.headers.add("Cache-Control", "private")
+        resp.headers.add(
+            "Access-Control-Allow-Origin",
+            app.config["SERVER_NAME"])
+        return resp
+
+    wrapper.__name__ = f.__name__
+    wrapper.__doc__ = f.__doc__
+    return wrapper
+
 def is_admin(f):
     # decorator for any view that requires login (ex. settings)
 

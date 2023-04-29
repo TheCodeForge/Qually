@@ -1,23 +1,28 @@
 from werkzeug.security import generate_password_hash, check_password_hash
+import re
 from qually.helpers.route_imports import *
 
+valid_password_regex = re.compile("^.{8,100}+$")
+valid_email_regex    = re.compile("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+
 @app.get("/register")
+@not_logged_in
 def get_register():
-
-    if g.user:
-        return redirect("/")
-
     return render_template("/register.html")
 
+@app.post("/register")
+@not_logged_in
+def post_register():
+
+
+
 @app.get("/sign_in")
+@not_logged_in
 def get_login():
-
-    if g.user:
-        return redirect("/")
-
     return render_template("/sign_in.html")
 
 @app.post("/logout")
+@logged_in
 def post_logout():
     session.pop("user_id")
     return redirect("/")
