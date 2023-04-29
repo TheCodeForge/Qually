@@ -1,4 +1,4 @@
-from flask import g, abort
+from flask import g, abort, session
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Index
 from sqlalchemy.orm import deferred, relationship
 
