@@ -4,6 +4,8 @@ from os import environ
 import time
 import random
 
+from .base36 import base36encode, base36decode
+
 from qually.__main__ import app
 
 def generate_hash(string):
@@ -39,3 +41,14 @@ def safe_compare(x, y):
     time.sleep(random.uniform(0.0, 0.1)-(after-before))
     
     return returnval
+
+def otp_recovery_code(user, otp_secret):
+
+    hashstr = generate_hash(f"{otp_secret}+{user.id}+{user.username}")
+
+    removal_code = base36encode(int(hashstr,16))
+    
+    while len(removal_code)<25:
+        removal_code="0"+removal_code
+
+    return removal_code.upper()

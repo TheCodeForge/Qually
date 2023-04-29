@@ -4,6 +4,7 @@ import requests
 import pyotp
 
 from qually.helpers.route_imports import *
+from qually.helpers.security import otp_recovery_code
 
 valid_password_regex = re.compile("^.{8,100}+$")
 valid_email_regex    = re.compile("^[a-zA-Z0-9!#$%&'*+-/=?^_`{|}~.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9.-]+$")
@@ -130,7 +131,7 @@ def get_set_otp():
         return redirect("/")
 
     otp_secret=pyotp.random_base32()
-    recovery = compute_otp_recovery_code(g.user, otp_secret)
+    recovery = otp_recovery_code(g.user, otp_secret)
     recovery=" ".join([recovery[i:i+5] for i in range(0,len(recovery),5)])
 
     return render_template(
