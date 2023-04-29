@@ -14,7 +14,46 @@ def get_register():
 @not_logged_in
 def post_register():
 
+    if request.form.get("password") != request.form.get("confirm_password"):
+        return toast_error("Passwords do not match.")
+        
+    if not request.form.get("name"):
+        return toast_error("Your name is required")
+        
+    if not request.form.get("email"):
+        return toast_error("Email address is required")
 
+    if not request.form.get("org_name"):
+        return toast_error("Organization name is required")
+
+    existing=g.db.query(User).filter(User.email.ilike(request.form.get("email")))
+    if existing:
+        return toast_error("That email is already in use.")
+
+
+    #Create new org with 30 day free trial
+    new_org = Organization(
+        name=request.form.get("org_name"),
+        license_count=5,
+        license_expire_utc = g.timestamp + 60*60*24*30
+        )
+
+    g.db.add(new_org)
+    g.db.flush()
+
+    new_user=User(
+        name=request.form.get("name"),
+        email=request.form.get("email"),
+        passhash=generate_password_hash(request.form.get("password")),
+        has_license=True,
+        organization_id=new_org.id,
+        is_org_admin=True
+        )
+    
+    g.db.add(new_user)
+    g.db.commit()
+
+    return toast_redirect("/")
 
 @app.get("/sign_in")
 @not_logged_in
