@@ -24,13 +24,13 @@ def qrcode_filter(secret):
 
     x=pyotp.TOTP(secret)
 
-    qr.add_data(x.provisioning_uri(g.user.username, issuer_name=app.config["SITE_NAME"]))
+    qr.add_data(x.provisioning_uri(g.user.email, issuer_name=app.config["SITE_NAME"]))
 
     img=qr.make_image(
         fill_color=f"#{app.config['COLOR_PRIMARY']}",
         back_color="white",
     )
-    
+
     img.save(
         mem, 
         format="PNG"
