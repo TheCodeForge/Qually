@@ -18,6 +18,7 @@ class User(Base, core_mixin):
     is_active = Column(Boolean, default=True)
     has_license = Column(Boolean, default=False)
     organization_id = Column(Integer, ForeignKey("organizations.id"))
+    is_org_admin = Column(Boolean, default=False)
 
     #security
     login_nonce = Column(Integer, default=0)

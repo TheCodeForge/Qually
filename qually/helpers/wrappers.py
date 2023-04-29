@@ -17,6 +17,9 @@ def logged_in(f):
         if not g.user:
             abort(401)
 
+        if not g.user.is_active:
+            abort(403)
+
         resp = make_response(f(*args, **kwargs))
 
         resp.headers.add("Cache-Control", "private")
@@ -29,9 +32,8 @@ def logged_in(f):
     wrapper.__doc__ = f.__doc__
     return wrapper
 
-
-def is_active(f):
-    # decorator that active account state
+def is_admin(f):
+    # decorator for any view that requires login (ex. settings)
 
     def wrapper(*args, **kwargs):
 
@@ -41,7 +43,11 @@ def is_active(f):
         if not g.user.is_active:
             abort(403)
 
+        if not g.user.is_org_admin:
+            abort(403)
+
         resp = make_response(f(*args, **kwargs))
+
         resp.headers.add("Cache-Control", "private")
         resp.headers.add(
             "Access-Control-Allow-Origin",

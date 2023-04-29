@@ -40,7 +40,7 @@ def logo_fontawesome_icon(style, icon, color=None, size=500):
     filename=filenames[style]
 
     font = ImageFont.truetype(
-        f"{app.config['RUQQUSPATH']}/assets/fontawesome/webfonts/{filename}.ttf", 
+        f"{app.config['SYSPATH']}/assets/fontawesome/webfonts/{filename}.ttf", 
         size=size * 3 // 5
         )
 
