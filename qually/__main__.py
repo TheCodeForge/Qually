@@ -32,12 +32,15 @@ app.config["PROXYFIX_X_FOR"]=int(environ.get("PROXYFIX", "2").lstrip().rstrip())
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=app.config["PROXYFIX_X_FOR"])
 app.url_map.strict_slashes = False
 
+#Site name and branding
 app.config["SITE_NAME"]=environ.get("SITE_NAME", "Qually").lstrip().rstrip()
 app.config["TAGLINE"]=environ.get("TAGLINE", "Alpha").lstrip().rstrip()
 app.config["SUBTITLE"]=environ.get("SUBTITLE", "").lstrip().rstrip()
 
-app.config['COLOR_PRIMARY']=environ.get("COLOR_PRIMARY",'a9cbb7')
-app.config['CSS_URL']=f"/assets/style/{app.config['COLOR_PRIMARY']}.css"
+#Colors - default to bootstrap defaults
+app.config['COLOR_PRIMARY']=environ.get("COLOR_PRIMARY",'0d6efd')
+app.config['COLOR_PRIMARY']=environ.get("COLOR_SECONDARY",'6c757d')
+app.config['CSS_URL']=f"/assets/style/{app.config['COLOR_PRIMARY']}/{app.config['COLOR_SECONDARY']}.css"
 
 app.config["SYSPATH"]=environ.get("SYSPATH", path.dirname(path.realpath(__file__)))
 

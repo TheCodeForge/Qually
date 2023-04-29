@@ -6,10 +6,10 @@ from qually.helpers.route_imports import *
 
 # take care of misc pages that never really change (much)
 
-@app.route("/assets/style/<color>.css", methods=["GET"])
+@app.route("/assets/style/<color1>/<color2>.css", methods=["GET"])
 @cf_cache
 @cache.memoize()
-def main_css(color, n=None):
+def main_css(color1, color2, n=None):
 
     name=f"{app.config['SYSPATH']}/assets/style/main.scss"
     #print(name)
@@ -19,7 +19,8 @@ def main_css(color, n=None):
     # This doesn't use python's string formatting because
     # of some odd behavior with css files
 
-    output = output.replace("{primary}", color)
+    output = output.replace("{primary}", color1)
+    output = output.replace("{secondary}", color2)
 
     #compile the regular css
     output=sass.compile(string=output)
