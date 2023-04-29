@@ -202,7 +202,7 @@ def before_request():
             if not validate_hash(f"{t}+{session['session_id']}", submitted_key):
                 abort(403)
 
-    if g.user and g.user.organization.requires_otp and not g.user.otp_secret and request.path not in ["set_otp"]:
+    if g.user and g.user.organization.requires_otp and not g.user.otp_secret and request.path not in ["/set_otp"]:
         return redirect("/set_otp")
 
 
