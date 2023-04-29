@@ -6,7 +6,7 @@ from qually.helpers.route_imports import *
 
 # take care of misc pages that never really change (much)
 
-@app.route("/assets/style/<color1>/<color2>.css", methods=["GET"])
+@app.get("/assets/style/<color1>/<color2>.css")
 @cf_cache
 @cache.memoize()
 def main_css(color1, color2, n=None):
@@ -49,7 +49,7 @@ def static_service(path):
     return resp
 
 
-@app.route("/robots.txt", methods=["GET"])
+@app.get("/robots.txt")
 def robots_txt():
 
     # banned_robot_uas = ["Mozilla", "Chrome", "Safari"]
@@ -59,11 +59,7 @@ def robots_txt():
 
     return send_file("./assets/robots.txt")
 
-
-
-
-
-@app.route("/help/<path:path>", methods=["GET"])
+@app.get("/help/<path:path>")
 def help_path(path):
     try:
         to_render=safe_join("help/", f"{path}.html")
@@ -73,9 +69,13 @@ def help_path(path):
        abort(404)
 
 
-@app.route("/help", methods=["GET"])
+@app.get("/help")
 def help_home():
     return render_template("help.html")
+
+@app.get("/favicon.ico")
+def get_favicon_ico():
+    return send_file('./assets/images/logo.png')
 
 # @app.route("/help/docs")
 # @cache.memoize(10)
