@@ -6,7 +6,7 @@ function post_toast(url, callback=function(xhr){}) {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
   var form = new FormData()
-  form.append("formkey", formkey());
+  form.append("csrf_token", csrf_token());
   xhr.withCredentials=true;
 
   xhr.onload = function() {
