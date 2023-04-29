@@ -157,7 +157,6 @@ class PayPalTxn(Base, core_mixin):
 	status=Column(Integer, default=0) #0=initialized 1=created, 2=authorized, 3=captured, -1=failed, -2=reversed 
 
 	user=relationship("User", lazy="joined", backref="_transactions")
-	promo=relationship("PromoCode", lazy="joined")
 
 	@property
 	def approve_url(self):
