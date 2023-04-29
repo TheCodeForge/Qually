@@ -14,7 +14,6 @@ class User(Base, core_mixin):
     created_utc = Column(Integer, default=0)
     creation_ip = Column(String, default=None)
     name = Column(String, default=None)
-    referred_by = Column(Integer, default=None)
     is_active = Column(Boolean, default=True)
     has_license = Column(Boolean, default=False)
     organization_id = Column(Integer, ForeignKey("organizations.id"))
