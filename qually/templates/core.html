@@ -14,9 +14,6 @@
   <link id="csrf-token-element" data-csrf-token="{{ g.user.csrf_token }}">
   {% endif %}
   
-  <!--Site JS-->
-  <script src="/assets/js/all.js"></script>
-  
 </head>
 <body>
   
@@ -46,5 +43,8 @@
   
   {% include "elements/clipboard.html" %}
   {% include "elements/toasts.html" %}
+  
+  <!--Site JS-->
+  <script src="/assets/js/all.js"></script>
   
 </body>
