@@ -1,15 +1,12 @@
 from jinja2.exceptions import TemplateNotFound
 import pyotp
-from flask import *
 from werkzeug.security import safe_join
 import sass
 
-from qually.helpers.wrappers import *
 #from qually.helpers.markdown import *
-from qually.classes import *
 #from qually.mail import *
 
-from qually.__main__ import app, limiter, debug, cache
+from qually.helpers.route_imports import *
 
 # take care of misc pages that never really change (much)
 

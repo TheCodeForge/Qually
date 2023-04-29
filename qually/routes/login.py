@@ -1,6 +1,4 @@
-from flask import redirect, render_template
-
-from qually.__main__ import app
+from qually.helpers.route_imports import *
 
 @app.get("/login")
 def get_login():

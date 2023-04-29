@@ -1,12 +1,9 @@
-from flask import g, session, abort, jsonify, send_file, redirect
 import PIL
 from PIL import ImageFont, ImageDraw
 from werkzeug.security import safe_join
 from io import BytesIO
 
-from qually.classes import *
-from qually.helpers.wrappers import cf_cache
-from qually.__main__ import app, limiter, debug, cache
+from qually.helpers.route_imports import *
 
 @app.get(app.config["IMG_URL_LOGO_MAIN"])
 @cf_cache
