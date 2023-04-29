@@ -1,15 +1,7 @@
-from flask import g
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Index
-from sqlalchemy.orm import deferred, relationship
 from secrets import token_hex
 import pyotp
 
-from qually.helpers.lazy import lazy
-from qually.helpers.security import generate_hash, validate_hash
-
-from .mixins import core_mixin
-
-from qually.__main__ import Base, cache, app, g, db_session, debug
+from qually.helpers.class_imports import *
 
 class User(Base, core_mixin):
 

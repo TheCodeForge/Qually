@@ -1,11 +1,7 @@
 import requests
 from os import environ
-from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
-from sqlalchemy.orm import relationship, deferred
-from flask import abort, g
-from .mixins import *
 
-from qually.__main__ import Base, app
+from qually.helpers.class_imports import *
 
 PAYPAL_ID=environ.get("PAYPAL_CLIENT_ID", "").rstrip()
 PAYPAL_SECRET=environ.get("PAYPAL_CLIENT_SECRET", "").rstrip()
