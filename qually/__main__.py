@@ -182,7 +182,9 @@ def before_request():
 
     #Check for authentication
     if session.get("user_id"):
-        g.user = user=g.db.query(User).options(joinedload(User.organization)).filter_by(id=session.get("user_id")).first()
+        user = g.db.query(User).options(joinedload(User.organization)).filter_by(id=session.get("user_id")).first()
+        if user.login_nonce == session.get("login_nonce", 0):
+            g.user = user
 
     #for non-idempotent requests, check csrf token
     if request.method in ["POST", "PUT", "PATCH", "DELETE"] and request.url_rule:
