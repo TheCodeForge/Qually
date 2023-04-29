@@ -15,7 +15,7 @@ from flaskext.markdown import Markdown
 
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.exc import *
-from sqlalchemy.orm import Session, sessionmaker, scoped_session
+from sqlalchemy.orm import Session, sessionmaker, scoped_session, joinedload
 from sqlalchemy import create_engine
 from sqlalchemy.pool import QueuePool
 
