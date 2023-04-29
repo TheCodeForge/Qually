@@ -32,6 +32,8 @@ def logged_in(f):
     wrapper.__doc__ = f.__doc__
     return wrapper
 
+
+
 def not_logged_in(f):
     # decorator for any view that requires not being logged in (ex. signup)
 
@@ -39,6 +41,32 @@ def not_logged_in(f):
 
         if g.user:
             return redirect("/")
+
+        resp = make_response(f(*args, **kwargs))
+
+        resp.headers.add("Cache-Control", "private")
+        resp.headers.add(
+            "Access-Control-Allow-Origin",
+            app.config["SERVER_NAME"])
+        return resp
+
+    wrapper.__name__ = f.__name__
+    wrapper.__doc__ = f.__doc__
+    return wrapper
+
+def has_seat(f):
+    # decorator for any view that requires login (ex. settings)
+
+    def wrapper(*args, **kwargs):
+
+        if not g.user:
+            abort(401)
+
+        if not g.user.is_active:
+            abort(403)
+
+        if not g.user.has_license:
+            abort(401)
 
         resp = make_response(f(*args, **kwargs))
 
