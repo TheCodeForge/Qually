@@ -20,7 +20,7 @@
 
             <h1 class="h2">Sign In</h1>
 
-            <form action="/sign_in" method="post" class="mt-md-3" id="login">
+            <form id="form-login" action="/sign_in" method="post" class="mt-md-3">
 
               <input type="hidden" name="csrf-token" value="{{ g.timestamp | csrf_token }}"> 
               <input type="hidden" name="time" value="{{ g.timestamp }}">
@@ -37,10 +37,10 @@
 
               <small><a href="/forgot">Forgot password?</a></small>
 
-              <button class="btn btn-primary login w-100 mt-3" id="login_button">Sign in</button>
+              <button class="btn btn-primary login w-100 mt-3 toast-form-submit" data-form="form-login">Sign in</button>
 
               <div class="text-center text-muted text-small mt-5 mb-3">
-                Don't have an account? <a href="/register" class="font-weight-bold toggle-login">Register for a free enterprise trial</a>, or contact your organization's {{ 'SITE_NAME' | app_config }} administrator to request access to your organization's data.
+                <p>Don't have an account? <a href="/register">Register for a free enterprise trial</a>, or contact your organization's {{ 'SITE_NAME' | app_config }} administrator to request access to your organization's data.</p>
               </div>
 
             </form>
