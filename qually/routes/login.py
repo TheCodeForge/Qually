@@ -9,13 +9,13 @@ def get_register():
 
     return render_template("/register.html")
 
-@app.get("/login")
+@app.get("/sign_in")
 def get_login():
 
     if g.user:
         return redirect("/")
 
-    return render_template("/login.html")
+    return render_template("/sign_in.html")
 
 @app.post("/logout")
 def post_logout():
