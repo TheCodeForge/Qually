@@ -14,4 +14,4 @@ class Organization(Base, core_mixin):
     creation_ip = Column(String, default=None)
 
     #organization settings
-    is_mfa_required = Column(Boolean, default=False)
+    requires_otp = Column(Boolean, default=False)

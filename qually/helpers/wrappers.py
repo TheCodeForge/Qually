@@ -9,7 +9,7 @@ from qually.__main__ import Base, app, g, debug
 
 
 # Wrappers
-def auth_required(f):
+def logged_in(f):
     # decorator for any view that requires login (ex. settings)
 
     def wrapper(*args, **kwargs):
