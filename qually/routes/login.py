@@ -32,7 +32,7 @@ def post_register():
     if not re.fullmatch(valid_email_regex, email):
         return toast_error("Invalid email address")
 
-    if not re.fullmatch(valid_email_regex, request.form.get("password")):
+    if not re.fullmatch(valid_password_regex, request.form.get("password")):
         return toast_error("Password must be at least 8 characters")
 
     existing=g.db.query(User).filter(User.email.ilike(request.form.get("email")))
