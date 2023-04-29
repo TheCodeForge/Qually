@@ -78,6 +78,8 @@ def post_register():
     g.db.add(new_user)
     g.db.commit()
 
+    session['user_id']=new_user.id
+
     return toast_redirect("/")
 
 @app.get("/sign_in")
