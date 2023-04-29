@@ -1,10 +1,6 @@
 from jinja2.exceptions import TemplateNotFound
 import pyotp
-from werkzeug.security import safe_join
 import sass
-
-#from qually.helpers.markdown import *
-#from qually.mail import *
 
 from qually.helpers.route_imports import *
 
