@@ -35,7 +35,7 @@ def post_register():
     if not re.fullmatch(valid_password_regex, request.form.get("password")):
         return toast_error("Password must be at least 8 characters")
 
-    existing=get_account_by_email(email)
+    existing=get_account_by_email(email, graceful=True)
     if existing:
         debug(existing)
         return toast_error("That email is already in use.")
