@@ -1,3 +1,5 @@
+from flask import request
+
 from qually.helpers.base36 import *
 from qually.helpers.lazy import lazy
 
@@ -9,6 +11,9 @@ class core_mixin():
 
         if "created_utc" not in kwargs:
             kwargs["created_utc"] = g.timestamp
+
+        if "creation_ip" not in kwargs:
+            kwargs["creation_ip"] = request.remote_addr
 
         Base.__init__(self, **kwargs)
 
