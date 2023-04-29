@@ -37,6 +37,21 @@ def post_register():
     if existing:
         return toast_error("That email is already in use.")
 
+    #validate cloudflare anti-bot
+    if app.config.get("CLOUDFLARE_TURNSTILE_KEY"):
+        token = request.form.get("cf-turnstile-response")
+        if not token:
+            return toast_error("CloudFlare challenge not completed.")
+
+        data = {"secret": app.config["CLOUDFLARE_TURNSTILE_SECRET"],
+                "response": token
+                }
+        url = "https://challenges.cloudflare.com/turnstile/v0/siteverify"
+
+        x = requests.post(url, data=data)
+
+        if not x.json()["success"]:
+            return toast_error(f"CloudFlare validation failed")
 
     #Create new org with 30 day free trial
     new_org = Organization(
