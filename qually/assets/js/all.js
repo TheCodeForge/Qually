@@ -107,3 +107,7 @@ function postformtoast(x, callback=function(data){}){
 
 $('.toast-form-submit').click(function(){postformtoast($(this))});
 $('.toast-form-change-submit').change(function(){postformtoast($(this))});
+
+$(document).on('click', ".post-toast", function(){
+  post_toast($(this).data('post-url'))
+})
