@@ -1,5 +1,7 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
+import requests
+
 from qually.helpers.route_imports import *
 
 valid_password_regex = re.compile("^.{8,100}+$")
