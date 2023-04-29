@@ -1,7 +1,33 @@
+.splash-img {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: bottom;
+    object-fit: cover;
+}
+
+.splash-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(127, 127, 127, 0.25);
+    background-image: linear-gradient(135deg, rgba($primary, 0.1) 0%, rgba($primary, 0.9) 100%);
+
+}
+
 .splash-text {
     position: absolute;
     bottom: 0;
     left: 1.5rem;
     color: $white;
     font-weight: $font-weight-normal;
+}
+
+.splash-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-size: 0;
 }
