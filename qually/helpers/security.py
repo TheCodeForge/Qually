@@ -44,7 +44,7 @@ def safe_compare(x, y):
 
 def otp_recovery_code(user, otp_secret):
 
-    hashstr = generate_hash(f"{otp_secret}+{user.id}+{user.username}")
+    hashstr = generate_hash(f"{otp_secret}+{user.id}")
 
     removal_code = base36encode(int(hashstr,16))
     
