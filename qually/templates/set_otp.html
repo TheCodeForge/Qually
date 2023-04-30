@@ -1,9 +1,9 @@
-{% extends "sign_in.html" %}
+{% extends "core_centered.html" %}
 
 {% block title %}Two-Factor Setup | {{ 'SITE_NAME' | app_config }}{% endblock %}
 
 {% block content %}
-<div id="signup-form">
+<div id="form-otp">
   <h1 class="h2">Set up Two-Factor Authentication</h1>
   {% if g.user.organization.requires_otp %}
   <p>{{ g.user.organization.name }} requires the use of two-factor authentication.</p>
@@ -26,11 +26,11 @@
     </div>
 
     <p>
-      <span class="fw-bold text-primary">2:</span> Write down your Two-Factor Recovery Code and store it in a safe place. This code will <span class="fw-bold">never</span> be shown again. <span class="text-danger">If you lose your two-factor device, you will not be able to recover your account without this code.</span>
+      <span class="fw-bold text-primary">2:</span> Write down your Two-Factor Recovery Code and store it in a safe place. This code will <span class="fw-bold">never</span> be shown again. If you lose your two-factor device, you will not be able to recover your account without this code.
     </p>
     <p class="fw-bold text-primary text-center font-monospace text-uppercase">{{ recovery }}</p>
     <p>
-      <span class="fw-bold text-primary">3:</span> Enter your account password and the six digit code generated in your authenticator app
+      <span class="fw-bold text-primary">3:</span> Enter your account password and the six digit code generated in your authenticator app.
     </p>
 
     <label for="2fa_input_password">Password</label>
@@ -38,9 +38,8 @@
 
     <label for="2fa_input">6-digit code</label>
     <input type="text" class="form-control mb-2" id="2fa_input" name="otp_code" placeholder="# # # # # #" required>
-
-    <button class="btn btn-primary login w-100 mt-3" id="register_button">Continue</button>
-
   </form>
+
+  <button class="btn btn-primary login w-100 mt-3 post-form-toast" data-form="form-otp">Continue</button>
 </div>
 {% endblock %}
