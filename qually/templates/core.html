@@ -55,19 +55,19 @@
 
       {% block wholepage %}
       <!--left sidebar goes here-->
-      <div class="col sidebar sidebar-left hide-scrollbar bg-white border-right d-none d-md-block pt-3" id="sidebar-left">
+      <div class="col sidebar sidebar-left hide-scrollbar border-right d-none d-md-block pt-3" id="sidebar-left">
         {% block leftbar %}
         {% endblock %}
       </div>
 
       <!--main content column-->
-      <div class="col h-100 bg-white {% block customPadding %}custom-gutters{% endblock %}" id="main-content-col">
+      <div class="col h-100" id="main-content-col">
         {% block page %}
         {% endblock %}
       </div>
 
       <!--right sidebar goes here-->
-      <div class="col sidebar text-left d-none d-lg-block pt-3 bg-white border-left">
+      <div class="col sidebar text-left d-none d-lg-block pt-3 border-left">
         {% block rightbar %}
         {% endblock %}
       </div>
