@@ -77,7 +77,7 @@ def post_settings_directory_toggle_license_uid(uid):
         if not user.is_active:
             return toast_error("You can't assign a license to deactivated users.")
 
-        if g.user.organization.license_expire_utc < g.timstamp:
+        if g.time > g.user.organization.license_expire_utc:
             return toast_error("Your organization licenses have expired.")
 
         if g.user.organization.licenses_used >= g.user.organization.license_count:
