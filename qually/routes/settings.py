@@ -72,6 +72,9 @@ def post_settings_directory_toggle_license_uid(uid):
         if user.is_org_admin:
             return toast_error("Administrators must have an assigned license.")
 
+        if g.time - user.license_assigned_utc < 60*60*24*7:
+            return toast_error("There is a 7 day cooldown to unassign licenses")
+
         msg=f"License removed from {user.name}"
 
         user.has_license=False
