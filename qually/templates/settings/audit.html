@@ -21,7 +21,7 @@
     <td>{{ entry.key }}</td>
     <td>{{ entry.old_value }}</td>
     <td>{{ entry.new_value }}</td>
-    <td>{{ entry.note }}</td>
+    <td>{{ entry.note if entry.note else '' }}</td>
   </tr>
   {% endfor %}
 </table>
