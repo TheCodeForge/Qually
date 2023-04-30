@@ -237,21 +237,21 @@ def post_settings_plan():
             face_price = cents_per_seatyear*new_seat_count
             final_price = int(face_price*(1-seat_seconds/desired_seat_seconds))
 
-            # new_txn = PayPalTxn(
-            #     user_id=g.user.id,
-            #     created_utc=g.time,
-            #     seat_count=new_seat_count,
-            #     usd_cents=final_price
-            #     )
+            new_txn = PayPalTxn(
+                user_id=g.user.id,
+                created_utc=g.time,
+                seat_count=new_seat_count,
+                usd_cents=final_price
+                )
 
-            # g.db.add(new_txn)
-            # g.db.flush()
+            g.db.add(new_txn)
+            g.db.flush()
 
-            # PayPalClient().create(new_txn)
-            # g.db.add(new_txn)
-            # g.db.commit()
-            # return toast_redirect(new_txn.approve_url)
-            return toast_error(f"Will cost ${final_price/100:.2f}")
+            PayPalClient().create(new_txn)
+            g.db.add(new_txn)
+            g.db.commit()
+            return toast_redirect(new_txn.approve_url)
+            # return toast_error(f"Will cost ${final_price/100:.2f}")
 
     g.db.add(g.user.organization)
 
