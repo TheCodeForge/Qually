@@ -1,0 +1,34 @@
+{% extends "core.html" %}
+
+{% block title %}
+<title>Contetn Policy | {{ "SITE_NAME" | app_config }}</title>
+<meta name="description" content="{{ 'TAGLINE' | app_config }}">
+{% endblock %}
+
+{% block content %}
+
+{% filter markdown %}
+
+#{{ "SITE_NAME" | app_config }} Content Policy
+
+By using {{ "SERVER_NAME" | app_config }}, you agree to follow these rules. Violations (in {{ "SITE_NAME" | app_config }}'s sole discretion) may lead to the suspension of your {{ "SERVER_NAME" | app_config }} account.
+
+## 1: Prohibited Conduct
+
+You may not use {{ "SERVER_NAME" | app_config }} to do any of the following:
+
+1. Threaten, intimidate, defame, or harrass other users
+2. Impersonate {{ "SITE_NAME" | app_config }} staff
+3. Attempt to interfere with {{ "SITE_NAME" | app_config }} operations
+4. Incite, plan, or engage in unlawful or violent activity
+5. Engage in fraud
+6. Spam
+
+## 2: Prohibited content
+
+You may not upload to, or embed within, {{ "SERVER_NAME" | app_config }}:
+
+1. Pornographic material
+
+{% endfilter %}
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends "core.html" %}
+
+{% block title %}
+<title>Terms of Service | {{ "SITE_NAME" | app_config }}</title>
+<meta name="description" content="{{ 'TAGLINE' | app_config }}">
+{% endblock %}
+
+{% block content %}
+<h1 class="article-title">Terms of Service</h1>
+{% filter markdown %}
+
+## Scope and Definitions
+
+These terms of service ("Terms") are between {{ "SITE_NAME" | app_config }} and You, regarding Your use of the {{ "SERVER_NAME" | app_config }} system, and any other {{ "SERVER_NAME" | app_config }} services or test servers which may exist now or in the future (collectively "{{ "SERVER_NAME" | app_config }}").
+
+If You are creating a new organization on {{ "SITE_NAME" | app_config }}, you represent that you are authorized to bind your employing organization ("Organization") to these terms, and the Organization is so bound. 
+
+## Conduct and content
+
+You agree to follow the Content Policy [here](/help/content_policy). The Content Policy is incorporated into these Terms by this reference.
+
+## Account Access
+
+Your {{ "SERVER_NAME" | app_config }} account is nontransferable. You will not buy, sell, gift, loan, or otherwise grant a third party access to Your {{ "SERVER_NAME" | app_config }} account. You will not provide a third party with Your {{ "SERVER_NAME" | app_config }} password or two-factor authentication codes.
+
+In the event that Your {{ "SERVER_NAME" | app_config }} account is accessed by a third party anyways, You remain accountable for all actions taken by Your account, including actions arising from digital signatures created by Your account.
+
+## Liability
+
+{{ "SITE_NAME" | app_config }} shall not be liable for Your damages arising from any of the following:
+
+* Use of the {{ "SERVER_NAME" | app_config }} platform
+* Technical failure of {{ "SERVER_NAME" | app_config }}
+* Administrative actions performed by {{ "SITE_NAME" | app_config }}, including both automatic and manual actions
+* Unauthorized access of a third party to Your {{ "SERVER_NAME" | app_config }} account
+* Loss or breach of {{ "SERVER_NAME" | app_config }} data
+* Force majeur
+
+You accept full liability for all content You upload to, or embed within, {{ "SERVER_NAME" | app_config }}, and indemnify {{ "SITE_NAME" | app_config }} from all such liability.
+
+## Intellectual Property
+
+You grant {{ "SITE_NAME" | app_config }} a permanent, worldwide, and irrevocable license to store, modify, copy, and distribute to authorized personnel all content that You submit to or upload to {{ "SITE_NAME" | app_config }}. Additionally, You grant {{ "SITE_NAME" | app_config }} a permanent, worldwide, and irrevocable license to sublicense these same rights to {{ "SITE_NAME" | app_config }}'s service providers.
+
+You retain all other intellectual property rights, including ownership.
+
+"Authorized personnel" above means any individual with an active {{ "SITE_NAME" | app_config }} account that has the appropriate user permissions to access a piece of content.
+
+## Acceptable Use
+
+You will not use {{ "SERVER_NAME" | app_config }} as a means to support any other website or service without written permission by {{ "SITE_NAME" | app_config }}.
+
+You will not attempt to gain access to a {{ "SITE_NAME" | app_config }} account that does not belong to You.
+
+## API Terms
+
+You will not use "/api/v1/" endpoints ("{{ "SITE_NAME" | app_config }} API") without valid API keys and authorization tokens.
+
+You will use a unique, descriptive User Agent string when accessing the {{ "SITE_NAME" | app_config }} API.
+
+You will honor {{ "SITE_NAME" | app_config }} API rate limits.
+
+## Your Privacy
+
+{{ "SITE_NAME" | app_config }} will never intentionally share Your personal information with third parties, except:
+
+* As required by United States law.
+* We will share Your data with our own service providers that are necessary for {{ "SERVER_NAME" | app_config }} operations.
+
+{{ "SITE_NAME" | app_config }} will make all reasonable efforts to ensure that user information is kept confidential.
+
+## Payments
+
+{{ "SITE_NAME" | app_config }} offers administrative users the ability to purchase licensing seats for their Organization.
+
+If the Organization accrues a negative balance (by chargeback, refund, or any other means), {{ "SITE_NAME" | app_config }} reserves the right to place administrative restrictions upon the Organization and its associated user accounts, including Your account, until the negative balance is cleared.
+
+Your Organization is responsible for all fees, penalties, or other expenses that {{ "SITE_NAME" | app_config }} may incur due to chargebacks, reversed transactions, or refunds associated with Your account or Your Organization.
+
+## Enforcement
+
+{{ "SITE_NAME" | app_config }} retains sole discretion in all determinations regarding content policy and terms of service violations.
+
+{{ "SITE_NAME" | app_config }} reserves the rights to:
+
+* Remove content that we deem to violate content policy or the terms of service, in our sole discretion, and
+* Temporarily or permanently suspend users and/or Organizations responsible for such violations, with or without warning.
+
+## Severability
+
+If one clause of these Terms or the Content Policy is determined by a court to be unenforceable, the remainder of the Terms and Content Policy shall remain in force.
+
+## No Implied Waiver
+
+A failure by {{ "SITE_NAME" | app_config }} in one or more instances to insist upon Your strict adherence to these terms or the Content Policy, shall not be construed as a waiver of any continuing or subsequent violations of these terms or the Content Policy.
+
+## Completeness
+
+These Terms, together with the other policies incorporated into them by reference, contain all the terms and conditions agreed upon by You and {{ "SITE_NAME" | app_config }} regarding Your use of the {{ "SERVER_NAME" | app_config }} service. No other agreement, oral or otherwise, will be deemed to exist or to bind either of the parties to this Agreement.
+
+## Governing Law
+
+These terms of service are governed by, and shall be interpreted in accordance with, the laws of the state of New Hampshire. You consent to the sole jurisdiction of Hillsborough County, New Hampshire for all disputes between You and {{ "SITE_NAME" | app_config }}, and You consent to the sole application of New Hampshire state law and United States federal law for all such disputes.
+
+## Updates
+
+{{ "SITE_NAME" | app_config }} may periodically update these terms of service and/or the Content Policy. When this happens, {{ "SITE_NAME" | app_config }} will make reasonable efforts to notify You of such changes.
+
+Whenever {{ "SITE_NAME" | app_config }} updates these terms of service or the Content Policy, Your continued use of the {{ "SERVER_NAME" | app_config }} platform constitutes Your agreement to the updated terms of service.
+
+{% endfilter %}
+{% endblock %}
+

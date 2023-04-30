@@ -117,7 +117,7 @@ def user_update_lock(f):
     def wrapper(*args, **kwargs):
 
         #use below authentication to make user be with for update
-        g.user = g.db.query(User).with_for_update().options(lazyload('*')).filter_by(id=g.user.id).first()
+        g.user = g.db.query(User).with_for_update().options(lazyload('*')).filter_by(id=g.user.id).populate_existing().first()
 
         return f(*args, **kwargs)
 
@@ -125,6 +125,18 @@ def user_update_lock(f):
     wrapper.__doc__=f.__doc__
     return wrapper
 
+def org_update_lock(f):
+
+    def wrapper(*args, **kwargs):
+
+        #use below authentication to make user organization be with for update
+        g.user = g.db.query(User).with_for_update().options(joinedload(User.organization)).filter_by(id=g.user.id).populate_existing().first()
+
+        return f(*args, **kwargs)
+
+    wrapper.__name__=f.__name__
+    wrapper.__doc__=f.__doc__
+    return wrapper
 
 def no_cors(f):
     """

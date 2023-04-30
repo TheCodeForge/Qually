@@ -3,7 +3,7 @@ from flask import request, g, render_template, redirect, abort, session, jsonify
 from werkzeug.security import safe_join
 
 from qually.classes import *
-from qually.helpers.wrappers import logged_in, not_logged_in, has_seat, is_admin, user_update_lock, no_cors, no_sanctions, cf_cache
+from qually.helpers.wrappers import logged_in, not_logged_in, has_seat, is_admin, user_update_lock, org_update_lock, no_cors, no_sanctions, cf_cache
 from qually.helpers.security import generate_hash, validate_hash
 from qually.helpers.posttoast import toast, toast_redirect, toast_error
 from qually.helpers.get import *
