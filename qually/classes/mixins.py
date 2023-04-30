@@ -8,16 +8,6 @@ from qually.__main__ import Base
 
 class core_mixin():
 
-    def __init__(self, **kwargs):
-
-        if "created_utc" not in kwargs:
-            kwargs["created_utc"] = g.timestamp
-
-        if "creation_ip" not in kwargs:
-            kwargs["creation_ip"] = request.remote_addr
-
-        super().__init__(self, **kwargs)
-
     @property
     @lazy
     def base36id(self):
