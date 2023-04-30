@@ -117,6 +117,9 @@ def post_settings_directory_toggle_enable_uid(uid):
         if user.is_org_admin:
             return toast_error("Administrator accounts may not be deactivated.")
 
+        if user.has_license:
+            return toast_error("Take away their assigned license first")
+
         msg=f"{user.name} user account deactivated"
 
     else:
