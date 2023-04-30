@@ -15,7 +15,7 @@
   <tr>
     <td>{{ user.name }}</td>
     <td><input type="checkbox"{% if user.has_license %} checked{% endif %}{% if not g.user.is_org_admin %} disabled{% endif %}></td>
-    <td>{{ user.role_string }}</td>
+    <td class="text-small">{{ user.role_string }}</td>
   </tr>
   {% endfor %}
 </table>
