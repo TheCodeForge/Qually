@@ -9,6 +9,7 @@
       <th>Name</th>
       <th>Full License</th>
       {% if g.user.is_org_admin %}
+      <th>Enabled</th>
       <th>Administrator</th>
       {% else %}
       <th>Roles</th>
@@ -20,6 +21,7 @@
     <td>{{ user.name }}</td>
     <td><input type="checkbox"{% if user.has_license %} checked{% endif %}{% if user==g.user or user.is_org_admin or not g.user.is_org_admin %} disabled{% endif %}></td>
     {% if g.user.is_org_admin %}
+    <td><input type="checkbox"{% if user.is_active %} checked{% endif %}{% if user==g.user %} disabled{% endif %}></td>
     <td><input type="checkbox"{% if user.is_org_admin %} checked{% endif %}{% if user==g.user %} disabled{% endif %}></td>
     {% else %}
     <td class="text-small">{{ user.role_string }}</td>
