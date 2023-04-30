@@ -1,4 +1,5 @@
 from flask import g, session, abort, render_template, jsonify, request, make_response, Response
+from sqlalchemy.orm import joinedload
 from os import environ
 from werkzeug.wrappers.response import Response as RespObj
 from random import randint
