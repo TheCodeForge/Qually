@@ -21,7 +21,7 @@
       </form>
       <a href="javascript:void(0)" class="btn ml-auto toast-form-submit btn-primary rounded" data-form="form-org-name">Change Organization Name</a>
       {% else %}
-      <input type="text" class="form-control" value="{{ g.user.organization.name }}">
+      <input type="text" class="form-control" value="{{ g.user.organization.name }}" readonly>
       {% endif %}
 
     </div>
