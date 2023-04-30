@@ -32,6 +32,8 @@ class Organization(Base, core_mixin):
     #Organization staffmin settings
     is_banned=Column(Boolean, default=False)
 
+    logs=relationship("OrganizationAuditLog", lazy="dynamic")
+
 class OrganizationAuditLog(Base, core_mixin):
 
     __tablename__="organization_log"
@@ -46,4 +48,8 @@ class OrganizationAuditLog(Base, core_mixin):
     note=Column(String)
 
     user=relationship("User", lazy="joined", innerjoin=True)
+
+    @property
+    def permalink(self):
+        return f"/settings/audit/{self.base36id}"
     

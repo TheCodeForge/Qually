@@ -19,7 +19,7 @@ class core_mixin():
 
     @property
     @lazy
-    def b36id(self):
+    def base36id(self):
 
         return base36encode(self.id)
 

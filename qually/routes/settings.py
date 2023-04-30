@@ -11,11 +11,23 @@ def get_settings_profile():
     return render_template(f"settings/{page}.html")
 
 @app.get("/settings/audit")
+@app.get("/settings/audit/<log_id>")
 @is_admin
-def get_settings_audit():
+def get_settings_audit(log_id=None):
 
-    page=request.path.split("/")[2]
-    return render_template(f"settings/{page}.html")
+    page=int(request.args.get("page", 1))
+
+    listing=g.user.organization.logs
+
+    if log_id:
+        listing=listing.filter_by(id=base36decode(log_id))
+
+    listing=order_by(OrganizationAuditLog.id.desc()).listing.offset(100*(page-1)).limit(100).all()
+
+
+    return render_template(
+        f"settings/audit.html"
+        listing=listing)
 
 @app.post("/settings/organization")
 @is_admin
