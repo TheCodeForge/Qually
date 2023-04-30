@@ -37,13 +37,13 @@ function post_toast(url, callback=function(xhr){}) {
     if (xhr.status >= 200 && xhr.status < 300) {
       $('#toast-success .toast-text').text(data['message']);
       $('#toast-success').toast('show');
-      callback(xhr);
     } else if (xhr.status >= 300 && xhr.status < 400 ) {
       window.location.href=data['redirect']
     } else {
       $('#toast-error .toast-text').text(data['error']);
       $('#toast-error').toast('show')
     }
+    callback(xhr);
   };
 
   xhr.send(form);
@@ -140,6 +140,15 @@ $(".dark-switch").click(function(){
       $('body').attr("data-bs-theme", "dark")
     } else {
       $('body').attr("data-bs-theme", "light")
+    }
+  })
+})
+
+$(".check-toast").click(function(){
+  var btn=$(this);
+  post_toast($(this).data('post-url'),callback=function(xhr){
+    if (xhr.status>=400) {
+      btn.prop("checked", !btn.prop("checked"))
     }
   })
 })
