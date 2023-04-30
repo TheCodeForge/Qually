@@ -43,7 +43,6 @@ app.config['COLOR_SECONDARY']=environ.get("COLOR_SECONDARY",'6c757d')
 app.config['CSS_URL']=f"/assets/style/{app.config['COLOR_PRIMARY']}/{app.config['COLOR_SECONDARY']}.css"
 
 app.config["SYSPATH"]=environ.get("SYSPATH", path.dirname(path.realpath(__file__)))
-
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['DATABASE_URL'] = environ.get("DATABASE_URL","").replace("postgres://", "postgresql://")
 
@@ -60,7 +59,6 @@ app.config["SESSION_COOKIE_SECURE"] = bool(int(environ.get("FORCE_HTTPS", 1)))
 app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 app.config["SESSION_COOKIE_HTTPONLY"] = True
 app.config["SESSION_COOKIE_DOMAIN"] = False
-
 app.config["PERMANENT_SESSION_LIFETIME"] = 60 * 60 * 24 * 365
 app.config["SESSION_REFRESH_EACH_REQUEST"] = True
 
@@ -118,6 +116,9 @@ app.config["RATELIMIT_ENABLED"] = not bool(int(environ.get("DISABLE_RATELIMIT", 
 app.config["RATELIMIT_DEFAULTS_DEDUCT_WHEN"]=lambda x:True
 app.config["RATELIMIT_DEFAULTS_EXEMPT_WHEN"]=lambda:False
 app.config["RATELIMIT_HEADERS_ENABLED"]=True
+
+#Business variables
+app.config["CENTS_PER_SEATYEAR"]=int(environ.get("CENTS_PER_SEATYEAR", 10000))
 
 limiter = Limiter(
     key_func = lambda: request.remote_addr,
