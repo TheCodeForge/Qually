@@ -22,7 +22,7 @@ class core_mixin():
         if g.user and ("organization_id" not in kwargs):
             kwargs["organization_id"] = g.user.organization_id
 
-        super().__init__(self, **kwargs)
+        Base.__init__(self, **kwargs)
 
     @property
     @lazy
