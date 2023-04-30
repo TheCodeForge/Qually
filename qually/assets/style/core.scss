@@ -85,3 +85,21 @@
     -ms-flex: 0 0 240px;
     flex: 0 0 240px;
 }
+
+.settings-section {
+    margin-bottom: 3rem;
+    background: $white;
+    border: 1px solid $border-color;
+    //box-shadow: $box-shadow-sm;
+    border-radius: 0.35rem;
+    overflow: hidden;
+}
+.settings-section .title, .settings .settings-section .body, .settings .settings-section .footer {
+    padding: 1rem;
+}
+.settings-section .title p:last-of-type {
+    margin-bottom: 0;
+}
+.settings-section .footer {
+    background-color: $gray-200;
+}
