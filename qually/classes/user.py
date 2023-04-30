@@ -30,7 +30,7 @@ class User(Base, core_mixin):
 
     ## === RELATIONSHIPS ===
 
-    organization = relationship("Organization", lazy="joined", innerjoin=True, backref="users")
+    organization = relationship("Organization", lazy="joined", innerjoin=True)
 
     __table_args__=(
         Index(
