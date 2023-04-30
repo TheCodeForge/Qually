@@ -1,4 +1,5 @@
 from qually.helpers.class_imports import *
+from .user import User
 
 class Organization(Base, core_mixin):
 
@@ -33,7 +34,7 @@ class Organization(Base, core_mixin):
     is_banned=Column(Boolean, default=False)
 
     #relationships
-    users=relationship("User", lazy="dynamic")
+    _users=relationship("User", lazy="dynamic")
     logs=relationship("OrganizationAuditLog", lazy="dynamic")
 
     def __init__(self, **kwargs):
@@ -49,6 +50,13 @@ class Organization(Base, core_mixin):
     @property
     def licenses_used(self):
         return self.users.filter_by(has_license=True).count()
+    
+    @property
+    def users(self):
+        if g.user.is_org_admin:
+            return self._users.order_by(User.name.asc())
+        else:
+            return self._users.filter_by(is_active=True).order_by(User.name.asc())
     
 
 class OrganizationAuditLog(Base, core_mixin):
