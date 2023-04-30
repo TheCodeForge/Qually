@@ -10,6 +10,13 @@ def get_settings_profile():
     page=request.path.split("/")[2]
     return render_template(f"settings/{page}.html")
 
+@app.get("/settings/audit")
+@is_admin
+def get_settings_audit():
+
+    page=request.path.split("/")[2]
+    return render_template(f"settings/{page}.html")
+
 @app.post("/settings/organization")
 @is_admin
 def post_settings_organization():

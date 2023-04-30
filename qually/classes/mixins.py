@@ -32,3 +32,14 @@ class core_mixin():
     @lazy
     def age(self):
         return g.timestamp - self.created_utc
+
+    @property
+    @lazy
+    def created_date(self):
+        return time.strftime("%d %B %Y", time.gmtime(self.created_utc))
+
+    @property
+    @lazy
+    def created_datetime(self):
+        return time.strftime("%d %B %Y at %H:%M:%S",
+                             time.gmtime(self.created_utc))
