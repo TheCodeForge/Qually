@@ -47,7 +47,7 @@ class OrganizationAuditLog(Base, core_mixin):
     key=Column(String)
     old_value=Column(String)
     new_value=Column(String)
-    note=Column(String)
+    note=Column(String, default=None)
 
     user=relationship("User", lazy="joined", innerjoin=True)
 
