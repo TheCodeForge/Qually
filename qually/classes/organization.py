@@ -40,7 +40,7 @@ class Organization(Base, core_mixin):
     def __init__(self, **kwargs):
 
         if "created_utc" not in kwargs:
-            kwargs["created_utc"] = g.timestamp
+            kwargs["created_utc"] = g.time
 
         if "creation_ip" not in kwargs:
             kwargs["creation_ip"] = request.remote_addr
@@ -79,7 +79,7 @@ class OrganizationAuditLog(Base, core_mixin):
     def __init__(self, **kwargs):
 
         if "created_utc" not in kwargs:
-            kwargs["created_utc"] = g.timestamp
+            kwargs["created_utc"] = g.time
 
         if "creation_ip" not in kwargs:
             kwargs["creation_ip"] = request.remote_addr

@@ -53,7 +53,7 @@ class User(Base, core_mixin):
             kwargs.pop("password")
 
         if "created_utc" not in kwargs:
-            kwargs["created_utc"] = g.timestamp
+            kwargs["created_utc"] = g.time
 
         super().__init__(**kwargs)
 
@@ -111,7 +111,7 @@ class User(Base, core_mixin):
                         )
         self.has_profile = True
         self.profile_upload_ip=request.remote_addr
-        self.profile_set_utc=g.timestamp
+        self.profile_set_utc=g.time
         self.profile_upload_region=request.headers.get("cf-ipcountry")
         g.db.add(self)
         g.db.commit()

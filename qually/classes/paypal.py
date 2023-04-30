@@ -48,7 +48,7 @@ class PayPalClient():
         x=x.json()
 
         self.paypal_token=x["access_token"]
-        self.token_expires=g.timestamp+int(x["expires_in"])
+        self.token_expires=g.time+int(x["expires_in"])
 
     def _get(self, url):
 

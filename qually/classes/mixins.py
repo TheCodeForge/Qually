@@ -22,7 +22,7 @@ class core_mixin():
     @property
     @lazy
     def age(self):
-        return g.timestamp - self.created_utc
+        return g.time - self.created_utc
 
     @property
     @lazy
