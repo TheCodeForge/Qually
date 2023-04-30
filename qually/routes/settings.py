@@ -247,6 +247,7 @@ def post_settings_plan():
         )
 
     g.db.add(log)
+    g.db.commit()
 
     return toast_redirect("/settings/plan")
 
