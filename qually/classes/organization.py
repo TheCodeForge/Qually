@@ -32,7 +32,19 @@ class Organization(Base, core_mixin):
     #Organization staffmin settings
     is_banned=Column(Boolean, default=False)
 
+    #relationships
+    users=relationship("User", lazy="dynamic")
     logs=relationship("OrganizationAuditLog", lazy="dynamic")
+
+    def __init__(self, **kwargs):
+
+        if "created_utc" not in kwargs:
+            kwargs["created_utc"] = g.timestamp
+
+        if "creation_ip" not in kwargs:
+            kwargs["creation_ip"] = request.remote_addr
+
+        super().__init__(**kwargs)
 
 class OrganizationAuditLog(Base, core_mixin):
 
