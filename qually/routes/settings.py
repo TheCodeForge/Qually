@@ -235,6 +235,8 @@ def post_settings_plan():
             if eligible_seats == new_seat_count:
                 g.user.organization.license_count=new_seat_count
                 g.user.organization.license_expire_utc = g.time + seat_seconds//new_seat_count
+            else:
+                return toast_error(f"eligible seats {eligible_seats}")
 
     g.db.add(g.user.organization)
 
