@@ -228,7 +228,7 @@ def post_settings_plan():
             seat_seconds = (g.user.organization.license_expire_utc-g.time)*g.user.organization.license_count
             eligible_seats=g.user.organization.license_count
 
-            while (eligible_seats<new_seat_count) and seat_seconds//(g.user.organization.license_count+eligible_new_seats) > g.time+60*60*24*365:
+            while (eligible_seats<new_seat_count) and (seat_seconds//eligible_seats > g.time+60*60*24*365):
 
                 eligible_seats+=1
 
