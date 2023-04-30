@@ -220,13 +220,29 @@ def post_settings_plan():
         g.user.organization.license_count = new_seat_count
         g.user.organization.license_expire_utc += extension_time
 
+    else:
+
+        if g.user.organization.license_expire_utc - g.time > 60*60*24*365:
+
+            #eligible for seatday conversion
+            seat_seconds = (g.user.organization.license_expire_utc-g.time)*g.user.organization.license_count
+            eligible_seats=g.user.organization.license_count
+
+            while (eligible_seats<new_seat_count) and seat_seconds//(g.user.organization.license_count+eligible_new_seats) > g.time+60*60*24*365:
+
+                eligible_seats+=1
+
+            if eligible_seats == new_seat_count:
+                g.user.organization.license_count=new_seat_count
+                g.user.organization.license_expire_utc = g.time + seat_seconds//new_seat_count
+
     g.db.add(g.user.organization)
     g.db.commit()
 
     log=OrganizationAuditLog(
         user_id=g.user.id,
         organization_id=g.user.organization_id,
-        key=License Count,
+        key="License Count",
         new_value=str(new_seat_count)
         )
 
