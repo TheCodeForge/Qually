@@ -19,9 +19,6 @@ def logged_in(f):
         if not g.user:
             abort(401)
 
-        if not g.user.is_active:
-            abort(403)
-
         resp = make_response(f(*args, **kwargs))
 
         resp.headers.add("Cache-Control", "private")
@@ -64,9 +61,6 @@ def has_seat(f):
         if not g.user:
             abort(401)
 
-        if not g.user.is_active:
-            abort(403)
-
         if not g.user.has_license:
             abort(401)
 
@@ -92,9 +86,6 @@ def is_admin(f):
 
         if not g.user:
             abort(401)
-
-        if not g.user.is_active:
-            abort(403)
 
         if not g.user.is_org_admin:
             abort(403)
