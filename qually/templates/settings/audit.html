@@ -6,6 +6,7 @@
 <table class="table table-striped mb-5">
   <thead class="bg-primary text-white">
     <tr>
+      <th></th>
       <th>Name</th>
       <th>Timestamp</th>
       <th>Key</th>
@@ -16,6 +17,7 @@
   </thead>
   {% for entry in listing %}
   <tr>
+    <td><i class="fas fa-copy copy-link" data-clipboard-text="{{ entry.permalink_full }}"></i></td>
     <td>{{ entry.user.name }}</td>
     <td>{{ entry.created_datetime }}</td>
     <td>{{ entry.key }}</td>
