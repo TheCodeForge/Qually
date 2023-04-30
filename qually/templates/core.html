@@ -55,6 +55,8 @@
 
       <!--left sidebar goes here-->
       <div class="col sidebar sidebar-left hide-scrollbar bg-white border-right d-none d-md-block pt-3" id="sidebar-left">
+        {% block leftbar %}
+        {% endblock %}
       </div>
 
       <!--main content column-->
@@ -65,6 +67,8 @@
 
       <!--right sidebar goes here-->
       <div class="col sidebar text-left d-none d-lg-block pt-3 bg-white border-left">
+        {% block rightbar %}
+        {% endblock %}
       </div>
 
     </div>
