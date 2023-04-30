@@ -122,8 +122,8 @@ def post_settings_directory_toggle_enable_uid(uid):
         if user.is_org_admin:
             return toast_error("Administrator accounts may not be deactivated.")
 
-        if user.has_license:
-            return toast_error("Take away their assigned license first")
+        # if user.has_license:
+        #     return toast_error("Take away their assigned license first")
 
         msg=f"{user.name} user account deactivated"
 
@@ -132,7 +132,7 @@ def post_settings_directory_toggle_enable_uid(uid):
         msg=f"{user.name} user account activated"
 
     user.is_active = not user.is_active
-    user.has_license = user.is_active and user.has_license
+    #user.has_license = user.is_active and user.has_license
     g.db.add(user)
 
     log=OrganizationAuditLog(
@@ -185,3 +185,13 @@ def post_settings_directory_toggle_admin_uid(uid):
     g.db.commit()
 
     return toast(msg)
+
+@app.post("/settings/plan")
+@is_admin
+def post_settings_plan():
+
+    new_seat_count = int(request.form.get("license_count", 0))
+
+    if new_seat_count==g.user.organization.license_count:
+        return toast_error("You didn't change anything!")
+
