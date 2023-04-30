@@ -7,7 +7,7 @@
 <div class="d-lg-flex">
 
   <div class="title w-lg-25">
-    <label for="referral_code">Organization Name</label>
+    <label for="org_name">Organization Name</label>
   </div>
 
   <div class="body w-lg-100">
@@ -16,7 +16,7 @@
       {% if g.user.is_org_admin %}
       <form id="form-org-name" action="/settings/organization" method="post">
         <input type="hidden" name="formkey" value="{{ g.user.formkey }}">
-        <input type="text" name="name" class="form-control" value="{{ g.user.organization.name }}">
+        <input id="org_name" type="text" name="org_name" class="form-control" value="{{ g.user.organization.name }}">
       </form>
       <a href="javascript:void(0)" class="btn ml-auto toast-form-submit btn-primary" data-form="form-org-name">Change Display Name</a>
       {% else %}
