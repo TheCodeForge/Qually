@@ -7,15 +7,23 @@
   <thead class="bg-primary text-white">
     <tr>
       <th>Name</th>
-      <th>License Seat</th>
+      <th>Full License</th>
+      {% if g.user.is_org_admin %}
+      <th>Administrator</th>
+      {% else %}
       <th>Roles</th>
+      {% endif %}
     </tr>
   </thead>
   {% for user in g.user.organization.users.all() if user.is_active or g.user.is_org_admin %}
   <tr>
     <td>{{ user.name }}</td>
     <td><input type="checkbox"{% if user.has_license %} checked{% endif %}{% if user==g.user or user.is_org_admin or not g.user.is_org_admin %} disabled{% endif %}></td>
+    {% if g.user.is_org_admin %}
+    <td><input type="checkbox"{% if user.is_org_admin %} checked{% endif %}{% if user==g.user %} disabled{% endif %}></td>
+    {% else %}
     <td class="text-small">{{ user.role_string }}</td>
+    {% endif %}
   </tr>
   {% endfor %}
 </table>
