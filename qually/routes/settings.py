@@ -22,8 +22,7 @@ def get_settings_audit(log_id=None):
     if log_id:
         listing=listing.filter_by(id=base36decode(log_id))
 
-    listing=order_by(OrganizationAuditLog.id.desc()).listing.offset(100*(page-1)).limit(100).all()
-
+    listing=listing.order_by(OrganizationAuditLog.id.desc()).listing.offset(100*(page-1)).limit(100).all()
 
     return render_template(
         f"settings/audit.html",
