@@ -26,7 +26,7 @@ def get_settings_audit(log_id=None):
 
 
     return render_template(
-        f"settings/audit.html"
+        f"settings/audit.html",
         listing=listing)
 
 @app.post("/settings/organization")
