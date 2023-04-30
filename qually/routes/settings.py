@@ -252,21 +252,38 @@ def post_settings_plan():
             g.db.commit()
             return toast_redirect(new_txn.approve_url)
 
+@app.post("/settings/plan/price")
+@is_admin
+@org_update_lock
+def post_settings_plan():
 
+    new_seat_count = int(request.form.get("license_count", 0))
 
-    g.db.add(g.user.organization)
+    if new_seat_count==g.user.organization.license_count:
+        return toast("$0.00")
 
-    log=OrganizationAuditLog(
-        user_id=g.user.id,
-        organization_id=g.user.organization_id,
-        key="License Count",
-        new_value=str(new_seat_count)
-        )
+    #decrease seats and increase experation time
+    if new_seat_count < g.user.organization.license_count:
 
-    g.db.add(log)
-    g.db.commit()
+        return toast("$0.00")
 
-    return toast_redirect("/settings/plan")
+    else:
+
+        #Check for seatday conversion eligibility
+        seat_seconds = (g.user.organization.license_expire_utc-g.time)*g.user.organization.license_count
+
+        eligible_seats = seat_seconds // (60*60*24*365)+1
+        
+        if eligible_seats >= new_seat_count:
+            return toast("$0.00")
+        else:
+            desired_seat_seconds=new_seat_count*60*60*24*365
+            cents_per_seatyear = 100000
+            face_price = cents_per_seatyear*new_seat_count
+            final_price = int(face_price*(1-seat_seconds/desired_seat_seconds))/100
+            return toast(f"${final_price}")
+
+            
 
 
 
