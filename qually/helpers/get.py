@@ -28,6 +28,7 @@ def get_account_by_email(email, graceful=False):
     email=email.replace("%", r"\%")
     email=email.replace("_", r"\_")
 
+    #if logged in, pre-filter by org. Otherwise, don't pre-filter but return t/f
     if g.user:
         user=g.user.organization.users.filter(User.email.ilike(email)).first()
 
