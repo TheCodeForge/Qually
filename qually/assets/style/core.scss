@@ -88,8 +88,8 @@
 
 .settings-section {
     margin-bottom: 3rem;
-    background: $white;
-    border: 1px solid $border-color;
+    background: $transparent;
+    border: 1px solid $gray-600;
     //box-shadow: $box-shadow-sm;
     border-radius: 0.35rem;
     overflow: hidden;
@@ -102,4 +102,11 @@
 }
 .settings-section .footer {
     background-color: $gray-200;
+}
+
+label {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: .025rem;
 }
