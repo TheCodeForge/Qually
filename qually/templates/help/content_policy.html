@@ -1,9 +1,6 @@
 {% extends "core.html" %}
 
-{% block title %}
-<title>Contetn Policy | {{ "SITE_NAME" | app_config }}</title>
-<meta name="description" content="{{ 'TAGLINE' | app_config }}">
-{% endblock %}
+{% block title %}Content Policy | {{ "SITE_NAME" | app_config }}{% endblock %}
 
 {% block page %}
 {% filter markdown %}
