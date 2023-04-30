@@ -1,5 +1,5 @@
 from flask import g, abort, session
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Index
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Index, UniqueConstraint
 from sqlalchemy.orm import deferred, relationship
 
 from qually.helpers.lazy import lazy
