@@ -62,7 +62,7 @@ def post_register():
     new_org = Organization(
         name=request.form.get("org_name"),
         license_count=5,
-        license_expire_utc = g.timestamp + 60*60*24*30
+        license_expire_utc = g.time + 60*60*24*30
         )
 
     g.db.add(new_org)
@@ -105,6 +105,9 @@ def post_sign_in():
 
     if not user:
         return toast_error("Invalid username or password")
+
+    if not user.is_active:
+        return toast_error("Your account has been disabled.")
 
     if not check_password_hash(user.passhash, request.form.get("password")):
         return toast_error("Invalid username or password")
