@@ -42,4 +42,7 @@ def get_account_by_email(email, graceful=False):
         if not user and not graceful:
             abort(404)
 
-        return bool(user)
+        if request.path=="/sign_in":
+            return user
+        else:
+            return bool(user)
