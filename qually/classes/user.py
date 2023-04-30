@@ -143,8 +143,6 @@ class User(Base, core_mixin):
             'id': self.base36id,
             'is_private': self.is_private,
             'profile_url': self.profile_url,
-            'banner_url': self.banner_url,
-            'title': self.title.json if self.title else None,
             'bio': self.bio,
             'bio_html': self.bio_html
             }
@@ -154,7 +152,13 @@ class User(Base, core_mixin):
     @property
     def json(self):
         return self.json_core
-    
+
     @property
-    def txn_history(self):
-        return self._transactions.filter(PayPalTxn.status!=1).order_by(PayPalTxn.created_utc.desc()).all()
+    def role_string(self):
+        
+        roles=[]
+        if self.is_org_admin:
+            roles.append("Administrator")
+
+        return ', '.join(roles)
+    

@@ -1,1 +1,23 @@
 {% extends "settings/core.html" %}
+
+{% block content %}
+<h2 class="h5">Directory</h2>
+
+<table class="table table-striped mb-5">
+  <thead class="bg-primary text-white">
+    <tr>
+      <th>Name</th>
+      <th>License Seat</th>
+      <th>Roles</th>
+    </tr>
+  </thead>
+  {% for user in g.user.organization.users if user.is_active or g.user.is_org_admin %}
+  <tr>
+    <td>{{ user.name }}</td>
+    <td><input type="checkbox"{% if user.license %} checked{% endif %}></td>
+    <td>{{ user.role_string }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}
