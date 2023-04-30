@@ -220,10 +220,10 @@ def post_settings_plan():
         g.user.organization.license_count = new_seat_count
         g.user.organization.license_expire_utc += extension_time
 
-        g.db.add(g.user.organization)
-        g.db.commit()
+    g.db.add(g.user.organization)
+    g.db.commit()
 
-        return toast("License count updated")
+    return toast_redirect("/settings/plan")
 
 
 
