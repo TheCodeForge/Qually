@@ -4,7 +4,7 @@ import time
 from qually.helpers.base36 import *
 from qually.helpers.lazy import lazy
 
-from qually.__main__ import Base
+from qually.__main__ import app, Base
 
 class core_mixin():
 
