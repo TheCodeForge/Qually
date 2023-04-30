@@ -149,6 +149,7 @@ class PayPalTxn(Base, core_mixin):
 
     id=Column(Integer, primary_key=True)
     user_id=Column(Integer, ForeignKey("users.id"))
+    organization_id=Column(Integer, ForeignKey("organizations.id"))
     created_utc=Column(Integer)
     paypal_id=Column(String)
     usd_cents=Column(Integer)
