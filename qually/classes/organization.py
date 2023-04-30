@@ -31,3 +31,16 @@ class Organization(Base, core_mixin):
 
     #Organization staffmin settings
     is_banned=Column(Boolean, default=False)
+
+class OrganizationAuditLog(Base, core_mixin):
+
+    __tablename__="organization_log"
+
+    id = Column(Integer, primary_key=True)
+    created_utc=Column(Integer)
+    user_id=Column(Integer, ForeignKey("users.id"))
+
+    key=Column(String)
+    old_value=Column(String)
+    new_value=Column(String)
+    note=Column(String)
