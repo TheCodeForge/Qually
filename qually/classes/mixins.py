@@ -16,7 +16,7 @@ class core_mixin():
         if "creation_ip" not in kwargs:
             kwargs["creation_ip"] = request.remote_addr
 
-        Base.__init__(self, **kwargs)
+        super().__init__(self, **kwargs)
 
     @property
     @lazy
