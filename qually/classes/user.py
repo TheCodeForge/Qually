@@ -16,6 +16,7 @@ class User(Base, core_mixin):
     name = Column(String, default=None)
     is_active = Column(Boolean, default=True)
     has_license = Column(Boolean, default=False)
+    license_assigned_utc=Column(Integer)
     organization_id = Column(Integer, ForeignKey("organizations.id"))
     is_org_admin = Column(Boolean, default=False)
 
