@@ -16,12 +16,6 @@ class core_mixin():
         if "creation_ip" not in kwargs:
             kwargs["creation_ip"] = request.remote_addr
 
-        if g.user and ("user_id" not in kwargs):
-            kwargs["user_id"] = g.user.id
-
-        if g.user and ("organization_id" not in kwargs):
-            kwargs["organization_id"] = g.user.organization_id
-
         Base.__init__(self, **kwargs)
 
     @property
