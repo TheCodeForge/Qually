@@ -22,6 +22,7 @@ class User(Base, core_mixin):
     #security
     login_nonce = Column(Integer, default=0)
     otp_secret = deferred(Column(String(64), default=None))
+    reset_pw_next_login = Column(Boolean, default=False)
 
     #profile
     has_profile = Column(Boolean, default=False)

@@ -183,7 +183,7 @@ def before_request():
     #Check for authentication
     if session.get("user_id"):
         user = g.db.query(User).options(joinedload(User.organization)).filter_by(id=session.get("user_id")).first()
-        if user.login_nonce == session.get("login_nonce", 0):
+        if user.is_active and user.login_nonce == session.get("login_nonce", 0):
             g.user = user
 
     #for non-idempotent requests, check csrf token
