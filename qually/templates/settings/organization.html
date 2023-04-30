@@ -12,14 +12,14 @@
   </div>
 
   <div class="body w-lg-100">
-    <div class="input-group">
+    <div class="input-group d-flex">
 
       {% if g.user.is_org_admin %}
-      <form id="form-org-name" action="/settings/organization" method="post">
+      <form id="form-org-name" action="/settings/organization" method="post" class="w-100">
         <input type="hidden" name="formkey" value="{{ g.user.formkey }}">
-        <input id="org_name" type="text" name="org_name" class="form-control" value="{{ g.user.organization.name }}">
+        <input id="org_name" type="text" name="org_name" class="form-control w-100" value="{{ g.user.organization.name }}">
       </form>
-      <a href="javascript:void(0)" class="btn ml-auto toast-form-submit btn-primary" data-form="form-org-name">Change Display Name</a>
+      <a href="javascript:void(0)" class="btn ml-auto toast-form-submit btn-primary rounded" data-form="form-org-name">Change Organization Name</a>
       {% else %}
       <input type="text" class="form-control" value="{{ g.user.organization.name }}">
       {% endif %}
