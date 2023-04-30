@@ -45,7 +45,7 @@ def post_settings_organization():
         log=OrganizationAuditLog(
             user_id=g.user.id,
             organization_id=g.user.organization_id,
-            key="Name",
+            key="Organization Name",
             old_value=old_name,
             new_value=request.form.get("org_name")
             )
