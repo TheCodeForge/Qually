@@ -46,7 +46,6 @@ def post_settings_organization():
             user_id=g.user.id,
             organization_id=g.user.organization_id,
             key="Organization Name",
-            old_value=old_name,
             new_value=request.form.get("org_name")
             )
         g.db.add(log)
@@ -97,7 +96,6 @@ def post_settings_directory_toggle_license_uid(uid):
         user_id=g.user.id,
         organization_id=g.user.organization_id,
         key=str(user),
-        old_value=f"License={not user.has_license}",
         new_value=f"License={user.has_license}"
         )
     g.db.add(log)
@@ -134,7 +132,6 @@ def post_settings_directory_toggle_enable_uid(uid):
         user_id=g.user.id,
         organization_id=g.user.organization_id,
         key=str(user),
-        old_value=f"Enabled={not user.is_active}",
         new_value=f"Enabled={user.is_active}"
         )
 
@@ -173,7 +170,6 @@ def post_settings_directory_toggle_admin_uid(uid):
         user_id=g.user.id,
         organization_id=g.user.organization_id,
         key=str(user),
-        old_value=f"Admin={not user.is_active}",
         new_value=f"Admin={user.is_active}"
         )
 
