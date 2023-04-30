@@ -204,7 +204,7 @@ def post_settings_plan():
     if new_seat_count < g.user.organization.license_count:
 
         if g.time < g.user.organization.licenses_last_increased_utc + 60*60*24*7:
-            return toast_error("There is a 7 day cooldown after increasing license count before it may be reduced")
+            return toast_error("There is a 7 day cooldown after increasing license count before it may be decreased.")
 
         if new_seat_count<g.user.organization.licenses_used:
             return toast_error(f"You can't reduce your organization license count below current usage.")
@@ -222,19 +222,37 @@ def post_settings_plan():
 
     else:
 
-        if g.user.organization.license_expire_utc > g.time + 60*60*24*365:
+        #Check for seatday conversion eligibility
+        seat_seconds = (g.user.organization.license_expire_utc-g.time)*g.user.organization.license_count
 
-            #eligible for seatday conversion
-            seat_seconds = (g.user.organization.license_expire_utc-g.time)*g.user.organization.license_count
+        eligible_seats = seat_seconds // (60*60*24*365)+1
+        
+        if eligible_seats >= new_seat_count:
+            g.user.organization.license_count=new_seat_count
+            g.user.organization.license_expire_utc = g.time + seat_seconds//new_seat_count
+            g.user.organziation.licenses_last_increased_utc = g.time
+        else:
+            desired_seat_seconds=new_seat_count*60*60*24*365
+            cents_per_seatyear = 100000
+            face_price = cents_per_seatyear*new_seat_count
+            final_price = int(face_price*(1-seat_seconds/desired_seat_seconds))
 
-            eligible_seats = seat_seconds // (60*60*24*365)+1
-            
+            new_txn = PayPalTxn(
+                user_id=g.user_id,
+                created_utc=g.time,
+                seat_count=new_seat_count,
+                usd_cents=final_price
+                )
 
-            if eligible_seats >= new_seat_count:
-                g.user.organization.license_count=new_seat_count
-                g.user.organization.license_expire_utc = g.time + seat_seconds//new_seat_count
-            else:
-                return toast_error(f"eligible seats {eligible_seats}")
+            g.db.add(new_txn)
+            g.db.flush()
+
+            PayPalClient().create(new_txn)
+            g.db.add(new_txn)
+            g.db.commit()
+            return toast_redirect(new_txn.approve_url)
+
+
 
     g.db.add(g.user.organization)
 
