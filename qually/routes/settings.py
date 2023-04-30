@@ -226,13 +226,11 @@ def post_settings_plan():
 
             #eligible for seatday conversion
             seat_seconds = (g.user.organization.license_expire_utc-g.time)*g.user.organization.license_count
-            eligible_seats=g.user.organization.license_count
 
-            while (eligible_seats<new_seat_count) and (seat_seconds//eligible_seats > g.time+60*60*24*365):
+            eligible_seats = seat_seconds // (60*60*24*365)+1
+            
 
-                eligible_seats+=1
-
-            if eligible_seats == new_seat_count:
+            if eligible_seats >= new_seat_count:
                 g.user.organization.license_count=new_seat_count
                 g.user.organization.license_expire_utc = g.time + seat_seconds//new_seat_count
             else:
