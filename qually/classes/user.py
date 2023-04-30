@@ -39,6 +39,9 @@ class User(Base, core_mixin):
                 'email':'gin_trgm_ops'
                 }
             ),
+        UniqueConstraint(
+            'email', 
+            'organization_id', name='_email_org_unique')
         )
 
     def __init__(self, **kwargs):
