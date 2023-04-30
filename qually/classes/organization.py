@@ -65,7 +65,7 @@ class OrganizationAuditLog(Base, core_mixin):
         if "organization_id" not in kwargs:
             kwargs["organization_id"]=g.user.organization.id
 
-        super().__init__(self, **kwargs)
+        super().__init__(**kwargs)
 
     @property
     def permalink(self):
