@@ -32,5 +32,5 @@ class core_mixin():
     @property
     @lazy
     def created_datetime(self):
-        return time.strftime("%d %B %Y at %H:%M:%S",
+        return time.strftime("%d %B %Y at %H:%M:%S UTC",
                              time.gmtime(self.created_utc))
