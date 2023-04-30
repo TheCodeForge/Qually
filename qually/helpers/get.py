@@ -10,7 +10,7 @@ def get_account(b36uid, graceful=False):
 
     id=base36decode(b36uid)
 
-    user=g.db.query(User).filter_by(id=id).first()
+    user=g.user.organization.users.filter_by(id=id).first()
 
     if not user and not graceful:
         abort(404)
@@ -28,9 +28,17 @@ def get_account_by_email(email, graceful=False):
     email=email.replace("%", r"\%")
     email=email.replace("_", r"\_")
 
-    user=g.db.query(User).filter(User.email.ilike(email)).first()
+    if g.user:
+        user=g.user.organization.users.filter(User.email.ilike(email)).first()
 
-    if not user and not graceful:
-        abort(404)
+        if not user and not graceful:
+            abort(404)
 
-    return user
+        return user
+    else:
+        user=g.db.query(User).filter(User.email.ilike(email)).first()
+
+        if not user and not graceful:
+            abort(404)
+
+        return bool(user)
