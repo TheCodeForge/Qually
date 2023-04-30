@@ -93,6 +93,15 @@ def post_settings_directory_toggle_license_uid(uid):
             g.db.rollback()
             return toast_error("Your organization has reached its purchased license count.")
 
+    log=OrganizationAuditLog(
+        user_id=g.user.id,
+        organization_id=g.user.organization_id,
+        key=str(user),
+        old_value=f"License={not user.has_license}",
+        new_value=f"License={user.has_license}"
+        )
+    g.db.add(log)
+
     g.db.commit()
 
     return toast(msg)
@@ -112,19 +121,61 @@ def post_settings_directory_toggle_enable_uid(uid):
 
     else:
 
-        if not user.is_active:
-            return toast_error("You can't assign a license to deactivated users.")
-
-        if g.user.organization.license_expire_utc < g.timstamp:
-            return toast_error("Your organization licenses have expired.")
-
-        if g.user.organization.licenses_used >= g.user.organization.license_count:
-            return toast_error("Your organization has reached its purchased license count.")
-
         msg=f"{user.name} user account activated"
 
     user.is_active = not user.is_active
+    user.has_license = user.is_active and user.has_license
     g.db.add(user)
+
+    log=OrganizationAuditLog(
+        user_id=g.user.id,
+        organization_id=g.user.organization_id,
+        key=str(user),
+        old_value=f"Enabled={not user.is_active}",
+        new_value=f"Enabled={user.is_active}"
+        )
+
+    g.db.add(log)
+    g.db.commit()
+
+    return toast(msg)
+
+@app.post("/settings/directory/toggle_admin/<uid>")
+@is_admin
+def post_settings_directory_toggle_admin_uid(uid):
+
+    user=get_account(uid)
+
+    if user.is_org_admin:
+
+        if user.id==g.user.id:
+            return toast_error("You cannot remove your own administrator status.")
+
+        msg=f"Administrator status removed from {user.name}"
+
+    else:
+
+        if not user.is_active:
+            return toast_error("Administrators require a full license.")
+
+        if not user.has_license:
+            return toast_error("Administrators require a full license.")
+
+        msg=f"Administrator status granted to {user.name}"
+
+    user.is_active = not user.is_active
+    user.has_license = user.is_active and user.has_license
+    g.db.add(user)
+
+    log=OrganizationAuditLog(
+        user_id=g.user.id,
+        organization_id=g.user.organization_id,
+        key=str(user),
+        old_value=f"Admin={not user.is_active}",
+        new_value=f"Admin={user.is_active}"
+        )
+
+    g.db.add(log)
 
     g.db.commit()
 
