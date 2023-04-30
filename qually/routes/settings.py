@@ -188,10 +188,35 @@ def post_settings_directory_toggle_admin_uid(uid):
 
 @app.post("/settings/plan")
 @is_admin
+@org_update_lock
 def post_settings_plan():
 
     new_seat_count = int(request.form.get("license_count", 0))
 
     if new_seat_count==g.user.organization.license_count:
         return toast_error("You didn't change anything!")
+
+    #decrease seats and increase experation time
+    if new_seat_count < g.user.organization.license_count:
+
+        if g.time < g.user.organization.licenses_last_increased_utc + 60*60*24*7:
+            return toast_error("There is a 7 day cooldown after increasing license count before it may be reduced")
+
+        time_remaining = g.user.organization.license_expire_utc - g.time
+
+        seats_freed = g.user.organization.license_count-new_seat_count
+
+        seat_seconds_to_credit = time_remaining*seats_freed
+
+        extension_time = seat_seconds_to_credit//new_seat_count
+
+        g.user.organization.license_count = new_seat_count
+        g.user.organization.license_expire_utc += extension_time
+
+        g.db.add(g.user.organization)
+        g.db.commit()
+
+        return toast("License count updated")
+
+
 

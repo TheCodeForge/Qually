@@ -8,8 +8,11 @@ class Organization(Base, core_mixin):
     #basic info
     id = Column(Integer, primary_key=True)
     name = Column(String, default=None)
+
+    #licensing data
     license_count = Column(Integer, default=0)
     license_expire_utc = Column(Integer, default=0)
+    licenses_last_increased_utc=Column(Integer, default=0)
 
     created_utc = Column(Integer, default=0)
     creation_ip = Column(String, default=None)
