@@ -132,9 +132,11 @@ $(document).on('click', ".post-toast", function(){
 
 //dark mode
 $(".dark-switch").click(function(){
-  if ($('body').attr("data-bs-theme")=="light") {
-    $('body').attr("data-bs-theme", "dark")
-  } else {
-    $('body').attr("data-bs-theme", "light")
-  }
+  post("/settings/dark_mode", callback=function(){
+    if ($('body').attr("data-bs-theme")=="light") {
+      $('body').attr("data-bs-theme", "dark")
+    } else {
+      $('body').attr("data-bs-theme", "light")
+    }
+  })
 })
