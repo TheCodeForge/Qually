@@ -4,6 +4,8 @@ from werkzeug.wrappers.response import Response as RespObj
 from random import randint
 
 from .security import validate_hash
+from .posttoast import *
+
 from qually.classes import User
 from qually.__main__ import Base, app, g, debug
 
@@ -67,6 +69,9 @@ def has_seat(f):
 
         if not g.user.has_license:
             abort(401)
+
+        if g.user.organization.license_expire_utc < g.timestamp:
+            abort(402)
 
         resp = make_response(f(*args, **kwargs))
 
