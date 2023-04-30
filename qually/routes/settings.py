@@ -197,7 +197,7 @@ def post_settings_plan():
 
     new_seat_count = int(request.form.get("license_count", 0))
 
-    if new_seat_count==g.user.organization.license_count:
+    if new_seat_count==g.user.organization.license_count and g.user.organization.license_expire_utc < g.time+60*60*24*365:
         return toast_error("You didn't change anything!")
 
     #decrease seats and increase experation time
