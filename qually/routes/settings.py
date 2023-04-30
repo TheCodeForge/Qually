@@ -43,8 +43,8 @@ def post_settings_organization():
         g.db.add(g.user.organization)
 
         log=OrganizationAuditLog(
-            user_id=g.user.id,
-            organization_id=g.user.organization_id,
+            #user_id=g.user.id,
+            #organization_id=g.user.organization_id,
             key="Name",
             old_value=old_name,
             new_value=request.form.get("org_name")
