@@ -163,8 +163,7 @@ def post_settings_directory_toggle_admin_uid(uid):
 
         msg=f"Administrator status granted to {user.name}"
 
-    user.is_active = not user.is_active
-    user.has_license = user.is_active and user.has_license
+    user.is_org_admin = not user.is_org_admin
     g.db.add(user)
 
     log=OrganizationAuditLog(
