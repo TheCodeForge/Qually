@@ -53,6 +53,7 @@
   <div class="container-fluid">
     <div class="row justify-content-around" id="main-content-row">
 
+      {% block wholepage %}
       <!--left sidebar goes here-->
       <div class="col sidebar sidebar-left hide-scrollbar bg-white border-right d-none d-md-block pt-3" id="sidebar-left">
         {% block leftbar %}
@@ -70,6 +71,7 @@
         {% block rightbar %}
         {% endblock %}
       </div>
+      {% endblock %}
 
     </div>
   </div>
