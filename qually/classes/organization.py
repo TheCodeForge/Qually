@@ -15,7 +15,6 @@ class Organization(Base, core_mixin):
 
     #organization settings
     requires_otp = Column(Boolean, default=False)
-    org_domain = Column(String, default=None)
 
     #Organization record counters
     ncmr_counter = Column(Integer, default=0)
