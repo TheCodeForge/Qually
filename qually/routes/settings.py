@@ -251,7 +251,7 @@ def post_settings_plan():
             # g.db.add(new_txn)
             # g.db.commit()
             # return toast_redirect(new_txn.approve_url)
-            return toast_error(f"Will cost ${final_price/100}")
+            return toast_error(f"Will cost ${final_price/100:.2f}")
 
     g.db.add(g.user.organization)
 
