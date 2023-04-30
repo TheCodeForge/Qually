@@ -24,6 +24,9 @@
     </li>
     {% if g.user.is_org_admin %}
     <li class="nav-item">
+      <a class="nav-link{% if request.path=='/settings/plan' %} active{% endif %}" href="/settings/plan">Plan</a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link{% if request.path=='/settings/audit' %} active{% endif %}" href="/settings/audit">Settings Audit</a>
     </li>
     {% endif %}
@@ -49,7 +52,10 @@
       <a class="nav-link{% if request.path=='/settings/directory' %} active{% endif %}" href="/settings/directory"><i class="fas fa-fw fa-users text-lg me-0"></i></a>
     </li>
     {% if g.user.is_org_admin %}
-    <li class="nav-item d-none">
+    <li class="nav-item">
+      <a class="nav-link{% if request.path=='/settings/plan' %} active{% endif %}" href="/settings/plan"><i class="fas fa-fw fa-chair-office text-lg me-0"></i></a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link{% if request.path=='/settings/audit' %} active{% endif %}" href="/settings/audit"><i class="fas fa-fw fa-scroll-old text-lg me-0"></i></a>
     </li>
     {% endif %}
