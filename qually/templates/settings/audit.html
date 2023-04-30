@@ -17,7 +17,11 @@
   </thead>
   {% for entry in listing %}
   <tr>
-    <td><i class="fas fa-copy copy-link" data-clipboard-text="{{ entry.permalink_full }}"></i></td>
+    <td>
+      <a href="javascript:void(0)" class="copy-link" data-clipboard-text="{{ entry.permalink_full }}">
+        <i class="fas fa-copy copy-link text-muted"></i>
+      </a>
+    </td>
     <td>{{ entry.user.name }}</td>
     <td>{{ entry.created_datetime }}</td>
     <td>{{ entry.key }}</td>
