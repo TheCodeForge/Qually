@@ -64,7 +64,7 @@ def post_settings_directory_toggle_license_uid(uid):
     if user.has_license:
 
         if user.is_org_admin:
-            return toast_error("Administrators must have an assigned license.", 409)
+            return toast_error("Administrators must have an assigned license.")
 
         msg=f"License removed from {user.name}"
 
@@ -75,13 +75,13 @@ def post_settings_directory_toggle_license_uid(uid):
     else:
 
         if not user.is_active:
-            return toast_error("You can't assign a license to deactivated users.", 409)
+            return toast_error("You can't assign a license to deactivated users.")
 
         if g.user.organization.license_expire_utc < g.timstamp:
-            return toast_error("Your organization licenses have expired.", 409)
+            return toast_error("Your organization licenses have expired.")
 
         if g.user.organization.licenses_used >= g.user.organization.license_count:
-            return toast_error("Your organization has reached its purchased license count.", 409)
+            return toast_error("Your organization has reached its purchased license count.")
 
         msg=f"License assigned to {user.name}"
 
@@ -91,9 +91,41 @@ def post_settings_directory_toggle_license_uid(uid):
 
         if g.user.organization.licenses_used >= g.user.organization.license_count:
             g.db.rollback()
-            return toast_error("Your organization has reached its purchased license count.", 409)
+            return toast_error("Your organization has reached its purchased license count.")
 
     g.db.commit()
 
     return toast(msg)
 
+@app.post("/settings/directory/toggle_enable/<uid>")
+@is_admin
+def post_settings_directory_toggle_enable_uid(uid):
+
+    user=get_account(uid)
+
+    if user.is_active:
+
+        if user.is_org_admin:
+            return toast_error("Administrator accounts may not be deactivated.")
+
+        msg=f"{user.name} user account deactivated"
+
+    else:
+
+        if not user.is_active:
+            return toast_error("You can't assign a license to deactivated users.")
+
+        if g.user.organization.license_expire_utc < g.timstamp:
+            return toast_error("Your organization licenses have expired.")
+
+        if g.user.organization.licenses_used >= g.user.organization.license_count:
+            return toast_error("Your organization has reached its purchased license count.")
+
+        msg=f"{user.name} user account activated"
+
+    user.is_active = not user.is_active
+    g.db.add(user)
+
+    g.db.commit()
+
+    return toast(msg)

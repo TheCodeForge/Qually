@@ -3,7 +3,7 @@ from flask import jsonify
 def toast_redirect(target):
     return jsonify({"redirect": target}), 301
 
-def toast_error(msg, status=400):
+def toast_error(msg, status=409):
     return jsonify({"error": msg}), status
 
 def toast(msg):
