@@ -238,7 +238,7 @@ def post_settings_plan():
             final_price = int(face_price*(1-seat_seconds/desired_seat_seconds))
 
             new_txn = PayPalTxn(
-                user_id=g.user_id,
+                user_id=g.user.id,
                 created_utc=g.time,
                 seat_count=new_seat_count,
                 usd_cents=final_price
