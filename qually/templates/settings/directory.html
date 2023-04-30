@@ -20,7 +20,7 @@
   {% for user in g.user.organization.users.all() %}
   <tr>
     <td>{{ user.name }}</td>
-    <td>{{ user.email }}</td>
+    <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
     <td><input type="checkbox"{% if user.has_license %} checked{% endif %}{% if user==g.user or user.is_org_admin or not g.user.is_org_admin %} disabled{% endif %}></td>
     {% if g.user.is_org_admin %}
     <td><input type="checkbox"{% if user.is_active %} checked{% endif %}{% if user==g.user %} disabled{% endif %}></td>
