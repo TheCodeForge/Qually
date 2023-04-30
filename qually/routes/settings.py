@@ -234,7 +234,8 @@ def post_settings_plan():
         else:
             desired_seat_seconds=new_seat_count*60*60*24*365
             face_price = app.config["CENTS_PER_SEATYEAR"]*new_seat_count
-            final_price = int(face_price*(1-seat_seconds/desired_seat_seconds))
+            prorate=seat_seconds/desired_seat_seconds
+            final_price = int(face_price*(1-prorate))
 
             # new_txn = PayPalTxn(
             #     user_id=g.user.id,
@@ -250,7 +251,7 @@ def post_settings_plan():
             # g.db.add(new_txn)
             # g.db.commit()
             # return toast_redirect(new_txn.approve_url)
-            return toast_error(f"Will cost ${final_price/100:.2f}")
+            return toast_error(f"Base: ${face_price/100:.2f} | Prorate: {prorate:.4f} | Final: ${final_price/100:.2f}")
 
     g.db.add(g.user.organization)
 
