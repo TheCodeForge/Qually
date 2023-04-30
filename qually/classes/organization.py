@@ -57,6 +57,11 @@ class Organization(Base, core_mixin):
             return self._users.order_by(User.name.asc())
         else:
             return self._users.filter_by(is_active=True).order_by(User.name.asc())
+
+    @property
+    @lazy
+    def license_expire_date(self):
+        return time.strftime("%d %B %Y", time.gmtime(self.license_expire_utc))
     
 
 class OrganizationAuditLog(Base, core_mixin):

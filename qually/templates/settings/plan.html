@@ -1,25 +1,45 @@
 {% extends "settings/core.html" %}
 
 {% block content %}
-<h2 class="h5">Organization</h2>
+<h2 class="h5">Licensing</h2>
 
 <div class="settings-section rounded">
 
-<div class="d-lg-flex">
+  <div class="d-lg-flex">
 
-  <div class="title w-lg-25">
-    <label for="org_name">License Count</label>
+    <div class="title w-lg-25">
+      <label for="org_name">License Expiration</label>
+    </div>
+
+    <div class="body w-lg-100">
+      <div class="input-group d-flex">
+
+        <p>{{ g.user.organization.license_expire_date }}</p>
+
+      </div>
+    </div>
   </div>
 
-  <div class="body w-lg-100">
-    <div class="input-group d-flex">
+  <div class="d-lg-flex">
 
-      <form id="form-org-name" action="/settings/organization" method="post" class="w-100">
-        <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-        <input id="org_name" type="text" name="org_name" class="form-control w-100" value="{{ g.user.organization.license_count }}">
-      </form>
-      <a href="javascript:void(0)" class="btn ml-auto toast-form-submit btn-primary rounded" data-form="form-org-name">Change License Count</a>
+    <div class="title w-lg-25">
+      <label for="org_name">License Usage</label>
+    </div>
 
+    <div class="body w-lg-100">
+      <div class="input-group d-flex">
+
+        <p>Currently using {{ g.user.organization.licenses_used}}/{{ g.user.organization.license_count }} licenses.</p>
+        <a href="javascript:void(0)" class="btn ml-auto toast-form-submit btn-primary rounded" data-form="form-org-name">Change License Count</a>
+        <div class="text-small">
+          <p>Changes to organization license count are handled as follows:</p>
+          <ul>
+            <li>Decreases: Your organization will credited with the seat-days remaining on the removed licenses. This will be immediately reflected in the license expiration date above.</li>
+            <li>Increases: Your organization must renew its licensing for one year at the higher license count. The price for this renewal will be prorated based on the number of seat-days remaining on current licenses.</li>
+          </ul>
+        </div>
+
+      </div>
     </div>
   </div>
 </div>
