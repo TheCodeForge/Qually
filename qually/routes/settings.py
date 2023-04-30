@@ -95,6 +95,7 @@ def post_settings_directory_toggle_license_uid(uid):
         msg=f"License assigned to {user.name}"
 
         user.has_license = True
+        user.license_assigned_utc=g.time
         g.db.add(user)
         g.db.flush()
 
