@@ -14,7 +14,7 @@
   {% for user in g.user.organization.users if user.is_active or g.user.is_org_admin %}
   <tr>
     <td>{{ user.name }}</td>
-    <td><input type="checkbox"{% if user.license %} checked{% endif %}></td>
+    <td><input type="checkbox"{% if user.license %} checked{% endif %}{% if not g.user.is_org_admin %} disabled{% endif %}></td>
     <td>{{ user.role_string }}</td>
   </tr>
   {% endfor %}
