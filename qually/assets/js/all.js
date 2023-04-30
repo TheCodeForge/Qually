@@ -2,6 +2,23 @@ function csrf_token() {
       return $('#csrf-token-element').data('csrf-token');
 }
 
+function post(url, callback=function(){}, errortext="") {
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  var form = new FormData()
+  form.append("formkey", formkey());
+  xhr.withCredentials=true;
+  xhr.onerror=function() { alert(errortext); };
+  xhr.onload = function() {
+    if (xhr.status >= 200 && xhr.status < 300) {
+      callback();
+    } else {
+      xhr.onerror();
+    }
+  };
+  xhr.send(form);
+};
+
 function post_toast(url, callback=function(xhr){}) {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
@@ -110,4 +127,14 @@ $('.toast-form-change-submit').change(function(){postformtoast($(this))});
 
 $(document).on('click', ".post-toast", function(){
   post_toast($(this).data('post-url'))
+})
+
+
+//dark mode
+$(".dark-switch").click(function(){
+  if ($('body').attr("data-bs-theme")=="light") {
+    $('body').attr("data-bs-theme", "dark")
+  } else {
+    $('body').attr("data-bs-theme", "light")
+  }
 })
