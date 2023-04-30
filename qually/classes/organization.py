@@ -46,6 +46,11 @@ class Organization(Base, core_mixin):
 
         super().__init__(**kwargs)
 
+    @property
+    def licenses_used(self):
+        return self.users.filter_by(has_license=True).count()
+    
+
 class OrganizationAuditLog(Base, core_mixin):
 
     __tablename__="organization_log"

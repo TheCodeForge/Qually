@@ -54,3 +54,46 @@ def post_settings_organization():
     g.db.commit()
 
     return toast("Organization settings saved!")
+
+@app.post("/settings/directory/toggle_license/<uid>")
+@is_admin
+def post_settings_directory_toggle_license_uid(uid):
+
+    user=get_account(uid)
+
+    if user.has_license:
+
+        if user.is_org_admin:
+            return toast_error("Administrators must have an assigned license.", 409)
+
+        msg=f"License removed from {user.name}"
+
+        user.has_license=False
+
+        g.db.add(user)
+
+    else:
+
+        if not user.is_active:
+            return toast_error("You can't assign a license to deactivated users.", 409)
+
+        if g.user.organization.license_expire_utc < g.timstamp:
+            return toast_error("Your organization licenses have expired.", 409)
+
+        if g.user.organization.licenses_used >= g.user.organization.license_count:
+            return toast_error("Your organization has reached its purchased license count.", 409)
+
+        msg=f"License assigned to {user.name}"
+
+        user.has_license = True
+        g.db.add(user)
+        g.db.flush()
+
+        if g.user.organization.licenses_used >= g.user.organization.license_count:
+            g.db.rollback()
+            return toast_error("Your organization has reached its purchased license count.", 409)
+
+    g.db.commit()
+
+    return toast(msg)
+
