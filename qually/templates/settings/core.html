@@ -22,9 +22,11 @@
     <li class="nav-item">
       <a class="nav-link{% if request.path=='/settings/directory' %} active{% endif %}" href="/settings/blocks">Directory</a>
     </li>
-    <li class="nav-item d-none">
-      <a class="nav-link{% if request.path=='/settings/apps' %} active{% endif %}" href="/settings/apps">Apps</a>
+    {% if g.user.is_org_admin %}
+    <li class="nav-item">
+      <a class="nav-link{% if request.path=='/settings/audit' %} active{% endif %}" href="/settings/audit">Settings Audit</a>
     </li>
+    {% endif %}
   </ul>
 
 </div>
@@ -46,9 +48,11 @@
     <li class="nav-item">
       <a class="nav-link{% if request.path=='/settings/directory' %} active{% endif %}" href="/settings/directory"><i class="fas fa-fw fa-users text-lg me-0"></i></a>
     </li>
+    {% if g.user.is_org_admin %}
     <li class="nav-item d-none">
-      <a class="nav-link{% if request.path=='/settings/apps' %} active{% endif %}" href="/settings/apps"><i class="fas fa-fw fa-code text-lg me-0"></i></a>
+      <a class="nav-link{% if request.path=='/settings/audit' %} active{% endif %}" href="/settings/audit"><i class="fas fa-fw fa-scroll-old text-lg me-0"></i></a>
     </li>
+    {% endif %}
   </ul>
 
 </div>
