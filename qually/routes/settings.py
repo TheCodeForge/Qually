@@ -17,6 +17,10 @@ def post_settings_organization():
 
     if request.form.get("org_name"):
 
+        if request.form.get("org_name")==g.user.organization.name:
+            return toast_error("You didn't change anything!")
+
+        old_name=g.user.organization.name
         g.user.organization.name=request.form.get("org_name")
         g.db.add(g.user.organization)
 
