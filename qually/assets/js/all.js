@@ -34,6 +34,7 @@ function post_toast(url, callback=function(xhr){}) {
       return
     }
     data=JSON.parse(xhr.response);
+    $('.toast').toast('dispose')
     if (xhr.status >= 200 && xhr.status < 300) {
       $('#toast-success .toast-text').text(data['message']);
       $('#toast-success').toast('show');
@@ -73,6 +74,7 @@ function postformtoast(x, callback=function(data){}){
   };
   xhr.onload = function() {
     data=JSON.parse(xhr.response);
+    $('.toast').toast('dispose')
     if (xhr.status >= 200 && xhr.status < 300) {
       if (data['message']!=undefined) {
         $('#toast-success .toast-text').text(data['message']);
