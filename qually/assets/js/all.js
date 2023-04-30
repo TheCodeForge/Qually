@@ -2,6 +2,9 @@ function csrf_token() {
       return $('#csrf-token-element').data('csrf-token');
 }
 
+//avoid console errors
+$(document).on('click', 'a[href="javascript:void(0)"]', function(event){event.preventDefault()})
+
 function post(url, callback=function(){}, errortext="") {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
