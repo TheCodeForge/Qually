@@ -173,8 +173,8 @@ def before_request():
         session["session_id"] = token_hex(16)
 
     #request values
-    g.timestamp = int(time.time())
-    g.nonce=generate_hash(f'{g.timestamp}+{session.get("session_id")}')
+    g.time = int(time.time())
+    g.nonce=generate_hash(f'{g.time}+{session.get("session_id")}')
     g.db = db_session()
 
     #default user to none
@@ -200,7 +200,7 @@ def before_request():
         
         else:
             t=int(request.values.get("time",0))
-            if g.timestamp - t > 3600:
+            if g.time - t > 3600:
                 abort(403)
             if not validate_hash(f"{t}+{session['session_id']}", submitted_key):
                 abort(403)

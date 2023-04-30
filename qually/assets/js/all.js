@@ -146,7 +146,7 @@ $(".dark-switch").click(function(){
 
 $(".check-toast").click(function(){
   var btn=$(this);
-  post_toast($(this).data('post-url'),callback=function(xhr){
+  post_toast($(this).data('post-url'), callback=function(xhr){
     if (xhr.status>=400) {
       btn.prop("checked", !btn.prop("checked"))
     }
