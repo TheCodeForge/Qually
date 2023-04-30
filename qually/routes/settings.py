@@ -222,7 +222,7 @@ def post_settings_plan():
 
     else:
 
-        if g.user.organization.license_expire_utc - g.time > 60*60*24*365:
+        if g.user.organization.license_expire_utc > g.time + 60*60*24*365:
 
             #eligible for seatday conversion
             seat_seconds = (g.user.organization.license_expire_utc-g.time)*g.user.organization.license_count
