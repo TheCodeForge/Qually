@@ -41,6 +41,7 @@ class OrganizationAuditLog(Base, core_mixin):
     id = Column(Integer, primary_key=True)
     created_utc=Column(Integer)
     user_id=Column(Integer, ForeignKey("users.id"))
+    organization_id=Column(Integer, ForeignKey("organizations.id"))
 
     key=Column(String)
     old_value=Column(String)
