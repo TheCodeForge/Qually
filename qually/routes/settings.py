@@ -237,7 +237,6 @@ def post_settings_plan():
                 g.user.organization.license_expire_utc = g.time + seat_seconds//new_seat_count
 
     g.db.add(g.user.organization)
-    g.db.commit()
 
     log=OrganizationAuditLog(
         user_id=g.user.id,
