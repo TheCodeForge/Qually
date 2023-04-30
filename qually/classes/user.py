@@ -59,7 +59,10 @@ class User(Base, core_mixin):
 
 
     def __repr__(self):
-        return f"<User(username={self.username}, org={self.organization.name})>"
+        return f"<User(id={self.base36id})>"
+
+    def __str__(self):
+        return f"{self.name} <{self.email}>"
 
     def validate_2fa(self, token):
 
