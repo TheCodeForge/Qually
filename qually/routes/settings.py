@@ -223,6 +223,15 @@ def post_settings_plan():
     g.db.add(g.user.organization)
     g.db.commit()
 
+    log=OrganizationAuditLog(
+        user_id=g.user.id,
+        organization_id=g.user.organization_id,
+        key=License Count,
+        new_value=str(new_seat_count)
+        )
+
+    g.db.add(log)
+
     return toast_redirect("/settings/plan")
 
 
