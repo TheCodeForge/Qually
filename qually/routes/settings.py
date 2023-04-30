@@ -24,6 +24,13 @@ def post_settings_organization():
         g.user.organization.name=request.form.get("org_name")
         g.db.add(g.user.organization)
 
+        log=OrganizationAuditLog(
+            key="Name",
+            old_value=old_name,
+            new_value=request.form.get("org_name")
+            )
+        g.db.add(log)
+
     g.db.commit()
 
     return toast("Organization settings saved!")
