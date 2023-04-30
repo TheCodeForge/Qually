@@ -40,6 +40,7 @@ class OrganizationAuditLog(Base, core_mixin):
 
     id = Column(Integer, primary_key=True)
     created_utc=Column(Integer)
+    creation_ip=Column(String(128))
     user_id=Column(Integer, ForeignKey("users.id"))
     organization_id=Column(Integer, ForeignKey("organizations.id"))
 
@@ -49,6 +50,22 @@ class OrganizationAuditLog(Base, core_mixin):
     note=Column(String)
 
     user=relationship("User", lazy="joined", innerjoin=True)
+
+    def __init__(self, **kwargs):
+
+        if "created_utc" not in kwargs:
+            kwargs["created_utc"] = g.timestamp
+
+        if "creation_ip" not in kwargs:
+            kwargs["creation_ip"] = request.remote_addr
+
+        if g.user and ("user_id" not in kwargs):
+            kwargs["user_id"] = g.user.id
+
+        if g.user and ("organization_id" not in kwargs):
+            kwargs["organization_id"] = g.user.organization_id
+
+        Base.__init__(self, **kwargs)
 
     @property
     def permalink(self):
