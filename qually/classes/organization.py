@@ -51,6 +51,22 @@ class OrganizationAuditLog(Base, core_mixin):
 
     user=relationship("User", lazy="joined", innerjoin=True)
 
+    def __init__(self, **kwargs):
+
+        if "created_utc" not in kwargs:
+            kwargs["created_utc"] = g.timestamp
+
+        if "creation_ip" not in kwargs:
+            kwargs["creation_ip"] = request.remote_addr
+
+        if "user_id" not in kwargs:
+            kwargs["user_id"]=g.user.id
+
+        if "organization_id" not in kwargs:
+            kwargs["organization_id"]=g.user.organization.id
+
+        super().__init__(self, **kwargs)
+
     @property
     def permalink(self):
         return f"/settings/audit/{self.base36id}"
