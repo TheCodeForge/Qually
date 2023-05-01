@@ -21,6 +21,8 @@ def tokenify(string):
     
     args={}
     for pair in querystring.split('&'):
+        if not pair:
+            break
         key, value=pair.split('=')
         args[key]=value
         
@@ -32,6 +34,3 @@ def tokenify(string):
         return f"{string}&token={token}"
     else:
         return f"{string}?token={token}"
-    
-    
-    
