@@ -277,7 +277,6 @@ def post_settings_directory_invite():
     if existing:
         return toast_error("That email is already in use.")
 
-
     data={
         "email":email,
         'name':request.form.get("name"),
