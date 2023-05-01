@@ -223,7 +223,7 @@ def post_settings_plan():
     else:
 
         #Check for seatday conversion eligibility
-        seat_seconds = (g.user.organization.license_expire_utc-g.time)*g.user.organization.license_count
+        seat_seconds = max(0, (g.user.organization.license_expire_utc-g.time)*g.user.organization.license_count)
 
         eligible_seats = seat_seconds // (60*60*24*365)+1
         
