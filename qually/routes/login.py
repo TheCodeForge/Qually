@@ -39,7 +39,6 @@ def post_register():
 
     existing=get_account_by_email(email, graceful=True)
     if existing:
-        debug(existing)
         return toast_error("That email is already in use.")
 
     #validate cloudflare anti-bot
