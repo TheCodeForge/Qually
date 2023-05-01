@@ -13,7 +13,11 @@ def toast(msg):
     
 def tokenify(string):
     
-    path, querystring = string.split('?')
+    try:
+        path, querystring = string.split('?')
+    except ValueError:
+        path=string
+        querystring=""
     
     args={}
     for pair in querystring.split('&'):
