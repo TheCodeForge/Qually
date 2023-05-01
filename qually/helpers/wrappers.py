@@ -3,6 +3,7 @@ from sqlalchemy.orm import joinedload
 from os import environ
 from werkzeug.wrappers.response import Response as RespObj
 from random import randint
+import json
 
 from .security import validate_hash
 from .posttoast import *
@@ -129,6 +130,26 @@ def org_update_lock(f):
     wrapper.__name__=f.__name__
     wrapper.__doc__=f.__doc__
     return wrapper
+
+def token_auth(f):
+
+    def wrapper(*args, **kwargs):
+
+        args = dict(request.args)
+        args['_path']=request.path
+        args.pop('token')
+        
+        string = json.dumps(args, sort_keys=True)
+        
+        if not validate_hash(string, request.args.get('token')):
+            abort(401)
+            
+        return f(*args, **kwargs)
+
+    wrapper.__name__=f.__name__
+    wrapper.__doc__=f.__doc__
+    return wrapper
+
 
 def no_cors(f):
     """
