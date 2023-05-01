@@ -134,6 +134,10 @@ def org_update_lock(f):
 def token_auth(f):
 
     def wrapper(*args, **kwargs):
+    
+        if request.args.get('t'):
+            if g.time - int(request.args.get('t')) > 60*60*24:
+                return jsonify({'error':'This link has expired.'})
 
         args = dict(request.args)
         args['_path']=request.path
