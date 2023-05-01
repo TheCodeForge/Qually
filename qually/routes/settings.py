@@ -266,3 +266,26 @@ def post_settings_plan():
     g.db.commit()
 
     return toast_redirect("/settings/plan")
+
+
+@app.post("/settings/directory/invite")
+@is_admin
+def post_settings_directory_invite():
+
+    email=request.form.get("email")
+    existing=get_account_by_email(email, graceful=True)
+    if existing:
+        return toast_error("That email is already in use.")
+
+
+    data={
+        "email":email,
+        'name':request.form.get("name"),
+        'organization_id':self.organization.base36id
+    }
+
+    querystring='&'.join([f'{x}={data[x]}' for x in data])
+
+    invite_link = f"/accept_invite?{querystring}"
+    invite_link=tokenify(invite_link)
+    return invite_link
