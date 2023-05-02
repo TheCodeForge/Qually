@@ -284,7 +284,7 @@ def post_settings_directory_invite():
         'organization_id':g.user.organization.base36id
     }
 
-    querystring=urllib.urlencode(data)
+    querystring=urllib.parse.urlencode(data)
 
     invite_link = f"/accept_invite?{querystring}"
     invite_link=tokenify(invite_link)
