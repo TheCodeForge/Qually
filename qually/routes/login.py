@@ -182,5 +182,19 @@ def get_accept_invite():
     new_user=User(
         name=request.args.get("name"),
         organization_id=base36decode(request.args.get("organization_id")),
-        email=email
+        email=email,
+        reset_pw_next_login=True
         )
+
+    g.db.add(new_user)
+    g.db.flush()
+
+    new_user.has_license = new_user.organization.licenses_used < new_user.organization.license_count
+
+    g.db.add(new_user)
+    g.db.commit()
+
+    session["user_id"]=new_user.id
+    session["login_nonce"]=new_user.login_nonce
+
+    return redirect('/')
