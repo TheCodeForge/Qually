@@ -280,7 +280,7 @@ def post_settings_directory_invite():
     data={
         "email":email,
         'name':request.form.get("name"),
-        'organization_id':self.organization.base36id
+        'organization_id':g.user.organization.base36id
     }
 
     querystring='&'.join([f'{x}={data[x]}' for x in data])
