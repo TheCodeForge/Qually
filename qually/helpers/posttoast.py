@@ -30,11 +30,11 @@ def tokenify(string):
         
     args['_path']=path
 
-    string=json.dumps(args, sort_keys=True)
+    argstring=json.dumps(args, sort_keys=True)
 
-    debug(string)
+    debug(argstring)
     
-    token=generate_hash(string)
+    token=generate_hash(argstring)
     
     if querystring:
         return f"{string}&token={token}"
