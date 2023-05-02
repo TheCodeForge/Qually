@@ -1,5 +1,5 @@
 from flask import jsonify
-import urllib
+import json
 from .security import generate_hash
 
 def toast_redirect(target):
