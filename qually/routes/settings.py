@@ -1,3 +1,4 @@
+import urllib
 from qually.helpers.route_imports import *
 
 @app.get("/settings/profile")
@@ -283,7 +284,7 @@ def post_settings_directory_invite():
         'organization_id':g.user.organization.base36id
     }
 
-    querystring='&'.join([f'{x}={data[x]}' for x in data])
+    querystring=urllib.urlencode(data)
 
     invite_link = f"/accept_invite?{querystring}"
     invite_link=tokenify(invite_link)
