@@ -164,7 +164,7 @@ def post_set_otp():
     return toast_redirect("/")
 
 @app.get("/accept_invite")
-@auth_token
+@token_auth
 def get_accept_invite():
 
     email=request.args.get("email")
