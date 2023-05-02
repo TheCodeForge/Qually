@@ -3,7 +3,7 @@
 {% block content %}
 
 {% if g.user.is_org_admin %}
-<h2 class="h5">Add New User</h2>
+<h2 class="h5 mt-3">Add New User</h2>
 <form id="form-invite-user" action="/settings/directory/invite" method="post">
   <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
   <label for="input-new-user-email">Email</label>
@@ -12,7 +12,7 @@
 <a href="javascript:void(0)" class="btn btn-primary toast-form-submit" data-form="form-invite-user">Invite User</a>
 {% endif %}
 
-<h2 class="h5">Directory</h2>
+<h2 class="h5 mt-3">Directory</h2>
 
 <table class="table table-striped mb-5">
   <thead class="bg-primary text-white">
