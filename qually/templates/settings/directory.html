@@ -7,7 +7,7 @@
 <form id="form-invite-user" action="/settings/directory/invite" method="post">
   <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
   <label for="input-new-user-email">Email</label>
-  <input id="input-new-user-email" name="email" required>
+  <input id="input-new-user-email" class="form-control" name="email" required>
 </form>
 <a href="javascript:void(0)" class="btn btn-primary toast-form-post" data-form="form-invite-user">Invite User</a>
 {% endif %}
