@@ -274,6 +274,13 @@ def post_settings_plan():
 def post_settings_directory_invite():
 
     email=request.form.get("email")
+
+    if email.endswith("@gmail.com"):
+        gmail_username=email.split('@')[0]
+        gmail_username=gmail_username.split('+')[0]
+        gmail_username=gmail_username.replace('.','')
+        email=f"{gmail_username}@gmail.com"
+
     existing=get_account_by_email(email, graceful=True)
     if existing:
         return toast_error("That email is already in use.")

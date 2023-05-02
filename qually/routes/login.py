@@ -162,3 +162,25 @@ def post_set_otp():
     g.db.commit()
 
     return toast_redirect("/")
+
+@app.get("/accept_invite")
+@auth_token
+def get_accept_invite():
+
+    email=request.args.get("email")
+
+    if email.endswith("@gmail.com"):
+        gmail_username=email.split('@')[0]
+        gmail_username=gmail_username.split('+')[0]
+        gmail_username=gmail_username.replace('.','')
+        email=f"{gmail_username}@gmail.com"
+
+    existing=get_account_by_email(email, graceful=True)
+    if existing:
+        return toast_error("That email is already in use.")
+
+    new_user=User(
+        name=request.args.get("name"),
+        organization_id=base36decode(request.args.get("organization_id")),
+        email=email
+        )
