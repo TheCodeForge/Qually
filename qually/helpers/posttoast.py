@@ -1,5 +1,6 @@
 from flask import jsonify
 import json
+import urllib
 from .security import generate_hash
 
 def toast_redirect(target):
@@ -27,6 +28,10 @@ def tokenify(string):
         args[key]=value
         
     args['_path']=path
+
+    string=json.dumps(args, sort_keys=True)
+
+    debug(string)
     
     token=generate_hash(json.dumps(args, sort_keys=True))
     

@@ -144,6 +144,8 @@ def token_auth(f):
         args.pop('token')
         
         string = json.dumps(args, sort_keys=True)
+
+        debug(string)
         
         if not validate_hash(string, request.args.get('token')):
             abort(401)
