@@ -4,6 +4,7 @@ from os import environ
 from werkzeug.wrappers.response import Response as RespObj
 from random import randint
 import json
+import urllib
 
 from .security import validate_hash
 from .posttoast import *
@@ -140,10 +141,12 @@ def token_auth(f):
                 return jsonify({'error':'This link has expired.'})
 
         args = dict(request.args)
+
+        
         args['_path']=request.path
         args.pop('token')
         
-        string = json.dumps(args, sort_keys=True)
+        string = urllib.parse.urlencode(data)
 
         debug(string)
         

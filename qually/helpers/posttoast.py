@@ -13,23 +13,12 @@ def toast_error(msg, status=409):
 def toast(msg):
     return jsonify({"message": msg})
     
-def tokenify(string):
+def tokenify(path, data):
     
-    try:
-        path, querystring = string.split('?')
-    except ValueError:
-        path=string
-        querystring=""
-    
-    args={}
-    for pair in querystring.split('&'):
-        if not pair:
-            break
-        key, value=pair.split('=')
-        args[key]=value
-        
-    args['_path']=path
 
+    data.pop('token',None)
+    data['_path']=path
+    
     argstring=json.dumps(args, sort_keys=True)
 
     debug(argstring)
