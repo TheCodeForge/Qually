@@ -34,7 +34,7 @@ def tokenify(string):
 
     debug(string)
     
-    token=generate_hash(json.dumps(args, sort_keys=True))
+    token=generate_hash(string)
     
     if querystring:
         return f"{string}&token={token}"
