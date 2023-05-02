@@ -5,6 +5,7 @@
 {% if g.user.is_org_admin %}
 <h2 class="h5">Add New User</h2>
 <form id="form-invite-user" action="/settings/directory/invite" method="post">
+  <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
   <label for="input-new-user-email">Email</label>
   <input id="input-new-user-email" name="email" required>
 </form>
