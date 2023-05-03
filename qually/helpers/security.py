@@ -48,15 +48,6 @@ def tokenify(path, data):
     
     return generate_hash(string)
 
-def verify_token():
-    
-    data=dict(request.args)
-    token=data.pop("token","")
-    
-    string=f"{request.path}?{urllib.parse.urlencode(data)}"
-    
-    return validate_hash(string, token)
-
 def otp_recovery_code(user, otp_secret):
 
     hashstr = generate_hash(f"{otp_secret}+{user.id}")
