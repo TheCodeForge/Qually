@@ -290,9 +290,5 @@ def post_settings_directory_invite():
         'name':request.form.get("name"),
         'organization_id':g.user.organization.base36id
     }
-
-    querystring=urllib.parse.urlencode(data)
-
-    invite_link = f"/accept_invite?{querystring}"
-    invite_link=tokenify(invite_link)
-    return invite_link
+    
+    return tokenify("/accept_invite", data)
