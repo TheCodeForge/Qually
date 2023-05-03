@@ -154,3 +154,6 @@ $(".check-toast").click(function(){
     }
   })
 })
+
+//dismiss toasts when clicked on
+$('.toast').click(function(){$('.toast').toast('dispose')})
