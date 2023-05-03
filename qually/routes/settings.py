@@ -288,7 +288,8 @@ def post_settings_directory_invite():
     data={
         "email":email,
         'name':request.form.get("name"),
-        'organization_id':g.user.organization.base36id
+        'organization_id':g.user.organization.base36id,
+        't':g.time
     }
     
     link=f"https://{app.config['SERVER_NAME']}{tokenify('/accept_invite', data)}"
