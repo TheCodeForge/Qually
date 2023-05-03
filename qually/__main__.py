@@ -62,7 +62,7 @@ app.config["SESSION_COOKIE_DOMAIN"] = False
 app.config["PERMANENT_SESSION_LIFETIME"] = 60 * 60 * 24 * 365
 app.config["SESSION_REFRESH_EACH_REQUEST"] = True
 
-app.config["FORCE_HTTPS"] = int(environ.get("FORCE_HTTPS", 1)) if not any([x in app.config["SERVER_NAME"] for x in ["localhost","127.0.0.1"]]) else 0
+app.config["HTTPS"] = int(environ.get("HTTPS", 1)) or not any([x in app.config["SERVER_NAME"] for x in ["localhost","127.0.0.1"]])
 app.config["DISABLE_SIGNUPS"]=int(environ.get("DISABLE_SIGNUPS",0))
 
 app.jinja_env.cache = {}
@@ -163,7 +163,7 @@ from qually.helpers.security import generate_hash, validate_hash
 def before_request():
 
     #Force SSL
-    if app.config["FORCE_HTTPS"] and request.url.startswith(
+    if app.config["HTTPS"] and request.url.startswith(
             "http://") and "localhost" not in app.config["SERVER_NAME"]:
         url = request.url.replace("http://", "https://", 1)
         return redirect(url), 301
