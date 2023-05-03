@@ -204,10 +204,13 @@ def get_accept_invite():
     if existing:
         return toast_error("That email is already in use.")
 
+    temp_pw = secrets.token_urlsafe(8)
+
     new_user=User(
         name=request.args.get("name"),
         organization_id=base36decode(request.args.get("organization_id")),
         email=email,
+        passhash=generate_password_hash(temp_pw),
         reset_pw_next_login=True
         )
 
@@ -218,8 +221,20 @@ def get_accept_invite():
 
     g.db.add(new_user)
     g.db.commit()
-
+    
     session["user_id"]=new_user.id
     session["login_nonce"]=new_user.login_nonce
+
+    g.user=new_user
+
+    send_mail(
+        g.user.email,
+        subject=f"Welcome to {app.config["SITE_NAME"]}",
+        html=render_template(
+            "mail/welcome.html",
+            temp_pw=temp_pw
+            )
+        )
+
 
     return redirect('/')
