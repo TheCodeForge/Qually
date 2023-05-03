@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{{ "SITE_NAME" | app_config }} | {{ subject }} </title>
+    <link href="{{ 'CSS_URL' | app_config }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+    <!--JQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+    <!-- Font Awesome -->
+    <link href="/assets/fontawesome/css/all.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <span class="preheader">{% block preheader %}{% endblock %}</span>
+    <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+      <tr>
+        <td align="center">
+          <table class="email-content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
+            <tr>
+              <td class="email-masthead">
+                <a href="{{ 'SERVER_NAME' | app_config | full_link }}" class="f-fallback email-masthead_name">
+                {{ 'SITE_NAME' | app_config }}
+              </a>
+              </td>
+            </tr>
+            <!-- Email Body -->
+            <tr>
+              <td class="email-body" width="100%" cellpadding="0" cellspacing="0">
+                <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation">
+                  <!-- Body content -->
+                  <tr>
+                    <td class="content-cell">
+                      <div class="f-fallback">
+                          <div style="text-align: center; margin-bottom: 3rem;">
+
+                        {% block image %}
+                        <img src="{{ 'IMG_URL_LOGO_MAIN' | app_config | full_link }}" style="height: 90px;">
+                        {% endblock %}
+                        </div>
+                        <h1>{% block title %}{% endblock %}</h1>
+
+{% block content %}
+  {% for entry in data %}
+  <h3>{{ entry[0] }}</h3>
+  <p>{{ entry[1] }}</p>
+  {% endfor %}
+{% endblock %}
+
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
