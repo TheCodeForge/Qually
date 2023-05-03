@@ -66,6 +66,9 @@ app.config["SESSION_COOKIE_DOMAIN"] = False
 app.config["PERMANENT_SESSION_LIFETIME"] = 60 * 60 * 24 * 365
 app.config["SESSION_REFRESH_EACH_REQUEST"] = True
 
+#Mailgun
+app.config["MAILGUN_KEY"]=environ.get("MAILGUN_KEY")
+
 app.jinja_env.cache = {}
 
 app.config["UserAgent"] = f"Content Aquisition for {app.config['SERVER_NAME']} v{_version}."
