@@ -51,19 +51,20 @@ app.config["ADMIN_EMAIL"]=environ.get("ADMIN_EMAIL","").lstrip().rstrip()
 
 app.config["SERVER_NAME"] = environ.get("SERVER_NAME", environ.get("domain", f"{app.config['SITE_NAME'].lower()}.herokuapp.com")).lstrip().rstrip() 
 
+
+app.config["HTTPS"] = int(environ.get("HTTPS", 1)) or not any([x in app.config["SERVER_NAME"] for x in ["localhost","127.0.0.1"]])
+app.config["DISABLE_SIGNUPS"]=int(environ.get("DISABLE_SIGNUPS",0))
+
 # Cookie stuff
 app.config["SESSION_COOKIE_NAME"] = f"__Host-{app.config['SERVER_NAME']}"
 app.config["VERSION"] = _version
 app.config['MAX_CONTENT_LENGTH'] = 64 * 1024 * 1024
-app.config["SESSION_COOKIE_SECURE"] = bool(int(environ.get("FORCE_HTTPS", 1)))
+app.config["SESSION_COOKIE_SECURE"] = app_config["HTTPS"]
 app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 app.config["SESSION_COOKIE_HTTPONLY"] = True
 app.config["SESSION_COOKIE_DOMAIN"] = False
 app.config["PERMANENT_SESSION_LIFETIME"] = 60 * 60 * 24 * 365
 app.config["SESSION_REFRESH_EACH_REQUEST"] = True
-
-app.config["HTTPS"] = int(environ.get("HTTPS", 1)) or not any([x in app.config["SERVER_NAME"] for x in ["localhost","127.0.0.1"]])
-app.config["DISABLE_SIGNUPS"]=int(environ.get("DISABLE_SIGNUPS",0))
 
 app.jinja_env.cache = {}
 
