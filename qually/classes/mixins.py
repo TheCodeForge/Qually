@@ -17,7 +17,7 @@ class core_mixin():
     @property
     @lazy
     def permalink_full(self):
-        return f"http{'s' if app.config['FORCE_HTTPS'] else ''}://{app.config['SERVER_NAME']}{self.permalink}"
+        return f"http{'s' if app.config['HTTPS'] else ''}://{app.config['SERVER_NAME']}{self.permalink}"
 
     @property
     @lazy
