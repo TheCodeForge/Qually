@@ -46,7 +46,8 @@ def tokenify(path, data):
     
     string=f"{path}?{urllib.parse.urlencode(data)}"
     
-    return generate_hash(string)
+    data['token'] = generate_hash(string)
+    return f"{path}?{urllib.parse.urlencode(data)}"
 
 def otp_recovery_code(user, otp_secret):
 
