@@ -1,5 +1,6 @@
 import urllib
 from qually.helpers.route_imports import *
+from .login import valid_email_regex
 
 @app.get("/settings/profile")
 @app.get("/settings/security")
@@ -168,7 +169,7 @@ def post_settings_directory_toggle_admin_uid(uid):
     else:
 
         if not user.is_active:
-            return toast_error("Administrators require a full license.")
+            return toast_error("Deactivated users cannot be administrators.")
 
         if not user.has_license:
             return toast_error("Administrators require a full license.")
@@ -280,6 +281,9 @@ def post_settings_directory_invite():
         gmail_username=gmail_username.split('+')[0]
         gmail_username=gmail_username.replace('.','')
         email=f"{gmail_username}@gmail.com"
+        
+    if not re.fullmatch(valid_email_regex, email):
+        return toast_error("Invalid email address")
 
     existing=get_account_by_email(email, graceful=True)
     if existing:
@@ -303,6 +307,16 @@ def post_settings_directory_invite():
             subject=f"You've been invited to join {g.user.organization.name} on {app.config['SITE_NAME']}"
             )
         )
+    
+    log=OrganizationAuditLog(
+        user_id=g.user.id,
+        organization_id=g.user.organization_id,
+        key="Directory",
+        new_value=f"Invite <{email}>"
+        )
+
+    g.db.add(log)
+    g.db.commit()
     
     return toast(f"Invitation sent to {email}")
         
