@@ -1,7 +1,4 @@
 from flask import jsonify
-import json
-import urllib
-from .security import generate_hash, validate_hash
 from qually.__main__ import debug
 
 def toast_redirect(target):
