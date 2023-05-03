@@ -16,6 +16,11 @@ def app_config(x):
 def logged_out_formkey(t):
     return generate_hash(f"{t}+{session['session_id']}")
 
+@app.template_filter("full_link")
+def full_link(url):
+
+    return f"https://{app.config['SERVER_NAME']}{url}"
+
 @app.template_filter('otp_qrcode')
 def qrcode_filter(secret):
   
