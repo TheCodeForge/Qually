@@ -238,4 +238,12 @@ def get_accept_invite():
         )
 
 
+    new_log=OrganizationAuditLog(
+        user_id=g.user.id,
+        created_utc=g.time,
+        key="Directory",
+        new_value="Accept Invitation"
+        )
+
+
     return redirect('/')

@@ -312,7 +312,7 @@ def post_settings_directory_invite():
         user_id=g.user.id,
         organization_id=g.user.organization_id,
         key="Directory",
-        new_value=f"Invite <{email}>"
+        new_value=f"Invited <{email}>"
         )
 
     g.db.add(log)
