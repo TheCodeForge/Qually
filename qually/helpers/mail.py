@@ -2,8 +2,7 @@ import requests
 
 from qually.__main__ import app
 
-def send_mail(to_address, subject, html, plaintext=None, files={},
-              from_address=f"{app.config['SITE_NAME']} <noreply@mail.{app.config['SERVER_NAME']}>"):
+def send_mail(to_address, subject, html, plaintext=None, files={}, from_address=f"{app.config['SITE_NAME']} <noreply@mail.{app.config['SERVER_NAME']}>"):
 
     if not app.config["MAILGUN_KEY"]:
         debug("Cannot send mail - no mailgun key")
