@@ -174,7 +174,7 @@ def post_set_otp():
 @app.post("/set_password")
 @logged_in
 def post_set_password():
-    if request.form.get("password") != request.form.get("confirm_password")
+    if request.form.get("password") != request.form.get("confirm_password"):
         return toast_error("Passwords don't match")
 
     if not re.fullmatch(valid_password_regex, request.form.get("password")):
