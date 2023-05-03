@@ -291,4 +291,18 @@ def post_settings_directory_invite():
         'organization_id':g.user.organization.base36id
     }
     
-    return tokenify("/accept_invite", data)
+    link=f"https://{'SERVER_NAME'}{tokenify('/accept_invite', data)}"
+    
+    send_mail(
+        email,
+        subject=f"You've been invited to join {g.user.organization.name} on {app.config['SITE_NAME']},
+        html=render_template(
+            "mail/invite.html",
+            link=link, 
+            subject=f"You've been invited to join {g.user.organization.name} on {app.config['SITE_NAME']}
+            )
+        )
+    
+    return toast(f"Invitation sent to {email}")
+        
+        
