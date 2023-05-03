@@ -295,11 +295,11 @@ def post_settings_directory_invite():
     
     send_mail(
         email,
-        subject=f"You've been invited to join {g.user.organization.name} on {app.config['SITE_NAME']},
+        subject=f"You've been invited to join {g.user.organization.name} on {app.config['SITE_NAME']}",
         html=render_template(
             "mail/invite.html",
             link=link, 
-            subject=f"You've been invited to join {g.user.organization.name} on {app.config['SITE_NAME']}
+            subject=f"You've been invited to join {g.user.organization.name} on {app.config['SITE_NAME']}"
             )
         )
     
