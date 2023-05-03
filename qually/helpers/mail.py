@@ -14,7 +14,6 @@ def send_mail(to_address, subject, html, plaintext=None, files={}, from_address=
     data = {"from": from_address,
             "to": [to_address],
             "subject": subject,
-            "text": plaintext,
             "html": html,
             }
 
