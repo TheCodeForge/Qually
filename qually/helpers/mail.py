@@ -1,9 +1,11 @@
 import requests
 
+from qually.__main__ import app
+
 def send_mail(to_address, subject, html, plaintext=None, files={},
               from_address=f"{app.config['SITE_NAME']} <noreply@mail.{app.config['SERVER_NAME']}>"):
 
-    if not environ.get("MAILGUN_KEY"):
+    if not app.config["MAILGUN_KEY"]:
         debug("Cannot send mail - no mailgun key")
         return
 
@@ -20,7 +22,7 @@ def send_mail(to_address, subject, html, plaintext=None, files={},
     x= requests.post(
         url,
         auth=(
-            "api", environ.get("MAILGUN_KEY").lstrip().rstrip()
+            "api", app.config["MAILGUN_KEY"]
             ),
         data=data,
         files=[("attachment", (k, files[k])) for k in files]
