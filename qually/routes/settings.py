@@ -291,7 +291,7 @@ def post_settings_directory_invite():
         'organization_id':g.user.organization.base36id
     }
     
-    link=f"https://{'SERVER_NAME'}{tokenify('/accept_invite', data)}"
+    link=f"https://{app.config['SERVER_NAME']}{tokenify('/accept_invite', data)}"
     
     send_mail(
         email,
