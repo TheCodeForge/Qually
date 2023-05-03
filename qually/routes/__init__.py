@@ -1,3 +1,4 @@
+from .errors import *
 from .front import *
 from .login import *
 from .logo import *
