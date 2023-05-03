@@ -9,7 +9,7 @@
   <p>{{ g.user.organization.name }} requires the use of two-factor authentication.</p>
   {% endif %}
 
-  <form action="/set_otp" method="post">
+  <form id="form-otp" action="/set_otp" method="post">
 
     <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
     <input type="hidden" name="otp_secret" value="{{ otp_secret }}">
