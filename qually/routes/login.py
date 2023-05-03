@@ -221,7 +221,7 @@ def get_accept_invite():
 
     g.db.add(new_user)
     g.db.commit()
-    
+
     session["user_id"]=new_user.id
     session["login_nonce"]=new_user.login_nonce
 
@@ -229,7 +229,7 @@ def get_accept_invite():
 
     send_mail(
         g.user.email,
-        subject=f"Welcome to {app.config["SITE_NAME"]}",
+        subject=f"Welcome to {app.config['SITE_NAME']}",
         html=render_template(
             "mail/welcome.html",
             temp_pw=temp_pw
