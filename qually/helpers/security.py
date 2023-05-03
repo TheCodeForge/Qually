@@ -41,6 +41,21 @@ def safe_compare(x, y):
     time.sleep(random.uniform(0.0, 0.1)-(after-before))
     
     return returnval
+    
+def tokenify(path, data):
+    
+    string=f"{path}?{urllib.parse.urlencode(data)}"
+    
+    return generate_hash(string)
+
+def verify_token():
+    
+    data=dict(request.args)
+    token=data.pop("token","")
+    
+    string=f"{request.path}?{urllib.parse.urlencode(data)}"
+    
+    return validate_hash(string, token)
 
 def otp_recovery_code(user, otp_secret):
 
