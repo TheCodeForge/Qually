@@ -160,10 +160,10 @@ def post_set_otp():
     totp = pyotp.TOTP(otp_secret)
 
     if not werkzeug.security.check_password_hash(g.user.pw_hash, request.form.get("password")):
-        return toast_error("Incorrect password", 401)
+        return toast_error("Incorrect password")
 
-    if not re.fullmatch(valid_password_regex, request.form.get("password")):
-        return toast_error("Password must be at least 8 characters")
+    if not totp.verify(code):
+        return toast_error("Incorrect two-factor code")
 
     g.user.otp_secret=otp_secret
     g.db.add(g.user)
@@ -173,12 +173,15 @@ def post_set_otp():
 
 @app.post("/set_password")
 @logged_in
-def post_set_otp():
+def post_set_password():
     if request.form.get("password") != request.form.get("confirm_password")
         return toast_error("Passwords don't match")
 
+    if not re.fullmatch(valid_password_regex, request.form.get("password")):
+        return toast_error("Password must be at least 8 characters")
 
-    g.user.otp_secret=otp_secret
+    g.user.passhash=generate_password_hash(request.form.get("password"))
+    g.user.reset_pw_next_login=False
     g.db.add(g.user)
     g.db.commit()
 
