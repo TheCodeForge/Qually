@@ -20,7 +20,6 @@ def tokenify(path, data, token=None):
     string=f"{path}?{urllib.parse.urlencode(data)}"
     
     if token:
-        data['token']= validate_hash(string, token)
-        return f"{path}?{urllib.parse.urlencode(data)}"
+        return validate_hash(string, token)
     else:
         return generate_hash(string)
