@@ -1,8 +1,9 @@
 from flask import g, session
 import base64
 import io
-import qrcode
 import pyotp
+import qrcode
+import sass
 
 from qually.helpers.security import generate_hash
 
