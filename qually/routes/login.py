@@ -143,6 +143,16 @@ def get_set_otp():
         recovery = recovery,
         )
 
+@app.get("/set_password")
+@logged_in
+def get_set_password():
+
+    return render_template(
+        "set_password.html",
+        otp_secret = otp_secret,
+        recovery = recovery,
+        )
+
 @app.post("/set_otp")
 @logged_in
 def post_set_otp():
