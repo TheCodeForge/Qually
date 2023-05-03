@@ -148,11 +148,6 @@ def token_auth(f):
 
         if not validate_hash(string, token):
             abort(403)
-    
-        debug(string)
-        
-        if not verify_token():
-            abort(401)
             
         return f(*args, **kwargs)
 
