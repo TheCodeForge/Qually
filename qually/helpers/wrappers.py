@@ -139,18 +139,19 @@ def token_auth(f):
         if request.args.get('t'):
             if g.time - int(request.args.get('t')) > 60*60*24:
                 return jsonify({'error':'This link has expired.'})
+            
+    
+        data=dict(request.args)
+        token=data.pop("token","")
 
-        args = dict(request.args)
+        string=f"{request.path}?{urllib.parse.urlencode(data)}"
 
-        
-        args['_path']=request.path
-        args.pop('token')
-        
-        string = urllib.parse.urlencode(data)
-
+        if not validate_hash(string, token):
+            abort(403)
+    
         debug(string)
         
-        if not validate_hash(string, request.args.get('token')):
+        if not verify_token():
             abort(401)
             
         return f(*args, **kwargs)
