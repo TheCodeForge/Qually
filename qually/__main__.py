@@ -210,6 +210,9 @@ def before_request():
             if not validate_hash(f"{t}+{session['session_id']}", submitted_key):
                 abort(403)
 
+    if g.user and g.user.reset_pw_next_login and not request.path.startswith(("/set_password", "/help/", "/assets", "/logout")):
+        return redirect("/set_password")
+
     if g.user and g.user.organization.requires_otp and not g.user.otp_secret and not request.path.startswith(("/set_otp","/help/","/assets/","/logout")):
         return redirect("/set_otp")
 
