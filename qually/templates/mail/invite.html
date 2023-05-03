@@ -5,9 +5,11 @@
 {% block title %}You've been invited to join {{ g.user.organization.name }} on {{ 'SITE_NAME' | app_config }}{% endblock %}
 
 {% block content %}
-You have been invited to join {{ g.user.organization.name }} on {{ 'SITE_NAME' | app_config }}.
+<p>You have been invited to join {{ g.user.organization.name }} on {{ 'SITE_NAME' | app_config }}.</p>
+<p>To set up your account, click the button below within 24 hours.</p>
+<p>If you were not expecting this invitation, you can simply ignore it.</p>
 
-To set up your account, click the button below within 24 hours.
-
-If you were not expecting this invitation, you can simply ignore it.
+<div class="mx-auto">
+  <a class="btn btn-primary" href="{{ link }}">Accept Invitation</a>
+</div>
 {% endblock %}
