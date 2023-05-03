@@ -3,7 +3,7 @@
 {% block title %}Two-Factor Setup | {{ 'SITE_NAME' | app_config }}{% endblock %}
 
 {% block content %}
-<div id="form-otp">
+<div>
   <h1 class="h2">Set up Two-Factor Authentication</h1>
   {% if g.user.organization.requires_otp %}
   <p>{{ g.user.organization.name }} requires the use of two-factor authentication.</p>
