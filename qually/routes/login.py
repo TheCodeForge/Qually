@@ -214,7 +214,10 @@ def get_accept_invite():
         )
 
     g.db.add(new_user)
-    g.db.flush()
+    g.db.commit()
+
+    
+    g.user=new_user
 
     new_user.has_license = new_user.organization.licenses_used < new_user.organization.license_count
 
@@ -224,7 +227,6 @@ def get_accept_invite():
     session["user_id"]=new_user.id
     session["login_nonce"]=new_user.login_nonce
 
-    g.user=new_user
 
     send_mail(
         g.user.email,
