@@ -214,9 +214,9 @@ def get_accept_invite():
         )
 
     g.db.add(new_user)
-    g.db.commit()
+    g.db.flush()
 
-    
+
     g.user=new_user
 
     new_user.has_license = new_user.organization.licenses_used < new_user.organization.license_count
