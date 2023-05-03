@@ -13,9 +13,9 @@ def toast_error(msg, status=409):
 def toast(msg):
     return jsonify({"message": msg})
     
-def tokenify(path, data):
+def tokenify(path, data, token=None):
     
-    token = data.pop("token", None)
+    data.pop("token", None)
     
     string=f"{path}?{urllib.parse.urlencode(data)}"
     
