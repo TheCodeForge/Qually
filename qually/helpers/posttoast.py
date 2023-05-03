@@ -1,7 +1,7 @@
 from flask import jsonify
 import json
 import urllib
-from .security import generate_hash
+from .security import generate_hash, validate_hash
 from qually.__main__ import debug
 
 def toast_redirect(target):
@@ -15,17 +15,11 @@ def toast(msg):
     
 def tokenify(path, data):
     
-
-    data.pop('token',None)
-    data['_path']=path
+    token = data.pop("token", None)
     
-    argstring=json.dumps(args, sort_keys=True)
-
-    debug(argstring)
+    string=f"{path}?{urllib.parse.urlencode(data)}"
     
-    token=generate_hash(argstring)
-    
-    if querystring:
-        return f"{string}&token={token}"
+    if token:
+        return validate_hash(string, token)
     else:
-        return f"{string}?token={token}"
+        return generate_hash(string)
