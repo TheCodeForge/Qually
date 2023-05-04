@@ -245,5 +245,8 @@ def get_accept_invite():
         new_value="Accept Invitation"
         )
 
+    g.db.add(new_log)
+    g.db.commit()
+
 
     return redirect('/')
