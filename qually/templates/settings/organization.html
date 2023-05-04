@@ -36,7 +36,10 @@
     <div class="body w-lg-100">
       <div class="input-group d-flex">
 
-        <input id="require-2fa" type="checkbox" class="check-toast" data-post-url="/settings/organization/toggle_otp"{% if g.user.organization.requires_otp %} checked{% endif %}>
+        <div class="custom-control custom-switch">
+          <input type="checkbox" class="custom-control-input check-toast" data-post-url="/settings/organization/toggle_otp" id="require-2fa"{% if g.user.organization.requires_otp %} checked{% endif %}>
+          <label class="custom-control-label" for="require-2fa"></label>
+        </div>
 
         <div class="text-small mt-2">
           <p>If enabled, all users will be required to configure two-factor authentication.</p>
