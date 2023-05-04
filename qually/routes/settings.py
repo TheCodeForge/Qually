@@ -101,7 +101,7 @@ def post_settings_directory_toggle_license_uid(uid):
         g.db.add(user)
         g.db.flush()
 
-        if g.user.organization.licenses_used >= g.user.organization.license_count:
+        if g.user.organization.licenses_used > g.user.organization.license_count:
             g.db.rollback()
             return toast_error("Your organization has reached its purchased license count.")
 
