@@ -4,9 +4,16 @@ from .login import valid_email_regex
 
 @app.get("/settings/profile")
 @app.get("/settings/security")
-@app.get("/settings/organization")
 @app.get("/settings/directory")
 @logged_in
+def get_settings_profile():
+
+    page=request.path.split("/")[2]
+    return render_template(f"settings/{page}.html")
+
+@app.get("/settings/organization")
+@app.get("/settings/plan")
+@is_admin
 def get_settings_profile():
 
     page=request.path.split("/")[2]
@@ -29,13 +36,6 @@ def get_settings_audit(log_id=None):
     return render_template(
         f"settings/audit.html",
         listing=listing)
-
-@app.get("/settings/plan")
-@is_admin
-def get_settings_license():
-
-    return render_template(f"settings/plan.html")
-
 
 @app.post("/settings/organization")
 @is_admin
