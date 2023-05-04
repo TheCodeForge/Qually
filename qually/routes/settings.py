@@ -14,7 +14,7 @@ def get_settings_profile():
 @app.get("/settings/organization")
 @app.get("/settings/plan")
 @is_admin
-def get_settings_profile():
+def get_settings_admin():
 
     page=request.path.split("/")[2]
     return render_template(f"settings/{page}.html")
