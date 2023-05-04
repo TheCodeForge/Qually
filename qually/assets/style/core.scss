@@ -119,7 +119,7 @@ label {
 
 /* Custom Checkboxes and Radio Buttons*/
 
-.custom-control-label {
+.form-check-label {
     text-transform: none;
     font-weight: $font-weight-normal;
     font-size: $font-size-base;
@@ -127,36 +127,36 @@ label {
     color: $black;
 }
 
-.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+.form-switch .form-check-input:checked~.form-check-label::before {
     background-color: $primary;
     border: 1px solid $primary;
 }
 
 /* Custom Switch (iOS-like toggle)*/
 
-.custom-switch {
+.form-switch {
   padding-left: 2.25rem;
   padding-bottom: 1rem; // added for positioning
 }
 
-.custom-switch .custom-control-label { // added for alignment with the switch
+.form-switch .form-check-label { // added for alignment with the switch
   padding-top: 0.5rem;
   padding-left: 2rem;
   padding-bottom: 0.1rem;
 }
 
-.custom-control-input:checked ~ .custom-control-label::before {
+.form-check-input:checked ~ .form-check-label::before {
     opacity: 1;
     background-color: $success;
     border: $success solid 1px;
 
 }
 
-.custom-control-input:checked ~ .custom-control-label:hover::before {
+.form-check-input:checked ~ .form-check-label:hover::before {
     opacity: 1;
 }
 
-.custom-switch .custom-control-label::before {
+.form-switch .form-check-label::before {
   left: -2.25rem;
   height: 1.5rem;
   width: 2.75rem;    // it was 1.75rem before. Sliding way is longer than before.
@@ -167,11 +167,11 @@ label {
   opacity: .7;
 }
 
-.custom-switch .custom-control-label:hover::before {
+.form-switch .form-check-label:hover::before {
     opacity: .85;
 }
 
-.custom-switch .custom-control-label::after {
+.form-switch .form-check-label::after {
   top: calc(0.25rem + 2px);
   left: calc(-2.25rem + 2px);
   width: calc(1.5rem - 4px);   // it was calc(1rem - 4px) before. Oval is bigger than before.
@@ -184,12 +184,12 @@ label {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .custom-switch .custom-control-label::after {
+  .form-switch .form-check-label::after {
     transition: none;
   }
 }
 
-.custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+.form-switch .form-check-input:checked ~ .form-check-label::after {
   background-color: $white;
   -webkit-transform: translateX(1.25rem); //translateX(0.75rem);
   transform: translateX(1.25rem); //translateX(0.75rem);
