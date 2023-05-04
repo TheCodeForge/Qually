@@ -95,6 +95,7 @@ def get_sign_in():
     return render_template("/sign_in.html")
 
 @app.post("/sign_in")
+@limiter.limit("6/min")
 @not_logged_in
 def post_sign_in():
 
