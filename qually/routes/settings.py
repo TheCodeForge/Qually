@@ -66,7 +66,7 @@ def post_settings_organization():
 @app.post("/settings/organization/toggle_otp")
 @is_admin
 def post_settings_directory_toggle_otp():
-    g.user.organization.otp_required = not g.user.organization.otp_required
+    g.user.organization.requires_otp = not g.user.organization.requires_otp
     g.db.add(g.user.organization)
     g.db.commit()
     return toast("Changes saved")
