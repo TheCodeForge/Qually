@@ -116,3 +116,69 @@ label {
 .text-xsmall {
     font-size: 0.8em !important;
 }
+
+// Custom Checkboxes and Radio Buttons
+
+.custom-control-label {
+    text-transform: none;
+    font-weight: $font-weight-normal;
+    font-size: $font-size-base;
+    letter-spacing: 0;
+    color: $black;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: $primary;
+    border: 1px solid $primary;
+}
+
+// Custom Switch (iOS-like toggle)
+
+.custom-switch {
+  padding-left: 2.25rem;
+  padding-bottom: 1rem; // added for positioning
+}
+
+.custom-switch .custom-control-label { // added for alignment with the switch
+  padding-top: 0.5rem;
+  padding-left: 2rem;
+  padding-bottom: 0.1rem;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    opacity: 1;
+    background-color: $success;
+    border: $success solid 1px;
+
+}
+
+.custom-control-input:checked ~ .custom-control-label:hover::before {
+    opacity: 1;
+}
+
+.custom-switch .custom-control-label::before {
+  left: -2.25rem;
+  height: 1.5rem;
+  width: 2.75rem;    // it was 1.75rem before. Sliding way is longer than before.
+  pointer-events: all;
+  border-radius: 1rem;
+  background-color: $gray-500;
+  border: $gray-500 solid 1px;
+  opacity: .7;
+}
+
+.custom-switch .custom-control-label:hover::before {
+    opacity: .85;
+}
+
+.custom-switch .custom-control-label::after {
+  top: calc(0.25rem + 2px);
+  left: calc(-2.25rem + 2px);
+  width: calc(1.5rem - 4px);   // it was calc(1rem - 4px) before. Oval is bigger than before.
+  height: calc(1.5rem - 4px);  // it was calc(1rem - 4px) before. Oval is bigger than before.
+  background-color: $white;
+  border-radius: 2rem; //   it was 0.5rem before. Oval is bigger than before.
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
+}
