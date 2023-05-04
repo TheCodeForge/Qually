@@ -11,7 +11,7 @@ class Organization(Base, core_mixin):
 
     #licensing data
     license_count = Column(Integer, default=0)
-    license_expire_utc = Column(Integer, default=0)
+    license_expire_utc = Column(BigInteger, default=0)
     licenses_last_increased_utc=Column(Integer, default=0)
 
     created_utc = Column(Integer, default=0)
