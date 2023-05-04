@@ -17,12 +17,12 @@
       <a class="nav-link{% if request.path=='/settings/security' %} active{% endif %}" href="/settings/security">Security</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link{% if request.path=='/settings/organization' %} active{% endif %}" href="/settings/organization">Organization</a>
-    </li>
-    <li class="nav-item">
       <a class="nav-link{% if request.path=='/settings/directory' %} active{% endif %}" href="/settings/directory">Directory</a>
     </li>
     {% if g.user.is_org_admin %}
+    <li class="nav-item">
+      <a class="nav-link{% if request.path=='/settings/organization' %} active{% endif %}" href="/settings/organization">Organization</a>
+    </li>
     <li class="nav-item">
       <a class="nav-link{% if request.path=='/settings/plan' %} active{% endif %}" href="/settings/plan">Plan</a>
     </li>
@@ -46,12 +46,12 @@
       <a class="nav-link{% if request.path=='/settings/security' %} active{% endif %}" href="/settings/security"><i class="fas fa-fw fa-lock-alt text-lg me-0"></i></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link{% if request.path=='/settings/organization' %} active{% endif %}" href="/settings/organization"><i class="fas fa-fw fa-buildings text-lg me-0"></i></a>
-    </li>
-    <li class="nav-item">
       <a class="nav-link{% if request.path=='/settings/directory' %} active{% endif %}" href="/settings/directory"><i class="fas fa-fw fa-users text-lg me-0"></i></a>
     </li>
     {% if g.user.is_org_admin %}
+    <li class="nav-item">
+      <a class="nav-link{% if request.path=='/settings/organization' %} active{% endif %}" href="/settings/organization"><i class="fas fa-fw fa-buildings text-lg me-0"></i></a>
+    </li>
     <li class="nav-item">
       <a class="nav-link{% if request.path=='/settings/plan' %} active{% endif %}" href="/settings/plan"><i class="fas fa-fw fa-chair-office text-lg me-0"></i></a>
     </li>
