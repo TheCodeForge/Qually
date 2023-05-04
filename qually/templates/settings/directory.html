@@ -37,12 +37,12 @@
     <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
 
     {% if g.user.is_org_admin %}
-    <td><input type="checkbox" class="check-toast" data-post-url="/settings/directory/toggle_enable/{{ user.base36id }}"{% if user.is_active %} checked{% endif %}{% if user==g.user %} disabled{% endif %}></td>
-    <td><input type="checkbox" class="check-toast" data-post-url="/settings/directory/toggle_license/{{ user.base36id }}"{% if user.has_license %} checked{% endif %}{% if user==g.user %} disabled{% endif %}></td>
-    <td><input type="checkbox" class="check-toast" data-post-url="/settings/directory/toggle_admin/{{ user.base36id }}"{% if user.is_org_admin %} checked{% endif %}{% if user==g.user %} disabled{% endif %}></td>
+    <td><input type="checkbox" class="form-check-input check-toast" data-post-url="/settings/directory/toggle_enable/{{ user.base36id }}"{% if user.is_active %} checked{% endif %}{% if user==g.user %} disabled{% endif %}></td>
+    <td><input type="checkbox" class="form-check-input check-toast" data-post-url="/settings/directory/toggle_license/{{ user.base36id }}"{% if user.has_license %} checked{% endif %}{% if user==g.user %} disabled{% endif %}></td>
+    <td><input type="checkbox" class="form-check-input check-toast" data-post-url="/settings/directory/toggle_admin/{{ user.base36id }}"{% if user.is_org_admin %} checked{% endif %}{% if user==g.user %} disabled{% endif %}></td>
 
     {% else %}
-    <td><input type="checkbox"{% if user.has_license %} checked{% endif %} disabled></td>
+    <td><input type="checkbox" class="form-check-input"{% if user.has_license %} checked{% endif %} disabled></td>
     <td class="text-small">{{ user.role_string }}</td>
     {% endif %}
 
