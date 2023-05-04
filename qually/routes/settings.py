@@ -61,7 +61,15 @@ def post_settings_organization():
 
     g.db.commit()
 
-    return toast("Organization settings saved!")
+    return toast("Changes saved")
+
+@app.post("/settings/organization/toggle_otp")
+@is_admin
+def post_settings_directory_toggle_otp():
+    g.user.organization.otp_required = not g.user.organization.otp_required
+    g.db.add(g.user.organization)
+    g.db.commit()
+    return toast("Changes saved")
 
 @app.post("/settings/directory/toggle_license/<uid>")
 @is_admin
