@@ -66,6 +66,10 @@ def post_settings_organization():
 @app.post("/settings/organization/toggle_otp")
 @is_admin
 def post_settings_directory_toggle_otp():
+    
+    if not g.user.organization.requires_otp and not g.user.otp_secret:
+        return toast_error("Set two-factor authentication on your own account before enabling this.")
+    
     g.user.organization.requires_otp = not g.user.organization.requires_otp
     g.db.add(g.user.organization)
     g.db.commit()
