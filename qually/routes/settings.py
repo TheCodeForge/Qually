@@ -72,6 +72,15 @@ def post_settings_directory_toggle_otp():
     
     g.user.organization.requires_otp = not g.user.organization.requires_otp
     g.db.add(g.user.organization)
+    
+    log=OrganizationAuditLog(
+        user_id=g.user.id,
+        organization_id=g.user.organization_id,
+        key="Organization",
+        new_value=f"Require2FA={g.user.organization.requires_otp}"
+        )
+    g.db.add(log)
+    
     g.db.commit()
     return toast("Changes saved")
 
