@@ -158,7 +158,7 @@ def post_set_otp():
 
     totp = pyotp.TOTP(otp_secret)
 
-    if not check_password_hash(g.user.pw_hash, request.form.get("password")):
+    if not check_password_hash(g.user.passhash, request.form.get("password")):
         return toast_error("Incorrect password")
 
     if not totp.verify(code):
