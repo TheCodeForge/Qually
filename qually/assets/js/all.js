@@ -70,7 +70,7 @@ function postformtoast(x, callback=function(data){}){
   xhr.withCredentials=true;
   xhr.onerror=function() { 
       $('#toast-error .toast-text').text("Something went wrong. Please try again later.");
-      $('#toast-error').toast('show')
+      $('#toast-error').toast('show');
   };
   xhr.onload = function() {
     data=JSON.parse(xhr.response);
@@ -79,20 +79,17 @@ function postformtoast(x, callback=function(data){}){
       if (data['message']!=undefined) {
         $('#toast-success .toast-text').text(data['message']);
         $('#toast-success').toast('show');
-        x.text(x.data('text'))
       }
       if (x.hasClass('btn')) {
-        x.prop('disabled', false)
-        x.removeClass('disabled')
-        x.text(x.data('text'))
+        x.prop('disabled', false);
+        x.removeClass('disabled');
       }
       callback(xhr);
     } 
     else if (xhr.status >= 300 && xhr.status < 400 ) {
       if (x.hasClass('btn')) {
-        x.prop('disabled', false)
-        x.removeClass('disabled')
-        x.text(x.data('text'))
+        x.prop('disabled', false);
+        x.removeClass('disabled');
       }
       window.location.href=data['redirect']
     } 
@@ -100,18 +97,16 @@ function postformtoast(x, callback=function(data){}){
       $('#toast-error .toast-text').text(data['error']);
       $('#toast-error').toast('show')
       if (x.hasClass('btn')) {
-        x.prop('disabled', false)
-        x.removeClass('disabled')
-        x.text(x.data('text'))
+        x.prop('disabled', false);
+        x.removeClass('disabled');
       }
     } 
     else {
       $('#toast-error .toast-text').text("Something went wrong. Please try again later.");
       $('#toast-error').toast('show')
       if (x.hasClass('btn')) {
-        x.prop('disabled', false)
-        x.removeClass('disabled')
-        x.text(x.data('text'))
+        x.prop('disabled', false);
+        x.removeClass('disabled');
       }
     }
   };
@@ -119,10 +114,8 @@ function postformtoast(x, callback=function(data){}){
   xhr.send(form);
   if (x.hasClass('btn')) {
     x.prop('disabled', true)
-    x.width(x.width()); //pins width at whatever the current value is
-    x.data('text', x.text())
     x.addClass('disabled')
-    x.html('<i class="fas fa-circle-notch fa-spin"></i>')
+    $('#toast-waiting').toast('show')
   }
 }
 
