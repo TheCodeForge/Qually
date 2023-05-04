@@ -66,21 +66,21 @@ def qrcode_filter(x):
     data=base64.b64encode(mem.read()).decode('ascii')
     return f"data:image/png;base64,{data}"
 
-@app.template_filter('css')
-def css(x):
+# @app.template_filter('css')
+# def css(x):
 
-    name=f"{app.config['SYSPATH']}/assets/style/main.scss"
-    #print(name)
-    with open(name, "r") as file:
-        output = file.read()
+#     name=f"{app.config['SYSPATH']}/assets/style/main.scss"
+#     #print(name)
+#     with open(name, "r") as file:
+#         output = file.read()
 
-    # This doesn't use python's string formatting because
-    # of some odd behavior with css files
+#     # This doesn't use python's string formatting because
+#     # of some odd behavior with css files
 
-    output = output.replace("{primary}", app.config['COLOR_PRIMARY'])
-    output = output.replace("{secondary}", app.config['COLOR_SECONDARY'])
+#     output = output.replace("{primary}", app.config['COLOR_PRIMARY'])
+#     output = output.replace("{secondary}", app.config['COLOR_SECONDARY'])
 
-    #compile the regular css
-    output=sass.compile(string=output)
+#     #compile the regular css
+#     output=sass.compile(string=output)
 
-    return output
+#     return output
