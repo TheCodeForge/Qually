@@ -1,8 +1,7 @@
 {% extends "settings/core.html" %}
 
 {% block content %}
-<h2 class="h5 mt-3">Organization</h2>
-
+<h2 class="h5 mt-3">Branding</h2>
 <div class="settings-section rounded">
 
   <div class="d-lg-flex">
@@ -14,18 +13,36 @@
     <div class="body w-lg-100">
       <div class="input-group d-flex">
 
-        {% if g.user.is_org_admin %}
         <form id="form-org-name" action="/settings/organization" method="post" class="w-100">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <input id="org_name" type="text" name="org_name" class="form-control w-100" value="{{ g.user.organization.name }}">
         </form>
         <a href="javascript:void(0)" class="btn ml-auto toast-form-submit btn-primary rounded" data-form="form-org-name">Change Organization Name</a>
-        {% else %}
-        <input type="text" class="form-control" value="{{ g.user.organization.name }}" disabled>
-        {% endif %}
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 class="h5 mt-3">Security</h2>
+<div class="settings-section rounded">
+
+  <div class="d-lg-flex">
+
+    <div class="title w-lg-25">
+      <label for="require-2fa">Require two-factor authentication</label>
+    </div>
+
+    <div class="body w-lg-100">
+      <div class="input-group d-flex">
+
+        <input id="require-2fa" type="checkbox" class="check-toast" data-post-url="/settings/organization/toggle_otp }}"{% if user.organization.requires_otp %} checked{% endif %}>
 
       </div>
     </div>
   </div>
 </div>
 {% endblock %}
+
+
+
