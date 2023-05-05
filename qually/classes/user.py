@@ -2,6 +2,7 @@ from secrets import token_hex
 import pyotp
 from hmac import compare_digest
 
+from qually.helpers.security import otp_recovery_code
 from qually.helpers.class_imports import *
 
 class User(Base, core_mixin):
@@ -81,18 +82,13 @@ class User(Base, core_mixin):
             g.db.add(self)
             g.db.commit()
             return True
-        elif allow_reset and compare_digest(x.replace(' ','').upper(), self.otp_recovery):
+        elif allow_reset and compare_digest(x.replace(' ','').upper(), otp_recovery_code(self, self.otp_secret)):
             self.otp_secret==None
             self.last_otp_code=None
             g.db.add(self)
             g.db.commit()
             return True
         return False
-
-    @property
-    def otp_recovery(self):
-
-        return otp_recovery_code(self, self.otp_secret)
 
     def validate_csrf_token(self, token):
 
