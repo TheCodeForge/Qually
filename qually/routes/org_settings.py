@@ -187,59 +187,46 @@ def post_settings_plan():
 
     if new_seat_count==g.user.organization.license_count and g.user.organization.license_expire_utc > g.time+60*60*24*365:
         return toast_error("You didn't change anything!")
+        
+    if new_seat_count < g.user.organization.licenses_used:
+        return toast_error(f"You can't reduce your organization license count below current usage.")
 
-    #decrease seats and increase experation time
-    if new_seat_count < g.user.organization.license_count:
-
-        if new_seat_count<g.user.organization.licenses_used:
-            return toast_error(f"You can't reduce your organization license count below current usage.")
-
-        if g.time < g.user.organization.licenses_last_increased_utc + 60*60*24*21:
-            return toast_error("There is a 21 day cooldown after increasing license count before it may be decreased.")
-
-        time_remaining = g.user.organization.license_expire_utc - g.time
-
-        seats_freed = g.user.organization.license_count-new_seat_count
-
-        seat_seconds_to_credit = time_remaining*seats_freed
-
-        extension_time = seat_seconds_to_credit//new_seat_count
+    if g.time < g.user.organization.licenses_last_increased_utc + 60*60*24*21:
+        return toast_error("There is a 21 day cooldown after increasing license count before it may be decreased.")
+        
+    #compute remaining seatseconds
+    seat_seconds = max(0, g.user.organization.license_count * (g.user.organization.license_expire_utc - g.time))
+    
+    #expiration timer
+    new_expire_timer = seat_seconds // new_seat_count
+    
+    #if reducing seats or if new time > 1yr, adjust and save
+    if new_seat_count < g.user.organization.license_count or new_expire_timer > 60*60*24*365:
 
         g.user.organization.license_count = new_seat_count
-        g.user.organization.license_expire_utc += extension_time
+        g.user.organization.license_expire_utc += new_expire_timer
 
     else:
 
-        #Check for seatday conversion eligibility
-        seat_seconds = max(0, (g.user.organization.license_expire_utc-g.time)*g.user.organization.license_count)
+        desired_seat_seconds=new_seat_count*60*60*24*365
+        buying_seat_seconds = desired_seat_seconds - seat_seconds
+        price_cents = int(buying_seat_seconds/(60*60*24*365) * app.config["CENTS_PER_SEATYEAR"])
 
-        eligible_seats = seat_seconds // (60*60*24*365)+1
-        
-        if eligible_seats > new_seat_count:
-            g.user.organization.license_count=new_seat_count
-            g.user.organization.license_expire_utc = g.time + seat_seconds//new_seat_count
-            g.user.organization.licenses_last_increased_utc = g.time
-        else:
-            desired_seat_seconds=new_seat_count*60*60*24*365
-            face_price = app.config["CENTS_PER_SEATYEAR"]*new_seat_count
-            prorate=seat_seconds/desired_seat_seconds
-            final_price = int(face_price*(1-prorate))
+        # new_txn = PayPalTxn(
+        #     user_id=g.user.id,
+        #     created_utc=g.time,
+        #     seat_count=new_seat_count,
+        #     usd_cents=price_cents
+        #     )
 
-            # new_txn = PayPalTxn(
-            #     user_id=g.user.id,
-            #     created_utc=g.time,
-            #     seat_count=new_seat_count,
-            #     usd_cents=final_price
-            #     )
+        # g.db.add(new_txn)
+        # g.db.flush()
 
-            # g.db.add(new_txn)
-            # g.db.flush()
-
-            # PayPalClient().create(new_txn)
-            # g.db.add(new_txn)
-            # g.db.commit()
-            # return toast_redirect(new_txn.approve_url)
-            return toast_error(f"Base: ${face_price/100:.2f} | Prorate: {prorate:.4f} | Final: ${final_price/100:.2f}")
+        # PayPalClient().create(new_txn)
+        # g.db.add(new_txn)
+        # g.db.commit()
+        # return toast_redirect(new_txn.approve_url)
+        return toast_error(f"Base: ${face_price/100:.2f} | Prorate: {prorate:.4f} | Final: ${final_price/100:.2f}")
 
     g.db.add(g.user.organization)
 
