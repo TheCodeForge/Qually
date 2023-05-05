@@ -37,7 +37,9 @@
     <div class="body w-lg-100">
       <div class="input-group d-flex">
 
-        <a href="/set_otp" class="btn ms-auto btn-primary rounded">Configure Two-Factor Authentication</a>
+        {% if not g.user.mfa_secret %}
+        <a href="/set_otp" class="btn ms-auto btn-primary rounded">Configure</a>
+        {% endif %}
         
       </div>
     </div>
