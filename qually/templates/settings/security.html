@@ -49,8 +49,12 @@
         </form>
         <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-org-name">Disable Two-Factor Authentication</a>
 
+        {% if g.user.organization.requires_otp %}
+        <p class="text-small">{{ g.user.organization.name }} requires the use of two-factor authentication.</p>
+        {% endif %}
+
         {% else %}
-        <a href="/set_otp" target="/blank" class="btn ms-auto btn-primary rounded">Configure</a>
+        <a href="/set_otp" target="/blank" class="btn ms-auto btn-primary rounded">Enable Two-Factor Authentication</a>
         {% endif %}
         
       </div>
