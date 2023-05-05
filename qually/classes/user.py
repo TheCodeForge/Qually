@@ -24,6 +24,7 @@ class User(Base, core_mixin):
     login_nonce = Column(Integer, default=0)
     otp_secret = deferred(Column(String(64), default=None))
     reset_pw_next_login = Column(Boolean, default=False)
+    last_otp_code = Column(Integer, default=0)
 
     #profile
     has_profile = Column(Boolean, default=False)
@@ -65,10 +66,27 @@ class User(Base, core_mixin):
     def __str__(self):
         return f"{self.name} <{self.email}>"
 
-    def validate_2fa(self, token):
+    def validate_otp(self, x, allow_reset=False):
 
-        x = pyotp.TOTP(self.mfa_secret)
-        return x.verify(token, valid_window=1)
+        if not self.otp_secret:
+            return True
+
+        if x==self.last_otp_code:
+            return False
+            
+        totp=pyotp.TOTP(self.otp_secret)
+        if totp.verify(x, valid_window=1):
+            self.last_otp_code=x
+            g.db.add(self)
+            g.db.commit()
+            return True
+        elif allow_reset and compare_digest(x.replace(' ','').upper(), self.otp_secret_reset_code):
+            self.otp_secret==None
+            self.last_otp_code=None
+            g.db.add(self)
+            g.db.commit()
+            return True
+        return False
 
     def validate_csrf_token(self, token):
 
