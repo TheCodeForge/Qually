@@ -194,8 +194,8 @@ def post_settings_plan():
         if new_seat_count<g.user.organization.licenses_used:
             return toast_error(f"You can't reduce your organization license count below current usage.")
 
-        if g.time < g.user.organization.licenses_last_increased_utc + 60*60*24*7:
-            return toast_error("There is a 7 day cooldown after increasing license count before it may be decreased.")
+        if g.time < g.user.organization.licenses_last_increased_utc + 60*60*24*21:
+            return toast_error("There is a 21 day cooldown after increasing license count before it may be decreased.")
 
         time_remaining = g.user.organization.license_expire_utc - g.time
 
