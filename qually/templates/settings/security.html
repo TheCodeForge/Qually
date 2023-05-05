@@ -1,7 +1,7 @@
 {% extends "settings/core.html" %}
 
 {% block content %}
-<h2 class="h5 mt-3">Password</h2>
+<h2 class="h5 mt-3">Sign-in Information</h2>
 <div class="settings-section rounded">
 
   <div class="d-lg-flex">
@@ -17,12 +17,27 @@
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <label>Current Password</label>
           <input type="text" name="password" class="form-control w-100">
-          <label>New Password</label>
+          <label class="mt-3">New Password</label>
           <input type="text" name="new_password" class="form-control w-100">
-          <label>Confirm New Password</label>
+          <label class="mt-3">Confirm New Password</label>
           <input type="text" name="confirm_password" class="form-control w-100">
         </form>
-        <a href="javascript:void(0)" class="btn ml-auto toast-form-submit btn-primary rounded" data-form="form-org-name">Change Password</a>
+        <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-org-name">Change Password</a>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="d-lg-flex border-top">
+
+    <div class="title w-lg-25">
+      <label for="form-org-name">Two-Factor Authentication</label>
+    </div>
+
+    <div class="body w-lg-100">
+      <div class="input-group d-flex">
+
+        <a href="/set_otp" class="btn ml-auto toast-form-submit btn-primary rounded" data-form="form-org-name">Change Password</a>
         
       </div>
     </div>
