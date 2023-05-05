@@ -66,4 +66,7 @@ def post_settings_security_remove_otp():
     g.db.add(g.user)
     g.db.commit()
 
-    return toast("Password changed")
+    if g.user.organization.requires_otp:
+        return toast_redirect("/set_otp")
+
+    return toast("Two-Factor Code Removed")
