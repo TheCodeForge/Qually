@@ -1,4 +1,3 @@
-from werkzeug.security import generate_password_hash, check_password_hash
 from qually.helpers.route_imports import *
 
 @app.get("/settings/profile")
