@@ -80,13 +80,18 @@ class User(Base, core_mixin):
             g.db.add(self)
             g.db.commit()
             return True
-        elif allow_reset and compare_digest(x.replace(' ','').upper(), self.otp_secret_reset_code):
+        elif allow_reset and compare_digest(x.replace(' ','').upper(), self.otp_recovery):
             self.otp_secret==None
             self.last_otp_code=None
             g.db.add(self)
             g.db.commit()
             return True
         return False
+
+    @property
+    def otp_recovery(self):
+
+        return otp_recovery_code(self, self.otp_secret)
 
     def validate_csrf_token(self, token):
 
