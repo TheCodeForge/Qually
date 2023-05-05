@@ -39,6 +39,10 @@
 
         {% if g.user.otp_secret %}
 
+
+        {% if g.user.organization.requires_otp %}
+        <p class="text-small">{{ g.user.organization.name }} requires the use of two-factor authentication. If you disable your two-factor device, a new one must be configured.</p>
+        {% endif %}
         <form id="form-remove-otp" action="/settings/security/remove_otp" method="post" class="w-100">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <label>Password</label>
@@ -49,9 +53,6 @@
         </form>
         <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-remove-otp">Disable Two-Factor Authentication</a>
 
-        {% if g.user.organization.requires_otp %}
-        <p class="text-small">{{ g.user.organization.name }} requires the use of two-factor authentication.</p>
-        {% endif %}
 
         {% else %}
         <a href="/set_otp" class="btn ms-auto btn-primary rounded">Enable Two-Factor Authentication</a>
