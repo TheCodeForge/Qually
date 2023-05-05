@@ -1,5 +1,6 @@
 from secrets import token_hex
 import pyotp
+from hmac import compare_digest
 
 from qually.helpers.class_imports import *
 
