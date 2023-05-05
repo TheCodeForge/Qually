@@ -18,7 +18,7 @@
       <span class="fw-bold text-primary">1:</span> Scan this barcode (or enter the code) using a two-factor authentication app such as Google Authenticator or Authy.
     </p>
     <div class="text-center mb-3">
-      <img class="img-fluid w-50" src="{{ otp_secret | otp_qrcode }}">
+      <img class="img-fluid w-75" src="{{ otp_secret | otp_qrcode }}">
       <div class="text-small text-muted">
         <p>Or, enter this code into your authenticator app:</p>
         <p><span class="font-monospace">{{ otp_secret }}</span></p>
