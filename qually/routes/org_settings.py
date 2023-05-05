@@ -226,7 +226,7 @@ def post_settings_plan():
         # g.db.add(new_txn)
         # g.db.commit()
         # return toast_redirect(new_txn.approve_url)
-        return toast_error(f"Base: ${face_price/100:.2f} | Prorate: {prorate:.4f} | Final: ${final_price/100:.2f}")
+        return toast_error(f"Base: ${app.config['CENTS_PER_SEATYEAR'] * new_seat_count/100:.2f} | Prorated: ${price_cents/100:.2f}")
 
     g.db.add(g.user.organization)
 
