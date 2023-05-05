@@ -169,7 +169,7 @@ def post_settings_directory_toggle_admin_uid(uid):
         user_id=g.user.id,
         organization_id=g.user.organization_id,
         key=str(user),
-        new_value=f"Admin={user.is_active}"
+        new_value=f"Admin={user.is_org_admin}"
         )
 
     g.db.add(log)
