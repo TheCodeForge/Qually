@@ -22,7 +22,7 @@
           <label class="mt-3">Confirm New Password</label>
           <input type="password" name="confirm_password" class="form-control w-100">
         </form>
-        <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-org-name">Change Password</a>
+        <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-change-password">Change Password</a>
         
       </div>
     </div>
@@ -47,7 +47,7 @@
           <input type="text" name="confirm_password" class="form-control w-100" placeholder="# # # # # #">
           <p class="text-small">Enter your six-digit two-factor authentication code, or your 25-character two-factor recovery code.</p>
         </form>
-        <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-org-name">Disable Two-Factor Authentication</a>
+        <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-remove-otp">Disable Two-Factor Authentication</a>
 
         {% if g.user.organization.requires_otp %}
         <p class="text-small">{{ g.user.organization.name }} requires the use of two-factor authentication.</p>
