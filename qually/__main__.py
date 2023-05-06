@@ -201,6 +201,9 @@ def before_request():
 
         submitted_key = request.values.get("csrf_token")
 
+        if not submitted_key:
+            abort(403)
+
         if g.user:
             if not g.user.validate_csrf_token(submitted_key):
                 abort(403)
