@@ -11,5 +11,6 @@ from qually.helpers.security import generate_hash, validate_hash, tokenify
 from qually.helpers.posttoast import toast, toast_redirect, toast_error
 from qually.helpers.mail import send_mail
 from qually.helpers.get import *
+import qually.helpers.aws as aws
 
 from qually.__main__ import app, debug, limiter, debug, cache
