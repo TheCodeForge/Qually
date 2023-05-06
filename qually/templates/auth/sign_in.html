@@ -2,73 +2,74 @@
 
 {% block title %}Sign In | {{ 'SITE_NAME' | app_config }}{% endblock %}
 
-{% block wholepage %}
-<div class="container-fluid h-100 p-0">
-  <div class="row g-0 h-100">
+{% block pagebody %}
+<div class="container-fluid position-absolute h-100 p-0 overflow-auto">
+  <div class="row no-gutters h-100">
+    <div class="container-fluid h-100 p-0">
+      <div class="row g-0 h-100">
+        <div class="col-12 col-md-6 my-auto p-3">
+          <div class="row justify-content-center">
+            <div class="col-10 col-md-7">
 
-    <div class="col-12 col-md-6 my-auto p-3">
+              {% block content %}
 
-      <div class="row justify-content-center">
+              <div id="login-form" class="">
 
-        <div class="col-10 col-md-7">
+                <h1 class="h2">Sign In</h1>
 
-          {% block content %}
+                <form id="form-login" action="/sign_in" method="post" class="mt-md-3">
 
-          <div id="login-form" class="">
+                  <input type="hidden" name="csrf_token" value="{{ g.time | csrf_token }}"> 
+                  <input type="hidden" name="time" value="{{ g.time }}">
+                  <input type="hidden" name="redirect" value="{{ request.values.get('redirect','') | urlencode }}">
 
-            <h1 class="h2">Sign In</h1>
+                  <label id="label-email" for="email" class="mt-3">Email Address</label>
+                  <input class="form-control" id="login-email" aria-labelledby="label-email" type="text" name="email" required="" autofocus>
 
-            <form id="form-login" action="/sign_in" method="post" class="mt-md-3">
+                  <label id="label-password" for="password" class="mt-3">Password</label>
+                  <input class="form-control" id="password" aria-labelledby="passwordHelp" type="password" name="password" required="">
 
-              <input type="hidden" name="csrf_token" value="{{ g.time | csrf_token }}"> 
-              <input type="hidden" name="time" value="{{ g.time }}">
-              <input type="hidden" name="redirect" value="{{ request.values.get('redirect','') | urlencode }}">
+                  <div id="otp-container" class="d-none">
+                    <label id="label-otp" for="otp-code" class="mt-3">Two-Factor Code</label>
+                    <p id="text-otp" class="text-small">Or 25-character recovery code</p>
+                    <input class="form-control" id="otp-code" aria-labelledby="label-otp" aria-described-by="text-otp" type="text" name="otp_code" placeholder="# # # # # #">
+                  </div>
 
-              <label id="label-email" for="email" class="mt-3">Email Address</label>
-              <input class="form-control" id="login-email" aria-labelledby="label-email" type="text" name="email" required="" autofocus>
+                </form>
 
-              <label id="label-password" for="password" class="mt-3">Password</label>
-              <input class="form-control" id="password" aria-labelledby="passwordHelp" type="password" name="password" required="">
+                <small><a href="/forgot">Forgot password?</a></small>
 
-              <div id="otp-container" class="d-none">
-                <label id="label-otp" for="otp-code" class="mt-3">Two-Factor Code</label>
-                <p id="text-otp" class="text-small">Or 25-character recovery code</p>
-                <input class="form-control" id="otp-code" aria-labelledby="label-otp" aria-described-by="text-otp" type="text" name="otp_code" placeholder="# # # # # #">
+                <button class="btn btn-primary w-100 mt-3 toast-form-submit" data-form="form-login">Sign in</button>
+
+                <div class="text-center text-muted text-small mt-5 mb-3">
+                  <p>Don't have an account? <a href="/register">Register for a free enterprise trial</a>, or contact your organization's {{ 'SITE_NAME' | app_config }} administrator to request access to your organization's data.</p>
+                </div>
+
               </div>
 
-            </form>
+              {% endblock %}
 
-            <small><a href="/forgot">Forgot password?</a></small>
-
-            <button class="btn btn-primary w-100 mt-3 toast-form-submit" data-form="form-login">Sign in</button>
-
-            <div class="text-center text-muted text-small mt-5 mb-3">
-              <p>Don't have an account? <a href="/register">Register for a free enterprise trial</a>, or contact your organization's {{ 'SITE_NAME' | app_config }} administrator to request access to your organization's data.</p>
             </div>
 
           </div>
 
-          {% endblock %}
+        </div>
+
+        <div class="col-12 col-md-6 d-none d-md-block">
+
+          <div class="splash-wrapper">
+
+            <div class="splash-overlay"></div>
+
+            <h6 class="splash-text">placeholder text</h6>
+
+            <img class="splash-img" src="/assets/images/promosplash.png"></img>
+          </div>
 
         </div>
 
       </div>
-
     </div>
-
-    <div class="col-12 col-md-6 d-none d-md-block">
-
-      <div class="splash-wrapper">
-
-        <div class="splash-overlay"></div>
-
-        <h6 class="splash-text">placeholder text</h6>
-
-        <img class="splash-img" src="/assets/images/promosplash.png"></img>
-      </div>
-
-    </div>
-
   </div>
 </div>
 {% endblock %}

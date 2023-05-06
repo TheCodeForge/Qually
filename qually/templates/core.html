@@ -55,9 +55,9 @@
     </div>
   </nav>
 
-
+  {% block pagebody %}
   <div class="container-fluid">
-    <div class="row justify-content-around h-100-minus-header" id="main-content-row">
+    <div class="row justify-content-around" id="main-content-row">
 
       {% block wholepage %}
       <!--left sidebar goes here-->
@@ -81,6 +81,7 @@
 
     </div>
   </div>
+  {% endblock %}
   {% include "elements/clipboard.html" %}
   {% include "elements/toasts.html" %}
   
