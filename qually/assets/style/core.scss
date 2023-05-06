@@ -323,3 +323,8 @@ label {
   -webkit-transform: translateX(1.25rem); //translateX(0.75rem);
   transform: translateX(1.25rem); //translateX(0.75rem);
 }
+
+
+.h-100-minus-header {
+  min-height: calc(100% - 40px);
+}
