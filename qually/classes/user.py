@@ -155,7 +155,7 @@ class User(Base, core_mixin):
     @property
     def profile_url(self):
 
-        if self.has_profile and not self.is_deleted:
+        if self.has_profile:
             return f"/s3/user/{self.base36id}/profile-{self.profile_nonce}.png"
         else:
             return f"/icon/fontawesome/solid//{app.config['COLOR_PRIMARY']}/150"
