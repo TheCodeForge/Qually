@@ -139,6 +139,8 @@ def post_two_factor_code():
     if not user.validate_otp(request.form.get("otp_code"), allow_reset=True):
         return toast_error("Invalid two-factor code")
 
+    session.pop("authing_id")
+
     if request.form.get("redirect"):
         return toast_redirect(request.form.get("redirect"))
 
