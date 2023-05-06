@@ -110,6 +110,12 @@ def post_sign_in():
     if not check_password_hash(user.passhash, request.form.get("password")):
         return toast_error("Invalid username or password")
 
+    if user.otp_secret and not user.validate_otp(request.form.get("otp_code"), allow_reset=True):
+        return render_template(
+            "auth/otp.html",
+            user=user
+            )
+
     if request.form.get("redirect"):
         return toast_redirect(request.form.get("redirect"))
 
