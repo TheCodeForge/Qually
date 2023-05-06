@@ -58,7 +58,7 @@ def download_file(name):
 
     tempname=name.replace("/","_")
 
-    with open(tempname, "w+") as f:
+    with open(tempname, "wb+") as f:
         S3.download_fileobj(
             app.config["S3_BUCKET"],
             name,
