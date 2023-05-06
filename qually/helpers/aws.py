@@ -1,7 +1,7 @@
 import boto3
-
 from os import remove
 from io import BytesIO
+from PIL import Image
 from qually.__main__ import app
 
 #set up AWS connection
