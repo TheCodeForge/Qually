@@ -158,7 +158,7 @@ class User(Base, core_mixin):
         if self.has_profile:
             return f"/s3/user/{self.base36id}/profile-{self.profile_nonce}.png"
         else:
-            return f"/icon/fontawesome/solid//{app.config['COLOR_PRIMARY']}/150"
+            return f"/icon/fontawesome/solid//{app.config['COLOR_PRIMARY']}/100"
 
     @property
     def json_core(self):
