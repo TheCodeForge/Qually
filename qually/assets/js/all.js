@@ -170,3 +170,15 @@ $('.toast').click(function(){$('.toast').toast('dispose')})
 $("#login-email").change(function(){
 
 })
+
+//let enter work with toasty forms
+$("form.toasted input").keypress(function(e){
+  if (e.which!=13) {
+    return;
+  }
+  e.preventDefault();
+
+  //click the thing with toast-form-submit and data-form=parent form id
+  var form_id=$(this).parents("form").prop("id");
+  $('.toast-form-submit[data-form="'+form_id+'"]').click()
+})
