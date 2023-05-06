@@ -13,7 +13,7 @@
       <div class="input-group d-flex">
 
         <form id="user-avatar-update-form" action="/settings/profile/avatar" method="post" enctype="multipart/form-data">
-          <input type="hidden" name="formkey" value="{{ g.user.formkey }}">
+          <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <label class="btn btn-secondary text-capitalize me-2 mb-0">
             Update
             <input type="file" hidden name="profile" class="toast-form-change-submit" data-form="user-avatar-update-form">
@@ -22,7 +22,7 @@
         {% if g.user.has_profile %}
         <div>
           <form id="delete-profile" action="/settings/profile/delete_avatar" method="post">
-            <input type="hidden" name="formkey" value="{{ g.user.formkey }}">
+            <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
             <a class="btn btn-link fa-lg toast-form-submit" data-form="delete-profile"><i class="far fa-trash-alt text-danger"></i></a>
           </form>
         </div>
