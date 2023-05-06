@@ -129,6 +129,23 @@ def get_two_factor_code():
 
     return render_template("auth/otp.html", user=user)
 
+@app.post("/two_factor_code")
+def post_two_factor_code():
+
+    user=g.db.query(User).options(joinedload(User.organization)).filter_by(id=session.get("authing_id")).first()
+
+    if not user.validate_otp(request.form.get("otp_code"), allow_reset=True):
+        return toast_error("Invalid two-factor code")
+
+    if request.form.get("redirect"):
+        return toast_redirect(request.form.get("redirect"))
+
+    session['user_id']=user.id
+    session['login_nonce']=user.login_nonce
+
+    return toast_redirect('/')
+
+
 @app.post("/logout")
 @logged_in
 def post_logout():
