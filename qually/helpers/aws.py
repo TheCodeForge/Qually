@@ -56,16 +56,16 @@ def upload_file(name, file, resize=None):
 
 def download_file(name):
 
-    b=BytesIO()
+    tempname=name.replace("/","_")
 
-    S3.download_fileobj(
-        app.config["S3_BUCKET"],
-        name,
-        b
-        )
-    b.seek(0)
+    with open(tempname, "w+") as f:
+        S3.download_fileobj(
+            app.config["S3_BUCKET"],
+            name,
+            f
+            )
 
-    mime=magic.from_file(b, mime=True)
+    mime=magic.from_file(tempname, mime=True)
 
     b.seek(0)
     return b, mime
