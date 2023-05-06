@@ -2,7 +2,7 @@ import boto3
 
 from os import remove
 from io import BytesIO
-from evidencelocker.__main__ import app
+from qually.__main__ import app
 
 #set up AWS connection
 S3 = boto3.client(
