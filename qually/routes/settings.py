@@ -70,3 +70,10 @@ def post_settings_security_remove_otp():
         return toast_redirect("/set_otp")
 
     return toast("Two-Factor Code Removed")
+
+@app.post("/settings/profile/avatar")
+def post_settings_profile_avatar():
+
+    g.user.set_profile(request.files["profile"])
+
+    return toast_redirect("/settings/profile")
