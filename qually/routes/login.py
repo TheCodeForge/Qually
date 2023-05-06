@@ -129,6 +129,9 @@ def get_two_factor_code():
 
     user=g.db.query(User).options(joinedload(User.organization)).filter_by(id=session.get("authing_id")).first()
 
+    if not user:
+        return redirect("/sign_in")
+
     return render_template("auth/otp.html", user=user)
 
 @app.post("/two_factor_code")
