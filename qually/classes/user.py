@@ -158,7 +158,7 @@ class User(Base, core_mixin):
         if self.has_profile and not self.is_deleted:
             return f"https://{app.config['S3_BUCKET']}/uid/{self.base36id}/profile-{self.profile_nonce}.png"
         else:
-            return f"http{'s' if app.config['HTTPS'] else ''}://{app.config['SERVER_NAME']}/logo/fontawesome/solid//{app.config['COLOR_PRIMARY']}/150"
+            return f"http{'s' if app.config['HTTPS'] else ''}://{app.config['SERVER_NAME']}/icon/fontawesome/solid//{app.config['COLOR_PRIMARY']}/150"
 
     @property
     def json_core(self):
