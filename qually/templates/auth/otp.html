@@ -7,7 +7,7 @@
 
   <h1 class="h2">Sign In</h1>
 
-  <form id="form-login" action="/two_factor_code" method="post" class="mt-md-3">
+  <form id="form-login" action="/two_factor_code" method="post" class="toasted">
 
     <input type="hidden" name="csrf_token" value="{{ g.time | csrf_token }}"> 
     <input type="hidden" name="time" value="{{ g.time }}">
