@@ -4,7 +4,7 @@
 
 {% if g.user.is_org_admin %}
 <h2 class="h5 mt-3">Add New User</h2>
-<form id="form-invite-user" action="/settings/directory/invite" method="post">
+<form id="form-invite-user" action="/settings/directory/invite" method="post" class="toasted">
   <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
   <label for="input-new-user-name">Name</label>
   <input id="input-new-user-name" class="form-control" name="name" required>

@@ -43,7 +43,7 @@
 
     <div class="body w-lg-100">
       <div class="input-group d-flex">
-        <form id="form-license-count" action="/settings/plan" method="post" class="w-100">
+        <form id="form-license-count" action="/settings/plan" method="post" class="w-100 toasted">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <input id="license_count" type="text" name="license_count" class="form-control w-100" value="{{ g.user.organization.license_count }}">
         </form>

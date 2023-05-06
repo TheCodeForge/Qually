@@ -13,7 +13,7 @@
     <div class="body w-lg-100">
       <div class="input-group d-flex">
 
-        <form id="form-org-name" action="/settings/organization" method="post" class="w-100">
+        <form id="form-org-name" action="/settings/organization" method="post" class="w-100 toasted">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <input id="org_name" type="text" name="org_name" class="form-control w-100" value="{{ g.user.organization.name }}">
         </form>
