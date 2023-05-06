@@ -31,6 +31,7 @@ class User(Base, core_mixin):
     #profile
     has_profile = Column(Boolean, default=False)
     profile_nonce = Column(Integer, default=0)
+    title = Column(String, default="")
 
     ## === RELATIONSHIPS ===
 
@@ -132,7 +133,6 @@ class User(Base, core_mixin):
                         )
         self.has_profile = True
         self.profile_upload_ip=request.remote_addr
-        self.profile_set_utc=g.time
         self.profile_upload_region=request.headers.get("cf-ipcountry")
         g.db.add(self)
         g.db.commit()
