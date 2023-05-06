@@ -19,7 +19,7 @@ def upload_file(name, file):
 
 	S3.upload_file(
 		tempname,
-		Bucket=app.config["S3_BUCKET_NAME"],
+		Bucket=app.config["S3_BUCKET"],
 		Key=name,
 		ExtraArgs={
 			"ContentType":"image/png",
@@ -34,7 +34,7 @@ def download_file(name):
 	b=BytesIO()
 
 	S3.download_fileobj(
-		app.config["S3_BUCKET_NAME"],
+		app.config["S3_BUCKET"],
 		name,
 		b
 		)
@@ -44,6 +44,6 @@ def download_file(name):
 def delete_file(name):
 
 	S3.delete_object(
-	    Bucket=app.config["S3_BUCKET_NAME"],
+	    Bucket=app.config["S3_BUCKET"],
 	    Key=name
 	)
