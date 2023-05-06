@@ -30,7 +30,7 @@ def crop_and_resize(img, resize):
 
     return i.resize(resize, box=box)
 
-def upload_file(name, file resize=None):
+def upload_file(name, file, resize=None):
 
 	tempname=name.replace("/","_")
 
