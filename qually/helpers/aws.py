@@ -65,7 +65,7 @@ def download_file(name):
         )
     b.seek(0)
 
-    mime=magic.file(b, mime=True)
+    mime=magic.from_file(b, mime=True)
 
     b.seek(0)
     return b, mime
