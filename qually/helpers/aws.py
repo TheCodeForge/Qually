@@ -6,10 +6,10 @@ from qually.__main__ import app
 
 #set up AWS connection
 S3 = boto3.client(
-	"s3",
-	aws_access_key_id=app.config["AWS_ACCESS_KEY_ID"],
-	aws_secret_access_key=app.config["AWS_SECRET_ACCESS_KEY"]
-	)
+    "s3",
+    aws_access_key_id=app.config["AWS_ACCESS_KEY_ID"],
+    aws_secret_access_key=app.config["AWS_SECRET_ACCESS_KEY"]
+    )
 
 def crop_and_resize(img, resize):
 
@@ -32,42 +32,42 @@ def crop_and_resize(img, resize):
 
 def upload_file(name, file, resize=None):
 
-	tempname=name.replace("/","_")
+    tempname=name.replace("/","_")
 
-	file.save(tempname)
+    file.save(tempname)
 
-	if resize:
+    if resize:
         i = Image.open(tempname)
         i = crop_and_resize(i, resize)
         i.save(tempname)
 
-	S3.upload_file(
-		tempname,
-		Bucket=app.config["S3_BUCKET"],
-		Key=name,
-		ExtraArgs={
-			"ContentType":"image/png",
-			"StorageClass":"INTELLIGENT_TIERING"
-			}
-		)
+    S3.upload_file(
+        tempname,
+        Bucket=app.config["S3_BUCKET"],
+        Key=name,
+        ExtraArgs={
+            "ContentType":"image/png",
+            "StorageClass":"INTELLIGENT_TIERING"
+            }
+        )
 
-	remove(tempname)
+    remove(tempname)
 
 def download_file(name):
 
-	b=BytesIO()
+    b=BytesIO()
 
-	S3.download_fileobj(
-		app.config["S3_BUCKET"],
-		name,
-		b
-		)
-	b.seek(0)
-	return b
+    S3.download_fileobj(
+        app.config["S3_BUCKET"],
+        name,
+        b
+        )
+    b.seek(0)
+    return b
 
 def delete_file(name):
 
-	S3.delete_object(
-	    Bucket=app.config["S3_BUCKET"],
-	    Key=name
-	)
+    S3.delete_object(
+        Bucket=app.config["S3_BUCKET"],
+        Key=name
+    )
