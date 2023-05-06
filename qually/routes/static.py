@@ -88,7 +88,9 @@ def get_s3_object_path(object, obj_id, path):
     if not thing:
         abort(404)
 
-    return send_file(aws.download_file(f"{object}/{obj_id}/{path}"))
+    file, mimetype = aws.download_file(f"{object}/{obj_id}/{path}")
+
+    return send_file(file, mimetype=mimetype)
 
 # @app.route("/help/docs")
 # @cache.memoize(10)

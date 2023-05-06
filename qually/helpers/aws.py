@@ -2,6 +2,7 @@ import boto3
 from os import remove
 from io import BytesIO
 from PIL import Image
+import magic
 from qually.__main__ import app
 
 #set up AWS connection
@@ -63,7 +64,11 @@ def download_file(name):
         b
         )
     b.seek(0)
-    return b
+
+    mime=magic.from_buffer(b, mime=True)
+
+    b.seek(0)
+    return b, mime
 
 def delete_file(name):
 
