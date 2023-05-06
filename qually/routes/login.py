@@ -111,10 +111,8 @@ def post_sign_in():
         return toast_error("Invalid username or password")
 
     if user.otp_secret and not user.validate_otp(request.form.get("otp_code"), allow_reset=True):
-        return render_template(
-            "auth/otp.html",
-            user=user
-            )
+        session['authing_id']=user.id
+        return toast_redirect("/two_factor_code")
 
     if request.form.get("redirect"):
         return toast_redirect(request.form.get("redirect"))
@@ -123,6 +121,13 @@ def post_sign_in():
     session['login_nonce']=user.login_nonce
 
     return toast_redirect('/')
+
+@app.get("/two_factor_code")
+def get_two_factor_code():
+
+    user=g.db.query(User).options(joinedload(User.organization)).filter_by(id=session.get("authing_id")).first()
+
+    return render_template("auth/otp.html", user=user)
 
 @app.post("/logout")
 @logged_in
