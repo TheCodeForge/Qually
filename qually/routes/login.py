@@ -10,7 +10,7 @@ valid_email_regex    = re.compile("^[a-zA-Z0-9!#$%&'*+-/=?^_`{|}~.]+@[a-zA-Z0-9-
 @app.get("/register")
 @not_logged_in
 def get_register():
-    return render_template("/register.html")
+    return render_template("auth/register.html")
 
 @app.post("/register")
 @not_logged_in
@@ -91,7 +91,7 @@ def post_register():
 @app.get("/sign_in")
 @not_logged_in
 def get_sign_in():
-    return render_template("/sign_in.html")
+    return render_template("auth/sign_in.html")
 
 @app.post("/sign_in")
 @limiter.limit("6/min")
@@ -137,7 +137,7 @@ def get_set_otp():
     recovery=" ".join([recovery[i:i+5] for i in range(0,len(recovery),5)])
 
     return render_template(
-        "set_otp.html",
+        "auth/set_otp.html",
         otp_secret = otp_secret,
         recovery = recovery,
         )
@@ -147,7 +147,7 @@ def get_set_otp():
 def get_set_password():
 
     return render_template(
-        "set_password.html",
+        "auth/set_password.html",
         )
 
 @app.post("/set_otp")

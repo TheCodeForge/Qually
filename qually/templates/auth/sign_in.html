@@ -22,16 +22,19 @@
 
               <input type="hidden" name="csrf_token" value="{{ g.time | csrf_token }}"> 
               <input type="hidden" name="time" value="{{ g.time }}">
-
-              <label for="email" class="mt-3">Email Address</label>
-
-              <input class="form-control" id="email" aria-describedby="usernameHelp"type="text" name="email" required="" autofocus>
-
               <input type="hidden" name="redirect" value="{{ request.values.get('redirect','') | urlencode }}">
 
-              <label for="password" class="mt-3">Password</label>
+              <label id="label-email" for="email" class="mt-3">Email Address</label>
+              <input class="form-control" id="login-email" aria-labelledby="label-email" type="text" name="email" required="" autofocus>
 
-              <input class="form-control" id="password" aria-describedby="passwordHelp" type="password" name="password" required="">
+              <label id="label-password" for="password" class="mt-3">Password</label>
+              <input class="form-control" id="password" aria-labelledby="passwordHelp" type="password" name="password" required="">
+
+              <div id="otp-container" class="d-none">
+                <label id="label-otp" for="otp-code" class="mt-3">Two-Factor Code</label>
+                <p id="text-otp" class="text-small">Or 25-character recovery code</p>
+                <input class="form-control" id="otp-code" aria-labelledby="label-otp" aria-describedby="text-otp" type="text" name="otp_code">
+              </div>
 
             </form>
 

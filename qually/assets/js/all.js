@@ -22,6 +22,21 @@ function post(url, callback=function(){}, errortext="") {
   xhr.send(form);
 };
 
+function get(url, callback=function(){}, errortext="") {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+  xhr.withCredentials=true;
+  xhr.onerror=function() { alert(errortext); };
+  xhr.onload = function() {
+    if (xhr.status >= 200 && xhr.status < 300) {
+      callback();
+    } else {
+      xhr.onerror();
+    }
+  };
+  xhr.send();
+};
+
 function post_toast(url, callback=function(xhr){}) {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
@@ -150,3 +165,8 @@ $(".check-toast").click(function(){
 
 //dismiss toasts when clicked on
 $('.toast').click(function(){$('.toast').toast('dispose')})
+
+//Login - check otp
+$("#login-email").change(function(){
+
+})
