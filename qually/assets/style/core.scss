@@ -323,3 +323,12 @@ label {
   -webkit-transform: translateX(1.25rem); //translateX(0.75rem);
   transform: translateX(1.25rem); //translateX(0.75rem);
 }
+
+.profile-pic-75 {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    text-align: center;
+    object-fit: cover;
+    background-color: $white;
+}
