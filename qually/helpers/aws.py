@@ -67,8 +67,7 @@ def download_file(name):
 
     mime=magic.from_file(tempname, mime=True)
 
-    b.seek(0)
-    return b, mime
+    return f, mime
 
 def delete_file(name):
 
