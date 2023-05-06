@@ -77,6 +77,19 @@ def help_home():
 def get_favicon_ico():
     return send_file('./assets/images/logo.png')
 
+
+@app.get("/s3/<object>/<obj_id>/<path:path>")
+@logged_in
+def get_s3_object_path(object, obj_id, path):
+
+    if object=="user":
+        thing = g.user.organization.users.filter_by(id=base36decode(obj_id)).first()
+
+    if not thing:
+        abort(404)
+
+    return send_file(aws.download_file(f"{object}/{obj_id}/{path}"))
+
 # @app.route("/help/docs")
 # @cache.memoize(10)
 # def docs():

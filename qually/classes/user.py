@@ -129,7 +129,7 @@ class User(Base, core_mixin):
         self.del_profile()
         self.profile_nonce += 1
 
-        aws.upload_file(name=f"uid/{self.base36id}/profile-{self.profile_nonce}.png",
+        aws.upload_file(name=f"user/{self.base36id}/profile-{self.profile_nonce}.png",
                         file=file,
                         resize=(100, 100)
                         )
@@ -141,7 +141,7 @@ class User(Base, core_mixin):
 
     def del_profile(self, db=None):
 
-        aws.delete_file(name=f"uid/{self.base36id}/profile-{self.profile_nonce}.png")
+        aws.delete_file(name=f"user/{self.base36id}/profile-{self.profile_nonce}.png")
         self.has_profile = False
         self.profile_nonce+=1
         if db:
@@ -156,9 +156,9 @@ class User(Base, core_mixin):
     def profile_url(self):
 
         if self.has_profile and not self.is_deleted:
-            return f"https://{app.config['S3_BUCKET']}/uid/{self.base36id}/profile-{self.profile_nonce}.png"
+            return f"/s3/user/{self.base36id}/profile-{self.profile_nonce}.png"
         else:
-            return f"http{'s' if app.config['HTTPS'] else ''}://{app.config['SERVER_NAME']}/icon/fontawesome/solid//{app.config['COLOR_PRIMARY']}/150"
+            return f"/icon/fontawesome/solid//{app.config['COLOR_PRIMARY']}/150"
 
     @property
     def json_core(self):
