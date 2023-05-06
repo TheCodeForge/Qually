@@ -74,6 +74,9 @@ def post_settings_security_remove_otp():
 @app.post("/settings/profile/avatar")
 def post_settings_profile_avatar():
 
-    g.user.set_profile(request.files["profile"])
-
+    if request.files.get("profile"):
+        g.user.set_profile(request.files["profile"])
+    else:
+        g.user.del_profile()
+        
     return toast_redirect("/settings/profile")

@@ -21,7 +21,7 @@
         </form>
         {% if g.user.has_profile %}
         <div>
-          <form id="delete-profile" action="/settings/profile/delete_avatar" method="post">
+          <form id="delete-profile" action="/settings/profile/avatar" method="post">
             <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
             <a class="btn btn-link fa-lg toast-form-submit" data-form="delete-profile"><i class="far fa-trash-alt text-danger"></i></a>
           </form>
