@@ -31,6 +31,8 @@ class User(Base, core_mixin):
     #profile
     has_profile = Column(Boolean, default=False)
     profile_nonce = Column(Integer, default=0)
+    profile_upload_ip=deferred(Column(String(255), default=None))
+    profile_upload_region=deferred(Column(String(2)))
     title = Column(String, default="")
 
     ## === RELATIONSHIPS ===
