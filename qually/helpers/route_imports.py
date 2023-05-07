@@ -14,6 +14,8 @@ from qually.helpers.security import generate_hash, validate_hash, tokenify
 from qually.helpers.wrappers import logged_in, not_logged_in, has_seat, is_admin, user_update_lock, org_update_lock, no_cors, no_sanctions, cf_cache, token_auth
 import qually.helpers.aws as aws
 
-from flask_babel import gettext as _, ngettext as N_
+from flask_babel import gettext, ngettext
+_  = gettext
+N_ = ngettext
 
 from qually.__main__ import app, debug, limiter, debug, cache
