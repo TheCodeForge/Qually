@@ -64,7 +64,7 @@
 
         <form id="form-org-lang" action="/settings/organization" method="post">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-          <select class="form-control toast-form-change-submit" name="lang" data-form="form-org-lang">
+          <select class="form-select toast-form-change-submit" name="lang" data-form="form-org-lang">
             {% for l in (0|lang) %}
             <option value="{{ l | lang }}" {% if l==g.user.organization.default_lang %}selected{% endif %}>{{ l }}</option>
             {% endfor %}
