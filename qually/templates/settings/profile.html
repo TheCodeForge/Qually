@@ -23,7 +23,7 @@
         <div>
           <form id="delete-profile" action="/settings/profile/avatar" method="post">
             <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-            <a class="btn btn-link fa-lg toast-form-submit" data-form="delete-profile"><i class="far fa-trash-alt text-danger"></i></a>
+            <a class="btn btn-primary fa-lg toast-form-submit" data-form="delete-profile"><i class="far fa-trash-alt text-danger"></i></a>
           </form>
         </div>
         {% endif %}
@@ -43,8 +43,8 @@
 
         <form id="update-title" action="/settings/profile" method="post" class="toasted">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-          <input class="form-control toast-form-change-submit" data-form="update-title" type="text" name="title" value="{{ g.user.title }}">
-          <a class="btn btn-link fa-lg toast-form-submit d-none" data-form="update-title"></a>
+          <input class="form-control" data-form="update-title" type="text" name="title" value="{{ g.user.title }}">
+          <a class="btn btn-primary fa-lg toast-form-submit" data-form="update-title">Save</a>
         </form>
        
         
