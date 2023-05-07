@@ -17,6 +17,3 @@ import qually.helpers.aws as aws
 from flask_babel import gettext as _, ngettext as N_
 
 from qually.__main__ import app, debug, limiter, debug, cache
-
-
-print(__all__)
