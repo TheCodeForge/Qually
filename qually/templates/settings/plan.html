@@ -1,14 +1,14 @@
 {% extends "settings/core.html" %}
 
 {% block content %}
-<h2 class="h5 mt-3">Licensing</h2>
+<h2 class="h5 mt-3">{{_("Licensing")}}</h2>
 
 <div class="settings-section rounded">
 
   <div class="d-lg-flex">
 
     <div class="title w-lg-25">
-      <label for="org_name">License Expiration</label>
+      <label for="org_name">{{_("License Expiration")}}</label>
     </div>
 
     <div class="body w-lg-100">
@@ -23,13 +23,13 @@
   <div class="d-lg-flex">
 
     <div class="title w-lg-25">
-      <label for="org_name">License Usage</label>
+      <label for="org_name">{{_("License Usage")}}</label>
     </div>
 
     <div class="body w-lg-100">
       <div class="input-group d-flex">
 
-        <p>Currently using {{ g.user.organization.licenses_used}}/{{ g.user.organization.license_count }} licenses.</p>
+        <p>{{_("Currently using {x}/{y} licenses.").format(x=g.user.organization.licenses_used, y=g.user.organization.license_count) }}</p>
 
       </div>
     </div>
@@ -38,7 +38,7 @@
   <div class="d-lg-flex">
 
     <div class="title w-lg-25">
-      <label for="license_count">Change License Count</label>
+      <label for="license_count">{{_("Change License Count")}}</label>
     </div>
 
     <div class="body w-lg-100">
@@ -49,11 +49,11 @@
         </form>
         <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-license-count">Submit Order</a>
         <div class="text-small mt-2">
-          <p>License count may be increased or decreased as needed by your organization at any time.*</p>
-          <p>Changes to the number of licenses will cause the license expiration date to be adjusted, preserving the total number of remaining seat-days.
-          <p>If license expiration is less than one year away, license count increases require the purchase of one year of service at the higher count. The price will be prorated by any unconsumed seat-days.</p>
-          <p>Licenses may be renewed at the current count, prorated, at any time.</p>
-          <p class="text-xsmall">*After increasing license count, there is a 21 day cooldown period before license count may be reduced.</p>
+          <p>{{_("License count may be increased or decreased as needed by your organization at any time.")}}*</p>
+          <p>{{_("Changes to the number of licenses will cause the license expiration date to be adjusted, preserving the total number of remaining seat-days.")}}
+          <p>{{_("If license expiration is less than one year away, license count increases require the purchase of one year of service at the higher count. The price will be prorated by any unconsumed seat-days.")}}</p>
+          <p>{{_("Licenses may be renewed at the current count, prorated, at any time.")}}</p>
+          <p class="text-xsmall">*{{_("After increasing license count, there is a 21 day cooldown period before license count may be reduced.")}}</p>
         </div>
       </div>
     </div>
