@@ -14,7 +14,4 @@ from qually.helpers.security import generate_hash, validate_hash, tokenify
 from qually.helpers.wrappers import logged_in, not_logged_in, has_seat, is_admin, user_update_lock, org_update_lock, no_cors, no_sanctions, cf_cache, token_auth
 import qually.helpers.aws as aws
 
-from qually.__main__ import app, debug, limiter, debug, cache
-
-if app.config.get("SERVER_NAME"):
-    from qually.__main__ import _, N_
+from qually.__main__ import app, debug, limiter, debug, cache, _, N_
