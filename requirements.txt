@@ -3,6 +3,7 @@ bleach>=5.0.1
 boto3>=1.26.23
 botocore>=1.29.23
 Flask>=2.2.2
+Flask-Babel>=3.1.0
 Flask-Caching>=2.0.1
 Flask-Limiter>=3.3.0
 Flask-Markdown>=0.3
