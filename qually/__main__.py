@@ -6,7 +6,6 @@ import time
 from secrets import token_hex
 from redis import BlockingConnectionPool, ConnectionPool
 import sass
-from flask_babel import Babel
 
 from flask import g, session, Flask, request, redirect
 from flask_caching import Cache
@@ -125,9 +124,6 @@ app.config["RATELIMIT_HEADERS_ENABLED"]=True
 
 #Business variables
 app.config["CENTS_PER_SEATYEAR"]=int(environ.get("CENTS_PER_SEATYEAR", 10000))
-
-#Internationalization/Localization
-babel=Babel(app)
 
 limiter = Limiter(
     key_func = lambda: request.remote_addr,
