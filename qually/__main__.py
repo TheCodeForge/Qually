@@ -168,6 +168,8 @@ from qually.helpers.security import generate_hash, validate_hash
 @app.before_request
 def before_request():
 
+    debug(f"{session.get('user_id')} {session.get('login_nonce')} {session.get('session_id')}")
+
     #Force SSL
     if app.config["HTTPS"] and request.url.startswith(
             "http://") and "localhost" not in app.config["SERVER_NAME"]:
