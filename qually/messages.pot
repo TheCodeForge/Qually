@@ -1,0 +1,273 @@
+# Translations template for PROJECT.
+# Copyright (C) 2023 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2023-05-07 11:11-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.12.1\n"
+
+#: classes/user.py:188
+msgid "Administrator"
+msgstr ""
+
+#: helpers/wrappers.py:141
+msgid "This link has expired."
+msgstr ""
+
+#: helpers/wrappers.py:170
+msgid "This page may not be embedded in other webpages."
+msgstr ""
+
+#: routes/login.py:22 routes/login.py:212
+msgid "Passwords do not match."
+msgstr ""
+
+#: routes/login.py:25
+msgid "Your name is required"
+msgstr ""
+
+#: routes/login.py:29
+msgid "Email address is required"
+msgstr ""
+
+#: routes/login.py:32
+msgid "Organization name is required"
+msgstr ""
+
+#: routes/login.py:35 routes/org_settings.py:259
+msgid "Invalid email address"
+msgstr ""
+
+#: routes/login.py:38 routes/login.py:215
+msgid "Password must be at least {n} characters"
+msgstr ""
+
+#: routes/login.py:42 routes/login.py:239 routes/org_settings.py:263
+msgid "That email is already in use."
+msgstr ""
+
+#: routes/login.py:48
+msgid "CloudFlare challenge not completed."
+msgstr ""
+
+#: routes/login.py:58
+msgid "CloudFlare validation failed"
+msgstr ""
+
+#: routes/login.py:107 routes/login.py:113
+msgid "Invalid username or password"
+msgstr ""
+
+#: routes/login.py:110
+msgid "Your account has been disabled."
+msgstr ""
+
+#: routes/login.py:143
+msgid "Invalid two-factor code"
+msgstr ""
+
+#: routes/login.py:197
+msgid "Incorrect password"
+msgstr ""
+
+#: routes/login.py:200
+msgid "Incorrect two-factor code"
+msgstr ""
+
+#: routes/org_settings.py:13 routes/org_settings.py:189
+msgid "You didn't change anything!"
+msgstr ""
+
+#: routes/org_settings.py:36
+msgid "Enable two-factor authentication on your own account first."
+msgstr ""
+
+#: routes/org_settings.py:50 routes/settings.py:97
+msgid "Settings saved"
+msgstr ""
+
+#: routes/org_settings.py:61
+msgid "Administrators must have an assigned license."
+msgstr ""
+
+#: routes/org_settings.py:64
+msgid "There is a {n} day cooldown to unassign licenses."
+msgstr ""
+
+#: routes/org_settings.py:75
+msgid "You can't assign a license to deactivated users."
+msgstr ""
+
+#: routes/org_settings.py:78
+msgid "Your organization licenses have expired."
+msgstr ""
+
+#: routes/org_settings.py:81 routes/org_settings.py:92
+msgid "Your organization has reached its purchased license count."
+msgstr ""
+
+#: routes/org_settings.py:115
+msgid "Administrator accounts may not be deactivated."
+msgstr ""
+
+#: routes/org_settings.py:120
+msgid "{name} user account deactivated"
+msgstr ""
+
+#: routes/org_settings.py:124
+msgid "{name} user account activated"
+msgstr ""
+
+#: routes/org_settings.py:151
+msgid "You cannot remove your own administrator status."
+msgstr ""
+
+#: routes/org_settings.py:153
+msgid "Administrator status removed from {name}"
+msgstr ""
+
+#: routes/org_settings.py:158
+msgid "Deactivated users cannot be administrators."
+msgstr ""
+
+#: routes/org_settings.py:161
+msgid "Administrators require a full license."
+msgstr ""
+
+#: routes/org_settings.py:163
+msgid "Administrator status granted to {name}"
+msgstr ""
+
+#: routes/org_settings.py:192
+msgid "You can't reduce your organization license count below current usage."
+msgstr ""
+
+#: routes/org_settings.py:195
+msgid ""
+"There is a {n} day cooldown after increasing license count before it may "
+"be decreased."
+msgstr ""
+
+#: routes/org_settings.py:276 routes/org_settings.py:280
+msgid "You've been invited to join {orgname} on {sitename}"
+msgstr ""
+
+#: routes/org_settings.py:294
+msgid "Invitation sent to {email}"
+msgstr ""
+
+#: templates/auth/otp.html:8
+msgid "Sign In"
+msgstr ""
+
+#: templates/auth/otp.html:16
+msgid "Two-Factor Code"
+msgstr ""
+
+#: templates/auth/otp.html:17
+msgid "Or 25-character recovery code"
+msgstr ""
+
+#: templates/auth/otp.html:22
+msgid "Continue"
+msgstr ""
+
+#: templates/auth/register.html:8
+msgid "Register for a free trial."
+msgstr ""
+
+#: templates/auth/register.html:10
+msgid "Start your Qually-powered QMS with a 5-seat, 30-day free trial"
+msgstr ""
+
+#: templates/auth/register.html:17
+msgid "Name"
+msgstr ""
+
+#: templates/auth/register.html:20
+msgid "Email Address"
+msgstr ""
+
+#: templates/auth/register.html:23
+msgid "Organization Name"
+msgstr ""
+
+#: templates/auth/register.html:26
+msgid "Password"
+msgstr ""
+
+#: templates/auth/register.html:29
+msgid "Confirm Password"
+msgstr ""
+
+#: templates/auth/register.html:41
+msgid "Register"
+msgstr ""
+
+#: templates/auth/register.html:44
+msgid "Already have an account?"
+msgstr ""
+
+#: templates/auth/register.html:44
+msgid "Sign in"
+msgstr ""
+
+#: templates/elements/toasts.html:4
+msgid "Copied link to clipboard"
+msgstr ""
+
+#: templates/elements/toasts.html:10
+msgid "Unable to copy link"
+msgstr ""
+
+#: templates/settings/audit.html:10
+msgid "User"
+msgstr ""
+
+#: templates/settings/audit.html:11
+msgid "Timestamp"
+msgstr ""
+
+#: templates/settings/audit.html:12
+msgid "Target"
+msgstr ""
+
+#: templates/settings/audit.html:13
+msgid "Change"
+msgstr ""
+
+#: templates/settings/core.html:14
+msgid "Profile"
+msgstr ""
+
+#: templates/settings/core.html:17
+msgid "Security"
+msgstr ""
+
+#: templates/settings/core.html:20
+msgid "Directory"
+msgstr ""
+
+#: templates/settings/core.html:24
+msgid "Organization"
+msgstr ""
+
+#: templates/settings/core.html:27
+msgid "Plan"
+msgstr ""
+
+#: templates/settings/core.html:30
+msgid "History"
+msgstr ""
+
