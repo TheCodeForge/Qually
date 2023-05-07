@@ -90,7 +90,7 @@
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <select class="form-select toast-form-change-submit" name="tz" data-form="form-org-lang">
             {% for tz in (0|tz) %}
-            <option value="{{ tz }}" {% if tz==g.user.organization.tz %}selected{% endif %}>{{ tz }}</option>
+            <option value="{{ tz }}" {% if tz==g.user.tz %}selected{% endif %}>{{ tz }}</option>
             {% endfor %}
           </select>
         </form>
