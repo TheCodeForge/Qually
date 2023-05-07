@@ -17,4 +17,4 @@ import qually.helpers.aws as aws
 from qually.__main__ import app, debug, limiter, debug, cache
 
 if app.config.get("SERVER_NAME"):
-    from flask_babel import Babel, gettext as _, ngettext as N_
+    from qually.__main__ import _, N_
