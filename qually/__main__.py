@@ -7,9 +7,6 @@ from secrets import token_hex
 from redis import BlockingConnectionPool, ConnectionPool
 import sass
 
-import gettext
-gettext.install("qually")
-
 from flask import g, session, Flask, request, redirect
 from flask_caching import Cache
 from flask_limiter import Limiter
@@ -23,6 +20,12 @@ from sqlalchemy import create_engine
 from sqlalchemy.pool import QueuePool
 
 from werkzeug.middleware.proxy_fix import ProxyFix
+
+#translations
+import gettext
+translate = gettext.translation("qually", "./localedir", fallback=True)
+_ = translate.gettext
+
 
 
 _version = "0.0.1"
