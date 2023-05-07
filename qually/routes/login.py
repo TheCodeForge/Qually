@@ -244,12 +244,16 @@ def get_accept_invite():
 
     temp_pw = secrets.token_urlsafe(8)
 
+    org = g.db.query(Organization).filter_by(id=base36decode(request.args.get("organization_id"))).first()
+
     new_user=User(
         name=request.args.get("name"),
         organization_id=base36decode(request.args.get("organization_id")),
         email=email,
         passhash=generate_password_hash(temp_pw),
-        reset_pw_next_login=True
+        reset_pw_next_login=True,
+        lang=org.lang,
+        tz=org.tz
         )
 
     g.db.add(new_user)
