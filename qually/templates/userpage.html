@@ -1,7 +1,10 @@
 {% extends "core.html" %}
 
 {% block page %}
-<div class="">
-  <img src="{{ g.user.profile_url }}" class="profile-pic-100">
+<div class="mt-3 d-flex">
+  <img src="{{ user.profile_url }}" class="profile-pic-100">
+  <div>
+    <h1 class="h3">{{ user.name }}</h1>
+    <h2 class="h4">{{ user.title }}</h2>
 </div>
 {% endblock %}
