@@ -1,5 +1,6 @@
 import requests
 import pyotp
+from flask_babel import gettext as _, ngettext as N_
 
 from sqlalchemy.orm import joinedload
 

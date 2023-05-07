@@ -1,6 +1,7 @@
 import urllib
 from qually.helpers.route_imports import *
 from .login import valid_email_regex
+from flask_babel import gettext as _, ngettext as N_
 
 @app.post("/settings/organization")
 @is_admin
