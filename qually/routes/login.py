@@ -116,11 +116,11 @@ def post_sign_in():
         session['authing_id']=user.id
         return toast_redirect("/two_factor_code")
 
-    if request.form.get("redirect"):
-        return toast_redirect(request.form.get("redirect"))
-
     session['user_id']=user.id
     session['login_nonce']=user.login_nonce
+
+    if request.form.get("redirect"):
+        return toast_redirect(request.form.get("redirect"))
 
     return toast_redirect('/')
 
