@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-07 11:11-0400\n"
+"POT-Creation-Date: 2023-05-07 14:58-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
 
-#: classes/user.py:188
+#: classes/user.py:188 templates/settings/directory.html:27
 msgid "Administrator"
 msgstr ""
 
@@ -45,7 +45,7 @@ msgstr ""
 msgid "Organization name is required"
 msgstr ""
 
-#: routes/login.py:35 routes/org_settings.py:259
+#: routes/login.py:35 routes/org_settings.py:272
 msgid "Invalid email address"
 msgstr ""
 
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Password must be at least {n} characters"
 msgstr ""
 
-#: routes/login.py:42 routes/login.py:239 routes/org_settings.py:263
+#: routes/login.py:42 routes/login.py:239 routes/org_settings.py:276
 msgid "That email is already in use."
 msgstr ""
 
@@ -85,86 +85,90 @@ msgstr ""
 msgid "Incorrect two-factor code"
 msgstr ""
 
-#: routes/org_settings.py:13 routes/org_settings.py:189
+#: routes/org_settings.py:13 routes/org_settings.py:202
 msgid "You didn't change anything!"
 msgstr ""
 
-#: routes/org_settings.py:36
+#: routes/org_settings.py:49
 msgid "Enable two-factor authentication on your own account first."
 msgstr ""
 
-#: routes/org_settings.py:50 routes/settings.py:97
+#: routes/org_settings.py:63 routes/settings.py:100
 msgid "Settings saved"
 msgstr ""
 
-#: routes/org_settings.py:61
+#: routes/org_settings.py:74
 msgid "Administrators must have an assigned license."
 msgstr ""
 
-#: routes/org_settings.py:64
+#: routes/org_settings.py:77
 msgid "There is a {n} day cooldown to unassign licenses."
 msgstr ""
 
-#: routes/org_settings.py:75
+#: routes/org_settings.py:88
 msgid "You can't assign a license to deactivated users."
 msgstr ""
 
-#: routes/org_settings.py:78
+#: routes/org_settings.py:91
 msgid "Your organization licenses have expired."
 msgstr ""
 
-#: routes/org_settings.py:81 routes/org_settings.py:92
+#: routes/org_settings.py:94 routes/org_settings.py:105
 msgid "Your organization has reached its purchased license count."
 msgstr ""
 
-#: routes/org_settings.py:115
+#: routes/org_settings.py:128
 msgid "Administrator accounts may not be deactivated."
 msgstr ""
 
-#: routes/org_settings.py:120
+#: routes/org_settings.py:133
 msgid "{name} user account deactivated"
 msgstr ""
 
-#: routes/org_settings.py:124
+#: routes/org_settings.py:137
 msgid "{name} user account activated"
 msgstr ""
 
-#: routes/org_settings.py:151
+#: routes/org_settings.py:164
 msgid "You cannot remove your own administrator status."
 msgstr ""
 
-#: routes/org_settings.py:153
+#: routes/org_settings.py:166
 msgid "Administrator status removed from {name}"
 msgstr ""
 
-#: routes/org_settings.py:158
+#: routes/org_settings.py:171
 msgid "Deactivated users cannot be administrators."
 msgstr ""
 
-#: routes/org_settings.py:161
+#: routes/org_settings.py:174
 msgid "Administrators require a full license."
 msgstr ""
 
-#: routes/org_settings.py:163
+#: routes/org_settings.py:176
 msgid "Administrator status granted to {name}"
 msgstr ""
 
-#: routes/org_settings.py:192
+#: routes/org_settings.py:205
 msgid "You can't reduce your organization license count below current usage."
 msgstr ""
 
-#: routes/org_settings.py:195
+#: routes/org_settings.py:208
 msgid ""
 "There is a {n} day cooldown after increasing license count before it may "
 "be decreased."
 msgstr ""
 
-#: routes/org_settings.py:276 routes/org_settings.py:280
+#: routes/org_settings.py:289 routes/org_settings.py:293
 msgid "You've been invited to join {orgname} on {sitename}"
 msgstr ""
 
-#: routes/org_settings.py:294
+#: routes/org_settings.py:307
 msgid "Invitation sent to {email}"
+msgstr ""
+
+#: templates/home.html:4
+msgid "Hello world"
 msgstr ""
 
 #: templates/auth/otp.html:8
@@ -191,7 +195,8 @@ msgstr ""
 msgid "Start your Qually-powered QMS with a 5-seat, 30-day free trial"
 msgstr ""
 
-#: templates/auth/register.html:17
+#: templates/auth/register.html:17 templates/settings/directory.html:9
+#: templates/settings/directory.html:22
 msgid "Name"
 msgstr ""
 
@@ -199,7 +204,7 @@ msgstr ""
 msgid "Email Address"
 msgstr ""
 
-#: templates/auth/register.html:23
+#: templates/auth/register.html:23 templates/settings/organization.html:10
 msgid "Organization Name"
 msgstr ""
 
@@ -251,11 +256,11 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: templates/settings/core.html:17
+#: templates/settings/core.html:17 templates/settings/organization.html:27
 msgid "Security"
 msgstr ""
 
-#: templates/settings/core.html:20
+#: templates/settings/core.html:20 templates/settings/directory.html:17
 msgid "Directory"
 msgstr ""
 
@@ -269,5 +274,153 @@ msgstr ""
 
 #: templates/settings/core.html:30
 msgid "History"
+msgstr ""
+
+#: templates/settings/directory.html:6
+msgid "Add New User"
+msgstr ""
+
+#: templates/settings/directory.html:11 templates/settings/directory.html:23
+msgid "Email"
+msgstr ""
+
+#: templates/settings/directory.html:14
+msgid "Invite User"
+msgstr ""
+
+#: templates/settings/directory.html:25
+msgid "Enabled"
+msgstr ""
+
+#: templates/settings/directory.html:26 templates/settings/directory.html:29
+msgid "Full License"
+msgstr ""
+
+#: templates/settings/directory.html:30
+msgid "Roles"
+msgstr ""
+
+#: templates/settings/organization.html:4
+msgid "Branding"
+msgstr ""
+
+#: templates/settings/organization.html:20
+msgid "Change Organization Name"
+msgstr ""
+
+#: templates/settings/organization.html:33
+msgid "Require two-factor authentication"
+msgstr ""
+
+#: templates/settings/organization.html:45
+msgid ""
+"If enabled, all users will be required to configure two-factor "
+"authentication."
+msgstr ""
+
+#: templates/settings/organization.html:53
+#: templates/settings/organization.html:59
+msgid "Default Language"
+msgstr ""
+
+#: templates/settings/organization.html:73
+msgid "Sets the language for new users and emails."
+msgstr ""
+
+#: templates/settings/plan.html:4
+msgid "Licensing"
+msgstr ""
+
+#: templates/settings/plan.html:11
+msgid "License Expiration"
+msgstr ""
+
+#: templates/settings/plan.html:26
+msgid "License Usage"
+msgstr ""
+
+#: templates/settings/plan.html:32
+msgid "Currently using {x}/{y} licenses."
+msgstr ""
+
+#: templates/settings/plan.html:41
+msgid "Change License Count"
+msgstr ""
+
+#: templates/settings/plan.html:52
+msgid ""
+"License count may be increased or decreased as needed by your "
+"organization at any time."
+msgstr ""
+
+#: templates/settings/plan.html:53
+msgid ""
+"Changes to the number of licenses will cause the license expiration date "
+"to be adjusted, preserving the total number of remaining seat-days."
+msgstr ""
+
+#: templates/settings/plan.html:54
+msgid ""
+"If license expiration is less than one year away, license count increases"
+" require the purchase of one year of service at the higher count. The "
+"price will be prorated by any unconsumed seat-days."
+msgstr ""
+
+#: templates/settings/plan.html:55
+msgid "Licenses may be renewed at the current count, prorated, at any time."
+msgstr ""
+
+#: templates/settings/plan.html:56
+msgid ""
+"After increasing license count, there is a {x} day cooldown period before"
+" license count may be reduced."
+msgstr ""
+
+#: templates/settings/security.html:4
+msgid "Sign-in Information"
+msgstr ""
+
+#: templates/settings/security.html:10 templates/settings/security.html:25
+msgid "Change Password"
+msgstr ""
+
+#: templates/settings/security.html:18
+msgid "Current Password"
+msgstr ""
+
+#: templates/settings/security.html:20
+msgid "New Password"
+msgstr ""
+
+#: templates/settings/security.html:22
+msgid "Confirm New Password"
+msgstr ""
+
+#: templates/settings/security.html:34
+msgid "Two-Factor Authentication"
+msgstr ""
+
+#: templates/settings/security.html:44
+msgid ""
+"{orgname} requires the use of two-factor authentication. If you disable "
+"your two-factor device, a new one must be configured."
+msgstr ""
+
+#: templates/settings/security.html:50
+msgid "Two-Factor Code or Recovery Code"
+msgstr ""
+
+#: templates/settings/security.html:52
+msgid ""
+"Enter your six-digit two-factor authentication code, or your 25-character"
+" two-factor recovery code."
+msgstr ""
+
+#: templates/settings/security.html:54
+msgid "Disable Two-Factor Authentication"
+msgstr ""
+
+#: templates/settings/security.html:58
+msgid "Enable Two-Factor Authentication"
 msgstr ""
 

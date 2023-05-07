@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-07 11:11-0400\n"
+"POT-Creation-Date: 2023-05-07 14:58-0400\n"
 "PO-Revision-Date: 2023-05-07 09:47-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
 
-#: classes/user.py:188
+#: classes/user.py:188 templates/settings/directory.html:27
 msgid "Administrator"
 msgstr "Administrador"
 
@@ -46,7 +46,7 @@ msgstr "Se requiere su dirección de correo electrónico"
 msgid "Organization name is required"
 msgstr "Se requiere el nombre de la organización"
 
-#: routes/login.py:35 routes/org_settings.py:259
+#: routes/login.py:35 routes/org_settings.py:272
 msgid "Invalid email address"
 msgstr "Dirección de correo electrónico no válida"
 
@@ -54,7 +54,7 @@ msgstr "Dirección de correo electrónico no válida"
 msgid "Password must be at least {n} characters"
 msgstr "La contraseña debe tener al menos {n} caracteres"
 
-#: routes/login.py:42 routes/login.py:239 routes/org_settings.py:263
+#: routes/login.py:42 routes/login.py:239 routes/org_settings.py:276
 msgid "That email is already in use."
 msgstr "Ese correo electrónico ya está en uso"
 
@@ -86,79 +86,79 @@ msgstr "Contraseña incorrecta"
 msgid "Incorrect two-factor code"
 msgstr "Código de dos factores incorrecto"
 
-#: routes/org_settings.py:13 routes/org_settings.py:189
+#: routes/org_settings.py:13 routes/org_settings.py:202
 msgid "You didn't change anything!"
 msgstr "¡No cambiaste nada!"
 
-#: routes/org_settings.py:36
+#: routes/org_settings.py:49
 msgid "Enable two-factor authentication on your own account first."
 msgstr "Habilite primero la autenticación de dos factores en su propia cuenta."
 
-#: routes/org_settings.py:50 routes/settings.py:97
+#: routes/org_settings.py:63 routes/settings.py:100
 msgid "Settings saved"
 msgstr "Ajustes guardados correctamente"
 
-#: routes/org_settings.py:61
+#: routes/org_settings.py:74
 msgid "Administrators must have an assigned license."
 msgstr "Los administradores deben tener una licencia asignada."
 
-#: routes/org_settings.py:64
+#: routes/org_settings.py:77
 msgid "There is a {n} day cooldown to unassign licenses."
 msgstr ""
 "Hay un tiempo de reutilización de {n} días para anular la asignación de "
 "licencias."
 
-#: routes/org_settings.py:75
+#: routes/org_settings.py:88
 msgid "You can't assign a license to deactivated users."
 msgstr "No puede asignar una licencia a usuarios desactivados."
 
-#: routes/org_settings.py:78
+#: routes/org_settings.py:91
 msgid "Your organization licenses have expired."
 msgstr "Las licencias de su organización han caducado."
 
-#: routes/org_settings.py:81 routes/org_settings.py:92
+#: routes/org_settings.py:94 routes/org_settings.py:105
 msgid "Your organization has reached its purchased license count."
 msgstr "Su organización ha alcanzado el número de licencias adquiridas."
 
-#: routes/org_settings.py:115
+#: routes/org_settings.py:128
 msgid "Administrator accounts may not be deactivated."
 msgstr "Las cuentas de administrador no se pueden desactivar."
 
-#: routes/org_settings.py:120
+#: routes/org_settings.py:133
 msgid "{name} user account deactivated"
 msgstr ""
 
-#: routes/org_settings.py:124
+#: routes/org_settings.py:137
 msgid "{name} user account activated"
 msgstr "{name} cuenta de usuario desactivada"
 
-#: routes/org_settings.py:151
+#: routes/org_settings.py:164
 msgid "You cannot remove your own administrator status."
 msgstr "No puede eliminar su propio estado de administrador."
 
-#: routes/org_settings.py:153
+#: routes/org_settings.py:166
 msgid "Administrator status removed from {name}"
 msgstr "Se eliminó el estado de administrador de {name}"
 
-#: routes/org_settings.py:158
+#: routes/org_settings.py:171
 msgid "Deactivated users cannot be administrators."
 msgstr "Los usuarios desactivados no pueden ser administradores."
 
-#: routes/org_settings.py:161
+#: routes/org_settings.py:174
 msgid "Administrators require a full license."
 msgstr "Los administradores requieren una licencia completa."
 
-#: routes/org_settings.py:163
+#: routes/org_settings.py:176
 msgid "Administrator status granted to {name}"
 msgstr "Estado de administrador otorgado a {name}"
 
-#: routes/org_settings.py:192
+#: routes/org_settings.py:205
 msgid "You can't reduce your organization license count below current usage."
 msgstr ""
 "No puede reducir el número de licencias de su organización por debajo del"
 " uso actual."
 
-#: routes/org_settings.py:195
+#: routes/org_settings.py:208
 msgid ""
 "There is a {n} day cooldown after increasing license count before it may "
 "be decreased."
@@ -166,13 +166,17 @@ msgstr ""
 "Hay un tiempo de reutilización de {n} días después de aumentar el número "
 "de licencias antes de que se reduzca."
 
-#: routes/org_settings.py:276 routes/org_settings.py:280
+#: routes/org_settings.py:289 routes/org_settings.py:293
 msgid "You've been invited to join {orgname} on {sitename}"
 msgstr "Has sido invitado a unirte a {orgname} en {sitename}"
 
-#: routes/org_settings.py:294
+#: routes/org_settings.py:307
 msgid "Invitation sent to {email}"
 msgstr "Invitación enviada a {email}"
+
+#: templates/home.html:4
+msgid "Hello world"
+msgstr ""
 
 #: templates/auth/otp.html:8
 msgid "Sign In"
@@ -200,7 +204,8 @@ msgstr ""
 "Inicie su QMS con tecnología Qually con una prueba gratuita de 30 días "
 "para 5 usuarios"
 
-#: templates/auth/register.html:17
+#: templates/auth/register.html:17 templates/settings/directory.html:9
+#: templates/settings/directory.html:22
 msgid "Name"
 msgstr "Nombre"
 
@@ -208,7 +213,7 @@ msgstr "Nombre"
 msgid "Email Address"
 msgstr "Correo electrónico"
 
-#: templates/auth/register.html:23
+#: templates/auth/register.html:23 templates/settings/organization.html:10
 msgid "Organization Name"
 msgstr "Nombre de la Organización"
 
@@ -260,11 +265,11 @@ msgstr "Cambiar"
 msgid "Profile"
 msgstr "Perfil"
 
-#: templates/settings/core.html:17
+#: templates/settings/core.html:17 templates/settings/organization.html:27
 msgid "Security"
 msgstr "Seguridad"
 
-#: templates/settings/core.html:20
+#: templates/settings/core.html:20 templates/settings/directory.html:17
 msgid "Directory"
 msgstr "Directorio"
 
@@ -279,4 +284,167 @@ msgstr "Plan"
 #: templates/settings/core.html:30
 msgid "History"
 msgstr "Historia"
+
+#: templates/settings/directory.html:6
+msgid "Add New User"
+msgstr "Agregar nuevo usuario"
+
+#: templates/settings/directory.html:11 templates/settings/directory.html:23
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: templates/settings/directory.html:14
+msgid "Invite User"
+msgstr "Invitar usuario"
+
+#: templates/settings/directory.html:25
+msgid "Enabled"
+msgstr "Activado"
+
+#: templates/settings/directory.html:26 templates/settings/directory.html:29
+msgid "Full License"
+msgstr "Licencia completa"
+
+#: templates/settings/directory.html:30
+msgid "Roles"
+msgstr "Roles"
+
+#: templates/settings/organization.html:4
+msgid "Branding"
+msgstr "Marca"
+
+#: templates/settings/organization.html:20
+msgid "Change Organization Name"
+msgstr "Cambiar el nombre de la organización"
+
+#: templates/settings/organization.html:33
+msgid "Require two-factor authentication"
+msgstr "Requerir autenticación de dos factores"
+
+#: templates/settings/organization.html:45
+msgid ""
+"If enabled, all users will be required to configure two-factor "
+"authentication."
+msgstr ""
+"Si está habilitado, todos los usuarios deberán configurar la "
+"autenticación de dos factores."
+
+#: templates/settings/organization.html:53
+#: templates/settings/organization.html:59
+msgid "Default Language"
+msgstr "Idioma Predeterminado"
+
+#: templates/settings/organization.html:73
+msgid "Sets the language for new users and emails."
+msgstr "Establece el idioma para nuevos usuarios y correos electrónicos."
+
+#: templates/settings/plan.html:4
+msgid "Licensing"
+msgstr "Licencia"
+
+#: templates/settings/plan.html:11
+msgid "License Expiration"
+msgstr "Caducidad de la licencia"
+
+#: templates/settings/plan.html:26
+msgid "License Usage"
+msgstr "Uso de licencia"
+
+#: templates/settings/plan.html:32
+msgid "Currently using {x}/{y} licenses."
+msgstr "Actualmente usando {x}/{y} licencias."
+
+#: templates/settings/plan.html:41
+msgid "Change License Count"
+msgstr "Cambiar número de licencias"
+
+#: templates/settings/plan.html:52
+msgid ""
+"License count may be increased or decreased as needed by your "
+"organization at any time."
+msgstr ""
+"El número de licencias puede aumentar o disminuir según lo necesite su "
+"organización en cualquier momento"
+
+#: templates/settings/plan.html:53
+msgid ""
+"Changes to the number of licenses will cause the license expiration date "
+"to be adjusted, preserving the total number of remaining seat-days."
+msgstr ""
+"Los cambios en el número de licencias harán que se ajuste la fecha de "
+"vencimiento de la licencia, conservando el número total de asientos-días "
+"restantes."
+
+#: templates/settings/plan.html:54
+msgid ""
+"If license expiration is less than one year away, license count increases"
+" require the purchase of one year of service at the higher count. The "
+"price will be prorated by any unconsumed seat-days."
+msgstr ""
+"Si el vencimiento de la licencia está a menos de un año, los aumentos en "
+"el número de licencias requieren la compra de un año de servicio en el "
+"número más alto. El precio será prorrateado por los días de asiento no "
+"consumidos."
+
+#: templates/settings/plan.html:55
+msgid "Licenses may be renewed at the current count, prorated, at any time."
+msgstr ""
+"Las licencias pueden renovarse al conteo actual, prorrateado, en "
+"cualquier momento."
+
+#: templates/settings/plan.html:56
+msgid ""
+"After increasing license count, there is a {x} day cooldown period before license count may be reduced."
+msgstr "Después de aumentar el número de licencias, hay un período de recuperación de {x} días antes de que se reduzca el número de licencias."
+
+#: templates/settings/security.html:4
+msgid "Sign-in Information"
+msgstr "Información de inicio de sesión"
+
+#: templates/settings/security.html:10 templates/settings/security.html:25
+msgid "Change Password"
+msgstr "Cambiar la Contraseña"
+
+#: templates/settings/security.html:18
+msgid "Current Password"
+msgstr "Contraseña Actual"
+
+#: templates/settings/security.html:20
+#, fuzzy
+msgid "New Password"
+msgstr "Nueva Contraseña"
+
+#: templates/settings/security.html:22
+#, fuzzy
+msgid "Confirm New Password"
+msgstr "Confirmar Nueva Contraseña"
+
+#: templates/settings/security.html:34
+#, fuzzy
+msgid "Two-Factor Authentication"
+msgstr "Autenticación de dos factores"
+
+#: templates/settings/security.html:44
+msgid ""
+"{orgname} requires the use of two-factor authentication. If you disable "
+"your two-factor device, a new one must be configured."
+msgstr "{orgname} requiere el uso de autenticación de dos factores. Si deshabilita su dispositivo de dos factores, se debe configurar uno nuevo."
+
+#: templates/settings/security.html:50
+msgid "Two-Factor Code or Recovery Code"
+msgstr "Código de dos factores o código de recuperación"
+
+#: templates/settings/security.html:52
+msgid ""
+"Enter your six-digit two-factor authentication code, or your 25-character"
+" two-factor recovery code."
+msgstr "Ingrese su código de autenticación de dos factores de seis dígitos o su código de recuperación de dos factores de 25 caracteres."
+
+#: templates/settings/security.html:54
+msgid "Disable Two-Factor Authentication"
+msgstr "Deshabilitar la autenticación de dos factores"
+
+#: templates/settings/security.html:58
+msgid "Enable Two-Factor Authentication"
+msgstr "Enable Two-Factor Authentication"
 
