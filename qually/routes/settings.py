@@ -1,4 +1,4 @@
-from flask_babel import gettext as _
+from flask_babel import gettext as _, ngettext as N_
 from qually.helpers.route_imports import *
 
 @app.get("/settings/profile")
@@ -91,6 +91,9 @@ def post_settings_profile():
 
     if request.form.get("lang"):
         g.user.lang = request.form.get("lang")
+        g.db.add(g.user)
+        g.db.commit()
+        return toast_redirect("/settings/profile")
 
     g.db.add(g.user)
     g.db.commit()
