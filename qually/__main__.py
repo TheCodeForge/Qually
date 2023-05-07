@@ -8,7 +8,7 @@ from redis import BlockingConnectionPool, ConnectionPool
 import sass
 
 import gettext
-gettext.install("syzitus")
+gettext.install("qually")
 
 from flask import g, session, Flask, request, redirect
 from flask_caching import Cache
