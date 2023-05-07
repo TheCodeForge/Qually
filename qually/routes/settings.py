@@ -1,3 +1,4 @@
+from flask_babel import gettext as _
 from qually.helpers.route_imports import *
 
 @app.get("/settings/profile")
