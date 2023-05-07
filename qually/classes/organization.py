@@ -19,6 +19,7 @@ class Organization(Base, core_mixin):
 
     #organization settings
     requires_otp = Column(Boolean, default=False)
+    default_lang = Column(String(2), default="en")
 
     #Organization record counters
     ncmr_counter = Column(Integer, default=0)
