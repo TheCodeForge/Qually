@@ -66,6 +66,7 @@
       <div class="input-group d-flex">
 
         <form id="form-lang" action="/settings/profile" method="post">
+          <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <select class="form-control toast-form-change-submit" name="lang" data-form="form-lang">
             {% for l in (0|lang) %}
             <option value="{{ l | lang }}" {% if l==g.user.organization.default_lang %}selected{% endif %}>{{ l }}</option>
