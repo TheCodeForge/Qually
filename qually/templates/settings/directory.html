@@ -33,7 +33,7 @@
   </thead>
   {% for user in g.user.organization.users.all() %}
   <tr>
-    <td>{{ user.name }}</td>
+    <td><a href="{{ user.permalink }}">{{ user.name }}</a></td>
     <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
 
     {% if g.user.is_org_admin %}
