@@ -41,6 +41,11 @@
     <div class="body w-lg-100">
       <div class="input-group d-flex">
 
+        <form id="update-title" action="/settings/profile" method="post">
+          <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+          <input class="form-control" type="text" value="{{ g.user.title }}">
+          <a class="btn btn-link fa-lg toast-form-submit" data-form="update-title"><i class="far fa-save text-danger"></i></a>
+        </form>
        
         
       </div>
