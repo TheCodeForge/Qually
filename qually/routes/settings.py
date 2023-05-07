@@ -98,6 +98,12 @@ def post_settings_profile():
         g.db.commit()
         return toast_redirect("/settings/profile")
 
+    if request.form.get("tz"):
+        g.user.tz = request.form.get("tz")
+        g.db.add(g.user)
+        g.db.commit()
+        return toast_redirect("/settings/profile")
+
     g.db.add(g.user)
     g.db.commit()
 
