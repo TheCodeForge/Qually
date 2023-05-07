@@ -62,7 +62,6 @@ app.config['MAX_CONTENT_LENGTH'] = 64 * 1024 * 1024
 app.config["SESSION_COOKIE_SECURE"] = app.config["HTTPS"]
 app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 app.config["SESSION_COOKIE_HTTPONLY"] = True
-app.config["SESSION_COOKIE_DOMAIN"] = False
 app.config["PERMANENT_SESSION_LIFETIME"] = 60 * 60 * 24 * 365
 app.config["SESSION_REFRESH_EACH_REQUEST"] = True
 
@@ -204,13 +203,11 @@ def before_request():
         submitted_key = request.values.get("csrf_token")
 
         if not submitted_key:
-            debug("no key")
             abort(403)
 
         if g.user:
             debug("user")
             if not g.user.validate_csrf_token(submitted_key):
-                debug("key invalid")
                 abort(403)
         
         else:
