@@ -7,6 +7,9 @@ from secrets import token_hex
 from redis import BlockingConnectionPool, ConnectionPool
 import sass
 
+import gettext
+gettext.install("syzitus")
+
 from flask import g, session, Flask, request, redirect
 from flask_caching import Cache
 from flask_limiter import Limiter
@@ -263,6 +266,8 @@ def after_request(response):
 
 @app.teardown_request
 def teardown_request(resp):
+
+    debug(_("translatable text"))
 
     try:
         g.db.close()
