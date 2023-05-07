@@ -410,17 +410,14 @@ msgid "Current Password"
 msgstr "Contraseña Actual"
 
 #: templates/settings/security.html:20
-#, fuzzy
 msgid "New Password"
 msgstr "Nueva Contraseña"
 
 #: templates/settings/security.html:22
-#, fuzzy
 msgid "Confirm New Password"
 msgstr "Confirmar Nueva Contraseña"
 
 #: templates/settings/security.html:34
-#, fuzzy
 msgid "Two-Factor Authentication"
 msgstr "Autenticación de dos factores"
 
