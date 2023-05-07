@@ -6,6 +6,7 @@ import time
 from secrets import token_hex
 from redis import BlockingConnectionPool, ConnectionPool
 import sass
+from flask_babel import Babel
 
 from flask import g, session, Flask, request, redirect
 from flask_caching import Cache
