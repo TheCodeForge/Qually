@@ -14,5 +14,6 @@ from qually.classes.mixins import core_mixin
 
 from qually.__main__ import Base, cache, app, debug
 
-if app.config.get("SERVER_NAME"):
-    from flask_babel import Babel, gettext as _, ngettext as N_
+from flask_babel import gettext, ngettext
+_  = gettext
+N_ = ngettext
