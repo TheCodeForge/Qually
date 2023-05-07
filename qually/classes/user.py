@@ -185,7 +185,7 @@ class User(Base, core_mixin):
         
         roles=[]
         if self.is_org_admin:
-            roles.append("Administrator")
+            roles.append(_("Administrator"))
 
         return ', '.join(roles)
     

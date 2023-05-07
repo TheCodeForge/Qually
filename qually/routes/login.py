@@ -19,33 +19,33 @@ def get_register():
 def post_register():
 
     if request.form.get("password") != request.form.get("confirm_password"):
-        return toast_error("Passwords do not match.")
+        return toast_error(_("Passwords do not match."))
         
     if not request.form.get("name"):
-        return toast_error("Your name is required")
+        return toast_error(_("Your name is required"))
     
     email=request.form.get("email")
     if not email:
-        return toast_error("Email address is required")
+        return toast_error(_("Email address is required"))
 
     if not request.form.get("org_name"):
-        return toast_error("Organization name is required")
+        return toast_error(_("Organization name is required"))
 
     if not re.fullmatch(valid_email_regex, email):
-        return toast_error("Invalid email address")
+        return toast_error(_("Invalid email address"))
 
     if not re.fullmatch(valid_password_regex, request.form.get("password")):
-        return toast_error("Password must be at least 8 characters")
+        return toast_error(_("Password must be at least 8 characters"))
 
     existing=get_account_by_email(email, graceful=True)
     if existing:
-        return toast_error("That email is already in use.")
+        return toast_error(_("That email is already in use."))
 
     #validate cloudflare anti-bot
     if app.config.get("CLOUDFLARE_TURNSTILE_KEY"):
         token = request.form.get("cf-turnstile-response")
         if not token:
-            return toast_error("CloudFlare challenge not completed.")
+            return toast_error(_("CloudFlare challenge not completed."))
 
         data = {"secret": app.config["CLOUDFLARE_TURNSTILE_SECRET"],
                 "response": token
@@ -55,7 +55,7 @@ def post_register():
         x = requests.post(url, data=data)
 
         if not x.json()["success"]:
-            return toast_error(f"CloudFlare validation failed")
+            return toast_error(_("CloudFlare validation failed"))
 
     #Create new org with 30 day free trial
     new_org = Organization(
@@ -104,13 +104,13 @@ def post_sign_in():
     user=get_account_by_email(email, graceful=True)
 
     if not user:
-        return toast_error("Invalid username or password")
+        return toast_error(_("Invalid username or password"))
 
     if not user.is_active:
-        return toast_error("Your account has been disabled.")
+        return toast_error(_("Your account has been disabled."))
 
     if not check_password_hash(user.passhash, request.form.get("password")):
-        return toast_error("Invalid username or password")
+        return toast_error(_("Invalid username or password"))
 
     if user.otp_secret and not user.validate_otp(request.form.get("otp_code"), allow_reset=True):
         session['authing_id']=user.id
@@ -140,7 +140,7 @@ def post_two_factor_code():
     user=g.db.query(User).options(joinedload(User.organization)).filter_by(id=session.get("authing_id")).first()
 
     if not user.validate_otp(request.form.get("otp_code"), allow_reset=True):
-        return toast_error("Invalid two-factor code")
+        return toast_error(_("Invalid two-factor code"))
 
     session.pop("authing_id")
 
@@ -194,10 +194,10 @@ def post_set_otp():
     totp = pyotp.TOTP(otp_secret)
 
     if not check_password_hash(g.user.passhash, request.form.get("password")):
-        return toast_error("Incorrect password")
+        return toast_error(_("Incorrect password"))
 
     if not totp.verify(code):
-        return toast_error("Incorrect two-factor code")
+        return toast_error(_("Incorrect two-factor code"))
 
     g.user.otp_secret=otp_secret
     g.db.add(g.user)
@@ -209,10 +209,10 @@ def post_set_otp():
 @logged_in
 def post_set_password():
     if request.form.get("password") != request.form.get("confirm_password"):
-        return toast_error("Passwords don't match")
+        return toast_error(_("Passwords don't match"))
 
     if not re.fullmatch(valid_password_regex, request.form.get("password")):
-        return toast_error("Password must be at least 8 characters")
+        return toast_error(_("Password must be at least 8 characters"))
 
     g.user.passhash=generate_password_hash(request.form.get("password"))
     g.user.reset_pw_next_login=False
@@ -236,7 +236,7 @@ def get_accept_invite():
 
     existing=get_account_by_email(email, graceful=True)
     if existing:
-        return toast_error("That email is already in use.")
+        return toast_error(_("That email is already in use."))
 
     temp_pw = secrets.token_urlsafe(8)
 
