@@ -29,9 +29,9 @@ class core_mixin():
     @property
     @lazy
     def created_date(self):
-        return format_datetime(datetime.fromtimestamp(self.created_utc), "dd MMM yyyy", locale=g.user.lang)
+        return format_datetime(datetime.fromtimestamp(self.created_utc), "dd MMMM yyyy", locale=g.user.lang)
 
     @property
     @lazy
     def created_datetime(self):
-        return format_datetime(datetime.fromtimestamp(self.created_utc), "dd MMM yyyy HH:mm", locale=g.user.lang)
+        return format_datetime(datetime.fromtimestamp(self.created_utc), "dd MMMM yyyy HH:mm", locale=g.user.lang)
