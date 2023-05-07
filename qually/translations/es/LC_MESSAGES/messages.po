@@ -338,9 +338,8 @@ msgstr ""
 "autenticación de dos factores."
 
 #: templates/settings/organization.html:53 templates/settings/profile.html:56
-#, fuzzy
 msgid "Localization"
-msgstr "Organización"
+msgstr "Localización"
 
 #: templates/settings/organization.html:59
 msgid "Default Language"
@@ -351,14 +350,12 @@ msgid "Sets the language for new users and emails."
 msgstr "Establece el idioma para nuevos usuarios y correos electrónicos."
 
 #: templates/settings/organization.html:82
-#, fuzzy
 msgid "Default Time Zone"
-msgstr "Idioma Predeterminado"
+msgstr "Zona horaria predeterminada"
 
 #: templates/settings/organization.html:96
-#, fuzzy
 msgid "Sets the default time zone for new users."
-msgstr "Establece el idioma para nuevos usuarios y correos electrónicos."
+msgstr "Establece la zona horaria predeterminada para los nuevos usuarios."
 
 #: templates/settings/plan.html:4
 msgid "Licensing"
@@ -435,9 +432,8 @@ msgid "Save"
 msgstr "Ahorrar"
 
 #: templates/settings/profile.html:62
-#, fuzzy
 msgid "Language"
-msgstr "Idioma Predeterminado"
+msgstr "Idioma"
 
 #: templates/settings/profile.html:83
 msgid "Time Zone"
