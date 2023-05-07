@@ -49,6 +49,31 @@
     </div>
   </div>
 </div>
+
+<h2 class="h5 mt-3">Default Language</h2>
+<div class="settings-section rounded">
+
+  <div class="d-lg-flex">
+
+    <div class="title w-lg-25">
+      <label for="require-2fa">Set the default language for new users in your organization</label>
+    </div>
+
+    <div class="body w-lg-100">
+      <div class="input-group d-flex">
+
+        <form id="form-org-lang" action="/settings/organization" method="post">
+          <select class="form-control toast-form-change-submit" name="default_lang" data-form="form-org-lang">
+            {% for l in (0|lang) %}
+            <option value="{{ l | lang }}" {% if l==g.user.organization.default_lang %}selected{% endif %}>{{ l }}</option>
+            {% endfor %}
+          </select>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 
 
