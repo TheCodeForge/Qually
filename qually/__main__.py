@@ -214,6 +214,10 @@ def before_request():
         else:
             debug("no user")
             t=int(request.values.get("time",0))
+
+            debug(f"{t} {session['session_id']}")
+            debug(submitted_key)
+            
             if g.time - t > 3600:
                 debug("form expired")
                 abort(403)
