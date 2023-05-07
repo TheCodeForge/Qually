@@ -443,5 +443,5 @@ msgstr "Deshabilitar la autenticación de dos factores"
 
 #: templates/settings/security.html:58
 msgid "Enable Two-Factor Authentication"
-msgstr "Enable Two-Factor Authentication"
+msgstr "Habilitar la autenticación de dos factores"
 
