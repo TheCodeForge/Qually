@@ -13,6 +13,8 @@ from flask_limiter import Limiter
 
 from flaskext.markdown import Markdown
 
+from flask_babel import Babel, gettext as _, ngettext as N_
+
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.exc import *
 from sqlalchemy.orm import Session, sessionmaker, scoped_session, joinedload
@@ -115,6 +117,7 @@ app.config["CLOUDFLARE_TURNSTILE_SECRET"]=environ.get("CLOUDFLARE_TURNSTILE_SECR
 
 Markdown(app)
 cache = Cache(app)
+babel = Babel(app, locale_selector=get_locale)
 
 # app.config["CACHE_REDIS_URL"]
 app.config["RATELIMIT_STORAGE_URI"] = environ.get("REDIS_URL", 'memory://').lstrip().rstrip()
@@ -160,13 +163,6 @@ def get_locale():
         return g.user.lang
 
     return session.get("lang", "en")
-
-#import stuff that doesn't play nicely with alembic
-if app.config.get("SERVER_NAME"):
-    from flask_babel import Babel, gettext as _, ngettext as N_
-
-    Babel(app, locale_selector=get_locale)
-
 
 
 # import and bind all classes, routes, and template filters functions
