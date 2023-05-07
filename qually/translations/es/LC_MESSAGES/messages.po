@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-07 10:55-0400\n"
+"POT-Creation-Date: 2023-05-07 11:11-0400\n"
 "PO-Revision-Date: 2023-05-07 09:47-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -104,7 +104,9 @@ msgstr "Los administradores deben tener una licencia asignada."
 
 #: routes/org_settings.py:64
 msgid "There is a {n} day cooldown to unassign licenses."
-msgstr "Hay un tiempo de reutilización de {n} días para anular la asignación de licencias."
+msgstr ""
+"Hay un tiempo de reutilización de {n} días para anular la asignación de "
+"licencias."
 
 #: routes/org_settings.py:75
 msgid "You can't assign a license to deactivated users."
@@ -152,12 +154,17 @@ msgstr "Estado de administrador otorgado a {name}"
 
 #: routes/org_settings.py:192
 msgid "You can't reduce your organization license count below current usage."
-msgstr "No puede reducir el número de licencias de su organización por debajo del uso actual."
+msgstr ""
+"No puede reducir el número de licencias de su organización por debajo del"
+" uso actual."
 
 #: routes/org_settings.py:195
 msgid ""
-"There is a {n} day cooldown after increasing license count before it may be decreased."
-msgstr "Hay un tiempo de reutilización de {n} días después de aumentar el número de licencias antes de que se reduzca."
+"There is a {n} day cooldown after increasing license count before it may "
+"be decreased."
+msgstr ""
+"Hay un tiempo de reutilización de {n} días después de aumentar el número "
+"de licencias antes de que se reduzca."
 
 #: routes/org_settings.py:276 routes/org_settings.py:280
 msgid "You've been invited to join {orgname} on {sitename}"
@@ -189,7 +196,9 @@ msgstr "Regístrese para una prueba gratuita."
 
 #: templates/auth/register.html:10
 msgid "Start your Qually-powered QMS with a 5-seat, 30-day free trial"
-msgstr "Inicie su QMS con tecnología Qually con una prueba gratuita de 30 días para 5 usuarios"
+msgstr ""
+"Inicie su QMS con tecnología Qually con una prueba gratuita de 30 días "
+"para 5 usuarios"
 
 #: templates/auth/register.html:17
 msgid "Name"
@@ -222,4 +231,52 @@ msgstr "¿Ya tiene una cuenta?"
 #: templates/auth/register.html:44
 msgid "Sign in"
 msgstr "Iniciar sesión"
+
+#: templates/elements/toasts.html:4
+msgid "Copied link to clipboard"
+msgstr "Enlace copiado al portapapeles"
+
+#: templates/elements/toasts.html:10
+msgid "Unable to copy link"
+msgstr "No se puede copiar el enlace"
+
+#: templates/settings/audit.html:10
+msgid "User"
+msgstr "Usuario"
+
+#: templates/settings/audit.html:11
+msgid "Timestamp"
+msgstr "Marca de tiempo"
+
+#: templates/settings/audit.html:12
+msgid "Target"
+msgstr "Objetivo"
+
+#: templates/settings/audit.html:13
+msgid "Change"
+msgstr "Cambiar"
+
+#: templates/settings/core.html:14
+msgid "Profile"
+msgstr "Perfil"
+
+#: templates/settings/core.html:17
+msgid "Security"
+msgstr "Seguridad"
+
+#: templates/settings/core.html:20
+msgid "Directory"
+msgstr "Directorio"
+
+#: templates/settings/core.html:24
+msgid "Organization"
+msgstr "Organización"
+
+#: templates/settings/core.html:27
+msgid "Plan"
+msgstr "Plan"
+
+#: templates/settings/core.html:30
+msgid "History"
+msgstr "Historia"
 
