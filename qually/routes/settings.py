@@ -1,4 +1,6 @@
 from qually.helpers.route_imports import *
+from qually.helpers.timezones import TIMEZONES
+from qually.helpers.languages import LANGUAGES
 try:
     from flask_babel import Babel, gettext as _, ngettext as N_
 except ModuleNotFoundError:
@@ -93,12 +95,16 @@ def post_settings_profile():
         g.user.title=request.form.get("title")
 
     if request.form.get("lang"):
+        if request.form.get("lang") not in LANGUAGES.values():
+            return toast_error(_("That language is not currently supported"))
         g.user.lang = request.form.get("lang")
         g.db.add(g.user)
         g.db.commit()
         return toast_redirect("/settings/profile")
 
     if request.form.get("tz"):
+        if request.form.get("tz") not in TIMEZONES:
+            return toast_error(_("Invalid timezone"))
         g.user.tz = request.form.get("tz")
         g.db.add(g.user)
         g.db.commit()

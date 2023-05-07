@@ -1,5 +1,7 @@
 import urllib
 from qually.helpers.route_imports import *
+from qually.helpers.timezones import TIMEZONES
+from qually.helpers.languages import LANGUAGES
 from .login import valid_email_regex
 try:
     from flask_babel import Babel, gettext as _, ngettext as N_
@@ -30,14 +32,33 @@ def post_settings_organization():
 
     if request.form.get("lang"):
 
+        if request.form.get("lang") not in LANGUAGES.values():
+            return toast_error(_("That language is not currently supported"))
+
         g.user.organization.default_lang=request.form.get("lang")
         g.db.add(g.user.organization)
 
         log=OrganizationAuditLog(
             user_id=g.user.id,
             organization_id=g.user.organization_id,
-            key="Default Language",
+            key="Language",
             new_value=request.form.get("lang")
+            )
+        g.db.add(log)
+
+    if request.form.get("tz"):
+
+        if request.form.get("tz") not in TIMEZONES:
+            return toast_error(_("Invalid timezone"))
+
+        g.user.organization.tz=request.form.get("tz")
+        g.db.add(g.user.organization)
+
+        log=OrganizationAuditLog(
+            user_id=g.user.id,
+            organization_id=g.user.organization_id,
+            key="Timezone",
+            new_value=request.form.get("tz")
             )
         g.db.add(log)
 
