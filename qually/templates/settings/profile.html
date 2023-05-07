@@ -41,9 +41,10 @@
     <div class="body w-lg-100">
       <div class="input-group d-flex">
 
-        <form id="update-title" action="/settings/profile" method="post">
+        <form id="update-title" action="/settings/profile" method="post" class="toasted">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <input class="form-control toast-form-change-submit" data-form="update-title" type="text" name="title" value="{{ g.user.title }}">
+          <a class="btn btn-link fa-lg toast-form-submit d-none" data-form="update-title"></a>
         </form>
        
         
