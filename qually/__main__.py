@@ -270,8 +270,6 @@ def after_request(response):
 @app.teardown_request
 def teardown_request(resp):
 
-    debug(_("translatable text"))
-
     try:
         g.db.close()
     except:
