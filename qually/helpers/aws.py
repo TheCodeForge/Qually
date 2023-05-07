@@ -2,8 +2,10 @@ import boto3
 from os import remove
 from io import BytesIO
 from PIL import Image
-import magic
 from qually.__main__ import app
+
+if app.config.get("SITE_NAME"):
+    import magic
 
 #set up AWS connection
 S3 = boto3.client(
