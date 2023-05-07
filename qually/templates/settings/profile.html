@@ -43,8 +43,7 @@
 
         <form id="update-title" action="/settings/profile" method="post">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-          <input class="form-control" type="text" name="title" value="{{ g.user.title }}">
-          <a class="btn btn-link btn-primary fa-lg toast-form-submit" data-form="update-title"><i class="far fa-save "></i></a>
+          <input class="form-control toast-form-change-submit" data-form="update-title" type="text" name="title" value="{{ g.user.title }}">
         </form>
        
         
