@@ -99,4 +99,4 @@ def post_settings_profile():
     if changed:
         g.db.commit()
 
-    return toast("Settings saved")
+    return toast(_("Settings saved"))

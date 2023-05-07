@@ -21,13 +21,6 @@ from sqlalchemy.pool import QueuePool
 
 from werkzeug.middleware.proxy_fix import ProxyFix
 
-#translations
-import gettext
-translate = gettext.translation("qually", "./localedir", fallback=True)
-_ = translate.gettext
-
-
-
 _version = "0.0.1"
 
 app = Flask(__name__,
@@ -73,6 +66,9 @@ app.config["SESSION_REFRESH_EACH_REQUEST"] = True
 
 #Mailgun
 app.config["MAILGUN_KEY"]=environ.get("MAILGUN_KEY")
+
+#Translations
+
 
 app.jinja_env.cache = {}
 
@@ -157,6 +153,10 @@ Base = declarative_base()
 def debug(text):
     if app.config["DEBUG"]:
         print(text)
+
+#import stuff that doesn't play nicely with alembic
+if app.config.get("SERVER_NAME"):
+    from flask_babel import Babel, gettext as _, ngettext as N_
 
 # import and bind all classes, routes, and template filters functions
 from qually.helpers.security import generate_hash

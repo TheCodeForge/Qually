@@ -7,10 +7,14 @@ from hmac import compare_digest
 
 from qually.classes import *
 from qually.helpers.get import *
+from qually.helpers.languages import LANGUAGES
 from qually.helpers.mail import send_mail
 from qually.helpers.posttoast import toast, toast_redirect, toast_error
 from qually.helpers.security import generate_hash, validate_hash, tokenify
 from qually.helpers.wrappers import logged_in, not_logged_in, has_seat, is_admin, user_update_lock, org_update_lock, no_cors, no_sanctions, cf_cache, token_auth
 import qually.helpers.aws as aws
 
-from qually.__main__ import app, debug, limiter, debug, cache, _
+from qually.__main__ import app, debug, limiter, debug, cache
+
+if app.config.get("SERVER_NAME"):
+    from flask_babel import Babel, gettext as _, ngettext as N_
