@@ -1,5 +1,7 @@
 from flask import request, g
 import time
+from flask_babel import format_datetime
+import datetime
 
 from qually.helpers.base36 import *
 from qually.helpers.lazy import lazy
@@ -27,10 +29,9 @@ class core_mixin():
     @property
     @lazy
     def created_date(self):
-        return time.strftime("%d %B %Y", time.gmtime(self.created_utc))
+        return format_datetime(datetime.fromtimestamp(self.created_utc), "dd MMM yyyy")
 
     @property
     @lazy
     def created_datetime(self):
-        return time.strftime("%d %B %Y at %H:%M:%S UTC",
-                             time.gmtime(self.created_utc))
+        return format_datetime(datetime.fromtimestamp(self.created_utc), "dd MMM yyyy HH:mm")
