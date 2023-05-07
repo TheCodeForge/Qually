@@ -176,7 +176,7 @@ def before_request():
     
     #cookie stuff
     session.permanent = True
-    if "session_id" not in session:
+    if not session.get("session_id"):
         session["session_id"] = token_hex(16)
 
     #request values
@@ -217,7 +217,7 @@ def before_request():
 
             debug(f"{t} {session['session_id']}")
             debug(submitted_key)
-            
+
             if g.time - t > 3600:
                 debug("form expired")
                 abort(403)
