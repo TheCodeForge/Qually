@@ -7,7 +7,7 @@ from flask import g, abort, request
 from qually.classes import *
 
 def get_account(b36uid, graceful=False):
-
+    
     id=base36decode(b36uid)
 
     user=g.user.organization.users.filter_by(id=id).first()

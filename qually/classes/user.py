@@ -124,7 +124,7 @@ class User(Base, core_mixin):
     @property
     @lazy
     def permalink(self):
-        return f"/@{self.username}"
+        return f"/user/{self.base36id}"
 
     def set_profile(self, file):
 
