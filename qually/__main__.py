@@ -202,18 +202,26 @@ def before_request():
         submitted_key = request.values.get("csrf_token")
 
         if not submitted_key:
+            debug("no key")
             abort(403)
 
         if g.user:
+            debug("user")
             if not g.user.validate_csrf_token(submitted_key):
+                debug("key invalid")
                 abort(403)
         
         else:
+            debug("no user")
             t=int(request.values.get("time",0))
             if g.time - t > 3600:
+                debug("form expired")
                 abort(403)
             if not validate_hash(f"{t}+{session['session_id']}", submitted_key):
+                debug("invalid key")
                 abort(403)
+
+        debug("valid csrf key")
 
     if g.user and g.user.reset_pw_next_login and not request.path.startswith(("/set_password", "/help/", "/assets", "/logout")):
         return redirect("/set_password")
