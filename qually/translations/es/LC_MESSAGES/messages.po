@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-07 14:58-0400\n"
+"POT-Creation-Date: 2023-05-07 15:13-0400\n"
 "PO-Revision-Date: 2023-05-07 09:47-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -30,135 +30,135 @@ msgstr "Este enlace ha caducado"
 msgid "This page may not be embedded in other webpages."
 msgstr "Esta página no puede estar incrustada en otras páginas."
 
-#: routes/login.py:22 routes/login.py:212
+#: routes/login.py:23 routes/login.py:213
 msgid "Passwords do not match."
 msgstr "Las contraseñas no coinciden"
 
-#: routes/login.py:25
+#: routes/login.py:26
 msgid "Your name is required"
 msgstr "Se requiere su nombre"
 
-#: routes/login.py:29
+#: routes/login.py:30
 msgid "Email address is required"
 msgstr "Se requiere su dirección de correo electrónico"
 
-#: routes/login.py:32
+#: routes/login.py:33
 msgid "Organization name is required"
 msgstr "Se requiere el nombre de la organización"
 
-#: routes/login.py:35 routes/org_settings.py:272
+#: routes/login.py:36 routes/org_settings.py:273
 msgid "Invalid email address"
 msgstr "Dirección de correo electrónico no válida"
 
-#: routes/login.py:38 routes/login.py:215
+#: routes/login.py:39 routes/login.py:216
 msgid "Password must be at least {n} characters"
 msgstr "La contraseña debe tener al menos {n} caracteres"
 
-#: routes/login.py:42 routes/login.py:239 routes/org_settings.py:276
+#: routes/login.py:43 routes/login.py:240 routes/org_settings.py:277
 msgid "That email is already in use."
 msgstr "Ese correo electrónico ya está en uso"
 
-#: routes/login.py:48
+#: routes/login.py:49
 msgid "CloudFlare challenge not completed."
 msgstr "Reto de CloudFlare no completado"
 
-#: routes/login.py:58
+#: routes/login.py:59
 msgid "CloudFlare validation failed"
 msgstr "La validación de CloudFlare falló"
 
-#: routes/login.py:107 routes/login.py:113
+#: routes/login.py:108 routes/login.py:114
 msgid "Invalid username or password"
 msgstr "Usuario o contraseña invalido"
 
-#: routes/login.py:110
+#: routes/login.py:111
 msgid "Your account has been disabled."
 msgstr "Su cuenta ha sido deshabilitada"
 
-#: routes/login.py:143
+#: routes/login.py:144
 msgid "Invalid two-factor code"
 msgstr "Código de dos factores no válido"
 
-#: routes/login.py:197
+#: routes/login.py:198
 msgid "Incorrect password"
 msgstr "Contraseña incorrecta"
 
-#: routes/login.py:200
+#: routes/login.py:201
 msgid "Incorrect two-factor code"
 msgstr "Código de dos factores incorrecto"
 
-#: routes/org_settings.py:13 routes/org_settings.py:202
+#: routes/org_settings.py:14 routes/org_settings.py:203
 msgid "You didn't change anything!"
 msgstr "¡No cambiaste nada!"
 
-#: routes/org_settings.py:49
+#: routes/org_settings.py:50
 msgid "Enable two-factor authentication on your own account first."
 msgstr "Habilite primero la autenticación de dos factores en su propia cuenta."
 
-#: routes/org_settings.py:63 routes/settings.py:100
+#: routes/org_settings.py:64 routes/settings.py:101
 msgid "Settings saved"
 msgstr "Ajustes guardados correctamente"
 
-#: routes/org_settings.py:74
+#: routes/org_settings.py:75
 msgid "Administrators must have an assigned license."
 msgstr "Los administradores deben tener una licencia asignada."
 
-#: routes/org_settings.py:77
+#: routes/org_settings.py:78
 msgid "There is a {n} day cooldown to unassign licenses."
 msgstr ""
 "Hay un tiempo de reutilización de {n} días para anular la asignación de "
 "licencias."
 
-#: routes/org_settings.py:88
+#: routes/org_settings.py:89
 msgid "You can't assign a license to deactivated users."
 msgstr "No puede asignar una licencia a usuarios desactivados."
 
-#: routes/org_settings.py:91
+#: routes/org_settings.py:92
 msgid "Your organization licenses have expired."
 msgstr "Las licencias de su organización han caducado."
 
-#: routes/org_settings.py:94 routes/org_settings.py:105
+#: routes/org_settings.py:95 routes/org_settings.py:106
 msgid "Your organization has reached its purchased license count."
 msgstr "Su organización ha alcanzado el número de licencias adquiridas."
 
-#: routes/org_settings.py:128
+#: routes/org_settings.py:129
 msgid "Administrator accounts may not be deactivated."
 msgstr "Las cuentas de administrador no se pueden desactivar."
 
-#: routes/org_settings.py:133
+#: routes/org_settings.py:134
 msgid "{name} user account deactivated"
 msgstr ""
 
-#: routes/org_settings.py:137
+#: routes/org_settings.py:138
 msgid "{name} user account activated"
 msgstr "{name} cuenta de usuario desactivada"
 
-#: routes/org_settings.py:164
+#: routes/org_settings.py:165
 msgid "You cannot remove your own administrator status."
 msgstr "No puede eliminar su propio estado de administrador."
 
-#: routes/org_settings.py:166
+#: routes/org_settings.py:167
 msgid "Administrator status removed from {name}"
 msgstr "Se eliminó el estado de administrador de {name}"
 
-#: routes/org_settings.py:171
+#: routes/org_settings.py:172
 msgid "Deactivated users cannot be administrators."
 msgstr "Los usuarios desactivados no pueden ser administradores."
 
-#: routes/org_settings.py:174
+#: routes/org_settings.py:175
 msgid "Administrators require a full license."
 msgstr "Los administradores requieren una licencia completa."
 
-#: routes/org_settings.py:176
+#: routes/org_settings.py:177
 msgid "Administrator status granted to {name}"
 msgstr "Estado de administrador otorgado a {name}"
 
-#: routes/org_settings.py:205
+#: routes/org_settings.py:206
 msgid "You can't reduce your organization license count below current usage."
 msgstr ""
 "No puede reducir el número de licencias de su organización por debajo del"
 " uso actual."
 
-#: routes/org_settings.py:208
+#: routes/org_settings.py:209
 msgid ""
 "There is a {n} day cooldown after increasing license count before it may "
 "be decreased."
@@ -166,11 +166,11 @@ msgstr ""
 "Hay un tiempo de reutilización de {n} días después de aumentar el número "
 "de licencias antes de que se reduzca."
 
-#: routes/org_settings.py:289 routes/org_settings.py:293
+#: routes/org_settings.py:290 routes/org_settings.py:294
 msgid "You've been invited to join {orgname} on {sitename}"
 msgstr "Has sido invitado a unirte a {orgname} en {sitename}"
 
-#: routes/org_settings.py:307
+#: routes/org_settings.py:308
 msgid "Invitation sent to {email}"
 msgstr "Invitación enviada a {email}"
 
@@ -261,7 +261,7 @@ msgstr "Objetivo"
 msgid "Change"
 msgstr "Cambiar"
 
-#: templates/settings/core.html:14
+#: templates/settings/core.html:14 templates/settings/profile.html:4
 msgid "Profile"
 msgstr "Perfil"
 
@@ -394,8 +394,32 @@ msgstr ""
 
 #: templates/settings/plan.html:56
 msgid ""
-"After increasing license count, there is a {x} day cooldown period before license count may be reduced."
-msgstr "Después de aumentar el número de licencias, hay un período de recuperación de {x} días antes de que se reduzca el número de licencias."
+"After increasing license count, there is a {x} day cooldown period before"
+" license count may be reduced."
+msgstr ""
+"Después de aumentar el número de licencias, hay un período de "
+"recuperación de {x} días antes de que se reduzca el número de licencias."
+
+#: templates/settings/profile.html:18
+msgid "Update"
+msgstr "Actualizar"
+
+#: templates/settings/profile.html:38
+msgid "Title"
+msgstr "Título"
+
+#: templates/settings/profile.html:47
+msgid "Save"
+msgstr "Ahorrar"
+
+#: templates/settings/profile.html:56
+#, fuzzy
+msgid "Language"
+msgstr "Idioma Predeterminado"
+
+#: templates/settings/profile.html:62
+msgid "Select your preferred language"
+msgstr "Seleccione su idioma preferido"
 
 #: templates/settings/security.html:4
 msgid "Sign-in Information"
@@ -425,7 +449,9 @@ msgstr "Autenticación de dos factores"
 msgid ""
 "{orgname} requires the use of two-factor authentication. If you disable "
 "your two-factor device, a new one must be configured."
-msgstr "{orgname} requiere el uso de autenticación de dos factores. Si deshabilita su dispositivo de dos factores, se debe configurar uno nuevo."
+msgstr ""
+"{orgname} requiere el uso de autenticación de dos factores. Si "
+"deshabilita su dispositivo de dos factores, se debe configurar uno nuevo."
 
 #: templates/settings/security.html:50
 msgid "Two-Factor Code or Recovery Code"
@@ -435,7 +461,9 @@ msgstr "Código de dos factores o código de recuperación"
 msgid ""
 "Enter your six-digit two-factor authentication code, or your 25-character"
 " two-factor recovery code."
-msgstr "Ingrese su código de autenticación de dos factores de seis dígitos o su código de recuperación de dos factores de 25 caracteres."
+msgstr ""
+"Ingrese su código de autenticación de dos factores de seis dígitos o su "
+"código de recuperación de dos factores de 25 caracteres."
 
 #: templates/settings/security.html:54
 msgid "Disable Two-Factor Authentication"
