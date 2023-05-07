@@ -1,4 +1,4 @@
-from qually.helpers.route_imports import *
+from qually.helpers.route_imports import *, _
 
 @app.get("/settings/profile")
 @app.get("/settings/security")
