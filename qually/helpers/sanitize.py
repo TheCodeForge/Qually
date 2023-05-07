@@ -41,7 +41,7 @@ _allowed_tags =[
     'ul'
     ]
 
-_allowed_tags_with_links = _allowed_tags + ["a"]                                          ]
+_allowed_tags_with_links = _allowed_tags + ["a"]
 
 
 _allowed_attributes = {
