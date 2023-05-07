@@ -86,9 +86,9 @@
     <div class="body w-lg-100">
       <div class="input-group d-flex">
 
-        <form id="form-org-lang" action="/settings/organization" method="post">
+        <form id="form-tz" action="/settings/profile" method="post">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-          <select class="form-select toast-form-change-submit" name="tz" data-form="form-org-lang">
+          <select class="form-select toast-form-change-submit" name="tz" data-form="form-tz">
             {% for tz in (0|tz) %}
             <option value="{{ tz }}" {% if tz==g.user.tz %}selected{% endif %}>{{ tz }}</option>
             {% endfor %}

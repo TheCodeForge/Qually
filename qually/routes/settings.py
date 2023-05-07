@@ -106,9 +106,6 @@ def post_settings_profile():
         if request.form.get("tz") not in TIMEZONES:
             return toast_error(_("Invalid timezone"))
         g.user.tz = request.form.get("tz")
-        g.db.add(g.user)
-        g.db.commit()
-        return toast_redirect("/settings/profile")
 
     g.db.add(g.user)
     g.db.commit()
