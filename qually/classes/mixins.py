@@ -32,9 +32,9 @@ class core_mixin():
     @property
     @lazy
     def created_date(self):
-        return format_datetime(datetime.fromtimestamp(self.created_utc), "dd MMMM yyyy")
+        return format_datetime(datetime.datetime.fromtimestamp(self.created_utc), "dd MMMM yyyy")
 
     @property
     @lazy
     def created_datetime(self):
-        return format_datetime(datetime.fromtimestamp(self.created_utc), "dd MMMM yyyy HH:mm")
+        return format_datetime(datetime.datetime.fromtimestamp(self.created_utc), "dd MMMM yyyy HH:mm")
