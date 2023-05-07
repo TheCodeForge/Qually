@@ -14,7 +14,7 @@
 
         <form id="user-avatar-update-form" action="/settings/profile/avatar" method="post" enctype="multipart/form-data">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-          <label class="btn btn-secondary text-capitalize me-2 mb-0">
+          <label class="btn btn-primary text-capitalize me-2 mb-0">
             Update
             <input type="file" hidden name="profile" class="toast-form-change-submit" data-form="user-avatar-update-form">
           </label>
@@ -23,7 +23,7 @@
         <div>
           <form id="delete-profile" action="/settings/profile/avatar" method="post">
             <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-            <a class="btn btn-primary fa-lg toast-form-submit" data-form="delete-profile"><i class="far fa-trash-alt text-danger"></i></a>
+            <a class="btn fa-lg toast-form-submit" data-form="delete-profile"><i class="far fa-trash-alt text-danger"></i></a>
           </form>
         </div>
         {% endif %}
@@ -44,7 +44,7 @@
         <form id="update-title" action="/settings/profile" method="post" class="toasted">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <input class="form-control" data-form="update-title" type="text" name="title" value="{{ g.user.title }}">
-          <a class="btn btn-primary fa-lg toast-form-submit" data-form="update-title">Save</a>
+          <a class="btn btn-primary toast-form-submit" data-form="update-title">Save</a>
         </form>
        
         
