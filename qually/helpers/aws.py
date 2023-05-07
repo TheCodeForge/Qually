@@ -4,7 +4,7 @@ from io import BytesIO
 from PIL import Image
 from qually.__main__ import app
 
-if app.config.get("SITE_NAME"):
+if app.config.get("SERVER_NAME"):
     import magic
 
 #set up AWS connection

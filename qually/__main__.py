@@ -49,7 +49,7 @@ app.config['DATABASE_URL'] = environ.get("DATABASE_URL","").replace("postgres://
 app.config['SECRET_KEY'] = environ.get('SECRET_KEY')
 app.config["ADMIN_EMAIL"]=environ.get("ADMIN_EMAIL","").lstrip().rstrip()
 
-app.config["SERVER_NAME"] = environ.get("SERVER_NAME", environ.get("domain", f"{app.config['SITE_NAME'].lower()}.herokuapp.com")).lstrip().rstrip() 
+app.config["SERVER_NAME"] = environ.get("SERVER_NAME","").lstrip().rstrip() 
 
 
 app.config["HTTPS"] = int(environ.get("HTTPS", 1)) or not any([x in app.config["SERVER_NAME"] for x in ["localhost","127.0.0.1"]])
@@ -124,6 +124,9 @@ app.config["RATELIMIT_HEADERS_ENABLED"]=True
 
 #Business variables
 app.config["CENTS_PER_SEATYEAR"]=int(environ.get("CENTS_PER_SEATYEAR", 10000))
+
+#Internationalization/Localization
+babel=Babel(app)
 
 limiter = Limiter(
     key_func = lambda: request.remote_addr,
