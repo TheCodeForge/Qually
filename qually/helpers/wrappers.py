@@ -138,7 +138,7 @@ def token_auth(f):
     
         if request.args.get('t'):
             if g.time - int(request.args.get('t')) > 60*60*24:
-                return jsonify({'error':'This link has expired.'})
+                return jsonify({'error':_('This link has expired.')})
             
     
         data=dict(request.args)
@@ -167,7 +167,7 @@ def no_cors(f):
 
         if origin and origin != "https://" + app.config["SERVER_NAME"] and app.config["FORCE_HTTPS"]==1:
 
-            return "This page may not be embedded in other webpages.", 403
+            return _("This page may not be embedded in other webpages."), 403
 
         resp = make_response(f(*args, **kwargs))
         resp.headers.add("Access-Control-Allow-Origin",

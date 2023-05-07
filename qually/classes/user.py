@@ -34,6 +34,7 @@ class User(Base, core_mixin):
     profile_upload_ip=deferred(Column(String(255), default=None))
     profile_upload_region=deferred(Column(String(2)))
     title = Column(String, default="")
+    lang = Column(String(2), default="en")
 
     ## === RELATIONSHIPS ===
 
@@ -184,7 +185,7 @@ class User(Base, core_mixin):
         
         roles=[]
         if self.is_org_admin:
-            roles.append("Administrator")
+            roles.append(_("Administrator"))
 
         return ', '.join(roles)
     

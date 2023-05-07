@@ -5,6 +5,7 @@ import pyotp
 import qrcode
 import sass
 
+from qually.helpers.languages import LANGUAGES
 from qually.helpers.security import generate_hash
 
 from qually.__main__ import app
@@ -65,6 +66,14 @@ def qrcode_filter(x):
     
     data=base64.b64encode(mem.read()).decode('ascii')
     return f"data:image/png;base64,{data}"
+
+@app.template_filter('lang')
+def languages(x):
+
+    if x:
+        return LANGUAGES[x]
+    else:
+        return LANGUAGES
 
 # @app.template_filter('css')
 # def css(x):

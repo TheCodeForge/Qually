@@ -85,18 +85,16 @@ def post_settings_profile_avatar():
 @app.post("/settings/profile")
 def post_settings_profile():
 
-    changed=False
-
     if request.form.get("title"):
-        
-        if request.form.get("title")==g.user.title:
-            return toast_error("You didn't change anything!")
-
         g.user.title=request.form.get("title")
+
+    if request.form.get("lang"):
+        g.user.lang = request.form.get("lang")
         g.db.add(g.user)
-        changed=True
-
-    if changed:
         g.db.commit()
+        return toast_redirect("/settings/profile")
 
-    return toast("Settings saved")
+    g.db.add(g.user)
+    g.db.commit()
+
+    return toast(_("Settings saved"))

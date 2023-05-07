@@ -1,13 +1,13 @@
 {% extends "settings/core.html" %}
 
 {% block content %}
-<h2 class="h5 mt-3">Sign-in Information</h2>
+<h2 class="h5 mt-3">{{_("Sign-in Information")}}</h2>
 <div class="settings-section rounded">
 
   <div class="d-lg-flex">
 
     <div class="title w-lg-25">
-      <label for="form-org-name">Change Password</label>
+      <label for="form-org-name">{{_("Change Password")}}</label>
     </div>
 
     <div class="body w-lg-100">
@@ -15,14 +15,14 @@
 
         <form id="form-change-password" action="/settings/security/password" method="post" class="w-100">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-          <label>Current Password</label>
+          <label>{{_("Current Password")}}</label>
           <input type="password" name="password" class="form-control w-100">
-          <label class="mt-3">New Password</label>
+          <label class="mt-3">{{_("New Password")}}</label>
           <input type="password" name="new_password" class="form-control w-100">
-          <label class="mt-3">Confirm New Password</label>
+          <label class="mt-3">{{_("Confirm New Password")}}</label>
           <input type="password" name="confirm_password" class="form-control w-100">
         </form>
-        <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-change-password">Change Password</a>
+        <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-change-password">{{_("Change Password")}}</a>
         
       </div>
     </div>
@@ -31,7 +31,7 @@
   <div class="d-lg-flex border-top">
 
     <div class="title w-lg-25">
-      <label for="form-org-name">Two-Factor Authentication</label>
+      <label for="form-org-name">{{_("Two-Factor Authentication")}}</label>
     </div>
 
     <div class="body w-lg-100">
@@ -41,21 +41,21 @@
 
 
         {% if g.user.organization.requires_otp %}
-        <p class="text-small">{{ g.user.organization.name }} requires the use of two-factor authentication. If you disable your two-factor device, a new one must be configured.</p>
+        <p class="text-small">{{ _("{orgname} requires the use of two-factor authentication. If you disable your two-factor device, a new one must be configured.").format(orgname=g.user.organization.name) }}</p>
         {% endif %}
         <form id="form-remove-otp" action="/settings/security/remove_otp" method="post" class="w-100">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <label>Password</label>
           <input type="password" name="password" class="form-control w-100">
-          <label class="mt-3">Two-Factor Code or Recovery Code</label>
+          <label class="mt-3">{{_("Two-Factor Code or Recovery Code")}}</label>
           <input type="text" name="otp_code" class="form-control w-100" placeholder="# # # # # #">
-          <p class="text-small">Enter your six-digit two-factor authentication code, or your 25-character two-factor recovery code.</p>
+          <p class="text-small">{{_("Enter your six-digit two-factor authentication code, or your 25-character two-factor recovery code.")}}</p>
         </form>
-        <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-remove-otp">Disable Two-Factor Authentication</a>
+        <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-remove-otp">{{_("Disable Two-Factor Authentication")}}</a>
 
 
         {% else %}
-        <a href="/set_otp" class="btn ms-auto btn-primary rounded">Enable Two-Factor Authentication</a>
+        <a href="/set_otp" class="btn ms-auto btn-primary rounded">{{_("Enable Two-Factor Authentication")}}</a>
         {% endif %}
         
       </div>

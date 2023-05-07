@@ -3,31 +3,31 @@
 {% block content %}
 
 {% if g.user.is_org_admin %}
-<h2 class="h5 mt-3">Add New User</h2>
+<h2 class="h5 mt-3">{{_("Add New User") }}</h2>
 <form id="form-invite-user" action="/settings/directory/invite" method="post" class="toasted">
   <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-  <label for="input-new-user-name">Name</label>
+  <label for="input-new-user-name">{{_("Name")}}</label>
   <input id="input-new-user-name" class="form-control" name="name" required>
-  <label for="input-new-user-email">Email</label>
+  <label for="input-new-user-email">{{_("Email")}}</label>
   <input id="input-new-user-email" class="form-control" name="email" required>
 </form>
-<a href="javascript:void(0)" class="btn btn-primary toast-form-submit" data-form="form-invite-user">Invite User</a>
+<a href="javascript:void(0)" class="btn btn-primary toast-form-submit" data-form="form-invite-user">{{_("Invite User")}}</a>
 {% endif %}
 
-<h2 class="h5 mt-3">Directory</h2>
+<h2 class="h5 mt-3">{{_("Directory")}}</h2>
 
 <table class="table table-striped mb-5">
   <thead class="bg-primary text-white">
     <tr>
-      <th>Name</th>
-      <th>Email</th>
+      <th>{{_("Name")}}</th>
+      <th>{{_("Email")}}</th>
       {% if g.user.is_org_admin %}
-      <th>Enabled</th>
-      <th>Full License</th>
-      <th>Administrator</th>
+      <th>{{_("Enabled")}}</th>
+      <th>{{_("Full License")}}</th>
+      <th>{{_("Administrator")}}</th>
       {% else %}
-      <th>Full License</th>
-      <th>Roles</th>
+      <th>{{_("Full License")}}</th>
+      <th>{{_("Roles")}}</th>
       {% endif %}
     </tr>
   </thead>

@@ -13,6 +13,8 @@ from flask_limiter import Limiter
 
 from flaskext.markdown import Markdown
 
+from flask_babel import Babel, gettext as _, ngettext as N_
+
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.exc import *
 from sqlalchemy.orm import Session, sessionmaker, scoped_session, joinedload
@@ -20,7 +22,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.pool import QueuePool
 
 from werkzeug.middleware.proxy_fix import ProxyFix
-
 
 _version = "0.0.1"
 
@@ -49,7 +50,7 @@ app.config['DATABASE_URL'] = environ.get("DATABASE_URL","").replace("postgres://
 app.config['SECRET_KEY'] = environ.get('SECRET_KEY')
 app.config["ADMIN_EMAIL"]=environ.get("ADMIN_EMAIL","").lstrip().rstrip()
 
-app.config["SERVER_NAME"] = environ.get("SERVER_NAME", environ.get("domain", f"{app.config['SITE_NAME'].lower()}.herokuapp.com")).lstrip().rstrip() 
+app.config["SERVER_NAME"] = environ.get("SERVER_NAME","").lstrip().rstrip() 
 
 
 app.config["HTTPS"] = int(environ.get("HTTPS", 1)) or not any([x in app.config["SERVER_NAME"] for x in ["localhost","127.0.0.1"]])
@@ -67,6 +68,9 @@ app.config["SESSION_REFRESH_EACH_REQUEST"] = True
 
 #Mailgun
 app.config["MAILGUN_KEY"]=environ.get("MAILGUN_KEY")
+
+#Translations
+
 
 app.jinja_env.cache = {}
 
@@ -151,6 +155,15 @@ Base = declarative_base()
 def debug(text):
     if app.config["DEBUG"]:
         print(text)
+
+def get_locale():
+
+    if g.user:
+        return g.user.lang
+
+    return session.get("lang", "en")
+
+babel = Babel(app, locale_selector=get_locale)
 
 # import and bind all classes, routes, and template filters functions
 from qually.helpers.security import generate_hash
