@@ -6,6 +6,7 @@ import qrcode
 import sass
 
 from qually.helpers.languages import LANGUAGES
+from qually.helpers.timezones import TIMEZONES
 from qually.helpers.security import generate_hash
 
 from qually.__main__ import app
@@ -74,6 +75,11 @@ def languages(x):
         return LANGUAGES[x]
     else:
         return LANGUAGES
+
+@app.template_filter('tz')
+def languages(x):
+
+    return TIMEZONES
 
 # @app.template_filter('css')
 # def css(x):
