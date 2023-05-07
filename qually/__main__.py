@@ -154,9 +154,20 @@ def debug(text):
     if app.config["DEBUG"]:
         print(text)
 
+def get_locale():
+
+    if g.user:
+        return g.user.lang
+
+    return session.get("lang", "en")
+
 #import stuff that doesn't play nicely with alembic
 if app.config.get("SERVER_NAME"):
     from flask_babel import Babel, gettext as _, ngettext as N_
+
+    Babel(app, locale_selector=get_locale)
+
+
 
 # import and bind all classes, routes, and template filters functions
 from qually.helpers.security import generate_hash
