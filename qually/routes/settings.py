@@ -89,7 +89,7 @@ def post_settings_profile():
         g.user.title=request.form.get("title")
 
     if request.form.get("lang"):
-        self.lang = request.form.get("lang")
+        g.user.lang = request.form.get("lang")
 
     g.db.add(g.user)
     g.db.commit()

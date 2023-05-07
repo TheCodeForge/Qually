@@ -24,6 +24,19 @@ def post_settings_organization():
             )
         g.db.add(log)
 
+    if request.form.get("lang"):
+
+        g.user.organization.default_lang=request.form.get("lang")
+        g.db.add(g.user.organization)
+
+        log=OrganizationAuditLog(
+            user_id=g.user.id,
+            organization_id=g.user.organization_id,
+            key="Default Language",
+            new_value=request.form.get("lang")
+            )
+        g.db.add(log)
+
     g.db.commit()
 
     return toast("Changes saved")
