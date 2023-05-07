@@ -166,11 +166,16 @@ def get_locale():
 
     return session.get("lang", "en")
 
+def get_timezone():
+    if g.user:
+        return g.user.tz
+    return "UTC"
+
 try:
-    babel = Babel(app, locale_selector=get_locale)
+    babel = Babel(app, locale_selector=get_locale, timezone_selector=get_timezone)
 except NameError:
     pass
-    
+
 # import and bind all classes, routes, and template filters functions
 from qually.helpers.security import generate_hash
 import qually.classes
