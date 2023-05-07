@@ -4,6 +4,7 @@ import pyotp
 from sqlalchemy.orm import joinedload
 
 from qually.helpers.route_imports import *
+from flask_babel import gettext as _, ngettext as N_
 from qually.helpers.security import otp_recovery_code
 
 valid_password_regex = re.compile("^.{8,100}+$")

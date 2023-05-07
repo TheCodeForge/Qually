@@ -1,4 +1,5 @@
-from qually.helpers.route_imports import *, _
+from qually.helpers.route_imports import *
+from flask_babel import gettext as _, ngettext as N_
 
 @app.get("/settings/profile")
 @app.get("/settings/security")
