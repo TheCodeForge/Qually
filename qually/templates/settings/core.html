@@ -11,23 +11,23 @@
 
   <ul class="nav settings-nav">
     <li class="nav-item">
-      <a class="nav-link{% if request.path=='/settings/profile' %} active{% endif %}" href="/settings/profile">Profile</a>
+      <a class="nav-link{% if request.path=='/settings/profile' %} active{% endif %}" href="/settings/profile">{{ _("Profile") }}</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link{% if request.path=='/settings/security' %} active{% endif %}" href="/settings/security">Security</a>
+      <a class="nav-link{% if request.path=='/settings/security' %} active{% endif %}" href="/settings/security">{{ _("Security") }}</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link{% if request.path=='/settings/directory' %} active{% endif %}" href="/settings/directory">Directory</a>
+      <a class="nav-link{% if request.path=='/settings/directory' %} active{% endif %}" href="/settings/directory">{{ _("Directory") }}</a>
     </li>
     {% if g.user.is_org_admin %}
     <li class="nav-item">
-      <a class="nav-link{% if request.path=='/settings/organization' %} active{% endif %}" href="/settings/organization">Organization</a>
+      <a class="nav-link{% if request.path=='/settings/organization' %} active{% endif %}" href="/settings/organization">{{ _("Organization") }}</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link{% if request.path=='/settings/plan' %} active{% endif %}" href="/settings/plan">Plan</a>
+      <a class="nav-link{% if request.path=='/settings/plan' %} active{% endif %}" href="/settings/plan">{{ _("Plan") }}</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link{% if request.path=='/settings/audit' %} active{% endif %}" href="/settings/audit">Settings Audit</a>
+      <a class="nav-link{% if request.path=='/settings/audit' %} active{% endif %}" href="/settings/audit">{{ _("History") }}</a>
     </li>
     {% endif %}
   </ul>
