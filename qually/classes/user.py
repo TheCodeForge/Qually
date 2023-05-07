@@ -35,6 +35,7 @@ class User(Base, core_mixin):
     profile_upload_region=deferred(Column(String(2)))
     title = Column(String, default="")
     lang = Column(String(2), default="en")
+    tz = Column(String, default="UTC")
 
     ## === RELATIONSHIPS ===
 
