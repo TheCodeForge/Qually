@@ -72,11 +72,31 @@ def post_settings_security_remove_otp():
     return toast("Two-Factor Code Removed")
 
 @app.post("/settings/profile/avatar")
+@logged_in
 def post_settings_profile_avatar():
 
     if request.files.get("profile"):
         g.user.set_profile(request.files["profile"])
     else:
         g.user.del_profile()
-        
+
     return toast_redirect("/settings/profile")
+
+@app.post("/settings/profile")
+def post_settings_profile():
+
+    changed=False
+
+    if request.form.get("title"):
+        
+        if request.form.get("title")==g.user.title:
+            return toast_error("You didn't change anything!")
+
+        g.user.title=request.form.get("title")
+        g.db.add(g.user)
+        changed=True
+
+    if changed:
+        g.db.commit()
+
+    return toast("Settings saved")
