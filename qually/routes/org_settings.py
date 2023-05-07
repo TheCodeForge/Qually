@@ -33,7 +33,7 @@ def post_settings_organization():
 def post_settings_directory_toggle_otp():
     
     if not g.user.organization.requires_otp and not g.user.otp_secret:
-        return toast_error(_("Set two-factor authentication on your own account before enabling this."))
+        return toast_error(_("Enable two-factor authentication on your own account first."))
     
     g.user.organization.requires_otp = not g.user.organization.requires_otp
     g.db.add(g.user.organization)
@@ -61,7 +61,7 @@ def post_settings_directory_toggle_license_uid(uid):
             return toast_error(_("Administrators must have an assigned license."))
 
         if g.time - user.license_assigned_utc < 60*60*24*7:
-            return toast_error(_("There is a {n} day cooldown to unassign licenses").format(n=7))
+            return toast_error(_("There is a {n} day cooldown to unassign licenses.").format(n=7))
 
         msg=f"License removed from {user.name}"
 

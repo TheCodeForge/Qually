@@ -35,7 +35,7 @@ def post_register():
         return toast_error(_("Invalid email address"))
 
     if not re.fullmatch(valid_password_regex, request.form.get("password")):
-        return toast_error(_("Password must be at least 8 characters"))
+        return toast_error(_("Password must be at least {n} characters").format(n=8))
 
     existing=get_account_by_email(email, graceful=True)
     if existing:
@@ -209,10 +209,10 @@ def post_set_otp():
 @logged_in
 def post_set_password():
     if request.form.get("password") != request.form.get("confirm_password"):
-        return toast_error(_("Passwords don't match"))
+        return toast_error(_("Passwords do not match."))
 
     if not re.fullmatch(valid_password_regex, request.form.get("password")):
-        return toast_error(_("Password must be at least 8 characters"))
+        return toast_error(_("Password must be at least {n} characters").format(n=8))
 
     g.user.passhash=generate_password_hash(request.form.get("password"))
     g.user.reset_pw_next_login=False
