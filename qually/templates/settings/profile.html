@@ -1,7 +1,7 @@
 {% extends "settings/core.html" %}
 
 {% block content %}
-<h2 class="h5 mt-3">Profile</h2>
+<h2 class="h5 mt-3">{{_("Profile")}}</h2>
 <div class="settings-section rounded">
 
   <div class="d-lg-flex">
@@ -15,7 +15,7 @@
         <form id="user-avatar-update-form" action="/settings/profile/avatar" method="post" enctype="multipart/form-data">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <label class="btn btn-primary text-capitalize me-2 mb-0">
-            Update
+            {{_("Update")}}
             <input type="file" hidden name="profile" class="toast-form-change-submit" data-form="user-avatar-update-form">
           </label>
         </form>
@@ -35,7 +35,7 @@
   <div class="d-lg-flex border-top">
 
     <div class="title w-lg-25">
-      <label for="form-org-name">Title</label>
+      <label for="form-org-name">{{_("Title")}}</label>
     </div>
 
     <div class="body w-lg-100">
@@ -44,7 +44,7 @@
         <form id="update-title" action="/settings/profile" method="post" class="toasted">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <input class="form-control" data-form="update-title" type="text" name="title" value="{{ g.user.title }}">
-          <a class="btn btn-primary toast-form-submit" data-form="update-title">Save</a>
+          <a class="btn btn-primary toast-form-submit" data-form="update-title">{{_("Save")}}</a>
         </form>
        
         
@@ -53,13 +53,13 @@
   </div>
 </div>
 
-<h2 class="h5 mt-3">Language</h2>
+<h2 class="h5 mt-3">{{_("Language")}}</h2>
 <div class="settings-section rounded">
 
   <div class="d-lg-flex">
 
     <div class="title w-lg-25">
-      <label for="require-2fa">Select your preferred language</label>
+      <label for="require-2fa">{{_("Select your preferred language")}}</label>
     </div>
 
     <div class="body w-lg-100">
