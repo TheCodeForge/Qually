@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-07 15:13-0400\n"
+"POT-Creation-Date: 2023-05-07 18:21-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
 
-#: classes/user.py:188 templates/settings/directory.html:27
+#: classes/user.py:189 templates/settings/directory.html:27
 msgid "Administrator"
 msgstr ""
 
@@ -29,146 +29,154 @@ msgstr ""
 msgid "This page may not be embedded in other webpages."
 msgstr ""
 
-#: routes/login.py:23 routes/login.py:213
+#: routes/login.py:26 routes/login.py:216
 msgid "Passwords do not match."
 msgstr ""
 
-#: routes/login.py:26
+#: routes/login.py:29
 msgid "Your name is required"
 msgstr ""
 
-#: routes/login.py:30
+#: routes/login.py:33
 msgid "Email address is required"
 msgstr ""
 
-#: routes/login.py:33
+#: routes/login.py:36
 msgid "Organization name is required"
 msgstr ""
 
-#: routes/login.py:36 routes/org_settings.py:273
+#: routes/login.py:39 routes/org_settings.py:297
 msgid "Invalid email address"
 msgstr ""
 
-#: routes/login.py:39 routes/login.py:216
+#: routes/login.py:42 routes/login.py:219
 msgid "Password must be at least {n} characters"
 msgstr ""
 
-#: routes/login.py:43 routes/login.py:240 routes/org_settings.py:277
+#: routes/login.py:46 routes/login.py:243 routes/org_settings.py:301
 msgid "That email is already in use."
 msgstr ""
 
-#: routes/login.py:49
+#: routes/login.py:52
 msgid "CloudFlare challenge not completed."
 msgstr ""
 
-#: routes/login.py:59
+#: routes/login.py:62
 msgid "CloudFlare validation failed"
 msgstr ""
 
-#: routes/login.py:108 routes/login.py:114
+#: routes/login.py:111 routes/login.py:117
 msgid "Invalid username or password"
 msgstr ""
 
-#: routes/login.py:111
+#: routes/login.py:114
 msgid "Your account has been disabled."
 msgstr ""
 
-#: routes/login.py:144
+#: routes/login.py:147
 msgid "Invalid two-factor code"
 msgstr ""
 
-#: routes/login.py:198
+#: routes/login.py:201
 msgid "Incorrect password"
 msgstr ""
 
-#: routes/login.py:201
+#: routes/login.py:204
 msgid "Incorrect two-factor code"
 msgstr ""
 
-#: routes/org_settings.py:14 routes/org_settings.py:203
+#: routes/org_settings.py:19 routes/org_settings.py:227
 msgid "You didn't change anything!"
 msgstr ""
 
-#: routes/org_settings.py:50
+#: routes/org_settings.py:36 routes/settings.py:99
+msgid "That language is not currently supported."
+msgstr ""
+
+#: routes/org_settings.py:52 routes/settings.py:107
+msgid "Invalid timezone"
+msgstr ""
+
+#: routes/org_settings.py:74
 msgid "Enable two-factor authentication on your own account first."
 msgstr ""
 
-#: routes/org_settings.py:64 routes/settings.py:101
+#: routes/org_settings.py:88 routes/settings.py:116
 msgid "Settings saved"
 msgstr ""
 
-#: routes/org_settings.py:75
+#: routes/org_settings.py:99
 msgid "Administrators must have an assigned license."
 msgstr ""
 
-#: routes/org_settings.py:78
+#: routes/org_settings.py:102
 msgid "There is a {n} day cooldown to unassign licenses."
 msgstr ""
 
-#: routes/org_settings.py:89
+#: routes/org_settings.py:113
 msgid "You can't assign a license to deactivated users."
 msgstr ""
 
-#: routes/org_settings.py:92
+#: routes/org_settings.py:116
 msgid "Your organization licenses have expired."
 msgstr ""
 
-#: routes/org_settings.py:95 routes/org_settings.py:106
+#: routes/org_settings.py:119 routes/org_settings.py:130
 msgid "Your organization has reached its purchased license count."
 msgstr ""
 
-#: routes/org_settings.py:129
+#: routes/org_settings.py:153
 msgid "Administrator accounts may not be deactivated."
 msgstr ""
 
-#: routes/org_settings.py:134
+#: routes/org_settings.py:158
 msgid "{name} user account deactivated"
 msgstr ""
 
-#: routes/org_settings.py:138
+#: routes/org_settings.py:162
 msgid "{name} user account activated"
 msgstr ""
 
-#: routes/org_settings.py:165
+#: routes/org_settings.py:189
 msgid "You cannot remove your own administrator status."
 msgstr ""
 
-#: routes/org_settings.py:167
+#: routes/org_settings.py:191
 msgid "Administrator status removed from {name}"
 msgstr ""
 
-#: routes/org_settings.py:172
+#: routes/org_settings.py:196
 msgid "Deactivated users cannot be administrators."
 msgstr ""
 
-#: routes/org_settings.py:175
+#: routes/org_settings.py:199
 msgid "Administrators require a full license."
 msgstr ""
 
-#: routes/org_settings.py:177
+#: routes/org_settings.py:201
 msgid "Administrator status granted to {name}"
 msgstr ""
 
-#: routes/org_settings.py:206
+#: routes/org_settings.py:230
 msgid "You can't reduce your organization license count below current usage."
 msgstr ""
 
-#: routes/org_settings.py:209
+#: routes/org_settings.py:233
 msgid ""
 "There is a {n} day cooldown after increasing license count before it may "
 "be decreased."
 msgstr ""
 
-#: routes/org_settings.py:290 routes/org_settings.py:294
+#: routes/org_settings.py:314 routes/org_settings.py:318
 msgid "You've been invited to join {orgname} on {sitename}"
 msgstr ""
 
-#: routes/org_settings.py:308
+#: routes/org_settings.py:332
 msgid "Invitation sent to {email}"
 msgstr ""
 
 #: templates/home.html:4
-msgid "Hello world"
+msgid "Hello world!"
 msgstr ""
 
 #: templates/auth/otp.html:8
@@ -318,13 +326,24 @@ msgid ""
 "authentication."
 msgstr ""
 
-#: templates/settings/organization.html:53
+#: templates/settings/organization.html:53 templates/settings/profile.html:56
+msgid "Localization"
+msgstr ""
+
 #: templates/settings/organization.html:59
 msgid "Default Language"
 msgstr ""
 
 #: templates/settings/organization.html:73
 msgid "Sets the language for new users and emails."
+msgstr ""
+
+#: templates/settings/organization.html:82
+msgid "Default Time Zone"
+msgstr ""
+
+#: templates/settings/organization.html:96
+msgid "Sets the default time zone for new users."
 msgstr ""
 
 #: templates/settings/plan.html:4
@@ -388,12 +407,16 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: templates/settings/profile.html:56
+#: templates/settings/profile.html:62
 msgid "Language"
 msgstr ""
 
-#: templates/settings/profile.html:62
-msgid "Select your preferred language"
+#: templates/settings/profile.html:83
+msgid "Time Zone"
+msgstr ""
+
+#: templates/settings/profile.html:97
+msgid "Sets your time zone"
 msgstr ""
 
 #: templates/settings/security.html:4

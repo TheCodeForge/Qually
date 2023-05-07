@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-07 15:13-0400\n"
+"POT-Creation-Date: 2023-05-07 18:21-0400\n"
 "PO-Revision-Date: 2023-05-07 09:47-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
 
-#: classes/user.py:188 templates/settings/directory.html:27
+#: classes/user.py:189 templates/settings/directory.html:27
 msgid "Administrator"
 msgstr "Administrador"
 
@@ -30,135 +30,143 @@ msgstr "Este enlace ha caducado"
 msgid "This page may not be embedded in other webpages."
 msgstr "Esta página no puede estar incrustada en otras páginas."
 
-#: routes/login.py:23 routes/login.py:213
+#: routes/login.py:26 routes/login.py:216
 msgid "Passwords do not match."
 msgstr "Las contraseñas no coinciden"
 
-#: routes/login.py:26
+#: routes/login.py:29
 msgid "Your name is required"
 msgstr "Se requiere su nombre"
 
-#: routes/login.py:30
+#: routes/login.py:33
 msgid "Email address is required"
 msgstr "Se requiere su dirección de correo electrónico"
 
-#: routes/login.py:33
+#: routes/login.py:36
 msgid "Organization name is required"
 msgstr "Se requiere el nombre de la organización"
 
-#: routes/login.py:36 routes/org_settings.py:273
+#: routes/login.py:39 routes/org_settings.py:297
 msgid "Invalid email address"
 msgstr "Dirección de correo electrónico no válida"
 
-#: routes/login.py:39 routes/login.py:216
+#: routes/login.py:42 routes/login.py:219
 msgid "Password must be at least {n} characters"
 msgstr "La contraseña debe tener al menos {n} caracteres"
 
-#: routes/login.py:43 routes/login.py:240 routes/org_settings.py:277
+#: routes/login.py:46 routes/login.py:243 routes/org_settings.py:301
 msgid "That email is already in use."
 msgstr "Ese correo electrónico ya está en uso"
 
-#: routes/login.py:49
+#: routes/login.py:52
 msgid "CloudFlare challenge not completed."
 msgstr "Reto de CloudFlare no completado"
 
-#: routes/login.py:59
+#: routes/login.py:62
 msgid "CloudFlare validation failed"
 msgstr "La validación de CloudFlare falló"
 
-#: routes/login.py:108 routes/login.py:114
+#: routes/login.py:111 routes/login.py:117
 msgid "Invalid username or password"
 msgstr "Usuario o contraseña invalido"
 
-#: routes/login.py:111
+#: routes/login.py:114
 msgid "Your account has been disabled."
 msgstr "Su cuenta ha sido deshabilitada"
 
-#: routes/login.py:144
+#: routes/login.py:147
 msgid "Invalid two-factor code"
 msgstr "Código de dos factores no válido"
 
-#: routes/login.py:198
+#: routes/login.py:201
 msgid "Incorrect password"
 msgstr "Contraseña incorrecta"
 
-#: routes/login.py:201
+#: routes/login.py:204
 msgid "Incorrect two-factor code"
 msgstr "Código de dos factores incorrecto"
 
-#: routes/org_settings.py:14 routes/org_settings.py:203
+#: routes/org_settings.py:19 routes/org_settings.py:227
 msgid "You didn't change anything!"
 msgstr "¡No cambiaste nada!"
 
-#: routes/org_settings.py:50
+#: routes/org_settings.py:36 routes/settings.py:99
+msgid "That language is not currently supported."
+msgstr "Ese idioma no es compatible actualmente."
+
+#: routes/org_settings.py:52 routes/settings.py:107
+msgid "Invalid timezone"
+msgstr "Zona horaria no válida"
+
+#: routes/org_settings.py:74
 msgid "Enable two-factor authentication on your own account first."
 msgstr "Habilite primero la autenticación de dos factores en su propia cuenta."
 
-#: routes/org_settings.py:64 routes/settings.py:101
+#: routes/org_settings.py:88 routes/settings.py:116
 msgid "Settings saved"
 msgstr "Ajustes guardados correctamente"
 
-#: routes/org_settings.py:75
+#: routes/org_settings.py:99
 msgid "Administrators must have an assigned license."
 msgstr "Los administradores deben tener una licencia asignada."
 
-#: routes/org_settings.py:78
+#: routes/org_settings.py:102
 msgid "There is a {n} day cooldown to unassign licenses."
 msgstr ""
 "Hay un tiempo de reutilización de {n} días para anular la asignación de "
 "licencias."
 
-#: routes/org_settings.py:89
+#: routes/org_settings.py:113
 msgid "You can't assign a license to deactivated users."
 msgstr "No puede asignar una licencia a usuarios desactivados."
 
-#: routes/org_settings.py:92
+#: routes/org_settings.py:116
 msgid "Your organization licenses have expired."
 msgstr "Las licencias de su organización han caducado."
 
-#: routes/org_settings.py:95 routes/org_settings.py:106
+#: routes/org_settings.py:119 routes/org_settings.py:130
 msgid "Your organization has reached its purchased license count."
 msgstr "Su organización ha alcanzado el número de licencias adquiridas."
 
-#: routes/org_settings.py:129
+#: routes/org_settings.py:153
 msgid "Administrator accounts may not be deactivated."
 msgstr "Las cuentas de administrador no se pueden desactivar."
 
-#: routes/org_settings.py:134
+#: routes/org_settings.py:158
 msgid "{name} user account deactivated"
-msgstr ""
+msgstr "{nombre} cuenta de usuario desactivada"
 
-#: routes/org_settings.py:138
+#: routes/org_settings.py:162
 msgid "{name} user account activated"
-msgstr "{name} cuenta de usuario desactivada"
+msgstr "{name} cuenta de usuario activada"
 
-#: routes/org_settings.py:165
+#: routes/org_settings.py:189
 msgid "You cannot remove your own administrator status."
 msgstr "No puede eliminar su propio estado de administrador."
 
-#: routes/org_settings.py:167
+#: routes/org_settings.py:191
 msgid "Administrator status removed from {name}"
 msgstr "Se eliminó el estado de administrador de {name}"
 
-#: routes/org_settings.py:172
+#: routes/org_settings.py:196
 msgid "Deactivated users cannot be administrators."
 msgstr "Los usuarios desactivados no pueden ser administradores."
 
-#: routes/org_settings.py:175
+#: routes/org_settings.py:199
 msgid "Administrators require a full license."
 msgstr "Los administradores requieren una licencia completa."
 
-#: routes/org_settings.py:177
+#: routes/org_settings.py:201
 msgid "Administrator status granted to {name}"
 msgstr "Estado de administrador otorgado a {name}"
 
-#: routes/org_settings.py:206
+#: routes/org_settings.py:230
 msgid "You can't reduce your organization license count below current usage."
 msgstr ""
 "No puede reducir el número de licencias de su organización por debajo del"
 " uso actual."
 
-#: routes/org_settings.py:209
+#: routes/org_settings.py:233
 msgid ""
 "There is a {n} day cooldown after increasing license count before it may "
 "be decreased."
@@ -166,17 +174,17 @@ msgstr ""
 "Hay un tiempo de reutilización de {n} días después de aumentar el número "
 "de licencias antes de que se reduzca."
 
-#: routes/org_settings.py:290 routes/org_settings.py:294
+#: routes/org_settings.py:314 routes/org_settings.py:318
 msgid "You've been invited to join {orgname} on {sitename}"
 msgstr "Has sido invitado a unirte a {orgname} en {sitename}"
 
-#: routes/org_settings.py:308
+#: routes/org_settings.py:332
 msgid "Invitation sent to {email}"
 msgstr "Invitación enviada a {email}"
 
 #: templates/home.html:4
-msgid "Hello world"
-msgstr ""
+msgid "Hello world!"
+msgstr "¡Hola Mundo!"
 
 #: templates/auth/otp.html:8
 msgid "Sign In"
@@ -329,13 +337,27 @@ msgstr ""
 "Si está habilitado, todos los usuarios deberán configurar la "
 "autenticación de dos factores."
 
-#: templates/settings/organization.html:53
+#: templates/settings/organization.html:53 templates/settings/profile.html:56
+#, fuzzy
+msgid "Localization"
+msgstr "Organización"
+
 #: templates/settings/organization.html:59
 msgid "Default Language"
 msgstr "Idioma Predeterminado"
 
 #: templates/settings/organization.html:73
 msgid "Sets the language for new users and emails."
+msgstr "Establece el idioma para nuevos usuarios y correos electrónicos."
+
+#: templates/settings/organization.html:82
+#, fuzzy
+msgid "Default Time Zone"
+msgstr "Idioma Predeterminado"
+
+#: templates/settings/organization.html:96
+#, fuzzy
+msgid "Sets the default time zone for new users."
 msgstr "Establece el idioma para nuevos usuarios y correos electrónicos."
 
 #: templates/settings/plan.html:4
@@ -412,14 +434,18 @@ msgstr "Título"
 msgid "Save"
 msgstr "Ahorrar"
 
-#: templates/settings/profile.html:56
+#: templates/settings/profile.html:62
 #, fuzzy
 msgid "Language"
 msgstr "Idioma Predeterminado"
 
-#: templates/settings/profile.html:62
-msgid "Select your preferred language"
-msgstr "Seleccione su idioma preferido"
+#: templates/settings/profile.html:83
+msgid "Time Zone"
+msgstr "Zona horaria"
+
+#: templates/settings/profile.html:97
+msgid "Sets your time zone"
+msgstr "Establece su zona horaria."
 
 #: templates/settings/security.html:4
 msgid "Sign-in Information"
@@ -473,3 +499,5 @@ msgstr "Deshabilitar la autenticación de dos factores"
 msgid "Enable Two-Factor Authentication"
 msgstr "Habilitar la autenticación de dos factores"
 
+#~ msgid "Select your preferred language"
+#~ msgstr "Seleccione su idioma preferido"

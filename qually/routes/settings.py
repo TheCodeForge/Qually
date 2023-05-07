@@ -96,7 +96,7 @@ def post_settings_profile():
 
     if request.form.get("lang"):
         if request.form.get("lang") not in LANGUAGES.values():
-            return toast_error(_("That language is not currently supported"))
+            return toast_error(_("That language is not currently supported."))
         g.user.lang = request.form.get("lang")
         g.db.add(g.user)
         g.db.commit()
