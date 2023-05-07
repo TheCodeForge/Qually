@@ -1,6 +1,9 @@
 from flask import request, g
 import time
-from flask_babel import format_datetime
+try:
+    from flask_babel import format_datetime
+except ModuleNotFoundError:
+    pass
 import datetime
 
 from qually.helpers.base36 import *

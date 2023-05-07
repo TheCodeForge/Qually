@@ -14,6 +14,8 @@ from qually.classes.mixins import core_mixin
 
 from qually.__main__ import Base, cache, app, debug
 
-from flask_babel import gettext, ngettext
-_  = gettext
-N_ = ngettext
+
+try:
+    from flask_babel import Babel, gettext as _, ngettext as N_
+except ModuleNotFoundError:
+    pass

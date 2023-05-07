@@ -13,7 +13,10 @@ from flask_limiter import Limiter
 
 from flaskext.markdown import Markdown
 
-from flask_babel import Babel, gettext as _, ngettext as N_
+try:
+    from flask_babel import Babel, gettext as _, ngettext as N_
+except ModuleNotFoundError:
+    pass
 
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.exc import *
@@ -163,8 +166,11 @@ def get_locale():
 
     return session.get("lang", "en")
 
-babel = Babel(app, locale_selector=get_locale)
-
+try:
+    babel = Babel(app, locale_selector=get_locale)
+except NameError:
+    pass
+    
 # import and bind all classes, routes, and template filters functions
 from qually.helpers.security import generate_hash
 import qually.classes

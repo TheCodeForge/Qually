@@ -1,5 +1,8 @@
 from qually.helpers.route_imports import *
-from flask_babel import gettext as _, ngettext as N_
+try:
+    from flask_babel import Babel, gettext as _, ngettext as N_
+except ModuleNotFoundError:
+    pass
 
 @app.get("/settings/profile")
 @app.get("/settings/security")
