@@ -74,14 +74,13 @@ function post_reload(url) {
   xhr.withCredentials=true;
 
   xhr.onload = function() {
-    data=JSON.parse(xhr.response);
     $('.toast').toast('dispose')
     if (xhr.status >= 200 && xhr.status < 300) {
       window.location.reload();
     } else if (xhr.status >= 300 && xhr.status < 400 ) {
       window.location.href=data['redirect']
     } else {
-      $('#toast-error .toast-text').text(data['error']);
+      $('#toast-error .toast-text').text("An error occurred");
       $('#toast-error').toast('show')
     }
     callback(xhr);
