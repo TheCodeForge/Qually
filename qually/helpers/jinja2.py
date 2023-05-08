@@ -17,7 +17,7 @@ def app_config(x):
 
 @app.template_filter("csrf_token")
 def logged_out_formkey(t):
-    return generate_hash(f"{t}+{session['session_id']}")
+    return generate_hash(f"{session['session_id']}")
 
 @app.template_filter("full_link")
 def full_link(url):

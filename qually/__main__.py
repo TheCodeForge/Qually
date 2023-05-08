@@ -230,22 +230,12 @@ def before_request():
             abort(403)
 
         if g.user:
-            debug("user")
             if not g.user.validate_csrf_token(submitted_key):
                 abort(403)
         
         else:
-            debug("no user")
-            t=int(request.values.get("time",0))
 
-            debug(f"{t} {session['session_id']}")
-            debug(submitted_key)
-
-            if g.time - t > 3600:
-                debug("form expired")
-                abort(403)
-            if not validate_hash(f"{t}+{session['session_id']}", submitted_key):
-                debug("invalid key")
+            if not validate_hash(f"{session['session_id']}", submitted_key):
                 abort(403)
 
         debug("valid csrf key")

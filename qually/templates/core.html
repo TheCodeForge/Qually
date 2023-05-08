@@ -15,9 +15,11 @@
   <!-- Font Awesome -->
   <link href="/assets/fontawesome/css/all.min.css" rel="stylesheet">
   
-  {% if g.user %}
   <!--Anti-csrf token-->
+  {% if g.user %}
   <link id="csrf-token-element" data-csrf-token="{{ g.user.csrf_token }}">
+  {% else %}
+  <link id="csrf-token-element" data-csrf-token="{{ g.time | csrf_token }}"> 
   {% endif %}
   
 </head>
