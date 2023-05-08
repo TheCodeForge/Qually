@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-07 18:21-0400\n"
+"POT-Creation-Date: 2023-05-07 20:03-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,6 +27,10 @@ msgstr ""
 
 #: helpers/wrappers.py:170
 msgid "This page may not be embedded in other webpages."
+msgstr ""
+
+#: routes/front.py:19 routes/org_settings.py:36 routes/settings.py:99
+msgid "That language is not currently supported."
 msgstr ""
 
 #: routes/login.py:26 routes/login.py:216
@@ -89,10 +93,6 @@ msgstr ""
 msgid "You didn't change anything!"
 msgstr ""
 
-#: routes/org_settings.py:36 routes/settings.py:99
-msgid "That language is not currently supported."
-msgstr ""
-
 #: routes/org_settings.py:52 routes/settings.py:107
 msgid "Invalid timezone"
 msgstr ""
@@ -101,7 +101,7 @@ msgstr ""
 msgid "Enable two-factor authentication on your own account first."
 msgstr ""
 
-#: routes/org_settings.py:88 routes/settings.py:116
+#: routes/org_settings.py:88 routes/settings.py:113
 msgid "Settings saved"
 msgstr ""
 
@@ -175,12 +175,16 @@ msgstr ""
 msgid "Invitation sent to {email}"
 msgstr ""
 
-#: templates/home.html:4
-msgid "Hello world!"
+#: templates/core.html:57
+msgid "Free Trial"
 msgstr ""
 
-#: templates/auth/otp.html:8
+#: templates/auth/otp.html:8 templates/core.html:60
 msgid "Sign In"
+msgstr ""
+
+#: templates/home.html:4
+msgid "Hello world!"
 msgstr ""
 
 #: templates/auth/otp.html:16

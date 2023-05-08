@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-07 18:21-0400\n"
+"POT-Creation-Date: 2023-05-07 20:03-0400\n"
 "PO-Revision-Date: 2023-05-07 09:47-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -29,6 +29,10 @@ msgstr "Este enlace ha caducado"
 #: helpers/wrappers.py:170
 msgid "This page may not be embedded in other webpages."
 msgstr "Esta página no puede estar incrustada en otras páginas."
+
+#: routes/front.py:19 routes/org_settings.py:36 routes/settings.py:99
+msgid "That language is not currently supported."
+msgstr "Ese idioma no es compatible actualmente."
 
 #: routes/login.py:26 routes/login.py:216
 msgid "Passwords do not match."
@@ -90,10 +94,6 @@ msgstr "Código de dos factores incorrecto"
 msgid "You didn't change anything!"
 msgstr "¡No cambiaste nada!"
 
-#: routes/org_settings.py:36 routes/settings.py:99
-msgid "That language is not currently supported."
-msgstr "Ese idioma no es compatible actualmente."
-
 #: routes/org_settings.py:52 routes/settings.py:107
 msgid "Invalid timezone"
 msgstr "Zona horaria no válida"
@@ -102,7 +102,7 @@ msgstr "Zona horaria no válida"
 msgid "Enable two-factor authentication on your own account first."
 msgstr "Habilite primero la autenticación de dos factores en su propia cuenta."
 
-#: routes/org_settings.py:88 routes/settings.py:116
+#: routes/org_settings.py:88 routes/settings.py:113
 msgid "Settings saved"
 msgstr "Ajustes guardados correctamente"
 
@@ -182,13 +182,17 @@ msgstr "Has sido invitado a unirte a {orgname} en {sitename}"
 msgid "Invitation sent to {email}"
 msgstr "Invitación enviada a {email}"
 
+#: templates/core.html:57
+msgid "Free Trial"
+msgstr "Prueba Gratis"
+
+#: templates/auth/otp.html:8 templates/core.html:60
+msgid "Sign In"
+msgstr "Iniciar Sesión"
+
 #: templates/home.html:4
 msgid "Hello world!"
 msgstr "¡Hola Mundo!"
-
-#: templates/auth/otp.html:8
-msgid "Sign In"
-msgstr "Iniciar Sesión"
 
 #: templates/auth/otp.html:16
 msgid "Two-Factor Code"
@@ -497,3 +501,4 @@ msgstr "Habilitar la autenticación de dos factores"
 
 #~ msgid "Select your preferred language"
 #~ msgstr "Seleccione su idioma preferido"
+
