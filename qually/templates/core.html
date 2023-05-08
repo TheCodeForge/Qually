@@ -49,7 +49,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="lang-dropdown">
               {% for l in (0|lang).values() if l != session.get('lang','en') %}
-              <a class="dropdown-item post-toast-reload" href="javascript:void(0)" data-url="/prefs/lang/{{ l }}">{{ l | upper }}</a>
+              <a class="dropdown-item post-toast-reload" href="javascript:void(0)" data-post-url="/prefs/lang/{{ l }}">{{ l | upper }}</a>
               {% endfor %}
             </div>
           </li>
