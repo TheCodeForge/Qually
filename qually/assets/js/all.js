@@ -66,6 +66,31 @@ function post_toast(url, callback=function(xhr){}) {
 
   }
 
+function post_reload(url) {
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  var form = new FormData()
+  form.append("csrf_token", csrf_token());
+  xhr.withCredentials=true;
+
+  xhr.onload = function() {
+    data=JSON.parse(xhr.response);
+    $('.toast').toast('dispose')
+    if (xhr.status >= 200 && xhr.status < 300) {
+      window.location.reload();
+    } else if (xhr.status >= 300 && xhr.status < 400 ) {
+      window.location.href=data['redirect']
+    } else {
+      $('#toast-error .toast-text').text(data['error']);
+      $('#toast-error').toast('show')
+    }
+    callback(xhr);
+  };
+
+  xhr.send(form);
+
+  }
+
 function postformtoast(x, callback=function(data){}){
 
   var form_id
@@ -143,7 +168,7 @@ $(document).on('click', ".post-toast", function(){
 })
 
 $(document).on('click', ".post-toast-reload", function(){
-  post_toast($(this).data('post-url'), callback=function(xhr){window.location.reload()})
+  post_reload($(this).data('post-url'))
 })
 
 
