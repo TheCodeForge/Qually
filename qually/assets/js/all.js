@@ -142,10 +142,14 @@ $(document).on('click', ".post-toast", function(){
   post_toast($(this).data('post-url'))
 })
 
+$(document).on('click', ".post-toast-reload", function(){
+  post_toast($(this).data('post-url'), callback=function(xhr){window.location.reload()})
+})
+
 
 //dark mode
 $(".dark-switch").click(function(){
-  post("/settings/dark_mode", callback=function(){
+  post("/prefs/dark_mode", callback=function(){
     if ($('body').attr("data-bs-theme")=="light") {
       $('body').attr("data-bs-theme", "dark")
     } else {
