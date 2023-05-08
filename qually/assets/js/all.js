@@ -142,7 +142,7 @@ $(document).on('click', ".post-toast", function(){
   post_toast($(this).data('post-url'))
 })
 
-$(document).on('click', ".post-toast-reload", function(){
+$(document).on('click', ".post-reload", function(){
   post_toast($(this).data('post-url'), callback=function(xhr){window.location.reload()})
 })
 
