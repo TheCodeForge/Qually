@@ -1,5 +1,16 @@
 {% extends "core.html" %}
 
-{% block page %}
-<h1 class="text-primary">{{_("Hello world!")}}</h1>
+{% block pagebody %}
+<div class="card m-0 border-0">
+  <div class="card-body bg-light text-dark">
+    <h1 class="card-title text-center fw-bold text-primary">The Evidence Locker</h1>
+    <h2 class="card-subtitle text-primary text-center pb-4">Your free resource for documenting abuse</h2>
+    <p class="text-center">Avoid gaslighting, defeat lies, and prevent evidence theft.</p>
+    <p class="text-center">The Evidence Locker is free, secure, and confidential.</p>
+    <p class="text-center">
+      <a href="/login" class="btn btn-secondary text-white">Log in</a>
+      <a href="/signup" class="btn btn-primary text-white ms-3">Sign up</a>
+    </p>
+  </div>
+</div>
 {% endblock %}
