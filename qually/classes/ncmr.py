@@ -17,7 +17,7 @@ class NCMR(Base):
     ##process data
     item_number=Column(String)
     lot_number=Column(String)
-    qty=Column(Float)
+    quantity=Column(String)
 
 
     __table_args__=(
@@ -36,11 +36,12 @@ class NCMR(Base):
 
     @property
     def status(self):
-        lifecycle = [
-            "Open",
-            "Submitted",
-            "Material Review Board",
-            "Disposition",
-            "Closed"
-            ]
+        lifecycle = {
+            -1: "Terminated",
+            0: "Opened",
+            1: "Submitted",
+            2: "Material Review Board",
+            3: "Disposition",
+            4: "Closed"
+        }
         return lifecycle[self._status]
