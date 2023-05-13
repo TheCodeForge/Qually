@@ -49,10 +49,10 @@
       </tr>
       {% else %}
       <tr>
-        <th>No {{ entry }} assigned</th>
+        <td>No {{ entry }} assigned</td>
+        <td></td>
+        <td></td>
       </tr>
-      <th></th>
-      <th></th>
       {% endfor %}
     </table>
 
@@ -75,15 +75,16 @@
       </tr>
       {% else %}
       <tr>
-        <th>No {{ entry }} owned</th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <td>No {{ entry }} owned</td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
       {% endfor %}
     </table>
   </div>
-{% endfor %}
+  {% endfor %}
+
 </div>
 
 
