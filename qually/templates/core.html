@@ -77,7 +77,7 @@
         {% block leftbar %}
         <div class="sidebar-section">
           <div class="body mb-3">
-            <div class="text-small font-weight-bold text-muted text-uppercase">Tools</div>
+            <div class="text-small fw-bold text-muted text-uppercase">Tools</div>
             <ul class="no-bullets text-muted text-uppercase ps-3">
 
               {% set links=[
@@ -104,8 +104,8 @@
               ]%}
 
               {% for entry in links %}
-              <li class="mb-2">
-                <a href="{{ entry['url'] }}" class="d-flex"><i class="fas fa-fw fa-{{ entry['icon'] }} mt-1"></i><div class="text-small">{{ entry['name'] }}</div></a>
+              <li class="mt-2">
+                <a href="{{ entry['url'] }}" class="d-flex"><i class="fas fa-fw fa-{{ entry['icon'] }}"></i><div class="text-small">{{ entry['name'] }}</div></a>
               </li>
               {% endfor %}
             </ul>
