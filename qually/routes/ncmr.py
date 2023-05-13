@@ -21,9 +21,18 @@ def post_create_ncmr():
     ncmr=NCMR(
         owner_id=g.user.id,
         organization_id=g.user.organization.id,
-        number=g.user.organization.next_ncmr_id
+        number=g.user.organization.next_ncmr_id,
+        created_utc=g.time
         )
 
     g.db.add(ncmr)
-    g.db.commit()
+    g.db.flush()
+
+    log = NCMRLog(
+        ncmr_id=ncmr.id,
+        created_utc=g.time,
+        user_id=g.user.id,
+        key="New Record",
+        value="Created"
+        )
     return toast_redirect(ncmr.permalink)

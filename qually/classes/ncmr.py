@@ -5,6 +5,7 @@ class NCMR(Base):
     __tablename__="ncmr"
 
     id = Column(Integer, primary_key=True)
+    created_utc=Column(Integer)
     organization_id = Column(Integer, ForeignKey("organizations.id"))
     owner_id = Column(Integer, ForeignKey("users.id"))
     number=Column(Integer, default=0, index=True)
@@ -13,6 +14,7 @@ class NCMR(Base):
     ##relationships
     organization=relationship("Organization")
     owner = relationship("User")
+    logs = relationship("NCMRLog")
 
     ##process data
     item_number=Column(String)
@@ -45,3 +47,16 @@ class NCMR(Base):
             4: "Closed"
         }
         return lifecycle[self._status]
+
+class NCMRLog(Base):
+
+    __tablename__="ncmr_audit"
+
+    id = Column(Integer, primary_key=True)
+    ncmr_id=Column(Integer, ForeignKey("ncmr.id"))
+    user_id=Column(Integer, ForeignKey("users.id"))
+    created_utc=Column(Integer)
+    created_ip=Column(String(64))
+
+    key=Column(String)
+    value=Column(String)
