@@ -11,8 +11,8 @@ class NCMR(Base):
     _status = Column(Integer, default=0)
 
     ##relationships
-    organization=relationship(Organization)
-    owner = relationship(User)
+    organization=relationship("Organization")
+    owner = relationship("User")
 
     ##process data
     item_number=Column(String)
