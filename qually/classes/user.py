@@ -103,6 +103,10 @@ class User(Base, core_mixin):
         return validate_hash(f"{session['session_id']}+{self.id}+{self.login_nonce}", token)
 
     @property
+    def has_seat(self):
+        return self.has_license and self.organization.license_expire_utc>g.timestamp
+
+    @property
     def mfa_removal_code(self):
 
         hashstr = f"{self.mfa_secret}+{self.id}+{self.original_username}"
