@@ -83,7 +83,7 @@
               {% set links=[
                 {
                   "name":"Dashboard",
-                  "icon":"home",
+                  "icon":"house",
                   "url": "/"
                 },
                 {
@@ -110,7 +110,7 @@
 
               {% for entry in links %}
               <li class="mt-2">
-                <a href="{{ entry['url'] }}" class="d-flex text-muted fw-bold"><i class="fas fa-fw fa-{{ entry['icon'] }} mt-1"></i><div class="text-small ms-1">{{ entry['name'] }}</div></a>
+                <a href="{{ entry['url'] }}" class="d-flex text-muted fw-bold"><i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg mt-2"></i><div class="text-small ms-1">{{ entry['name'] }}</div></a>
               </li>
               {% endfor %}
             </ul>
