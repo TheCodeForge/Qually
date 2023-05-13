@@ -119,16 +119,18 @@
 
               {% for entry in links %}
               {{ entry | debug }}
-              <li class="mt-3 hanging-indent d-flex">
-                <div>
-                  {% if entry.get('url') %}
-                  <a href="{{ entry['url'] }}" class="text-secondary fw-bold"><i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg "></i><span class="text-small">{{ entry['name'] }}</span></a>
-                  {% else %}
-                  <i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg text-muted"></i><span class="text-small text-muted">{{ entry['name'] }}</span></a>
-                  {% endif %}
-                </div>
-                <div>
-                  <a href="{{ entry['new_url'] }}"><i class="fas fa-plus"></i></a>
+              <li class="mt-3">
+                <div class="d-flex">
+                  <div class="hanging-indent">
+                    {% if entry.get('url') %}
+                    <a href="{{ entry['url'] }}" class="text-secondary fw-bold"><i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg "></i><span class="text-small">{{ entry['name'] }}</span></a>
+                    {% else %}
+                    <i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg text-muted"></i><span class="text-small text-muted">{{ entry['name'] }}</span></a>
+                    {% endif %}
+                  </div>
+                  <div>
+                    <a href="{{ entry['new_url'] }}"><i class="fas fa-plus"></i></a>
+                  </div>
                 </div>
               </li>
               {% endfor %}
