@@ -41,7 +41,7 @@ class Organization(Base, core_mixin):
     #relationships
     _users=relationship("User", lazy="dynamic")
     logs=relationship("OrganizationAuditLog", lazy="dynamic")
-    ncmrs=relationship("NCMR", lazy="dynamic")
+    ncmrs=relationship("NCMR", lazy="dynamic", viewonly=True)
 
     def __init__(self, **kwargs):
 

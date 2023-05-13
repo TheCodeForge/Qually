@@ -10,7 +10,7 @@
 {% set data={
   "ncmr": {
     "name":"Non-Conforming Materials",
-    "owned":g.user.ncmrs.all(),
+    "owned":g.user.organization.ncmrs.filter_by(owner_id=g.user.id).all(),
     "assigned":[]
   },
   "capa": {

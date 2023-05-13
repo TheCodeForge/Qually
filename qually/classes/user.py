@@ -37,9 +37,6 @@ class User(Base, core_mixin):
     lang = Column(String(2), default="en")
     tz = Column(String, default="UTC")
 
-    #content
-    ncmrs=relationship("NCMR", lazy="dynamic", primaryjoin="NCMR.owner_id==User.id")
-
     ## === RELATIONSHIPS ===
 
     organization = relationship("Organization", lazy="joined", innerjoin=True, viewonly=True)
