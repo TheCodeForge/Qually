@@ -14,7 +14,7 @@ class NCMR(Base, core_mixin):
     ##relationships
     organization=relationship("Organization")
     owner = relationship("User")
-    _logs = relationship("NCMRLog", dynamic=True)
+    _logs = relationship("NCMRLog", lazy="dynamic")
 
     ##process data
     item_number=Column(String)
