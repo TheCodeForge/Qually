@@ -78,7 +78,7 @@
         <div class="sidebar-section">
           <div class="body mb-3">
             <div class="text-small fw-bold text-primary text-uppercase">Tools</div>
-            <ul class="no-bullets text-uppercase ps-3">
+            <ul class="text-uppercase ps-3 fa-ul">
 
               {% set links=[
                 {
@@ -110,7 +110,7 @@
 
               {% for entry in links %}
               <li class="mt-2">
-                <a href="{{ entry['url'] }}" class="d-flex text-muted fw-bold"><i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg mt-2"></i><div class="text-small ms-1">{{ entry['name'] }}</div></a>
+                <a href="{{ entry['url'] }}" class="d-flex text-muted fw-bold"><i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg fa-li mt-2"></i><div class="text-small ms-1">{{ entry['name'] }}</div></a>
               </li>
               {% endfor %}
             </ul>
