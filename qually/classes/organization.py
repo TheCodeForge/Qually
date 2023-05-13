@@ -53,6 +53,13 @@ class Organization(Base, core_mixin):
         super().__init__(**kwargs)
 
     @property
+    def next_ncmr_id(self):
+        self.ncmr_counter+=1
+        g.db.add(self)
+        g.db.commit()
+        return self.ncmr_counter
+
+    @property
     def licenses_used(self):
         return self.users.filter_by(has_license=True).count()
     

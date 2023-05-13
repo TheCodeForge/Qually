@@ -1,7 +1,7 @@
 import time
 
 from flask import g, abort, session, request
-from sqlalchemy import Column, Integer, BigInteger, String, Boolean, ForeignKey, Index, UniqueConstraint
+from sqlalchemy import Column, Integer, BigInteger, Float, String, Boolean, ForeignKey, Index, UniqueConstraint
 from sqlalchemy.orm import deferred, relationship
 
 from qually.helpers.base36 import base36encode, base36decode
