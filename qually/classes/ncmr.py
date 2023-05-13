@@ -14,7 +14,7 @@ class NCMR(Base, core_mixin):
     ##relationships
     organization=relationship("Organization")
     owner = relationship("User")
-    _logs = relationship("NCMRLog", lazy="dynamic")
+    logs = relationship("NCMRLog", order_by="NCMRLog.id.desc()")
 
     ##process data
     item_number=Column(String)
@@ -47,10 +47,6 @@ class NCMR(Base, core_mixin):
             4: "Closed"
         }
         return lifecycle[self._status]
-
-    @property
-    def logs(self):
-        return self._logs.order_by(text("ncmr_audit.id desc")).all()
     
 
 class NCMRLog(Base, core_mixin):
