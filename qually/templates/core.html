@@ -128,7 +128,7 @@
                     <i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg text-muted"></i><span class="text-small text-muted">{{ entry['name'] }}</span></a>
                     {% endif %}
                   </div>
-                  {% if entry.get('new_url') %}
+                  {% if entry.get('new_url') and g.user.has_seat %}
                   <div>
                     <a href="{{ entry['new_url'] }}"><i class="fas fa-plus"></i></a>
                   </div>
