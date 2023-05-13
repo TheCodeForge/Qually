@@ -101,7 +101,7 @@ class User(Base, core_mixin):
 
     @property
     def has_seat(self):
-        return self.has_license and self.organization.license_expire_utc>g.timestamp
+        return self.has_license and self.organization.license_expire_utc>g.time
 
     @property
     def mfa_removal_code(self):
