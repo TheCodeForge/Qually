@@ -32,7 +32,7 @@ def post_create_ncmr():
         ncmr_id=ncmr.id,
         created_utc=g.time,
         user_id=g.user.id,
-        key="New Record",
-        value="Created"
+        key="State",
+        value="Open"
         )
     return toast_redirect(ncmr.permalink)
