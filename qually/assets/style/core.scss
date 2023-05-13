@@ -345,3 +345,11 @@ label {
 .btn-primary, .btn-secondary {
   color:white;
 }
+
+ul.no-bullets {
+    list-style-type: none;
+}
+
+.sidebar-left a {
+    text-decoration:none;
+}

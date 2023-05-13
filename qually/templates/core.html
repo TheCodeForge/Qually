@@ -75,6 +75,25 @@
       <!--left sidebar goes here-->
       <div class="col sidebar sidebar-left hide-scrollbar border-right d-none d-md-block pt-3" id="sidebar-left">
         {% block leftbar %}
+        <div class="sidebar-section">
+          <div class="body mb-3">
+            <div class="text-small font-weight-bold text-muted text-uppercase">Tools</div>
+            <ul class="no-bullets text-muted text-uppercase ms-1">
+              <li class="mb-2">
+                <a href="/ncmr" class="d-flex"><i class="fas fa-fw fa-box-open my-auto"></i><div>Non-Conforming Materials</div></a>
+              </li>
+              <li class="mb-2">
+                <a href="/co"><i class="fas fa-fw fa-stamp"></i>Change Orders</a>
+              </li>
+              <li class="mb-2">
+                <a href="/ncmr"><i class="fas fa-fw fa-bug"></i>Deviations</a>
+              </li>
+              <li class="mb-2">
+                <a href="/ncmr"><i class="fas fa-fw fa-arrows-spin"></i>CAPAs</a>
+              </li>
+            </ul>
+          </div>
+        </div>
         {% endblock %}
       </div>
 

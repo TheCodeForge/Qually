@@ -29,6 +29,10 @@ class NCMR(Base):
     @property
     def permalink(self):
         return f"/NCMR-{self.number:0>5}"
+    
+    @property
+    def name(self):
+        return f"NCMR-{self.number:0>5}"
 
     @property
     def status(self):

@@ -46,3 +46,11 @@ def get_account_by_email(email, graceful=False):
             return user
         else:
             return bool(user)
+
+        
+def get_ncmr(number, graceful=False):
+    
+    ncmr = g.user.organization.ncmrs.filter_by(number=int(number)).first()
+    if not graceful:
+        abort(404)
+    return ncmr
