@@ -6,4 +6,44 @@
     <h1 class="h3">{{ ncmr.name }}</h1>
   </div>
 </div>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item active" role="presentation">
+    <a id="tab-record" class="nav-link" href="javascript:void(0)" data-bs-toggle="tab" data-bs-target="#pane-record" role="tab" aria-controls="pane-record" aria-selected="false">{{ ncmr.name }}</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a id="tab-history" class="nav-link" href="javascript:void(0)" data-bs-toggle="tab" data-bs-target="#pane-history" role="tab" aria-controls="pane-history" aria-selected="false">{{_("History")}}</a>
+  </li>
+</ul>
+<div class="tab-content border-start border-bottom border-end border-muted rounded-bottm pt-3" id="myTabContent">
+  <div class="tab-pane fade show p-2" id="pane-record" role="tabpanel" aria-labelledby="tab-record">
+  </div>
+  <div class="tab-pane fade p-2" id="pane-history" role="tabpanel" aria-labelledby="tab-history">
+    <table class="table table-striped mb-5">
+      <thead class="bg-primary text-white">
+        <tr>
+          <th></th>
+          <th>{{ _("User") }}</th>
+          <th>{{ _("Timestamp") }}</th>
+          <th>{{ _("Key") }}</th>
+          <th>{{ _("Value") }}</th>
+        </tr>
+      </thead>
+      {% for entry in ncmr.logs %}
+      <tr>
+        <td>
+          <a href="javascript:void(0)" class="copy-link" data-clipboard-text="{{ entry.permalink_full }}">
+            <i class="fas fa-link text-muted"></i>
+          </a>
+        </td>
+        <td>{{ entry.user | string }}</td>
+        <td>{{ entry.created_datetime }}</td>
+        <td>{{ entry.key }}</td>
+        <td>{{ entry.valuevalue }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
 {% endblock %}

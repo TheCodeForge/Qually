@@ -1,6 +1,6 @@
 from qually.helpers.class_imports import *
 
-class NCMR(Base):
+class NCMR(Base, core_mixin):
 
     __tablename__="ncmr"
 
@@ -48,7 +48,7 @@ class NCMR(Base):
         }
         return lifecycle[self._status]
 
-class NCMRLog(Base):
+class NCMRLog(Base, core_mixin):
 
     __tablename__="ncmr_audit"
 
