@@ -99,3 +99,9 @@ def languages(x):
 #     output=sass.compile(string=output)
 
 #     return output
+
+@app.template_filter("debug")
+def debug(x):
+
+    print(x)
+    return ""
