@@ -128,9 +128,11 @@
                     <i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg text-muted"></i><span class="text-small text-muted">{{ entry['name'] }}</span></a>
                     {% endif %}
                   </div>
+                  {% if entry.get('new_url') %}
                   <div>
                     <a href="{{ entry['new_url'] }}"><i class="fas fa-plus"></i></a>
                   </div>
+                  {% endif %}
                 </div>
               </li>
               {% endfor %}
