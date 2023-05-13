@@ -60,3 +60,5 @@ class NCMRLog(Base, core_mixin):
 
     key=Column(String)
     value=Column(String)
+    
+    user=relationship("User", lazy="joined", innerjoin=True)
