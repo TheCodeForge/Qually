@@ -88,7 +88,7 @@
                 {
                   "name":"Non-Conforming Materials",
                   "icon":"box-open",
-                  "url": "/ncmr"
+                  "url": "/ncmr",
                 },
                 {
                   "name":"Change Orders",
@@ -123,8 +123,19 @@
               ]%}
 
               {% for entry in links %}
-              <li class="mt-2 hanging-indent">
-                <a href="{{ entry['url'] }}" class="text-muted fw-bold"><i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg "></i><span class="text-small">{{ entry['name'] }}</span></a>
+              <li class="mt-2 hanging-indent d-flex">
+                <div>
+                  {% if entry.get('url') %}
+                  <a href="{{ entry['url'] }}" class="text-secondary fw-bold"><i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg "></i><span class="text-small">{{ entry['name'] }}</span></a>
+                  {% else %}
+                  <i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg text-muted"></i><span class="text-small text-muted">{{ entry['name'] }}</span></a>
+                  {% endif %}
+                </div>
+                {% if g.user.has_license and entry.get('new_url') %}
+                <div>
+                  <a href="{{ entry['new_url'] }}"><i class="fas fa-plus"></i></a>
+                </div>
+                {% endif %}
               </li>
               {% endfor %}
             </ul>
