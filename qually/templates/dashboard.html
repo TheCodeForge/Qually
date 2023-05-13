@@ -51,6 +51,8 @@
       <tr>
         <th>No {{ entry }} assigned</th>
       </tr>
+      <th></th>
+      <th></th>
       {% endfor %}
     </table>
 
@@ -74,11 +76,14 @@
       {% else %}
       <tr>
         <th>No {{ entry }} owned</th>
+        <th></th>
+        <th></th>
+        <th></th>
       </tr>
       {% endfor %}
-    </ul>
-    {% endfor %}
-  </table>
+    </table>
+  </div>
+{% endfor %}
 </div>
 
 
