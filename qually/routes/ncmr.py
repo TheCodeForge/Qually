@@ -9,3 +9,8 @@ def get_ncmr_number(number):
     return render_template("ncmr.html", ncmr=ncmr)
 
     
+@app.get("/create_ncmr")
+@has_seat
+def get_create_ncmr():
+
+    return render_template("create_ncmr.html")
