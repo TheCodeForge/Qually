@@ -105,7 +105,7 @@
 
               {% for entry in links %}
               <li class="mb-2">
-                <a href="{{ entry['url'] }}" class="d-flex"><i class="fas fa-fw fa-{{ entry['icon'] }} mt-1"></i><div>{{ entry['name'] }}</div></a>
+                <a href="{{ entry['url'] }}" class="d-flex"><i class="fas fa-fw fa-{{ entry['icon'] }} mt-1"></i><div class="text-small">{{ entry['name'] }}</div></a>
               </li>
               {% endfor %}
             </ul>
