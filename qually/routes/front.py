@@ -3,7 +3,11 @@ from qually.helpers.route_imports import *
 
 @app.get("/")
 def get_home():
-    return render_template("home.html")
+
+    if g.user:
+        return render_template("dashboard.html")
+    else:
+        return render_template("home.html")
 
 @app.post("/prefs/dark_mode")
 def post_settings_dark_mode():
