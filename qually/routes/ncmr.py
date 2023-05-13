@@ -16,6 +16,7 @@ def get_create_ncmr():
 
 @app.post("/ncmr")
 @has_seat
+@org_update_lock
 def post_create_ncmr():
 
     ncmr=NCMR(
