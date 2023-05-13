@@ -39,4 +39,7 @@ def post_create_ncmr():
         key="State",
         value="Open"
         )
+    g.db.add(log)
+    g.db.commit()
+    
     return toast_redirect(ncmr.permalink)
