@@ -8,13 +8,17 @@
 
     <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
 
+    <label for="input-item-number">Item number</label>
+    <input type="text" class="form-control mb-2" id="input-item-number" name="item_number" autocomplete="off" required>
 
+    <label for="input-lot-number">Lot or Batch number</label>
+    <input type="text" class="form-control mb-2" id="input-lot-number" name="lot_number" autocomplete="off" required>
 
-    <label for="2fa_input_password">Password</label>
-    <input type="text" class="form-control mb-2" id="input-item-number" name="item_number" oninput="document.getElementById('enable2faButton').disabled=false" autocomplete="off" required>
+    <label for="input-qty">Quantity</label>
+    <input type="text" class="form-control mb-2" id="input-qty" name="quantity" autocomplete="off" required>
 
   </form>
 
-  <a href="javascript:void(0)" class="btn btn-primary login w-100 mt-3 toast-form-submit" data-form="form-otp">Continue</a>
+  <a href="javascript:void(0)" class="btn btn-primary login w-100 mt-3 toast-form-submit" data-form="form-otp">Create</a>
 </div>
 {% endblock %}
