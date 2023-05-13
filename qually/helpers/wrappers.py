@@ -67,7 +67,7 @@ def has_seat(f):
         if not g.user.has_license:
             abort(401)
 
-        if g.user.organization.license_expire_utc < g.timestamp:
+        if g.user.organization.license_expire_utc < g.time:
             abort(402)
 
         resp = make_response(f(*args, **kwargs))
