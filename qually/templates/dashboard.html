@@ -24,7 +24,7 @@
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     {% for entry in data %}
     <li class="nav-item">
-      <a class="nav-link active" id="tab-{{ entry }}" data-toggle="tab" href="#pane-{{ entry }}" role="tab" aria-controls="pane-{{ entry }}" aria-selected="true">{{ entry }}{% if data[entry]["assigned"] %}<span class="badge">{{ len(data[entry]["assigned"]) }}</span>{% endif %}</a>
+      <a class="nav-link active" id="tab-{{ entry }}" data-toggle="tab" href="#pane-{{ entry }}" role="tab" aria-controls="pane-{{ entry }}" aria-selected="true">{{ data[entry]["name"] }}{% if data[entry]["assigned"] %}<span class="badge">{{ len(data[entry]["assigned"]) }}</span>{% endif %}</a>
     </li>
     {% endfor %}
   </ul>
