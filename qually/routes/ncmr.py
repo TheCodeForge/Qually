@@ -22,7 +22,10 @@ def post_create_ncmr():
         owner_id=g.user.id,
         organization_id=g.user.organization.id,
         number=g.user.organization.next_ncmr_id,
-        created_utc=g.time
+        created_utc=g.time,
+        item_number=request.form.get("item_number"),
+        lot_number=request.form.get("lot_number"),
+        quantity=request.form.get("quantity")
         )
 
     g.db.add(ncmr)
