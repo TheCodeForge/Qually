@@ -24,7 +24,6 @@
     <table class="table table-striped mb-5">
       <thead class="bg-primary text-white">
         <tr>
-          <th></th>
           <th>{{ _("User") }}</th>
           <th>{{ _("Timestamp") }}</th>
           <th>{{ _("Key") }}</th>
@@ -33,11 +32,6 @@
       </thead>
       {% for entry in ncmr.logs %}
       <tr>
-        <td>
-          <a href="javascript:void(0)" class="copy-link" data-clipboard-text="{{ entry.permalink_full }}">
-            <i class="fas fa-link text-muted"></i>
-          </a>
-        </td>
         <td><a href="{{ entry.user.permalink }}">{{ entry.user.name }}</a></td>
         <td>{{ entry.created_datetime }}</td>
         <td>{{ entry.key }}</td>
