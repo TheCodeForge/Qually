@@ -37,6 +37,8 @@
       <li>
         <a href="{{ thing.permalink }}">{{ thing.name }}</a>
       </li>
+    {% else %}
+      <li>No {{ entry }} assigned</li>
     {% endfor %}
     </ul>
 
@@ -46,6 +48,8 @@
       <li>
         <a href="{{ thing.permalink }}">{{ thing.name }}</a>
       </li>
+    {% else %}
+      <li>No {{ entry }} owned</li>
     {% endfor %}
     </ul>
   </div>
