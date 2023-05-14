@@ -5,7 +5,7 @@
       <label class="mt-1">{{ key }}</label>
     </div>
     <div class="body w-lg-100">
-      <p>{{ data[key]['value'] }}</p>
+      <p>{{ thing.getattr(data[key]) }}</p>
     </div>
   </div>
   {% endfor %}
