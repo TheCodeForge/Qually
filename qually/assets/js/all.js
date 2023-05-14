@@ -215,6 +215,9 @@ $('.toggle-target-class').click(function(){
   $('.'+$(this).data('toggle-target')).toggleClass('d-none')
 })
 
-$('.update-text').click(function(){
-  $('#'+$(this).data('copy-to')).text($('#'+$(this).data('copy-from')).value())
-})
+$('.record-value-edit').click(function(){
+  var target = $('#'+$(this).data('value-target'))
+  postformtoast($(this), callback=function(xhr){
+    target.value(JSON.parse(xhr.response)['new'])
+  })
+});
