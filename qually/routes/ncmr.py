@@ -43,7 +43,7 @@ def post_ncmr_number(number):
 
     g.db.commit()
 
-    return toast("Changes saved")
+    return toast("Changes saved", data={key:value})
 
     
 @app.get("/create_ncmr")

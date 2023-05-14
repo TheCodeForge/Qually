@@ -7,5 +7,5 @@ def toast_redirect(target):
 def toast_error(msg, status=409):
     return jsonify({"error": msg}), status
 
-def toast(msg):
-    return jsonify({"message": msg})
+def toast(msg, data={}):
+    return jsonify({"message": msg}.update(data))
