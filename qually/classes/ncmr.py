@@ -53,23 +53,13 @@ class NCMR(Base, core_mixin):
     @property
     def _layout(self):
         return {
-            0:[
-                {
-                "name":T("Item Number"),
-                "value":"item_number",
-                "kind": "text"
-                },
-                {
-                "name":T("Serial or Lot Number"),
-                "value":"lot_number",
-                "kind": "text"
-                },
-                {
-                "name":T("quantity"),
-                "value":"quantity",
-                "kind": "text"
+            0:{
+                "fields": {
+                    T("Item Number"):"item_number",
+                    T("Serial or Lot Number"):"lot_number",
+                    T("Quantity"):"quantity"
                 }
-            ]
+            }
         }
     
     
