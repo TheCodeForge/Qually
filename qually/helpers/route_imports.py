@@ -16,7 +16,7 @@ from qually.helpers.wrappers import logged_in, not_logged_in, has_seat, is_admin
 import qually.helpers.aws as aws
 
 try:
-    from flask_babel import Babel, gettext as _, ngettext as N_
+    from flask_babel import Babel, gettext as T, ngettext as N
 except ModuleNotFoundError:
     pass
 

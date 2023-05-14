@@ -3,10 +3,6 @@ from qually.helpers.route_imports import *
 from qually.helpers.timezones import TIMEZONES
 from qually.helpers.languages import LANGUAGES
 from .login import valid_email_regex
-try:
-    from flask_babel import Babel, gettext as _, ngettext as N_
-except ModuleNotFoundError:
-    pass
 
 @app.post("/settings/organization")
 @is_admin
@@ -16,7 +12,7 @@ def post_settings_organization():
     if request.form.get("org_name"):
 
         if request.form.get("org_name")==g.user.organization.name:
-            return toast_error(_("You didn't change anything!"))
+            return toast_error(T("You didn't change anything!"))
 
         old_name=g.user.organization.name
         g.user.organization.name=txt(request.form.get("org_name"))
@@ -33,7 +29,7 @@ def post_settings_organization():
     if request.form.get("lang"):
 
         if request.form.get("lang") not in LANGUAGES.values():
-            return toast_error(_("That language is not currently supported."))
+            return toast_error(T("That language is not currently supported."))
 
         g.user.organization.lang=request.form.get("lang")
         g.db.add(g.user.organization)
@@ -49,7 +45,7 @@ def post_settings_organization():
     if request.form.get("tz"):
 
         if request.form.get("tz") not in TIMEZONES:
-            return toast_error(_("Invalid timezone"))
+            return toast_error(T("Invalid timezone"))
 
         g.user.organization.tz=request.form.get("tz")
         g.db.add(g.user.organization)
@@ -71,7 +67,7 @@ def post_settings_organization():
 def post_settings_directory_toggle_otp():
     
     if not g.user.organization.requires_otp and not g.user.otp_secret:
-        return toast_error(_("Enable two-factor authentication on your own account first."))
+        return toast_error(T("Enable two-factor authentication on your own account first."))
     
     g.user.organization.requires_otp = not g.user.organization.requires_otp
     g.db.add(g.user.organization)
@@ -85,7 +81,7 @@ def post_settings_directory_toggle_otp():
     g.db.add(log)
     
     g.db.commit()
-    return toast(_("Settings saved"))
+    return toast(T("Settings saved"))
 
 @app.post("/settings/directory/toggle_license/<uid>")
 @is_admin
@@ -96,10 +92,10 @@ def post_settings_directory_toggle_license_uid(uid):
     if user.has_license:
 
         if user.is_org_admin:
-            return toast_error(_("Administrators must have an assigned license."))
+            return toast_error(T("Administrators must have an assigned license."))
 
         if g.time - user.license_assigned_utc < 60*60*24*7:
-            return toast_error(_("There is a {n} day cooldown to unassign licenses.").format(n=7))
+            return toast_error(T("There is a {n} day cooldown to unassign licenses.").format(n=7))
 
         msg=f"License removed from {user.name}"
 
@@ -110,13 +106,13 @@ def post_settings_directory_toggle_license_uid(uid):
     else:
 
         if not user.is_active:
-            return toast_error(_("You can't assign a license to deactivated users."))
+            return toast_error(T("You can't assign a license to deactivated users."))
 
         if g.time > g.user.organization.license_expire_utc:
-            return toast_error(_("Your organization licenses have expired."))
+            return toast_error(T("Your organization licenses have expired."))
 
         if g.user.organization.licenses_used >= g.user.organization.license_count:
-            return toast_error(_("Your organization has reached its purchased license count."))
+            return toast_error(T("Your organization has reached its purchased license count."))
 
         msg=f"License assigned to {user.name}"
 
@@ -127,7 +123,7 @@ def post_settings_directory_toggle_license_uid(uid):
 
         if g.user.organization.licenses_used > g.user.organization.license_count:
             g.db.rollback()
-            return toast_error(_("Your organization has reached its purchased license count."))
+            return toast_error(T("Your organization has reached its purchased license count."))
 
     log=OrganizationAuditLog(
         user_id=g.user.id,
@@ -150,16 +146,16 @@ def post_settings_directory_toggle_enable_uid(uid):
     if user.is_active:
 
         if user.is_org_admin:
-            return toast_error(_("Administrator accounts may not be deactivated."))
+            return toast_error(T("Administrator accounts may not be deactivated."))
 
         # if user.has_license:
         #     return toast_error("Take away their assigned license first")
 
-        msg=_("{name} user account deactivated").format(name=user.name)
+        msg=T("{name} user account deactivated").format(name=user.name)
 
     else:
 
-        msg=_("{name} user account activated").format(name=user.name)
+        msg=T("{name} user account activated").format(name=user.name)
 
     user.is_active = not user.is_active
     #user.has_license = user.is_active and user.has_license
@@ -186,19 +182,19 @@ def post_settings_directory_toggle_admin_uid(uid):
     if user.is_org_admin:
 
         if user.id==g.user.id:
-            return toast_error(_("You cannot remove your own administrator status."))
+            return toast_error(T("You cannot remove your own administrator status."))
 
-        msg=_("Administrator status removed from {name}").format(name=user.name)
+        msg=T("Administrator status removed from {name}").format(name=user.name)
 
     else:
 
         if not user.is_active:
-            return toast_error(_("Deactivated users cannot be administrators."))
+            return toast_error(T("Deactivated users cannot be administrators."))
 
         if not user.has_license:
-            return toast_error(_("Administrators require a full license."))
+            return toast_error(T("Administrators require a full license."))
 
-        msg=_("Administrator status granted to {name}").format(name=user.name)
+        msg=T("Administrator status granted to {name}").format(name=user.name)
 
     user.is_org_admin = not user.is_org_admin
     g.db.add(user)
@@ -224,13 +220,13 @@ def post_settings_plan():
     new_seat_count = int(request.form.get("license_count", 0))
 
     if new_seat_count==g.user.organization.license_count and g.user.organization.license_expire_utc > g.time+60*60*24*365:
-        return toast_error(_("You didn't change anything!"))
+        return toast_error(T("You didn't change anything!"))
         
     if new_seat_count < g.user.organization.licenses_used:
-        return toast_error(_("You can't reduce your organization license count below current usage."))
+        return toast_error(T("You can't reduce your organization license count below current usage."))
 
     if new_seat_count < g.user.organization.license_count and g.time < g.user.organization.licenses_last_increased_utc + 60*60*24*21:
-        return toast_error(_("There is a {n} day cooldown after increasing license count before it may be decreased.").format(n=21))
+        return toast_error(T("There is a {n} day cooldown after increasing license count before it may be decreased.").format(n=21))
         
     #compute remaining seatseconds
     seat_seconds = max(0, g.user.organization.license_count * (g.user.organization.license_expire_utc - g.time))
@@ -294,11 +290,11 @@ def post_settings_directory_invite():
         email=f"{gmail_username}@gmail.com"
         
     if not re.fullmatch(valid_email_regex, email):
-        return toast_error(_("Invalid email address"))
+        return toast_error(T("Invalid email address"))
 
     existing=get_account_by_email(email, graceful=True)
     if existing:
-        return toast_error(_("That email is already in use."))
+        return toast_error(T("That email is already in use."))
 
     data={
         "email":email,
@@ -311,11 +307,11 @@ def post_settings_directory_invite():
     
     send_mail(
         email,
-        subject=_("You've been invited to join {orgname} on {sitename}").format(orgname=g.user.organization.name, sitename=app.config['SITE_NAME']),
+        subject=T("You've been invited to join {orgname} on {sitename}").format(orgname=g.user.organization.name, sitename=app.config['SITE_NAME']),
         html=render_template(
             "mail/invite.html",
             link=link,
-            subject=_("You've been invited to join {orgname} on {sitename}").format(orgname=g.user.organization.name, sitename=app.config['SITE_NAME'])
+            subject=T("You've been invited to join {orgname} on {sitename}").format(orgname=g.user.organization.name, sitename=app.config['SITE_NAME'])
             )
         )
     
@@ -329,6 +325,6 @@ def post_settings_directory_invite():
     g.db.add(log)
     g.db.commit()
     
-    return toast(_("Invitation sent to {email}").format(email=email))
+    return toast(T("Invitation sent to {email}").format(email=email))
         
         
