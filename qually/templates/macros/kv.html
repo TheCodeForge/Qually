@@ -22,7 +22,7 @@
         <input type="text" name="{{ data[key] }}" value="{{ thing.__dict__.get(data[key]) }}">
       </form>
       <a href="javascript:void(0)" class="btn btn-secondary toggle-target-class ms-auto mb-auto" data-toggle-target="vis-toggle-{{ data[key] }}-{{ loop.index0 }}">Cancel</a>
-      <a href="javascript:void(0)" class="btn btn-primary toggle-target-class toast-form-submit ms-2 mb-auto" data-toggle-target="vis-toggle-{{ key }}-{{ loop.index0 }}" data-form="form-update-{{ data[key] }}">Save</a>
+      <a href="javascript:void(0)" class="btn btn-primary toggle-target-class toast-form-submit ms-2 mb-auto" data-toggle-target="vis-toggle-{{ data[key] }}-{{ loop.index0 }}" data-form="form-update-{{ data[key] }}">Save</a>
     </div>
   </div>
   {% endfor %}

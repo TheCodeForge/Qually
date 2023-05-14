@@ -183,6 +183,7 @@ from qually.routes import *
 import qually.helpers.jinja2
 from qually.helpers.get import *
 from qually.helpers.security import generate_hash, validate_hash
+from qually.helpers.posttoast import *
 
 #purge css from cache
 #cache.delete_memoized(qually.routes.main_css)
