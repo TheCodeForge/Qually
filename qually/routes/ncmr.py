@@ -23,7 +23,7 @@ def post_ncmr_number(number):
     for entry in entries:
         if entry['value'] in request.form:
             if entry['kind']=='multi':
-                setattr(ncmr, entry['raw'], reqeust.form[entry['raw']])
+                setattr(ncmr, entry['raw'], request.form[entry['raw']])
                 setattr(ncmr, entry['value'], html(request.form[entry['value']]))
             elif entry['kind']=='dropdown':
                 setattr(ncmr, entry['value'], int(request.form[entry['value']]))
