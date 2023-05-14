@@ -13,7 +13,7 @@
         {% if entry.get('kind')=='multi' %} 
         <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ thing.__dict__.get(entry['value']) | safe }}</div>
         {% elif entry.get('kind')=='dropdown' %}
-        <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(thing.__dict__.get(entry['value']), '') }}</div>
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(thing.__dict__.get(entry['value']), '') }}</p>
         {% else %}
         <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ thing.__dict__.get(entry['value']) }}</p>
         {% endif %}
