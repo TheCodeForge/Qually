@@ -71,12 +71,12 @@ class NCMR(Base, core_mixin):
                 "kind": "text"
                 },
                 {
-                "name":T("quantity"),
+                "name":T("Quantity"),
                 "value":"quantity",
                 "kind": "text"
                 },
                 {
-                "name":T("Description of Nonconformance"),
+                "name":T("Description of Non-Conformance"),
                 "value":"nc_description",
                 "kind": "multi"
                 }
