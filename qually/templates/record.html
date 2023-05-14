@@ -22,11 +22,93 @@
 <div class="tab-content border-start border-bottom border-end border-muted rounded-bottm pt-3" id="myTabContent">
   <div class="tab-pane fade show active p-2" id="pane-record" role="tabpanel" aria-labelledby="tab-record">
     
-    {{ kv.kv(record, 0) }}
+    {% if g.user.has_seat and thing._status <= section %}
+
+    <div>
+      {% for key in thing._layout[section] %}
+      <div class="d-lg-flex">
+        <div class="title w-lg-25">
+          <label class="mt-1">{{ key }}</label>
+        </div>
+        <div class="body w-lg-100 d-flex on-hover vis-toggle-{{ data[key] }}-{{ loop.index0 }}">
+          <div>
+            <p id="display-value-{{ data[key] }}-{{ loop.index0 }}">{{ thing.__dict__.get(data[key]) }}</p>
+          </div>
+          <div class="ms-auto on-hover-show toggle-target-class" data-toggle-target="vis-toggle-{{ data[key] }}-{{ loop.index0 }}">
+            <i class="fas fa-pen fa-fw"></i>
+          </div>
+        </div>
+        <div class="body w-lg-100 d-flex on-hover vis-toggle-{{ data[key] }}-{{ loop.index0 }} d-none">
+          <form id="form-update-{{ data[key] }}-{{ loop.index0 }}" action="{{ thing.permalink }}" method="post" class="toasted">
+            <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+            <input id="input-update-{{ data[key] }}-{{ loop.index0 }}"type="text" name="{{ data[key] }}" value="{{ thing.__dict__.get(data[key]) }}">
+          </form>
+          <a href="javascript:void(0)" class="btn btn-secondary toggle-target-class ms-auto mb-auto" data-toggle-target="vis-toggle-{{ data[key] }}-{{ loop.index0 }}">Cancel</a>
+          <a href="javascript:void(0)" class="btn btn-primary toggle-target-class toast-form-submit ms-2 mb-auto update-text" data-toggle-target="vis-toggle-{{ data[key] }}-{{ loop.index0 }}" data-form="form-update-{{ data[key] }}-{{ loop.index0 }}" data-copy-from="input-update-{{ data[key] }}-{{ loop.index0 }}" data-copy-to="display-value-{{ data[key] }}-{{ loop.index0 }}">Save</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% else %}
+
+    <div>
+      {% for key in data %}
+      <div class="d-lg-flex">
+        <div class="title w-lg-25">
+          <label class="mt-1">{{ key }}</label>
+        </div>
+        <div class="body w-lg-100">
+          <p>{{ thing.__dict__.get(data[key]) }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% endif %}
+
     
   </div>
   <div class="tab-pane fade p-2" id="pane-history" role="tabpanel" aria-labelledby="tab-history">
-    {{ logs.logs(record) }}
+    <table class="table table-striped mb-5">
+      {% if g.user.is_org_admin %}
+      <thead class="bg-primary text-white">
+        <tr>
+          <th>{{ _("User") }}</th>
+          <th>{{ _("Timestamp") }}</th>
+          <th>{{ _("IP Address")}}
+          <th>{{ _("Key") }}</th>
+          <th>{{ _("Value") }}</th>
+        </tr>
+      </thead>
+      {% for entry in thing.logs %}
+      <tr>
+        <td><a href="{{ entry.user.permalink }}">{{ entry.user.name }}</a></td>
+        <td>{{ entry.created_datetime }}</td>
+        <td>{{ entry.created_ip }}</td>
+        <td>{{ entry.key }}</td>
+        <td>{{ entry.value }}</td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <thead class="bg-primary text-white">
+        <tr>
+          <th>{{ _("User") }}</th>
+          <th>{{ _("Timestamp") }}</th>
+          <th>{{ _("Key") }}</th>
+          <th>{{ _("Value") }}</th>
+        </tr>
+      </thead>
+      {% for entry in thing.logs %}
+      <tr>
+        <td><a href="{{ entry.user.permalink }}">{{ entry.user.name }}</a></td>
+        <td>{{ entry.created_datetime }}</td>
+        <td>{{ entry.key }}</td>
+        <td>{{ entry.value }}</td>
+      </tr>
+      {% endfor %}
+      {% endif %}
+    </table>
   </div>
 </div>
 
