@@ -3,7 +3,7 @@ function csrf_token() {
 }
 
 //avoid console errors
-$(document).on('click', 'a[href="javascript:void(0)"]', function(event){event.preventDefault()})
+$('a[href="javascript:void(0)').click(function(event){event.preventDefault()})
 
 function post(url, callback=function(){}, errortext="") {
   var xhr = new XMLHttpRequest();
