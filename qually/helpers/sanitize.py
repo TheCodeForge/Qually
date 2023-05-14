@@ -6,13 +6,10 @@ from urllib.parse import urlparse, ParseResult, urlunparse
 from functools import partial
 from mistletoe import Document
 import re
-from os import environ
 
 from .get import *
 
 from .mistletoe import CustomRenderer
-from .sanitize import sanitize
-# import os.path
 
 _allowed_tags =[
     'a',
