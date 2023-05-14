@@ -55,9 +55,9 @@ class NCMR(Base, core_mixin):
         return {
             0:{
                 "fields": {
-                    _("Item Number"):"item_number",
-                    _("Serial or Lot Number"):"lot_number",
-                    _("Quantity"):"quantity"
+                    T("Item Number"):"item_number",
+                    T("Serial or Lot Number"):"lot_number",
+                    T("Quantity"):"quantity"
                 }
             }
         }
