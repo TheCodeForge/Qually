@@ -27,11 +27,11 @@
   <nav class="navbar navbar-expand-sm bg-body-tertiary fixed-top py-1">
     <div class="container-fluid">
       <a class="navbar-brand text-primary" href="/">{{ 'SITE_NAME' | app_config }}</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler d-print-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarToggler">
-        <ul class="navbar-nav ms-auto my-1 mb-lg-0">
+        <ul class="navbar-nav ms-auto my-1 mb-lg-0 d-print-none">
           
           {% if g.user %}
           <li class="nav-item mx-1">
