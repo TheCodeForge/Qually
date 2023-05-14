@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-07 20:03-0400\n"
+"POT-Creation-Date: 2023-05-14 09:42-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
 
-#: classes/user.py:189 templates/settings/directory.html:27
+#: classes/user.py:193 templates/settings/directory.html:27
 msgid "Administrator"
 msgstr ""
 
@@ -29,162 +29,108 @@ msgstr ""
 msgid "This page may not be embedded in other webpages."
 msgstr ""
 
-#: routes/front.py:19 routes/org_settings.py:36 routes/settings.py:99
-msgid "That language is not currently supported."
-msgstr ""
-
-#: routes/login.py:26 routes/login.py:216
-msgid "Passwords do not match."
-msgstr ""
-
-#: routes/login.py:29
-msgid "Your name is required"
-msgstr ""
-
-#: routes/login.py:33
-msgid "Email address is required"
-msgstr ""
-
-#: routes/login.py:36
-msgid "Organization name is required"
-msgstr ""
-
-#: routes/login.py:39 routes/org_settings.py:297
-msgid "Invalid email address"
-msgstr ""
-
-#: routes/login.py:42 routes/login.py:219
-msgid "Password must be at least {n} characters"
-msgstr ""
-
-#: routes/login.py:46 routes/login.py:243 routes/org_settings.py:301
-msgid "That email is already in use."
-msgstr ""
-
-#: routes/login.py:52
-msgid "CloudFlare challenge not completed."
-msgstr ""
-
-#: routes/login.py:62
-msgid "CloudFlare validation failed"
-msgstr ""
-
-#: routes/login.py:111 routes/login.py:117
-msgid "Invalid username or password"
-msgstr ""
-
-#: routes/login.py:114
-msgid "Your account has been disabled."
-msgstr ""
-
-#: routes/login.py:147
-msgid "Invalid two-factor code"
-msgstr ""
-
-#: routes/login.py:201
-msgid "Incorrect password"
-msgstr ""
-
-#: routes/login.py:204
-msgid "Incorrect two-factor code"
-msgstr ""
-
-#: routes/org_settings.py:19 routes/org_settings.py:227
-msgid "You didn't change anything!"
-msgstr ""
-
-#: routes/org_settings.py:52 routes/settings.py:107
-msgid "Invalid timezone"
-msgstr ""
-
-#: routes/org_settings.py:74
-msgid "Enable two-factor authentication on your own account first."
-msgstr ""
-
-#: routes/org_settings.py:88 routes/settings.py:113
-msgid "Settings saved"
-msgstr ""
-
-#: routes/org_settings.py:99
-msgid "Administrators must have an assigned license."
-msgstr ""
-
-#: routes/org_settings.py:102
-msgid "There is a {n} day cooldown to unassign licenses."
-msgstr ""
-
-#: routes/org_settings.py:113
-msgid "You can't assign a license to deactivated users."
-msgstr ""
-
-#: routes/org_settings.py:116
-msgid "Your organization licenses have expired."
-msgstr ""
-
-#: routes/org_settings.py:119 routes/org_settings.py:130
-msgid "Your organization has reached its purchased license count."
-msgstr ""
-
-#: routes/org_settings.py:153
-msgid "Administrator accounts may not be deactivated."
-msgstr ""
-
-#: routes/org_settings.py:158
-msgid "{name} user account deactivated"
-msgstr ""
-
-#: routes/org_settings.py:162
-msgid "{name} user account activated"
-msgstr ""
-
-#: routes/org_settings.py:189
-msgid "You cannot remove your own administrator status."
-msgstr ""
-
-#: routes/org_settings.py:191
-msgid "Administrator status removed from {name}"
-msgstr ""
-
-#: routes/org_settings.py:196
-msgid "Deactivated users cannot be administrators."
-msgstr ""
-
-#: routes/org_settings.py:199
-msgid "Administrators require a full license."
-msgstr ""
-
-#: routes/org_settings.py:201
-msgid "Administrator status granted to {name}"
-msgstr ""
-
-#: routes/org_settings.py:230
-msgid "You can't reduce your organization license count below current usage."
-msgstr ""
-
-#: routes/org_settings.py:233
-msgid ""
-"There is a {n} day cooldown after increasing license count before it may "
-"be decreased."
-msgstr ""
-
-#: routes/org_settings.py:314 routes/org_settings.py:318
-msgid "You've been invited to join {orgname} on {sitename}"
-msgstr ""
-
-#: routes/org_settings.py:332
-msgid "Invitation sent to {email}"
-msgstr ""
-
-#: templates/core.html:57
+#: templates/core.html:58
 msgid "Free Trial"
 msgstr ""
 
-#: templates/auth/otp.html:8 templates/core.html:60
+#: templates/auth/otp.html:8 templates/core.html:61
 msgid "Sign In"
 msgstr ""
 
-#: templates/home.html:4
-msgid "Hello world!"
+#: templates/core.html:79
+msgid "Tools"
+msgstr ""
+
+#: templates/core.html:84
+msgid "Dashboard"
+msgstr ""
+
+#: templates/core.html:89 templates/dashboard.html:12
+msgid "Non-Conforming Materials"
+msgstr ""
+
+#: templates/core.html:95
+msgid "Change Orders"
+msgstr ""
+
+#: templates/core.html:99 templates/dashboard.html:17
+msgid "Corrective and Preventive Actions"
+msgstr ""
+
+#: templates/core.html:103
+msgid "Deviations"
+msgstr ""
+
+#: templates/core.html:107
+msgid "Training"
+msgstr ""
+
+#: templates/core.html:111
+msgid "Test Protocol"
+msgstr ""
+
+#: templates/core.html:115
+msgid "Test Report"
+msgstr ""
+
+#: templates/dashboard.html:35
+msgid "Assigned"
+msgstr ""
+
+#: templates/dashboard.html:39 templates/dashboard.html:63
+msgid "ID"
+msgstr ""
+
+#: templates/dashboard.html:40 templates/dashboard.html:64
+msgid "Status"
+msgstr ""
+
+#: templates/dashboard.html:41 templates/dashboard.html:66
+msgid "Due Date"
+msgstr ""
+
+#: templates/dashboard.html:59
+msgid "Owned"
+msgstr ""
+
+#: templates/dashboard.html:65
+msgid "Assigned To"
+msgstr ""
+
+#: templates/home.html:7
+msgid "Your data, our processes"
+msgstr ""
+
+#: templates/home.html:8
+msgid "Quality compliance, out of the box"
+msgstr ""
+
+#: templates/home.html:9
+msgid "Get started with a free 5-seat, 30-day trial"
+msgstr ""
+
+#: templates/auth/register.html:44 templates/home.html:11
+msgid "Sign in"
+msgstr ""
+
+#: templates/home.html:12
+msgid "Try for free"
+msgstr ""
+
+#: templates/ncmr.html:19 templates/settings/core.html:30
+msgid "History"
+msgstr ""
+
+#: templates/ncmr.html:26
+msgid "Item Number"
+msgstr ""
+
+#: templates/ncmr.html:27
+msgid "Lot Number"
+msgstr ""
+
+#: templates/ncmr.html:28
+msgid "Quantity"
 msgstr ""
 
 #: templates/auth/otp.html:16
@@ -236,10 +182,6 @@ msgstr ""
 msgid "Already have an account?"
 msgstr ""
 
-#: templates/auth/register.html:44
-msgid "Sign in"
-msgstr ""
-
 #: templates/elements/toasts.html:4
 msgid "Copied link to clipboard"
 msgstr ""
@@ -248,12 +190,20 @@ msgstr ""
 msgid "Unable to copy link"
 msgstr ""
 
-#: templates/settings/audit.html:10
+#: templates/macros/logs.html:5 templates/settings/audit.html:10
 msgid "User"
 msgstr ""
 
-#: templates/settings/audit.html:11
+#: templates/macros/logs.html:6 templates/settings/audit.html:11
 msgid "Timestamp"
+msgstr ""
+
+#: templates/macros/logs.html:7
+msgid "Key"
+msgstr ""
+
+#: templates/macros/logs.html:8
+msgid "Value"
 msgstr ""
 
 #: templates/settings/audit.html:12
@@ -282,10 +232,6 @@ msgstr ""
 
 #: templates/settings/core.html:27
 msgid "Plan"
-msgstr ""
-
-#: templates/settings/core.html:30
-msgid "History"
 msgstr ""
 
 #: templates/settings/directory.html:6

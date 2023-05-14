@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-07 20:03-0400\n"
+"POT-Creation-Date: 2023-05-14 09:42-0400\n"
 "PO-Revision-Date: 2023-05-07 09:47-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
 
-#: classes/user.py:189 templates/settings/directory.html:27
+#: classes/user.py:193 templates/settings/directory.html:27
 msgid "Administrator"
 msgstr "Administrador"
 
@@ -30,169 +30,111 @@ msgstr "Este enlace ha caducado"
 msgid "This page may not be embedded in other webpages."
 msgstr "Esta página no puede estar incrustada en otras páginas."
 
-#: routes/front.py:19 routes/org_settings.py:36 routes/settings.py:99
-msgid "That language is not currently supported."
-msgstr "Ese idioma no es compatible actualmente."
-
-#: routes/login.py:26 routes/login.py:216
-msgid "Passwords do not match."
-msgstr "Las contraseñas no coinciden"
-
-#: routes/login.py:29
-msgid "Your name is required"
-msgstr "Se requiere su nombre"
-
-#: routes/login.py:33
-msgid "Email address is required"
-msgstr "Se requiere su dirección de correo electrónico"
-
-#: routes/login.py:36
-msgid "Organization name is required"
-msgstr "Se requiere el nombre de la organización"
-
-#: routes/login.py:39 routes/org_settings.py:297
-msgid "Invalid email address"
-msgstr "Dirección de correo electrónico no válida"
-
-#: routes/login.py:42 routes/login.py:219
-msgid "Password must be at least {n} characters"
-msgstr "La contraseña debe tener al menos {n} caracteres"
-
-#: routes/login.py:46 routes/login.py:243 routes/org_settings.py:301
-msgid "That email is already in use."
-msgstr "Ese correo electrónico ya está en uso"
-
-#: routes/login.py:52
-msgid "CloudFlare challenge not completed."
-msgstr "Reto de CloudFlare no completado"
-
-#: routes/login.py:62
-msgid "CloudFlare validation failed"
-msgstr "La validación de CloudFlare falló"
-
-#: routes/login.py:111 routes/login.py:117
-msgid "Invalid username or password"
-msgstr "Usuario o contraseña invalido"
-
-#: routes/login.py:114
-msgid "Your account has been disabled."
-msgstr "Su cuenta ha sido deshabilitada"
-
-#: routes/login.py:147
-msgid "Invalid two-factor code"
-msgstr "Código de dos factores no válido"
-
-#: routes/login.py:201
-msgid "Incorrect password"
-msgstr "Contraseña incorrecta"
-
-#: routes/login.py:204
-msgid "Incorrect two-factor code"
-msgstr "Código de dos factores incorrecto"
-
-#: routes/org_settings.py:19 routes/org_settings.py:227
-msgid "You didn't change anything!"
-msgstr "¡No cambiaste nada!"
-
-#: routes/org_settings.py:52 routes/settings.py:107
-msgid "Invalid timezone"
-msgstr "Zona horaria no válida"
-
-#: routes/org_settings.py:74
-msgid "Enable two-factor authentication on your own account first."
-msgstr "Habilite primero la autenticación de dos factores en su propia cuenta."
-
-#: routes/org_settings.py:88 routes/settings.py:113
-msgid "Settings saved"
-msgstr "Ajustes guardados correctamente"
-
-#: routes/org_settings.py:99
-msgid "Administrators must have an assigned license."
-msgstr "Los administradores deben tener una licencia asignada."
-
-#: routes/org_settings.py:102
-msgid "There is a {n} day cooldown to unassign licenses."
-msgstr ""
-"Hay un tiempo de reutilización de {n} días para anular la asignación de "
-"licencias."
-
-#: routes/org_settings.py:113
-msgid "You can't assign a license to deactivated users."
-msgstr "No puede asignar una licencia a usuarios desactivados."
-
-#: routes/org_settings.py:116
-msgid "Your organization licenses have expired."
-msgstr "Las licencias de su organización han caducado."
-
-#: routes/org_settings.py:119 routes/org_settings.py:130
-msgid "Your organization has reached its purchased license count."
-msgstr "Su organización ha alcanzado el número de licencias adquiridas."
-
-#: routes/org_settings.py:153
-msgid "Administrator accounts may not be deactivated."
-msgstr "Las cuentas de administrador no se pueden desactivar."
-
-#: routes/org_settings.py:158
-msgid "{name} user account deactivated"
-msgstr "{nombre} cuenta de usuario desactivada"
-
-#: routes/org_settings.py:162
-msgid "{name} user account activated"
-msgstr "{name} cuenta de usuario activada"
-
-#: routes/org_settings.py:189
-msgid "You cannot remove your own administrator status."
-msgstr "No puede eliminar su propio estado de administrador."
-
-#: routes/org_settings.py:191
-msgid "Administrator status removed from {name}"
-msgstr "Se eliminó el estado de administrador de {name}"
-
-#: routes/org_settings.py:196
-msgid "Deactivated users cannot be administrators."
-msgstr "Los usuarios desactivados no pueden ser administradores."
-
-#: routes/org_settings.py:199
-msgid "Administrators require a full license."
-msgstr "Los administradores requieren una licencia completa."
-
-#: routes/org_settings.py:201
-msgid "Administrator status granted to {name}"
-msgstr "Estado de administrador otorgado a {name}"
-
-#: routes/org_settings.py:230
-msgid "You can't reduce your organization license count below current usage."
-msgstr ""
-"No puede reducir el número de licencias de su organización por debajo del"
-" uso actual."
-
-#: routes/org_settings.py:233
-msgid ""
-"There is a {n} day cooldown after increasing license count before it may "
-"be decreased."
-msgstr ""
-"Hay un tiempo de reutilización de {n} días después de aumentar el número "
-"de licencias antes de que se reduzca."
-
-#: routes/org_settings.py:314 routes/org_settings.py:318
-msgid "You've been invited to join {orgname} on {sitename}"
-msgstr "Has sido invitado a unirte a {orgname} en {sitename}"
-
-#: routes/org_settings.py:332
-msgid "Invitation sent to {email}"
-msgstr "Invitación enviada a {email}"
-
-#: templates/core.html:57
+#: templates/core.html:58
 msgid "Free Trial"
 msgstr "Prueba Gratis"
 
-#: templates/auth/otp.html:8 templates/core.html:60
+#: templates/auth/otp.html:8 templates/core.html:61
 msgid "Sign In"
 msgstr "Iniciar Sesión"
 
-#: templates/home.html:4
-msgid "Hello world!"
-msgstr "¡Hola Mundo!"
+#: templates/core.html:79
+#, fuzzy
+msgid "Tools"
+msgstr "Roles"
+
+#: templates/core.html:84
+msgid "Dashboard"
+msgstr "Salpicadero"
+
+#: templates/core.html:89 templates/dashboard.html:12
+msgid "Non-Conforming Materials"
+msgstr "Materiales no Conformes"
+
+#: templates/core.html:95
+msgid "Change Orders"
+msgstr "Órdenes de cambio"
+
+#: templates/core.html:99 templates/dashboard.html:17
+msgid "Corrective and Preventive Actions"
+msgstr "Acción Preventiva y Correctiva"
+
+#: templates/core.html:103
+msgid "Deviations"
+msgstr "Desviación"
+
+#: templates/core.html:107
+msgid "Training"
+msgstr "Capacitación"
+
+#: templates/core.html:111
+msgid "Test Protocol"
+msgstr "Protocolo de Prueba"
+
+#: templates/core.html:115
+msgid "Test Report"
+msgstr "Informe de Prueba"
+
+#: templates/dashboard.html:35
+msgid "Assigned"
+msgstr "Asignado"
+
+#: templates/dashboard.html:39 templates/dashboard.html:63
+msgid "ID"
+msgstr "Id."
+
+#: templates/dashboard.html:40 templates/dashboard.html:64
+msgid "Status"
+msgstr "Estado"
+
+#: templates/dashboard.html:41 templates/dashboard.html:66
+msgid "Due Date"
+msgstr "Fecha de Vencimiento"
+
+#: templates/dashboard.html:59
+msgid "Owned"
+msgstr "Propiedad"
+
+#: templates/dashboard.html:65
+msgid "Assigned To"
+msgstr "Asignado a"
+
+#: templates/home.html:7
+msgid "Your data, our processes"
+msgstr "Tus datos, nuestros procesos"
+
+#: templates/home.html:8
+msgid "Quality compliance, out of the box"
+msgstr "Cumplimiento de calidad, listo para usar"
+
+#: templates/home.html:9
+msgid "Get started with a free 5-seat, 30-day trial"
+msgstr "Comience con una prueba gratuita de 30 días para 5 usuarios"
+
+#: templates/auth/register.html:44 templates/home.html:11
+msgid "Sign in"
+msgstr "Iniciar sesión"
+
+#: templates/home.html:12
+msgid "Try for free"
+msgstr "Prueba gratis"
+
+#: templates/ncmr.html:19 templates/settings/core.html:30
+msgid "History"
+msgstr "Historia"
+
+#: templates/ncmr.html:26
+#, fuzzy
+msgid "Item Number"
+msgstr "Invitar usuario"
+
+#: templates/ncmr.html:27
+msgid "Lot Number"
+msgstr "Numero de Lote"
+
+#: templates/ncmr.html:28
+msgid "Quantity"
+msgstr "Cantidad"
 
 #: templates/auth/otp.html:16
 msgid "Two-Factor Code"
@@ -245,10 +187,6 @@ msgstr "Registrar"
 msgid "Already have an account?"
 msgstr "¿Ya tiene una cuenta?"
 
-#: templates/auth/register.html:44
-msgid "Sign in"
-msgstr "Iniciar sesión"
-
 #: templates/elements/toasts.html:4
 msgid "Copied link to clipboard"
 msgstr "Enlace copiado al portapapeles"
@@ -257,13 +195,21 @@ msgstr "Enlace copiado al portapapeles"
 msgid "Unable to copy link"
 msgstr "No se puede copiar el enlace"
 
-#: templates/settings/audit.html:10
+#: templates/macros/logs.html:5 templates/settings/audit.html:10
 msgid "User"
 msgstr "Usuario"
 
-#: templates/settings/audit.html:11
+#: templates/macros/logs.html:6 templates/settings/audit.html:11
 msgid "Timestamp"
 msgstr "Marca de tiempo"
+
+#: templates/macros/logs.html:7
+msgid "Key"
+msgstr "Llave"
+
+#: templates/macros/logs.html:8
+msgid "Value"
+msgstr "Valor"
 
 #: templates/settings/audit.html:12
 msgid "Target"
@@ -292,10 +238,6 @@ msgstr "Organización"
 #: templates/settings/core.html:27
 msgid "Plan"
 msgstr "Plan"
-
-#: templates/settings/core.html:30
-msgid "History"
-msgstr "Historia"
 
 #: templates/settings/directory.html:6
 msgid "Add New User"
@@ -501,4 +443,131 @@ msgstr "Habilitar la autenticación de dos factores"
 
 #~ msgid "Select your preferred language"
 #~ msgstr "Seleccione su idioma preferido"
+
+#~ msgid "That language is not currently supported."
+#~ msgstr "Ese idioma no es compatible actualmente."
+
+#~ msgid "Passwords do not match."
+#~ msgstr "Las contraseñas no coinciden"
+
+#~ msgid "Your name is required"
+#~ msgstr "Se requiere su nombre"
+
+#~ msgid "Email address is required"
+#~ msgstr "Se requiere su dirección de correo electrónico"
+
+#~ msgid "Organization name is required"
+#~ msgstr "Se requiere el nombre de la organización"
+
+#~ msgid "Invalid email address"
+#~ msgstr "Dirección de correo electrónico no válida"
+
+#~ msgid "Password must be at least {n} characters"
+#~ msgstr "La contraseña debe tener al menos {n} caracteres"
+
+#~ msgid "That email is already in use."
+#~ msgstr "Ese correo electrónico ya está en uso"
+
+#~ msgid "CloudFlare challenge not completed."
+#~ msgstr "Reto de CloudFlare no completado"
+
+#~ msgid "CloudFlare validation failed"
+#~ msgstr "La validación de CloudFlare falló"
+
+#~ msgid "Invalid username or password"
+#~ msgstr "Usuario o contraseña invalido"
+
+#~ msgid "Your account has been disabled."
+#~ msgstr "Su cuenta ha sido deshabilitada"
+
+#~ msgid "Invalid two-factor code"
+#~ msgstr "Código de dos factores no válido"
+
+#~ msgid "Incorrect password"
+#~ msgstr "Contraseña incorrecta"
+
+#~ msgid "Incorrect two-factor code"
+#~ msgstr "Código de dos factores incorrecto"
+
+#~ msgid "You didn't change anything!"
+#~ msgstr "¡No cambiaste nada!"
+
+#~ msgid "Invalid timezone"
+#~ msgstr "Zona horaria no válida"
+
+#~ msgid "Enable two-factor authentication on your own account first."
+#~ msgstr "Habilite primero la autenticación de dos factores en su propia cuenta."
+
+#~ msgid "Settings saved"
+#~ msgstr "Ajustes guardados correctamente"
+
+#~ msgid "Administrators must have an assigned license."
+#~ msgstr "Los administradores deben tener una licencia asignada."
+
+#~ msgid "There is a {n} day cooldown to unassign licenses."
+#~ msgstr ""
+#~ "Hay un tiempo de reutilización de "
+#~ "{n} días para anular la asignación "
+#~ "de licencias."
+
+#~ msgid "You can't assign a license to deactivated users."
+#~ msgstr "No puede asignar una licencia a usuarios desactivados."
+
+#~ msgid "Your organization licenses have expired."
+#~ msgstr "Las licencias de su organización han caducado."
+
+#~ msgid "Your organization has reached its purchased license count."
+#~ msgstr "Su organización ha alcanzado el número de licencias adquiridas."
+
+#~ msgid "Administrator accounts may not be deactivated."
+#~ msgstr "Las cuentas de administrador no se pueden desactivar."
+
+#~ msgid "{name} user account deactivated"
+#~ msgstr "{nombre} cuenta de usuario desactivada"
+
+#~ msgid "{name} user account activated"
+#~ msgstr "{name} cuenta de usuario activada"
+
+#~ msgid "You cannot remove your own administrator status."
+#~ msgstr "No puede eliminar su propio estado de administrador."
+
+#~ msgid "Administrator status removed from {name}"
+#~ msgstr "Se eliminó el estado de administrador de {name}"
+
+#~ msgid "Deactivated users cannot be administrators."
+#~ msgstr "Los usuarios desactivados no pueden ser administradores."
+
+#~ msgid "Administrators require a full license."
+#~ msgstr "Los administradores requieren una licencia completa."
+
+#~ msgid "Administrator status granted to {name}"
+#~ msgstr "Estado de administrador otorgado a {name}"
+
+#~ msgid "You can't reduce your organization license count below current usage."
+#~ msgstr ""
+#~ "No puede reducir el número de "
+#~ "licencias de su organización por debajo"
+#~ " del uso actual."
+
+#~ msgid ""
+#~ "There is a {n} day cooldown after"
+#~ " increasing license count before it "
+#~ "may be decreased."
+#~ msgstr ""
+#~ "Hay un tiempo de reutilización de "
+#~ "{n} días después de aumentar el "
+#~ "número de licencias antes de que "
+#~ "se reduzca."
+
+#~ msgid "You've been invited to join {orgname} on {sitename}"
+#~ msgstr "Has sido invitado a unirte a {orgname} en {sitename}"
+
+#~ msgid "Invitation sent to {email}"
+#~ msgstr "Invitación enviada a {email}"
+
+#~ msgid "Hello world!"
+#~ msgstr "¡Hola Mundo!"
+
+#~ msgid "CAPAs"
+#~ msgstr "APyC"
 
