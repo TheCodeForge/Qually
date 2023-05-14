@@ -39,7 +39,8 @@ class NCMR(Base, core_mixin):
     
     @property
     def name(self):
-        return _("NCMR-")+f"{self.number:0>5}"
+        with force_locale(g.user.organization.lang)
+            return _("NCMR-")+f"{self.number:0>5}"
 
     @property
     def _lifecycle(self):
