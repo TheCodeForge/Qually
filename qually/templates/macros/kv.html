@@ -1,6 +1,6 @@
 {% macro kv(thing, section) %}
 
-{% if g.user.has_seat and thing._status <= section %}
+{% if g.user.has_seat and thing._status == section %}
 
 <div>
   {% for entry in thing._layout[section] %}
