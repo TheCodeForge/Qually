@@ -118,7 +118,7 @@ class NCMR(Base, core_mixin):
                 "raw": "new_comments_raw"
                 }
             ],
-            3:[
+            2:[
                 {
                 "name":_("Assigned Disposition"),
                 "value":"_disposition_determined",
@@ -132,7 +132,7 @@ class NCMR(Base, core_mixin):
                 "raw": "mrb_comments_raw"
                 }
             ],
-            4:[
+            3:[
                 {
                 "name":_("Executed Disposition"),
                 "value":"_disposition_actual",
