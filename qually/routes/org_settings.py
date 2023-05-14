@@ -19,14 +19,14 @@ def post_settings_organization():
             return toast_error(_("You didn't change anything!"))
 
         old_name=g.user.organization.name
-        g.user.organization.name=request.form.get("org_name")
+        g.user.organization.name=txt(request.form.get("org_name"))
         g.db.add(g.user.organization)
 
         log=OrganizationAuditLog(
             user_id=g.user.id,
             organization_id=g.user.organization_id,
             key="Organization Name",
-            new_value=request.form.get("org_name")
+            new_value=txt(request.form.get("org_name"))
             )
         g.db.add(log)
 
