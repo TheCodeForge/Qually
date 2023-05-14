@@ -18,6 +18,15 @@
 </ul>
 <div class="tab-content border-start border-bottom border-end border-muted rounded-bottm pt-3" id="myTabContent">
   <div class="tab-pane fade show p-2" id="pane-record" role="tabpanel" aria-labelledby="tab-record">
+    
+    {% with data={
+      "Name":ncmr.name,
+      "Item Number":ncmr.item_number,
+      "Lot Number":ncmr.lot_number,
+      "Quantity":ncmr.quantity
+    }%}
+    {% include "elements/kv.html" %}
+    {% endwith %}
     <div>
       {% for prop in ["name", "item_number", "lot_number", "quantity"] %}
       <div class="d-lg-flex">
