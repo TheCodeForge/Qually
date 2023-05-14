@@ -29,8 +29,10 @@
         <input id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="w-100" type="text" name="{{ entry['value'] }}" value="{{ thing.__dict__.get(entry['value']) }}">
         {% endif %}
       </form>
-      <a href="javascript:void(0)" class="btn btn-secondary toggle-target-class ms-auto mb-auto" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">Cancel</a>
-      <a href="javascript:void(0)" class="btn btn-primary toggle-target-class record-value-edit ms-2 mb-auto update-text" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}" data-form="form-update-{{ entry['value'] }}-{{ loop.index0 }}" data-value-target="display-value-{{ entry['value'] }}-{{ loop.index0 }}">Save</a>
+      <div class="ms-auto">
+        <a href="javascript:void(0)" class="btn btn-secondary toggle-target-class mb-auto" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">Cancel</a>
+        <a href="javascript:void(0)" class="btn btn-primary toggle-target-class record-value-edit ms-2 mb-auto update-text" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}" data-form="form-update-{{ entry['value'] }}-{{ loop.index0 }}" data-value-target="display-value-{{ entry['value'] }}-{{ loop.index0 }}">Save</a>
+      </div>
     </div>
   </div>
   {% endfor %}
