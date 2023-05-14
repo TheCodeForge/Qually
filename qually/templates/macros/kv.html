@@ -24,9 +24,15 @@
       <form id="form-update-{{ entry['value'] }}-{{ loop.index0 }}" action="{{ thing.permalink }}" method="post" class="toasted w-100 me-4">
         <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
         {% if entry.get('kind')=='multi' %} 
-        <textarea id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="w-100" name="{{ entry['value'] }}">{{ thing.__dict__.get(entry['raw']) }}</textarea>
+        <textarea id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" name="{{ entry['value'] }}">{{ thing.__dict__.get(entry['raw']) }}</textarea>
+        {% elif entry.get('kind')=='dropdown' %}
+        <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
+          {% for x in entry['values'] %}
+          <option value="{{ x }}" {% if x==thing.__dict__.get(entry['value']) %}selected{% endif %}>{{ entry['values'][x] }}</option>
+          {% endfor %}
+        </select>
         {% else %}
-        <input id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="w-100" type="text" name="{{ entry['value'] }}" value="{{ thing.__dict__.get(entry['value']) }}">
+        <input id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" type="text" name="{{ entry['value'] }}" value="{{ thing.__dict__.get(entry['value']) }}">
         {% endif %}
       </form>
       <a href="javascript:void(0)" class="btn btn-secondary toggle-target-class ms-auto mb-auto" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">Cancel</a>
