@@ -23,7 +23,7 @@ class NCMR(Base, core_mixin):
     lot_number=Column(String, default="")
     quantity=Column(String, default="")
     nc_description=Column(String, default="")
-    nc_description_raw=Column(String), default=""
+    nc_description_raw=Column(String, default="")
     new_comments=Column(String, default="")
     new_comments_raw =Column(String, default="")
 
