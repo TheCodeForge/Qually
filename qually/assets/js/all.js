@@ -218,6 +218,6 @@ $('.toggle-target-class').click(function(){
 $('.record-value-edit').click(function(){
   var target = $('#'+$(this).data('value-target'))
   postformtoast($(this), callback=function(xhr){
-    target.val(JSON.parse(xhr.response)['new'])
+    target.html(JSON.parse(xhr.response)['new'])
   })
 });
