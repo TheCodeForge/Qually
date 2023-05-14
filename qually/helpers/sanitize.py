@@ -125,9 +125,9 @@ def txt(raw_text, kind="plain"):
             text = renderer.render(Document(text))
 
     #Part 3: Bleach; this also linkifies!
-    if kind==links:
+    if kind=="links":
         text=_clean_links_only.clean(text)
-    elif kind=="plain"
+    elif kind=="plain":
         text=_clean_no_tags.clean(text)
     else:
         text=_clean_w_tags.clean(text)
