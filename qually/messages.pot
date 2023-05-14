@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-14 17:34-0400\n"
+"POT-Creation-Date: 2023-05-14 17:44-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,6 +71,156 @@ msgstr ""
 
 #: helpers/wrappers.py:170
 msgid "This page may not be embedded in other webpages."
+msgstr ""
+
+#: routes/front.py:24 routes/org_settings.py:34 routes/settings.py:96
+msgid "That language is not currently supported."
+msgstr ""
+
+#: routes/login.py:24 routes/login.py:214
+msgid "Passwords do not match."
+msgstr ""
+
+#: routes/login.py:27
+msgid "Your name is required"
+msgstr ""
+
+#: routes/login.py:31
+msgid "Email address is required"
+msgstr ""
+
+#: routes/login.py:34
+msgid "Organization name is required"
+msgstr ""
+
+#: routes/login.py:37 routes/org_settings.py:295
+msgid "Invalid email address"
+msgstr ""
+
+#: routes/login.py:40 routes/login.py:217
+msgid "Password must be at least {n} characters"
+msgstr ""
+
+#: routes/login.py:44 routes/login.py:241 routes/org_settings.py:299
+msgid "That email is already in use."
+msgstr ""
+
+#: routes/login.py:50
+msgid "CloudFlare challenge not completed."
+msgstr ""
+
+#: routes/login.py:60
+msgid "CloudFlare validation failed"
+msgstr ""
+
+#: routes/login.py:109 routes/login.py:115
+msgid "Invalid username or password"
+msgstr ""
+
+#: routes/login.py:112
+msgid "Your account has been disabled."
+msgstr ""
+
+#: routes/login.py:145
+msgid "Invalid two-factor code"
+msgstr ""
+
+#: routes/login.py:199
+msgid "Incorrect password"
+msgstr ""
+
+#: routes/login.py:202
+msgid "Incorrect two-factor code"
+msgstr ""
+
+#: routes/ncmr.py:53
+msgid "Changes saved"
+msgstr ""
+
+#: routes/org_settings.py:17 routes/org_settings.py:225
+msgid "You didn't change anything!"
+msgstr ""
+
+#: routes/org_settings.py:50 routes/settings.py:104
+msgid "Invalid timezone"
+msgstr ""
+
+#: routes/org_settings.py:72
+msgid "Enable two-factor authentication on your own account first."
+msgstr ""
+
+#: routes/org_settings.py:86 routes/settings.py:110
+msgid "Settings saved"
+msgstr ""
+
+#: routes/org_settings.py:97
+msgid "Administrators must have an assigned license."
+msgstr ""
+
+#: routes/org_settings.py:100
+msgid "There is a {n} day cooldown to unassign licenses."
+msgstr ""
+
+#: routes/org_settings.py:111
+msgid "You can't assign a license to deactivated users."
+msgstr ""
+
+#: routes/org_settings.py:114
+msgid "Your organization licenses have expired."
+msgstr ""
+
+#: routes/org_settings.py:117 routes/org_settings.py:128
+msgid "Your organization has reached its purchased license count."
+msgstr ""
+
+#: routes/org_settings.py:151
+msgid "Administrator accounts may not be deactivated."
+msgstr ""
+
+#: routes/org_settings.py:156
+msgid "{name} user account deactivated"
+msgstr ""
+
+#: routes/org_settings.py:160
+msgid "{name} user account activated"
+msgstr ""
+
+#: routes/org_settings.py:187
+msgid "You cannot remove your own administrator status."
+msgstr ""
+
+#: routes/org_settings.py:189
+msgid "Administrator status removed from {name}"
+msgstr ""
+
+#: routes/org_settings.py:194
+msgid "Deactivated users cannot be administrators."
+msgstr ""
+
+#: routes/org_settings.py:197
+msgid "Administrators require a full license."
+msgstr ""
+
+#: routes/org_settings.py:199
+msgid "Administrator status granted to {name}"
+msgstr ""
+
+#: routes/org_settings.py:228
+msgid "You can't reduce your organization license count below current usage."
+msgstr ""
+
+#: routes/org_settings.py:231
+msgid ""
+"There is a {n} day cooldown after increasing license count before it may "
+"be decreased."
+msgstr ""
+
+#: routes/org_settings.py:312 routes/org_settings.py:316
+msgid "You've been invited to join {orgname} on {sitename}"
+msgstr ""
+
+#: routes/org_settings.py:330
+msgid "Invitation sent to {email}"
 msgstr ""
 
 #: templates/core.html:76
