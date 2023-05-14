@@ -33,7 +33,7 @@
     <td><a href="{{ entry.user.permalink }}">{{ entry.user.name }}</a></td>
     <td>{{ entry.created_datetime }}</td>
     <td>{{ entry.key }}</td>
-    <td>{{ entry.value }}</td>
+    <td>{{ entry.value | safe }}</td>
   </tr>
   {% endfor %}
   {% endif %}
