@@ -1,6 +1,6 @@
 {% macro kv(thing, data, last_editable_status) %}
 
-{% if thing._status <= last_editable_status %}
+{% if thing._status > last_editable_status %}
 
 <div>
   {% for key in data %}
