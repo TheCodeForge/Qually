@@ -27,14 +27,17 @@ def post_ncmr_number(number):
                 setattr(ncmr, entry['value'], html(request.form[entry['value']]))
                 key=entry['value']
                 value=txt(request.form[entry['value']])
+                response=getattr(ncmr, entry['value'])
             elif entry['kind']=='dropdown':
                 setattr(ncmr, entry['value'], int(request.form[entry['value']]))
                 key=entry['value']
                 value=entry['values'].get(int(request.form[entry['value']]))
+                response=value
             else:
                 setattr(ncmr, entry['value'], txt(request.form[entry['value']]))
                 key=entry['value']
                 value=getattr(ncmr, entry['value'])
+                response=value
 
             break
     else:
@@ -54,7 +57,7 @@ def post_ncmr_number(number):
 
     g.db.commit()
 
-    return toast(_("Changes saved"), data={"new":value})
+    return toast(_("Changes saved"), data={"new":response})
 
     
 @app.get("/create_ncmr")
