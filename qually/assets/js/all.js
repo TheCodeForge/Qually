@@ -214,3 +214,7 @@ $("form.toasted input").keypress(function(e){
 $('.toggle-target-class').click(function(){
   $('.'+$(this).data('toggle-target')).toggleClass('d-none')
 })
+
+$('.update-text').click(function(){
+  $('#'+$(this).data('copy-to')).text($('#'+$(this).data('copy-from')).value())
+})
