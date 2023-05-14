@@ -52,7 +52,7 @@ msgstr "Terminado"
 
 #: classes/ncmr.py:75
 msgid "Scrap"
-msgstr "desechar"
+msgstr "Desechar"
 
 #: classes/ncmr.py:76
 msgid "Return to Supplier"
