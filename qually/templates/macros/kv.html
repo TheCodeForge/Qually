@@ -8,7 +8,7 @@
     <div class="title w-lg-25">
       <label class="mt-1">{{ entry['name'] }}</label>
     </div>
-    <div class="body w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
+    <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
         {% if entry.get('kind')=='multi' %} 
         <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ thing.__dict__.get(entry['value']) | safe }}</div>
@@ -20,7 +20,7 @@
         <i class="fas fa-pen fa-fw"></i>
       </div>
     </div>
-    <div class="body w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} d-none">
+    <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} d-none">
       <form id="form-update-{{ entry['value'] }}-{{ loop.index0 }}" action="{{ thing.permalink }}" method="post" class="toasted w-100 me-4">
         <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
         {% if entry.get('kind')=='multi' %} 
