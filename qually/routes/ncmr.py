@@ -30,7 +30,7 @@ def post_ncmr_number(number):
             elif entry['kind']=='dropdown':
                 setattr(ncmr, entry['value'], int(request.form[entry['value']]))
                 key=entry['value']
-                value=getattr(ncmr, entry['values'].get(int(request.form[entry['value']])))
+                value=entry['values'].get(int(request.form[entry['value']]))
             else:
                 setattr(ncmr, entry['value'], txt(request.form[entry['value']]))
                 key=entry['value']
