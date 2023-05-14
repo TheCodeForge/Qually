@@ -1,3 +1,6 @@
+{% macro kv(thing, data, last_editable_status) %}
+
+{% if thing._status <= last_editable_status %}
 <div>
   {% for key in data %}
   <div class="d-lg-flex">
@@ -10,3 +13,25 @@
   </div>
   {% endfor %}
 </div>
+
+{% else %}
+
+<div>
+  {% for key in data %}
+  <div class="d-lg-flex">
+    <div class="title w-lg-25">
+      <label class="mt-1">{{ key }}</label>
+    </div>
+    <div class="body w-lg-100 d-flex">
+      <div>
+        <p>{{ thing.__dict__.get(data[key]) }}</p>
+      </div>
+      <div class="ms-auto">
+        <i class="fas fa-pen fa-fw"></i>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endmacro %}
