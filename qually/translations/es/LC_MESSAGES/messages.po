@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-14 09:55-0400\n"
+"POT-Creation-Date: 2023-05-14 17:14-0400\n"
 "PO-Revision-Date: 2023-05-07 09:47-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -30,47 +30,48 @@ msgstr "Este enlace ha caducado"
 msgid "This page may not be embedded in other webpages."
 msgstr "Esta página no puede estar incrustada en otras páginas."
 
-#: templates/core.html:58
+#: templates/core.html:76
 msgid "Free Trial"
 msgstr "Prueba Gratis"
 
-#: templates/auth/otp.html:8 templates/core.html:61
+#: templates/auth/otp.html:8 templates/core.html:79
 msgid "Sign In"
 msgstr "Iniciar Sesión"
 
-#: templates/core.html:79
+#: templates/core.html:97
 msgid "Tools"
 msgstr "Instrumentos"
 
-#: templates/core.html:84
+#: templates/core.html:102 templates/dashboard.html:6
+#: templates/dashboard.html:7
 msgid "Dashboard"
 msgstr "Salpicadero"
 
-#: templates/core.html:89
+#: templates/core.html:107
 msgid "NCMRs"
 msgstr "Informes de Material no Conforme"
 
-#: templates/core.html:95
+#: templates/core.html:113
 msgid "Change Orders"
 msgstr "Órdenes de cambio"
 
-#: templates/core.html:99
+#: templates/core.html:117
 msgid "CAPAs"
 msgstr "Acciones Correctivas y Preventivas"
 
-#: templates/core.html:103
+#: templates/core.html:121
 msgid "Deviations"
 msgstr "Desviación"
 
-#: templates/core.html:107
+#: templates/core.html:125
 msgid "Training"
 msgstr "Capacitación"
 
-#: templates/core.html:111
+#: templates/core.html:129
 msgid "Test Protocol"
 msgstr "Protocolo de Prueba"
 
-#: templates/core.html:115
+#: templates/core.html:133
 msgid "Test Report"
 msgstr "Informe de Prueba"
 
@@ -87,14 +88,17 @@ msgid "Assigned"
 msgstr "Asignado"
 
 #: templates/dashboard.html:39 templates/dashboard.html:63
+#: templates/ncmrs.html:14
 msgid "ID"
 msgstr "Id."
 
 #: templates/dashboard.html:40 templates/dashboard.html:64
+#: templates/ncmrs.html:15
 msgid "Status"
 msgstr "Estado"
 
 #: templates/dashboard.html:41 templates/dashboard.html:66
+#: templates/ncmrs.html:17
 msgid "Due Date"
 msgstr "Fecha de Vencimiento"
 
@@ -102,7 +106,7 @@ msgstr "Fecha de Vencimiento"
 msgid "Owned"
 msgstr "Propiedad"
 
-#: templates/dashboard.html:65
+#: templates/dashboard.html:65 templates/ncmrs.html:16
 msgid "Assigned To"
 msgstr "Asignado a"
 
@@ -126,21 +130,14 @@ msgstr "Iniciar sesión"
 msgid "Try for free"
 msgstr "Prueba gratis"
 
-#: templates/ncmr.html:19 templates/settings/core.html:30
+#: templates/ncmrs.html:6 templates/ncmrs.html:7
+#, fuzzy
+msgid "Non-Conforming Material Reports"
+msgstr "Materiales no Conformes"
+
+#: templates/record.html:19 templates/settings/core.html:30
 msgid "History"
 msgstr "Historia"
-
-#: templates/create/ncmr.html:11 templates/ncmr.html:26
-msgid "Item Number"
-msgstr "Número de Artículo"
-
-#: templates/ncmr.html:27
-msgid "Lot Number"
-msgstr "Numero de Lote"
-
-#: templates/create/ncmr.html:17 templates/ncmr.html:28
-msgid "Quantity"
-msgstr "Cantidad"
 
 #: templates/auth/otp.html:16
 msgid "Two-Factor Code"
@@ -197,9 +194,17 @@ msgstr "¿Ya tiene una cuenta?"
 msgid "Create NCMR"
 msgstr "Crear Informe de Material no Conforme"
 
+#: templates/create/ncmr.html:11
+msgid "Item Number"
+msgstr "Número de Artículo"
+
 #: templates/create/ncmr.html:14
 msgid "Serial or Lot Number"
 msgstr "Número de serie o lote"
+
+#: templates/create/ncmr.html:17
+msgid "Quantity"
+msgstr "Cantidad"
 
 #: templates/create/ncmr.html:22
 msgid "Create"
@@ -213,19 +218,26 @@ msgstr "Enlace copiado al portapapeles"
 msgid "Unable to copy link"
 msgstr "No se puede copiar el enlace"
 
-#: templates/macros/logs.html:5 templates/settings/audit.html:10
+#: templates/macros/logs.html:6 templates/macros/logs.html:25
+#: templates/settings/audit.html:10
 msgid "User"
 msgstr "Usuario"
 
-#: templates/macros/logs.html:6 templates/settings/audit.html:11
+#: templates/macros/logs.html:7 templates/macros/logs.html:26
+#: templates/settings/audit.html:11
 msgid "Timestamp"
 msgstr "Marca de tiempo"
 
-#: templates/macros/logs.html:7
+#: templates/macros/logs.html:8
+#, fuzzy
+msgid "IP Address"
+msgstr "Correo electrónico"
+
+#: templates/macros/logs.html:9 templates/macros/logs.html:27
 msgid "Key"
 msgstr "Llave"
 
-#: templates/macros/logs.html:8
+#: templates/macros/logs.html:10 templates/macros/logs.html:28
 msgid "Value"
 msgstr "Valor"
 
@@ -588,4 +600,7 @@ msgstr "Habilitar la autenticación de dos factores"
 
 #~ msgid "Item number"
 #~ msgstr "Número de Artículo"
+
+#~ msgid "Lot Number"
+#~ msgstr "Numero de Lote"
 

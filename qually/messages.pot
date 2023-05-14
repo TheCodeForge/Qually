@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-14 09:55-0400\n"
+"POT-Creation-Date: 2023-05-14 17:14-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,47 +29,48 @@ msgstr ""
 msgid "This page may not be embedded in other webpages."
 msgstr ""
 
-#: templates/core.html:58
+#: templates/core.html:76
 msgid "Free Trial"
 msgstr ""
 
-#: templates/auth/otp.html:8 templates/core.html:61
+#: templates/auth/otp.html:8 templates/core.html:79
 msgid "Sign In"
 msgstr ""
 
-#: templates/core.html:79
+#: templates/core.html:97
 msgid "Tools"
 msgstr ""
 
-#: templates/core.html:84
+#: templates/core.html:102 templates/dashboard.html:6
+#: templates/dashboard.html:7
 msgid "Dashboard"
 msgstr ""
 
-#: templates/core.html:89
+#: templates/core.html:107
 msgid "NCMRs"
 msgstr ""
 
-#: templates/core.html:95
+#: templates/core.html:113
 msgid "Change Orders"
 msgstr ""
 
-#: templates/core.html:99
+#: templates/core.html:117
 msgid "CAPAs"
 msgstr ""
 
-#: templates/core.html:103
+#: templates/core.html:121
 msgid "Deviations"
 msgstr ""
 
-#: templates/core.html:107
+#: templates/core.html:125
 msgid "Training"
 msgstr ""
 
-#: templates/core.html:111
+#: templates/core.html:129
 msgid "Test Protocol"
 msgstr ""
 
-#: templates/core.html:115
+#: templates/core.html:133
 msgid "Test Report"
 msgstr ""
 
@@ -86,14 +87,17 @@ msgid "Assigned"
 msgstr ""
 
 #: templates/dashboard.html:39 templates/dashboard.html:63
+#: templates/ncmrs.html:14
 msgid "ID"
 msgstr ""
 
 #: templates/dashboard.html:40 templates/dashboard.html:64
+#: templates/ncmrs.html:15
 msgid "Status"
 msgstr ""
 
 #: templates/dashboard.html:41 templates/dashboard.html:66
+#: templates/ncmrs.html:17
 msgid "Due Date"
 msgstr ""
 
@@ -101,7 +105,7 @@ msgstr ""
 msgid "Owned"
 msgstr ""
 
-#: templates/dashboard.html:65
+#: templates/dashboard.html:65 templates/ncmrs.html:16
 msgid "Assigned To"
 msgstr ""
 
@@ -125,20 +129,12 @@ msgstr ""
 msgid "Try for free"
 msgstr ""
 
-#: templates/ncmr.html:19 templates/settings/core.html:30
+#: templates/ncmrs.html:6 templates/ncmrs.html:7
+msgid "Non-Conforming Material Reports"
+msgstr ""
+
+#: templates/record.html:19 templates/settings/core.html:30
 msgid "History"
-msgstr ""
-
-#: templates/create/ncmr.html:11 templates/ncmr.html:26
-msgid "Item Number"
-msgstr ""
-
-#: templates/ncmr.html:27
-msgid "Lot Number"
-msgstr ""
-
-#: templates/create/ncmr.html:17 templates/ncmr.html:28
-msgid "Quantity"
 msgstr ""
 
 #: templates/auth/otp.html:16
@@ -194,8 +190,16 @@ msgstr ""
 msgid "Create NCMR"
 msgstr ""
 
+#: templates/create/ncmr.html:11
+msgid "Item Number"
+msgstr ""
+
 #: templates/create/ncmr.html:14
 msgid "Serial or Lot Number"
+msgstr ""
+
+#: templates/create/ncmr.html:17
+msgid "Quantity"
 msgstr ""
 
 #: templates/create/ncmr.html:22
@@ -210,19 +214,25 @@ msgstr ""
 msgid "Unable to copy link"
 msgstr ""
 
-#: templates/macros/logs.html:5 templates/settings/audit.html:10
+#: templates/macros/logs.html:6 templates/macros/logs.html:25
+#: templates/settings/audit.html:10
 msgid "User"
 msgstr ""
 
-#: templates/macros/logs.html:6 templates/settings/audit.html:11
+#: templates/macros/logs.html:7 templates/macros/logs.html:26
+#: templates/settings/audit.html:11
 msgid "Timestamp"
 msgstr ""
 
-#: templates/macros/logs.html:7
+#: templates/macros/logs.html:8
+msgid "IP Address"
+msgstr ""
+
+#: templates/macros/logs.html:9 templates/macros/logs.html:27
 msgid "Key"
 msgstr ""
 
-#: templates/macros/logs.html:8
+#: templates/macros/logs.html:10 templates/macros/logs.html:28
 msgid "Value"
 msgstr ""
 

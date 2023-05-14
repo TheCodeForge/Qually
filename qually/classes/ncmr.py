@@ -38,7 +38,7 @@ class NCMR(Base, core_mixin):
     
     @property
     def name(self):
-        return f"NCMR-{self.number:0>5}"
+        return T('NCMR-')+f"{self.number:0>5}"
 
     @property
     def _lifecycle(self):
