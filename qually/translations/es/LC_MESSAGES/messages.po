@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-14 19:27-0400\n"
+"POT-Creation-Date: 2023-05-14 19:36-0400\n"
 "PO-Revision-Date: 2023-05-07 09:47-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -174,11 +174,11 @@ msgstr "Contraseña incorrecta"
 msgid "Incorrect two-factor code"
 msgstr "Código de dos factores incorrecto"
 
-#: routes/ncmr.py:44
+#: routes/ncmr.py:45
 msgid "Unable to save changes"
 msgstr "No se pueden guardar los cambios"
 
-#: routes/ncmr.py:60
+#: routes/ncmr.py:61
 msgid "Changes saved"
 msgstr "Cambios guardados"
 
@@ -556,8 +556,8 @@ msgid "Default Language"
 msgstr "Idioma Predeterminado"
 
 #: templates/settings/organization.html:73
-msgid "Sets the language for new users and record number prefixes."
-msgstr "Establece el idioma para los nuevos usuarios y los prefijos de los números de registro."
+msgid "Sets the language for new users, record number prefixes, and audit logs."
+msgstr "Establece el idioma para los nuevos usuarios, los prefijos de números de registro y los registros de auditoría."
 
 #: templates/settings/organization.html:82
 msgid "Default Time Zone"
