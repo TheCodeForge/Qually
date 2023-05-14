@@ -29,6 +29,11 @@ def post_ncmr_number(number):
         key="quantity"
         value=ncmr.quantity
 
+    elif "nc_description" in request.form:
+        ncmr.nc_description=txt(request.form.get("nc_description"))
+        key="nc_description"
+        value=ncmr.nc_description
+
     g.db.add(ncmr)
 
     log=NCMRLog(
