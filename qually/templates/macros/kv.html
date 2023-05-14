@@ -52,8 +52,16 @@
     <div class="title w-lg-25">
       <label class="mt-1">{{ entry['name'] }}</label>
     </div>
-    <div class="body w-lg-100">
-      <p>{{ thing.__dict__.get(entry['value']) }}</p>
+    <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
+      <div>
+        {% if entry.get('kind')=='multi' %} 
+        <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ thing.__dict__.get(entry['value']) | safe }}</div>
+        {% elif entry.get('kind')=='dropdown' %}
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(thing.__dict__.get(entry['value']), '') }}</p>
+        {% else %}
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ thing.__dict__.get(entry['value']) }}</p>
+        {% endif %}
+      </div>
     </div>
   </div>
   {% endfor %}
