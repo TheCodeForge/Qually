@@ -1,9 +1,9 @@
-{% macro kv(thing, data, last_editable_status) %}
+{% macro kv(thing, section) %}
 
-{% if g.user.has_seat and thing._status <= last_editable_status %}
+{% if g.user.has_seat and thing._status <= section %}
 
 <div>
-  {% for key in data %}
+  {% for key in thing._layout[section] %}
   <div class="d-lg-flex">
     <div class="title w-lg-25">
       <label class="mt-1">{{ key }}</label>

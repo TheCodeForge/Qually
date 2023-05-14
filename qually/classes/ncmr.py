@@ -28,6 +28,8 @@ class NCMR(Base, core_mixin):
             'organization_id', name='ncmr_org_number_unique'),
         )
 
+
+
     @property
     def permalink(self):
         return f"/NCMR-{self.number:0>5}"
@@ -47,6 +49,19 @@ class NCMR(Base, core_mixin):
             100: T("Terminated")
         }
         return lifecycle[self._status]
+
+    @property
+    def _layout(self):
+        return {
+            0:{
+                "fields": {
+                    _("Item Number"):"item_number",
+                    _("Serial or Lot Number"):"lot_number",
+                    _("Quantity"):"quantity"
+                }
+            }
+        }
+    
     
 
 class NCMRLog(Base, core_mixin):

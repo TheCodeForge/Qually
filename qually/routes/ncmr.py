@@ -6,7 +6,7 @@ def get_ncmr_number(number):
 
     ncmr = get_ncmr(number)
     
-    return render_template("ncmr.html", ncmr=ncmr)
+    return render_template("record.html", record=ncmr)
 
 @app.post("/NCMR-<number>")
 @has_seat
