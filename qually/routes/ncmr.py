@@ -24,9 +24,9 @@ def post_create_ncmr():
         organization_id=g.user.organization.id,
         number=g.user.organization.next_ncmr_id,
         created_utc=g.time,
-        item_number=request.form.get("item_number"),
-        lot_number=request.form.get("lot_number"),
-        quantity=request.form.get("quantity")
+        item_number=txt(request.form.get("item_number")),
+        lot_number=txt(request.form.get("lot_number")),
+        quantity=txt(request.form.get("quantity"))
         )
 
     g.db.add(ncmr)
@@ -41,5 +41,5 @@ def post_create_ncmr():
         )
     g.db.add(log)
     g.db.commit()
-    
+
     return toast_redirect(ncmr.permalink)
