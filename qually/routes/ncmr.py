@@ -33,7 +33,7 @@ def post_ncmr_number(number):
 
     log=NCMRLog(
         user_id=g.user.id,
-        ncmr_id=ncmr.id
+        ncmr_id=ncmr.id,
         created_utc=g.time,
         key=key,
         value=value
