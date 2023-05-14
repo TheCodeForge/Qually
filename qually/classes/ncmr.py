@@ -1,8 +1,4 @@
 from qually.helpers.class_imports import *
-try:
-    from flask_babel import Babel, gettext as _, ngettext as N_
-except ModuleNotFoundError:
-    pass
 
 class NCMR(Base, core_mixin):
 
@@ -43,12 +39,12 @@ class NCMR(Base, core_mixin):
     @property
     def status(self):
         lifecycle = {
-            0: _("New"),
-            1: _("Submitted"),
-            2: _("Material Review Board"),
-            3: _("Disposition"),
-            4: _("Closed"),
-            100: _("Terminated")
+            0: T("New"),
+            1: T("Submitted"),
+            2: T("Material Review Board"),
+            3: T("Disposition"),
+            4: T("Closed"),
+            100: T("Terminated")
         }
         return lifecycle[self._status]
     

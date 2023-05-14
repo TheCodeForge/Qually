@@ -16,6 +16,6 @@ from qually.__main__ import Base, cache, app, debug
 
 
 try:
-    from flask_babel import Babel, gettext as _, ngettext as N_
+    from flask_babel import Babel, gettext as T, ngettext as N
 except ModuleNotFoundError:
     pass
