@@ -5,6 +5,42 @@ function csrf_token() {
 //avoid console errors
 $('a[href="javascript:void(0)').click(function(event){event.preventDefault()})
 
+//textarea autoexpander
+
+function autoExpand (field) {
+
+  //get current scroll position
+  xpos=window.scrollX;
+  ypos=window.scrollY;
+
+  // Reset field height
+  field.style.height = 'inherit';
+
+  // Get the computed styles for the element
+  var computed = window.getComputedStyle(field);
+
+  // Calculate the height
+  var height = parseInt(computed.getPropertyValue('border-top-width'), 10)
+  + parseInt(computed.getPropertyValue('padding-top'), 10)
+  + field.scrollHeight
+  + parseInt(computed.getPropertyValue('padding-bottom'), 10)
+  + parseInt(computed.getPropertyValue('border-bottom-width'), 10)
+  + 32;
+
+  field.style.height = height + 'px';
+
+  //keep window position from changing
+  window.scrollTo(xpos,ypos);
+
+};
+
+document.addEventListener('input', function (event) {
+  if (event.target.tagName.toLowerCase() !== 'textarea') return;
+  autoExpand(event.target);
+}, false);
+
+//posty
+
 function post(url, callback=function(){}, errortext="") {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
