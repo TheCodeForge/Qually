@@ -21,12 +21,12 @@
       </div>
     </div>
     <div class="body w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} d-none">
-      <form id="form-update-{{ entry['value'] }}-{{ loop.index0 }}" action="{{ thing.permalink }}" method="post" class="toasted">
+      <form id="form-update-{{ entry['value'] }}-{{ loop.index0 }}" action="{{ thing.permalink }}" method="post" class="toasted w-100 me-4">
         <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
         {% if entry.get('kind')=='multi' %} 
-        <textarea id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" name="{{ entry['value'] }}">{{ thing.__dict__.get(entry['value']) | safe }}</textarea>
+        <textarea id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="w-100" name="{{ entry['value'] }}">{{ thing.__dict__.get(entry['value']) | safe }}</textarea>
         {% else %}
-        <input id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" type="text" name="{{ entry['value'] }}" value="{{ thing.__dict__.get(entry['value']) }}">
+        <input id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="w-100" type="text" name="{{ entry['value'] }}" value="{{ thing.__dict__.get(entry['value']) }}">
         {% endif %}
       </form>
       <a href="javascript:void(0)" class="btn btn-secondary toggle-target-class ms-auto mb-auto" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">Cancel</a>
