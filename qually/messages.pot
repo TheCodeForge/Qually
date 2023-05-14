@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-14 09:42-0400\n"
+"POT-Creation-Date: 2023-05-14 09:49-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,7 +121,7 @@ msgstr ""
 msgid "History"
 msgstr ""
 
-#: templates/ncmr.html:26
+#: templates/create/ncmr.html:11 templates/ncmr.html:26
 msgid "Item Number"
 msgstr ""
 
@@ -129,7 +129,7 @@ msgstr ""
 msgid "Lot Number"
 msgstr ""
 
-#: templates/ncmr.html:28
+#: templates/create/ncmr.html:17 templates/ncmr.html:28
 msgid "Quantity"
 msgstr ""
 
@@ -180,6 +180,18 @@ msgstr ""
 
 #: templates/auth/register.html:44
 msgid "Already have an account?"
+msgstr ""
+
+#: templates/create/ncmr.html:5
+msgid "Create NCMR"
+msgstr ""
+
+#: templates/create/ncmr.html:14
+msgid "Serial or Lot Number"
+msgstr ""
+
+#: templates/create/ncmr.html:22
+msgid "Create"
 msgstr ""
 
 #: templates/elements/toasts.html:4
