@@ -20,10 +20,10 @@
   <div class="tab-pane fade show p-2" id="pane-record" role="tabpanel" aria-labelledby="tab-record">
     
     {% with data={
-      "Name":ncmr.name,
-      "Item Number":ncmr.item_number,
-      "Lot Number":ncmr.lot_number,
-      "Quantity":ncmr.quantity
+      _("Name"):ncmr.name,
+      _("Item Number"):ncmr.item_number,
+      _("Lot Number"):ncmr.lot_number,
+      _("Quantity"):ncmr.quantity
     }%}
     {% include "elements/kv.html" %}
     {% endwith %}
