@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-14 17:16-0400\n"
+"POT-Creation-Date: 2023-05-14 17:34-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,50 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
+
+#: classes/ncmr.py:42
+msgid "NCMR-"
+msgstr ""
+
+#: classes/ncmr.py:47
+msgid "New"
+msgstr ""
+
+#: classes/ncmr.py:48
+msgid "Submitted"
+msgstr ""
+
+#: classes/ncmr.py:49
+msgid "Material Review Board"
+msgstr ""
+
+#: classes/ncmr.py:50
+msgid "Disposition"
+msgstr ""
+
+#: classes/ncmr.py:51
+msgid "Closed"
+msgstr ""
+
+#: classes/ncmr.py:52
+msgid "Terminated"
+msgstr ""
+
+#: classes/ncmr.py:66 templates/create/ncmr.html:11
+msgid "Item Number"
+msgstr ""
+
+#: classes/ncmr.py:71 templates/create/ncmr.html:14
+msgid "Serial or Lot Number"
+msgstr ""
+
+#: classes/ncmr.py:76 templates/create/ncmr.html:17
+msgid "Quantity"
+msgstr ""
+
+#: classes/ncmr.py:81
+msgid "Description of Non-Conformance"
+msgstr ""
 
 #: classes/user.py:193 templates/settings/directory.html:27
 msgid "Administrator"
@@ -133,7 +177,7 @@ msgstr ""
 msgid "Non-Conforming Material Reports"
 msgstr ""
 
-#: templates/record.html:19 templates/settings/core.html:30
+#: templates/record.html:18 templates/settings/core.html:30
 msgid "History"
 msgstr ""
 
@@ -188,18 +232,6 @@ msgstr ""
 
 #: templates/create/ncmr.html:5
 msgid "Create NCMR"
-msgstr ""
-
-#: templates/create/ncmr.html:11
-msgid "Item Number"
-msgstr ""
-
-#: templates/create/ncmr.html:14
-msgid "Serial or Lot Number"
-msgstr ""
-
-#: templates/create/ncmr.html:17
-msgid "Quantity"
 msgstr ""
 
 #: templates/create/ncmr.html:22

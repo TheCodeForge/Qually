@@ -1,4 +1,5 @@
 from qually.helpers.route_imports import *
+_=T
 
 @app.get("/NCMR-<number>")
 @logged_in
@@ -49,7 +50,7 @@ def post_ncmr_number(number):
 
     g.db.commit()
 
-    return toast("Changes saved", data={"new":value})
+    return toast(_("Changes saved"), data={"new":value})
 
     
 @app.get("/create_ncmr")

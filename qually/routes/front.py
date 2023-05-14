@@ -1,5 +1,6 @@
 from qually.helpers.languages import LANGUAGES
 from qually.helpers.route_imports import *
+_=T
 
 @app.get("/")
 def get_home():
@@ -20,7 +21,7 @@ def post_settings_dark_mode():
 def post_prefs_lang_lang(lang):
 
     if lang not in LANGUAGES.values():
-        return toast_error(T("That language is not currently supported."))
+        return toast_error(_("That language is not currently supported."))
 
     session["lang"] = lang
     return "", 204

@@ -1,4 +1,5 @@
 from qually.helpers.class_imports import *
+_=T
 
 class NCMR(Base, core_mixin):
 
@@ -38,17 +39,17 @@ class NCMR(Base, core_mixin):
     
     @property
     def name(self):
-        return T('NCMR-')+f"{self.number:0>5}"
+        return _("NCMR-")+f"{self.number:0>5}"
 
     @property
     def _lifecycle(self):
         return {
-            0: T("New"),
-            1: T("Submitted"),
-            2: T("Material Review Board"),
-            3: T("Disposition"),
-            4: T("Closed"),
-            100: T("Terminated")
+            0: _("New"),
+            1: _("Submitted"),
+            2: _("Material Review Board"),
+            3: _("Disposition"),
+            4: _("Closed"),
+            100: _("Terminated")
         }
     
 
@@ -62,22 +63,22 @@ class NCMR(Base, core_mixin):
         return {
             0:[
                 {
-                "name":T("Item Number"),
+                "name":_("Item Number"),
                 "value":"item_number",
                 "kind": "text"
                 },
                 {
-                "name":T("Serial or Lot Number"),
+                "name":_("Serial or Lot Number"),
                 "value":"lot_number",
                 "kind": "text"
                 },
                 {
-                "name":T("Quantity"),
+                "name":_("Quantity"),
                 "value":"quantity",
                 "kind": "text"
                 },
                 {
-                "name":T("Description of Non-Conformance"),
+                "name":_("Description of Non-Conformance"),
                 "value":"nc_description",
                 "kind": "multi",
                 "raw": "nc_description_raw"

@@ -1,6 +1,7 @@
 from qually.helpers.route_imports import *
 from qually.helpers.timezones import TIMEZONES
 from qually.helpers.languages import LANGUAGES
+_=T
 
 @app.get("/settings/profile")
 @app.get("/settings/security")
@@ -92,7 +93,7 @@ def post_settings_profile():
 
     if request.form.get("lang"):
         if request.form.get("lang") not in LANGUAGES.values():
-            return toast_error(T("That language is not currently supported."))
+            return toast_error(_("That language is not currently supported."))
         g.user.lang = request.form.get("lang")
         g.db.add(g.user)
         g.db.commit()
@@ -100,10 +101,10 @@ def post_settings_profile():
 
     if request.form.get("tz"):
         if request.form.get("tz") not in TIMEZONES:
-            return toast_error(T("Invalid timezone"))
+            return toast_error(_("Invalid timezone"))
         g.user.tz = request.form.get("tz")
 
     g.db.add(g.user)
     g.db.commit()
 
-    return toast(T("Settings saved"))
+    return toast(_("Settings saved"))
