@@ -2,7 +2,7 @@ import re
 
 from mistletoe.block_token import BlockToken
 from mistletoe.span_token import SpanToken
-from mistletoe.html_renderer improt HTMLRenderer
+from mistletoe.html_renderer import HTMLRenderer
 
 
 class NcmrMention(SpanToken):
