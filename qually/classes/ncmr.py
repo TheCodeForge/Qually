@@ -21,6 +21,7 @@ class NCMR(Base, core_mixin):
     lot_number=Column(String)
     quantity=Column(String)
     nc_description=Column(String)
+    nc_description_raw=Column(String)
 
 
     __table_args__=(
@@ -79,6 +80,7 @@ class NCMR(Base, core_mixin):
                 "name":T("Description of Non-Conformance"),
                 "value":"nc_description",
                 "kind": "multi"
+                "raw": "nc_description_raw"
                 }
             ]
         }

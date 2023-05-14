@@ -24,7 +24,7 @@
       <form id="form-update-{{ entry['value'] }}-{{ loop.index0 }}" action="{{ thing.permalink }}" method="post" class="toasted w-100 me-4">
         <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
         {% if entry.get('kind')=='multi' %} 
-        <textarea id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="w-100" name="{{ entry['value'] }}">{{ thing.__dict__.get(entry['value']) | safe }}</textarea>
+        <textarea id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="w-100" name="{{ entry['value'] }}">{{ thing.__dict__.get(entry['raw']) }}</textarea>
         {% else %}
         <input id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="w-100" type="text" name="{{ entry['value'] }}" value="{{ thing.__dict__.get(entry['value']) }}">
         {% endif %}

@@ -30,6 +30,7 @@ def post_ncmr_number(number):
         value=ncmr.quantity
 
     elif "nc_description" in request.form:
+        ncmr.nc_description_raw=request.form.get("nc_description")
         ncmr.nc_description=html(request.form.get("nc_description"))
         key="nc_description"
         value=ncmr.nc_description
