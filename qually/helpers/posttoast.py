@@ -8,4 +8,6 @@ def toast_error(msg, status=409):
     return jsonify({"error": msg}), status
 
 def toast(msg, data={}):
-    return jsonify({"message": msg}.update(data))
+    output={"message": msg}
+    output.update(data)
+    return jsonify(output)
