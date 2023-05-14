@@ -79,7 +79,7 @@ _clean_no_tags = Cleaner(
     )
 
 _clean_links_only = Cleaner(
-    tags=[a],
+    tags=['a'],
     attributes=[],
     protocols=_allowed_protocols,
     filters=[partial(
