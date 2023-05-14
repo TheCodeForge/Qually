@@ -1,5 +1,7 @@
 {% extends "core.html" %}
 
+{% import "elements/kv.html" as kv %}
+
 {% block page %}
 <div class="mt-3 d-flex">
   <div>
@@ -18,20 +20,13 @@
 </ul>
 <div class="tab-content border-start border-bottom border-end border-muted rounded-bottm pt-3" id="myTabContent">
   <div class="tab-pane fade show active p-2" id="pane-record" role="tabpanel" aria-labelledby="tab-record">
-
-    {% set put_url=ncmr.permalink %}
-    {% set thing=ncmr %}
     
     {% with data={
       _("Item Number"):"item_number",
       _("Lot Number"):"lot_number",
       _("Quantity"):"quantity"
     }%}
-    {% if ncmr._status<=0 %}
-    {% include "elements/kv_rw.html" %}
-    {% else %}
-    {% include "elements/kv.html" %}
-    {% endif %}
+    {{ kv.kv(ncmr, data, 0) }}
     {% endwith %}
   </div>
   <div class="tab-pane fade p-2" id="pane-history" role="tabpanel" aria-labelledby="tab-history">
