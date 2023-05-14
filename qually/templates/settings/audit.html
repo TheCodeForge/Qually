@@ -20,7 +20,7 @@
         <i class="fas fa-link text-muted"></i>
       </a>
     </td>
-    <td>{{ entry.user | string }}</td>
+    <td><a href="{{ entry.user.permalink }}">{{ entry.user.name }}</a></td>
     <td>{{ entry.created_datetime }}</td>
     <td>{{ entry.key }}</td>
     <td>{{ entry.new_value }}</td>
