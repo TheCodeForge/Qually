@@ -20,6 +20,7 @@ class NCMR(Base, core_mixin):
     item_number=Column(String)
     lot_number=Column(String)
     quantity=Column(String)
+    nc_description=Column(String)
 
 
     __table_args__=(
@@ -53,7 +54,7 @@ class NCMR(Base, core_mixin):
     @property
     def status(self):
 
-        return lifecycle[self._status]
+        return self._lifecycle[self._status]
 
     @property
     def _layout(self):
@@ -73,6 +74,11 @@ class NCMR(Base, core_mixin):
                 "name":T("quantity"),
                 "value":"quantity",
                 "kind": "text"
+                },
+                {
+                "name":T("Description of Nonconformance"),
+                "value":"nc_description",
+                "kind": "multi"
                 }
             ]
         }
