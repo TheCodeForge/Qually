@@ -79,7 +79,7 @@ class NCMR(Base, core_mixin):
                 {
                 "name":T("Description of Non-Conformance"),
                 "value":"nc_description",
-                "kind": "multi"
+                "kind": "multi",
                 "raw": "nc_description_raw"
                 }
             ]
