@@ -39,12 +39,12 @@ class NCMR(Base, core_mixin):
     @property
     def status(self):
         lifecycle = {
-            0: "New",
-            1: "Submitted",
-            2: "Material Review Board",
-            3: "Disposition",
-            4: "Closed",
-            100: "Terminated"
+            0: _("New"),
+            1: _("Submitted"),
+            2: _("Material Review Board"),
+            3: _("Disposition"),
+            4: _("Closed"),
+            100: _("Terminated")
         }
         return lifecycle[self._status]
     
