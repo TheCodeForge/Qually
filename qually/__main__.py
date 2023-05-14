@@ -237,8 +237,6 @@ def before_request():
             if not validate_hash(f"{session['session_id']}", submitted_key):
                 abort(403)
 
-        debug("valid csrf key")
-
     if g.user and g.user.reset_pw_next_login and not request.path.startswith(("/set_password", "/help/", "/assets", "/logout")):
         return redirect("/set_password")
 
