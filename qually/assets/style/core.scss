@@ -358,3 +358,11 @@ ul.no-bullets {
   padding-left: 25px;
   text-indent: -25px;
 }
+
+.on-hover-show {
+  display: none;
+}
+
+.on-hover:hover .on-hover-show {
+  display: block;
+}
