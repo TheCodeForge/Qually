@@ -8,7 +8,7 @@
     <div class="title w-lg-25">
       <label class="mt-1">{{ entry['name'] }}</label>
     </div>
-    <div class="body w-lg-100 d-flex on-hover vis-toggle-{{ data[key] }}-{{ loop.index0 }}">
+    <div class="body w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
         <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ thing.__dict__.get(entry['value']) }}</p>
       </div>
