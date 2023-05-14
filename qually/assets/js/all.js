@@ -210,3 +210,7 @@ $("form.toasted input").keypress(function(e){
   var form_id=$(this).parents("form").prop("id");
   $('.toast-form-submit[data-form="'+form_id+'"]').click()
 })
+
+$('.toggle-target-class').click(function(){
+  $('.'+$(this).data('toggle-target')).toggleClass('d-none')
+})
