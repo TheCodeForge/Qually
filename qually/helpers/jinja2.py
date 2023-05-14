@@ -4,6 +4,7 @@ import io
 import pyotp
 import qrcode
 import sass
+from sqlalchemy import text
 
 from qually.helpers.languages import LANGUAGES
 from qually.helpers.timezones import TIMEZONES
@@ -105,3 +106,8 @@ def debug(x):
 
     print(x)
     return ""
+
+@app.template_filter("sql_text")
+def sql_text(x):
+
+    return text(x)
