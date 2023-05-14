@@ -71,13 +71,15 @@ class NCMR(Base, core_mixin):
 
     @property
     def _dispositions(self):
-        return {
-            0: _("Scrap"),
-            1: _("Return to Supplier"),
-            2: _("Rework"),
-            3: _("Use As-Is"),
-            4: _("Reclassify")
-        }
+
+        with force_locale(g.user.organization.lang):
+            return {
+                0: _("Scrap"),
+                1: _("Return to Supplier"),
+                2: _("Rework"),
+                3: _("Use As-Is"),
+                4: _("Reclassify")
+            }
     
     
 
