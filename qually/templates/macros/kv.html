@@ -31,13 +31,13 @@
 {% else %}
 
 <div>
-  {% for key in data %}
+  {% for entry in thing._layout[section] %}
   <div class="d-lg-flex">
     <div class="title w-lg-25">
-      <label class="mt-1">{{ key }}</label>
+      <label class="mt-1">{{ entry['name'] }}</label>
     </div>
     <div class="body w-lg-100">
-      <p>{{ thing.__dict__.get(data[key]) }}</p>
+      <p>{{ thing.__dict__.get(entry['value']) }}</p>
     </div>
   </div>
   {% endfor %}
