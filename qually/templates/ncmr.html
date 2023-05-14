@@ -27,18 +27,6 @@
     }%}
     {% include "elements/kv.html" %}
     {% endwith %}
-    <div>
-      {% for prop in ["name", "item_number", "lot_number", "quantity"] %}
-      <div class="d-lg-flex">
-        <div class="title w-lg-25">
-          <label>{{ prop }}</label>
-        </div>
-        <div class="body w-lg-100">
-          <p>{{ ncmr.get(prop) }}</p>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
   </div>
   <div class="tab-pane fade p-2" id="pane-history" role="tabpanel" aria-labelledby="tab-history">
     <table class="table table-striped mb-5">
