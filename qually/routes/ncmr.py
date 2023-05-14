@@ -18,26 +18,15 @@ def post_ncmr_number(number):
 
     ncmr = get_ncmr(number)
 
-    if "item_number" in request.form:
-        ncmr.item_number=txt(request.form.get("item_number"))
-        key="item_number"
-        value=ncmr.item_number
+    entries=ncmr._layout[ncmr._status]
 
-    elif "lot_number" in request.form:
-        ncmr.lot_number=txt(request.form.get("lot_number"))
-        key="lot_number"
-        value=ncmr.lot_number
+    print(ncmr._metadata)
+    return str(ncmr._metadata)
 
-    elif "quantity" in request.form:
-        ncmr.quantity=txt(request.form.get("quantity"))
-        key="quantity"
-        value=ncmr.quantity
-
-    elif "nc_description" in request.form:
-        ncmr.nc_description_raw=request.form.get("nc_description")
-        ncmr.nc_description=html(request.form.get("nc_description"))
-        key="nc_description"
-        value=ncmr.nc_description
+    for entry in entries:
+        if entry['value'] in request.form:
+            getattr(ncmr, entry['value'])
+            break
 
     g.db.add(ncmr)
 
