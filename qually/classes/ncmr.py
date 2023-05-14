@@ -1,4 +1,8 @@
 from qually.helpers.class_imports import *
+try:
+    from flask_babel import Babel, gettext as _, ngettext as N_
+except ModuleNotFoundError:
+    pass
 
 class NCMR(Base, core_mixin):
 
