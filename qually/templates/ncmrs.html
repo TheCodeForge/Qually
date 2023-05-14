@@ -17,7 +17,7 @@
       <th>{{_("Due Date")}}</th>
     </tr>
   </thead>
-  {% for thing in g.user.organization.ncmrs.filter("ncmr._status<6") %}
+  {% for thing in g.user.organization.ncmrs.filter("ncmr._status<6"|sql_text) %}
   <tr>
     <td><a href="{{ thing.permalink }}">{{ thing.name }}</a></td>
     <td>{{ thing.status }}</td>
