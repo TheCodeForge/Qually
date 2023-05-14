@@ -25,8 +25,7 @@ class NCMR(Base, core_mixin):
     __table_args__=(
         UniqueConstraint(
             'number', 
-            'organization_id', 
-            name='ncmr_org_number_unique'),
+            'organization_id', name='ncmr_org_number_unique'),
         )
 
     @property
