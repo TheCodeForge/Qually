@@ -1,0 +1,20 @@
+{% macro logs(logs) %}
+<table class="table table-striped mb-5">
+  <thead class="bg-primary text-white">
+    <tr>
+      <th>{{ _("User") }}</th>
+      <th>{{ _("Timestamp") }}</th>
+      <th>{{ _("Key") }}</th>
+      <th>{{ _("Value") }}</th>
+    </tr>
+  </thead>
+  {% for entry in logs %}
+  <tr>
+    <td><a href="{{ entry.user.permalink }}">{{ entry.user.name }}</a></td>
+    <td>{{ entry.created_datetime }}</td>
+    <td>{{ entry.key }}</td>
+    <td>{{ entry.value }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endmacro %}
