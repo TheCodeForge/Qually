@@ -17,7 +17,8 @@
       </div>
     </div>
     <div class="body w-lg-100 d-flex on-hover vis-toggle-{{ data[key] }}-{{ loop.index0 }} d-none">
-      <form id="form-update-{{ data[key] }}" action="{{ thing.permalink }}" method="put" class="toasted">
+      <form id="form-update-{{ data[key] }}" action="{{ thing.permalink }}" method="post" class="toasted">
+        <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
         <input type="text" name="{{ data[key] }}" value="{{ thing.__dict__.get(data[key]) }}">
       </form>
       <a href="javascript:void(0)" class="btn btn-secondary toggle-target-class ms-auto mb-auto" data-toggle-target="vis-toggle-{{ data[key] }}-{{ loop.index0 }}">Cancel</a>
