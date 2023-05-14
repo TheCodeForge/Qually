@@ -15,15 +15,15 @@ def get_create_ncmr():
     return render_template("create/ncmr.html")
 
 @app.get("/ncmr")
-def get_ncmr():
+def get_ncmr_record():
 
     return render_template("ncmrs.html")
-    
+
 
 @app.post("/ncmr")
 @has_seat
 @org_update_lock
-def post_ncmr():
+def post_ncmr_record():
 
     ncmr=NCMR(
         owner_id=g.user.id,
