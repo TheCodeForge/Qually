@@ -25,13 +25,17 @@ def post_ncmr_number(number):
             if entry['kind']=='multi':
                 setattr(ncmr, entry['raw'], request.form[entry['value']])
                 setattr(ncmr, entry['value'], html(request.form[entry['value']]))
+                key=entry['value']
+                value=txt(request.form[entry['value']]))
             elif entry['kind']=='dropdown':
                 setattr(ncmr, entry['value'], int(request.form[entry['value']]))
+                key=entry['value']
+                value=getattr(ncmr, entry['values'][entry['value']])
             else:
                 setattr(ncmr, entry['value'], txt(request.form[entry['value']]))
+                key=entry['value']
+                value=getattr(ncmr, entry['value'])
 
-            key=entry['value']
-            value=getattr(ncmr, entry['value'])
             break
     else:
         return toast_error(_("Unable to save changes"))
