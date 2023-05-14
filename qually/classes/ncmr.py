@@ -1,5 +1,8 @@
 from qually.helpers.class_imports import *
-from flask_babel import force_locale
+try:
+    from flask_babel import force_locale
+except ModuleNotFoundError:
+    pass
 _=T
 
 class NCMR(Base, core_mixin):
