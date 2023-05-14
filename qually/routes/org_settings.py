@@ -3,8 +3,10 @@ from qually.helpers.route_imports import *
 from qually.helpers.timezones import TIMEZONES
 from qually.helpers.languages import LANGUAGES
 from .login import valid_email_regex
-
-_=T
+try:
+    from flask_babel import gettext as _
+except ModuleNotFoundError:
+    pass
 
 @app.post("/settings/organization")
 @is_admin

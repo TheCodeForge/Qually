@@ -1,6 +1,9 @@
 from qually.helpers.languages import LANGUAGES
 from qually.helpers.route_imports import *
-_=T
+try:
+    from flask_babel import gettext as _
+except ModuleNotFoundError:
+    pass
 
 @app.get("/")
 def get_home():

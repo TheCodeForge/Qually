@@ -1,7 +1,10 @@
 from qually.helpers.route_imports import *
 from qually.helpers.timezones import TIMEZONES
 from qually.helpers.languages import LANGUAGES
-_=T
+try:
+    from flask_babel import gettext as _
+except ModuleNotFoundError:
+    pass
 
 @app.get("/settings/profile")
 @app.get("/settings/security")

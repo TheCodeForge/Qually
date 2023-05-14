@@ -6,7 +6,10 @@ from sqlalchemy.orm import joinedload
 from qually.helpers.route_imports import *
 from qually.helpers.security import otp_recovery_code
 
-_=T
+try:
+    from flask_babel import gettext as _
+except ModuleNotFoundError:
+    pass
 
 valid_password_regex = re.compile("^.{8,100}+$")
 valid_email_regex    = re.compile("^[a-zA-Z0-9!#$%&'*+-/=?^_`{|}~.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9.-]+$")
