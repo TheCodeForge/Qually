@@ -8,15 +8,17 @@
     <div class="title w-lg-25">
       <label class="mt-1">{{ key }}</label>
     </div>
-    <div class="body w-lg-100 d-flex on-hover vis-toggle-{{ key }}-{{ loop.index0 }}">
+    <div class="body w-lg-100 d-flex on-hover vis-toggle-{{ data[key] }}-{{ loop.index0 }}">
       <div>
         <p>{{ thing.__dict__.get(data[key]) }}</p>
       </div>
-      <div class="ms-auto on-hover-show toggle-target-class" data-toggle-target="vis-toggle-{{ key }}-{{ loop.index0 }}">
+      <div class="ms-auto on-hover-show toggle-target-class" data-toggle-target="vis-toggle-{{ data[key] }}-{{ loop.index0 }}">
         <i class="fas fa-pen fa-fw"></i>
       </div>
-    </div class="body w-lg-100 d-flex on-hover vis-toggle-{{ key }}-{{ loop.index0 }} d-none">
+    </div class="body w-lg-100 d-flex on-hover vis-toggle-{{ data[key] }}-{{ loop.index0 }} d-none">
       <p> this is where the form goes</p>
+      <a href="javascript:void(0)" class="btn btn-secondary toggle-target-class" data-toggle-target="vis-toggle-{{ data[key] }}-{{ loop.index0 }}">Cancel</a>
+      <a href="javascript:void(0)" class="btn btn-primary toggle-target-class toast-form-submit" data-toggle-target="vis-toggle-{{ data[key] }}-{{ loop.index0 }}">Save</a>
     <div>
     </div>
   </div>
