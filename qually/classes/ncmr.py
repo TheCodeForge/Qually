@@ -39,8 +39,8 @@ class NCMR(Base, core_mixin):
         return f"NCMR-{self.number:0>5}"
 
     @property
-    def status(self):
-        lifecycle = {
+    def _lifecycle(self):
+        return {
             0: T("New"),
             1: T("Submitted"),
             2: T("Material Review Board"),
@@ -48,6 +48,11 @@ class NCMR(Base, core_mixin):
             4: T("Closed"),
             100: T("Terminated")
         }
+    
+
+    @property
+    def status(self):
+
         return lifecycle[self._status]
 
     @property

@@ -7,7 +7,7 @@
 <div class="mt-3 d-flex">
   <div>
     <h1 class="h3">{{ record.name }}</h1>
-    <h2 class="h6">{{ record.status }}</h2>
+    <h2 class="h4">{{ record.status }}</h2>
   </div>
 </div>
 
@@ -22,7 +22,10 @@
 <div class="tab-content border-start border-bottom border-end border-muted rounded-bottm pt-3" id="myTabContent">
   <div class="tab-pane fade show active p-2" id="pane-record" role="tabpanel" aria-labelledby="tab-record">
     
-    {{ kv.kv(record, 0) }}
+    {% for stage in sorted(record._layout.keys()) %}
+    <h3 class="h5">{{ record._lifecycle[stage] }}</h3>
+    {{ kv.kv(record, stage) }}
+    {% endfor %}
     
   </div>
   <div class="tab-pane fade p-2" id="pane-history" role="tabpanel" aria-labelledby="tab-history">
