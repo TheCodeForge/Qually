@@ -39,9 +39,8 @@ msgid "Sign In"
 msgstr "Iniciar Sesión"
 
 #: templates/core.html:79
-#, fuzzy
 msgid "Tools"
-msgstr "Roles"
+msgstr "Instrumentos"
 
 #: templates/core.html:84
 msgid "Dashboard"
@@ -124,9 +123,8 @@ msgid "History"
 msgstr "Historia"
 
 #: templates/ncmr.html:26
-#, fuzzy
 msgid "Item Number"
-msgstr "Invitar usuario"
+msgstr "Número de Artículo"
 
 #: templates/ncmr.html:27
 msgid "Lot Number"
