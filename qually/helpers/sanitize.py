@@ -113,7 +113,7 @@ def txt(raw_text, kind="plain"):
 
     text=raw_text.lstrip().rstrip()
     text = text.replace("\ufeff", "")
-    text=re.sub("(\n\r?\w+){3,}", "\n\n", text)
+    #text=re.sub("(\n\r?\w+){3,}", "\n\n", text)
     text=re.sub("(\u200b|\u200c|\u200d)",'', text)
 
     #Part 2: Process markdown
