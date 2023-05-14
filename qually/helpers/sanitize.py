@@ -120,7 +120,7 @@ def txt(raw_text, kind="plain"):
     text=re.sub("(\u200b|\u200c|\u200d)",'', text)
 
     #Part 2: Process markdown
-    if tags:
+    if kind in ['links','tags']:
         with CustomRenderer() as renderer:
             text = renderer.render(Document(text))
 
