@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-14 17:44-0400\n"
+"POT-Creation-Date: 2023-05-14 19:27-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,48 +17,88 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
 
-#: classes/ncmr.py:42
+#: classes/ncmr.py:58
 msgid "NCMR-"
 msgstr ""
 
-#: classes/ncmr.py:47
+#: classes/ncmr.py:63
 msgid "New"
 msgstr ""
 
-#: classes/ncmr.py:48
+#: classes/ncmr.py:64
 msgid "Submitted"
 msgstr ""
 
-#: classes/ncmr.py:49
+#: classes/ncmr.py:65
 msgid "Material Review Board"
 msgstr ""
 
-#: classes/ncmr.py:50
+#: classes/ncmr.py:66
 msgid "Disposition"
 msgstr ""
 
-#: classes/ncmr.py:51
+#: classes/ncmr.py:67
+msgid "Final Review"
+msgstr ""
+
+#: classes/ncmr.py:68
 msgid "Closed"
 msgstr ""
 
-#: classes/ncmr.py:52
+#: classes/ncmr.py:69
 msgid "Terminated"
 msgstr ""
 
-#: classes/ncmr.py:66 templates/create/ncmr.html:11
+#: classes/ncmr.py:75
+msgid "Scrap"
+msgstr ""
+
+#: classes/ncmr.py:76
+msgid "Return to Supplier"
+msgstr ""
+
+#: classes/ncmr.py:77
+msgid "Rework"
+msgstr ""
+
+#: classes/ncmr.py:78
+msgid "Use As-Is"
+msgstr ""
+
+#: classes/ncmr.py:79
+msgid "Reclassify"
+msgstr ""
+
+#: classes/ncmr.py:94 templates/create/ncmr.html:11
 msgid "Item Number"
 msgstr ""
 
-#: classes/ncmr.py:71 templates/create/ncmr.html:14
+#: classes/ncmr.py:99 templates/create/ncmr.html:14
 msgid "Serial or Lot Number"
 msgstr ""
 
-#: classes/ncmr.py:76 templates/create/ncmr.html:17
+#: classes/ncmr.py:104 templates/create/ncmr.html:17
 msgid "Quantity"
 msgstr ""
 
-#: classes/ncmr.py:81
+#: classes/ncmr.py:109
 msgid "Description of Non-Conformance"
+msgstr ""
+
+#: classes/ncmr.py:115 classes/ncmr.py:143
+msgid "Additional Comments"
+msgstr ""
+
+#: classes/ncmr.py:123
+msgid "Assigned Disposition"
+msgstr ""
+
+#: classes/ncmr.py:129
+msgid "Material Review Board Comments"
+msgstr ""
+
+#: classes/ncmr.py:137
+msgid "Executed Disposition"
 msgstr ""
 
 #: classes/user.py:193 templates/settings/directory.html:27
@@ -73,153 +113,157 @@ msgstr ""
 msgid "This page may not be embedded in other webpages."
 msgstr ""
 
-#: routes/front.py:24 routes/org_settings.py:34 routes/settings.py:96
+#: routes/front.py:27 routes/org_settings.py:36 routes/settings.py:99
 msgid "That language is not currently supported."
 msgstr ""
 
-#: routes/login.py:24 routes/login.py:214
+#: routes/login.py:27 routes/login.py:217
 msgid "Passwords do not match."
 msgstr ""
 
-#: routes/login.py:27
+#: routes/login.py:30
 msgid "Your name is required"
 msgstr ""
 
-#: routes/login.py:31
+#: routes/login.py:34
 msgid "Email address is required"
 msgstr ""
 
-#: routes/login.py:34
+#: routes/login.py:37
 msgid "Organization name is required"
 msgstr ""
 
-#: routes/login.py:37 routes/org_settings.py:295
+#: routes/login.py:40 routes/org_settings.py:297
 msgid "Invalid email address"
 msgstr ""
 
-#: routes/login.py:40 routes/login.py:217
+#: routes/login.py:43 routes/login.py:220
 msgid "Password must be at least {n} characters"
 msgstr ""
 
-#: routes/login.py:44 routes/login.py:241 routes/org_settings.py:299
+#: routes/login.py:47 routes/login.py:244 routes/org_settings.py:301
 msgid "That email is already in use."
 msgstr ""
 
-#: routes/login.py:50
+#: routes/login.py:53
 msgid "CloudFlare challenge not completed."
 msgstr ""
 
-#: routes/login.py:60
+#: routes/login.py:63
 msgid "CloudFlare validation failed"
 msgstr ""
 
-#: routes/login.py:109 routes/login.py:115
+#: routes/login.py:112 routes/login.py:118
 msgid "Invalid username or password"
 msgstr ""
 
-#: routes/login.py:112
+#: routes/login.py:115
 msgid "Your account has been disabled."
 msgstr ""
 
-#: routes/login.py:145
+#: routes/login.py:148
 msgid "Invalid two-factor code"
 msgstr ""
 
-#: routes/login.py:199
+#: routes/login.py:202
 msgid "Incorrect password"
 msgstr ""
 
-#: routes/login.py:202
+#: routes/login.py:205
 msgid "Incorrect two-factor code"
 msgstr ""
 
-#: routes/ncmr.py:53
+#: routes/ncmr.py:44
+msgid "Unable to save changes"
+msgstr ""
+
+#: routes/ncmr.py:60
 msgid "Changes saved"
 msgstr ""
 
-#: routes/org_settings.py:17 routes/org_settings.py:225
+#: routes/org_settings.py:19 routes/org_settings.py:227
 msgid "You didn't change anything!"
 msgstr ""
 
-#: routes/org_settings.py:50 routes/settings.py:104
+#: routes/org_settings.py:52 routes/settings.py:107
 msgid "Invalid timezone"
 msgstr ""
 
-#: routes/org_settings.py:72
+#: routes/org_settings.py:74
 msgid "Enable two-factor authentication on your own account first."
 msgstr ""
 
-#: routes/org_settings.py:86 routes/settings.py:110
+#: routes/org_settings.py:88 routes/settings.py:113
 msgid "Settings saved"
 msgstr ""
 
-#: routes/org_settings.py:97
+#: routes/org_settings.py:99
 msgid "Administrators must have an assigned license."
 msgstr ""
 
-#: routes/org_settings.py:100
+#: routes/org_settings.py:102
 msgid "There is a {n} day cooldown to unassign licenses."
 msgstr ""
 
-#: routes/org_settings.py:111
+#: routes/org_settings.py:113
 msgid "You can't assign a license to deactivated users."
 msgstr ""
 
-#: routes/org_settings.py:114
+#: routes/org_settings.py:116
 msgid "Your organization licenses have expired."
 msgstr ""
 
-#: routes/org_settings.py:117 routes/org_settings.py:128
+#: routes/org_settings.py:119 routes/org_settings.py:130
 msgid "Your organization has reached its purchased license count."
 msgstr ""
 
-#: routes/org_settings.py:151
+#: routes/org_settings.py:153
 msgid "Administrator accounts may not be deactivated."
 msgstr ""
 
-#: routes/org_settings.py:156
+#: routes/org_settings.py:158
 msgid "{name} user account deactivated"
 msgstr ""
 
-#: routes/org_settings.py:160
+#: routes/org_settings.py:162
 msgid "{name} user account activated"
 msgstr ""
 
-#: routes/org_settings.py:187
+#: routes/org_settings.py:189
 msgid "You cannot remove your own administrator status."
 msgstr ""
 
-#: routes/org_settings.py:189
+#: routes/org_settings.py:191
 msgid "Administrator status removed from {name}"
 msgstr ""
 
-#: routes/org_settings.py:194
+#: routes/org_settings.py:196
 msgid "Deactivated users cannot be administrators."
 msgstr ""
 
-#: routes/org_settings.py:197
+#: routes/org_settings.py:199
 msgid "Administrators require a full license."
 msgstr ""
 
-#: routes/org_settings.py:199
+#: routes/org_settings.py:201
 msgid "Administrator status granted to {name}"
 msgstr ""
 
-#: routes/org_settings.py:228
+#: routes/org_settings.py:230
 msgid "You can't reduce your organization license count below current usage."
 msgstr ""
 
-#: routes/org_settings.py:231
+#: routes/org_settings.py:233
 msgid ""
 "There is a {n} day cooldown after increasing license count before it may "
 "be decreased."
 msgstr ""
 
-#: routes/org_settings.py:312 routes/org_settings.py:316
+#: routes/org_settings.py:314 routes/org_settings.py:318
 msgid "You've been invited to join {orgname} on {sitename}"
 msgstr ""
 
-#: routes/org_settings.py:330
+#: routes/org_settings.py:332
 msgid "Invitation sent to {email}"
 msgstr ""
 
@@ -396,6 +440,10 @@ msgstr ""
 msgid "Unable to copy link"
 msgstr ""
 
+#: templates/macros/kv.html:32
+msgid "Select One"
+msgstr ""
+
 #: templates/macros/logs.html:6 templates/macros/logs.html:25
 #: templates/settings/audit.html:10
 msgid "User"
@@ -497,7 +545,7 @@ msgid "Default Language"
 msgstr ""
 
 #: templates/settings/organization.html:73
-msgid "Sets the language for new users and emails."
+msgid "Sets the language for new users and record number prefixes."
 msgstr ""
 
 #: templates/settings/organization.html:82
