@@ -2,10 +2,10 @@
   {% for key in data %}
   <div class="d-lg-flex">
     <div class="title w-lg-25">
-      <label>{{ key }}</label>
+      <label class="mt-1">{{ key }}</label>
     </div>
     <div class="body w-lg-100">
-      <p>{{ data[key] }}</p>
+      <p>{{ thing.getattr(data[key]) }}</p>
     </div>
   </div>
   {% endfor %}

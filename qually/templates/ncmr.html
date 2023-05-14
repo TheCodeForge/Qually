@@ -18,19 +18,14 @@
 </ul>
 <div class="tab-content border-start border-bottom border-end border-muted rounded-bottm pt-3" id="myTabContent">
   <div class="tab-pane fade show active p-2" id="pane-record" role="tabpanel" aria-labelledby="tab-record">
+
+    {% set put_url=ncmr.permalink %}
+    {% set thing=ncmr %}
     
     {% with data={
-      _("Item Number"):{
-        "key":"item_number",
-        "value":ncmr.item_number
-      },
-      _("Lot Number"):{
-        "key":"lot_number",
-        "value":ncmr.lot_number
-      },
-      _("Quantity"):{
-        "key":"quantity",
-        "value":ncmr.quantity
+      _("Item Number"):"item_number",
+      _("Lot Number"):"lot_number",
+      _("Quantity"):"quantity"
       }
     }%}
     {% include "elements/kv.html" %}
