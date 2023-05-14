@@ -29,6 +29,7 @@
         <textarea id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" name="{{ entry['value'] }}">{{ thing.__dict__.get(entry['raw']) }}</textarea>
         {% elif entry.get('kind')=='dropdown' %}
         <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
+          <option disabled>{{_("Select One")}}</option>
           {% for x in entry['values'] %}
           <option value="{{ x }}" {% if x==thing.__dict__.get(entry['value']) %}selected{% endif %}>{{ entry['values'][x] }}</option>
           {% endfor %}
