@@ -36,7 +36,8 @@ def post_ncmr_number(number):
         ncmr_id=ncmr.id,
         created_utc=g.time,
         key=key,
-        value=value
+        value=value,
+        created_ip=request.remote_addr
         )
     g.db.add(log)
 
