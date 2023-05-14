@@ -1,7 +1,6 @@
 from qually.helpers.route_imports import *
 try:
     from flask_babel import gettext as _, force_locale
-        pass
 except ModuleNotFoundError:
     pass
 
