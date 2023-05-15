@@ -158,12 +158,14 @@ class NCMR(Base, core_mixin):
         return {
             0: {
                 1: {
+                    "id":"submit"
                     "name": _("Submit"),
                     "description": _("Submit this record to Document Control for review."),
                     "color": "success",
                     "users": [self.owner]
                 },
                 100: {
+                    "id":"terminate"
                     "name": _("Terminate"),
                     "description": _("Permanently archive this record. This cannot be undone."),
                     "color": "danger",
@@ -172,6 +174,7 @@ class NCMR(Base, core_mixin):
             },
             1: {
                 0: {
+                    "id":"reject"
                     "name": _("Reject"),
                     "description": _("Send this record back to its initiator for revision"),
                     "users": [], #g.user.organization.doc_control
@@ -179,17 +182,20 @@ class NCMR(Base, core_mixin):
                     "comments": True,
                 },
                 0: {
+                    "id":"withdraw"
                     "name": _("Withdraw"),
                     "users": [self.owner],
                     "color": "warning"
                 },
                 2: {
+                    "id":"advance"
                     "name": _("Advance"),
                     "description": _("Send this record to the Material Review Board"),
                     "users": [], #g.user.organization.doc_control
                     "color": "success"
                 },
                 100: {
+                    "id":"terminate"
                     "name": _("Terminate"),
                     "description": _("Permanently archive this record. This cannot be undone."),
                     "type": "reject",
