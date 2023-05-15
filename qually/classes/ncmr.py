@@ -89,6 +89,7 @@ class NCMR(Base, core_mixin):
         return self._lifecycle[self._status]
 
     @property
+    @lazy
     def _layout(self):
         return {
             0:[
@@ -150,6 +151,52 @@ class NCMR(Base, core_mixin):
             ]
         }
     
+    @property
+    @lazy
+    def _transitions(self):
+
+        return {
+            0: {
+                1: {
+                    "name": _("Submit"),
+                    "description": _("Submit this record to Document Control for review."),
+                    "color": "success",
+                    "users": [self.owner]
+                },
+                100: {
+                    "name": _("Terminate"),
+                    "description": _("Permanently archive this record. This cannot be undone.")
+                    "color": "danger",
+                    "users": [self.owner]
+                }
+            },
+            1: {
+                0: {
+                    "name": _("Reject"),
+                    "description": _("Send this record back to its initiator for revision")
+                    "users": [], #g.user.organization.doc_control
+                    "color": "warning",
+                    "comments": True,
+                },
+                0: {
+                    "name": _("Withdraw"),
+                    "users": [self.owner],
+                    "color": "warning"
+                },
+                2: {
+                    "name": _("Advance"),
+                    "description": _("Send this record to the Material Review Board")
+                    "users": [], #g.user.organization.doc_control
+                    "color": "success"
+                },
+                100: {
+                    "name": _("Terminate"),
+                    "description": _("Permanently archive this record. This cannot be undone.")
+                    "type": "reject",
+                    "users": [] #g.user.organization.doc_control
+                }
+            }
+        }
     
 
 class NCMRLog(Base, core_mixin):

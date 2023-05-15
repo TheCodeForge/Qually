@@ -31,5 +31,11 @@
     {{ logs.logs(record) }}
   </div>
 </div>
+{% endblock %}
 
+
+{% block rightbar %}
+{% for tsn in record._transitions[record._status] %}
+<a class="w-100 bg-{{tsn['color']}}" href="javascript:void(0)">{{ tsn['name'] }}</a>
+{% endfor %}
 {% endblock %}
