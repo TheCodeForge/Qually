@@ -165,7 +165,7 @@ class NCMR(Base, core_mixin):
                 },
                 100: {
                     "name": _("Terminate"),
-                    "description": _("Permanently archive this record. This cannot be undone.")
+                    "description": _("Permanently archive this record. This cannot be undone."),
                     "color": "danger",
                     "users": [self.owner]
                 }
@@ -173,7 +173,7 @@ class NCMR(Base, core_mixin):
             1: {
                 0: {
                     "name": _("Reject"),
-                    "description": _("Send this record back to its initiator for revision")
+                    "description": _("Send this record back to its initiator for revision"),
                     "users": [], #g.user.organization.doc_control
                     "color": "warning",
                     "comments": True,
@@ -185,13 +185,13 @@ class NCMR(Base, core_mixin):
                 },
                 2: {
                     "name": _("Advance"),
-                    "description": _("Send this record to the Material Review Board")
+                    "description": _("Send this record to the Material Review Board"),
                     "users": [], #g.user.organization.doc_control
                     "color": "success"
                 },
                 100: {
                     "name": _("Terminate"),
-                    "description": _("Permanently archive this record. This cannot be undone.")
+                    "description": _("Permanently archive this record. This cannot be undone."),
                     "type": "reject",
                     "users": [] #g.user.organization.doc_control
                 }
