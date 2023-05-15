@@ -6,7 +6,7 @@ from mistletoe.html_renderer import HTMLRenderer
 
 
 class NcmrMention(SpanToken):
-    pattern = re.compile("\bNCMR-\d{5,}")
+    pattern = re.compile(r"\bNCMR-\d{5,}")
     parse_inner = False
 
     def __init__(self, match_obj):
