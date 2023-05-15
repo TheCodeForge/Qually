@@ -35,8 +35,10 @@
 
 
 {% block rightbar %}
-{% for x in record._transitions[record._status] %}
-{% set tsn=record._transitions[record._status][x] %}
-<a class="w-100 btn btn-{{tsn['color']}}" href="javascript:void(0)" data-post-url="{{ record.permalink }}/status/{{ x }}">{{ tsn['name'] }}</a>
-{% endfor %}
+<div class="mt-5">
+  {% for x in record._transitions[record._status] %}
+  {% set tsn=record._transitions[record._status][x] %}
+  <a class="w-100 mt-2 btn btn-{{tsn['color']}}" href="javascript:void(0)" data-post-url="{{ record.permalink }}/status/{{ x }}">{{ tsn['name'] }}</a>
+  {% endfor %}
+</div>
 {% endblock %}
