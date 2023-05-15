@@ -37,6 +37,6 @@
 {% block rightbar %}
 {% for x in record._transitions[record._status] %}
 {% set tsn=record._transitions[record._status][x] %}
-<a class="w-100 bg-{{tsn['color']}}" href="javascript:void(0)" data-post-url="{{ record.permalink }}/status/{{ x }}">{{ tsn['name'] }}</a>
+<a class="w-100 btn btn-{{tsn['color']}}" href="javascript:void(0)" data-post-url="{{ record.permalink }}/status/{{ x }}">{{ tsn['name'] }}</a>
 {% endfor %}
 {% endblock %}
