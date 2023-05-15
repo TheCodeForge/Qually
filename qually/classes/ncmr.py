@@ -61,7 +61,7 @@ class NCMR(Base, core_mixin):
     def _lifecycle(self):
         return {
             0: _("New"),
-            1: _("Submitted"),
+            1: _("Initial Review"),
             2: _("Material Review Board"),
             3: _("Disposition"),
             4: _("Final Review"),
