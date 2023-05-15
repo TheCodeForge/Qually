@@ -21,7 +21,7 @@
 <div class="tab-content border-start border-bottom border-end border-muted rounded-bottm pt-3" id="myTabContent">
   <div class="tab-pane fade show active p-2" id="pane-record" role="tabpanel" aria-labelledby="tab-record">
     
-    {% for stage in (record._layout.keys() | sort) %}
+    {% for stage in (record._layout.keys() | sort) if stage<=record._status%}
     <h3 class="h4 text-primary mt-3">{{ record._lifecycle[stage] }}</h3>
     {{ kv.kv(record, stage) }}
     {% endfor %}
