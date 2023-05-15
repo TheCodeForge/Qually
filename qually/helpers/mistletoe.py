@@ -21,4 +21,4 @@ class CustomRenderer(HTMLRenderer):
 
     def render_ncmr_mention(self, token):
 
-        return f'<a href="/NCMR-{token}">NCMR-{token}</a>'
+        return f'<a href="/NCMR-{token.target}">NCMR-{token.target}</a>'
