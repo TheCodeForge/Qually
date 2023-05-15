@@ -43,7 +43,7 @@
     <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
     <input type="hidden" name="transition_id" value="{{ tsn['id'] }}">
   </form>
-  <a class="w-100 mt-2 btn btn-{{tsn['color']}} toast-form-submit" data-form-id="form-transition-{{ tsn['id'] }}" href="javascript:void(0)">{{ tsn['name'] }}</a>
+  <a class="w-100 mt-2 btn btn-{{tsn['color']}} toast-form-submit" data-form="form-transition-{{ tsn['id'] }}" href="javascript:void(0)">{{ tsn['name'] }}</a>
   {% endif %}
   {% endfor %}
 </div>
