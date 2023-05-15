@@ -36,8 +36,7 @@
 
 {% block rightbar %}
 <div class="mt-5">
-  {% for x in record._transitions[record._status] if g.user in record._transitions[record._status][x]['users'] %}
-  {% set tsn=record._transitions[record._status][x] %}
+  {% for tsn in record._transitions[record._status] if g.user in tsn['users'] %}
   {% if tsn.get('approval', False) %}
   {% else %}
   <form id="form-transition-{{ tsn['id'] }}" action="{{ record.permalink }}/status" method="post" class="toasted">
