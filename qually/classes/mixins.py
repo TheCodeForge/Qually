@@ -38,3 +38,12 @@ class core_mixin():
     @lazy
     def created_datetime(self):
         return format_datetime(datetime.datetime.fromtimestamp(self.created_utc), "dd MMMM yyyy HH:mm")
+
+    @property
+    @lazy
+    def available_transitions(self):
+
+        tsns=self._transitions[self._status]
+
+        return [x for x in tsns if tsns]
+    
