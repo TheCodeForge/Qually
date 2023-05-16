@@ -16,7 +16,7 @@ def get_ncmr_number(number):
 @has_seat
 def post_ncmr_number(number):
 
-    ncmr = get_ncmr(number)
+    ncmr = get_ncmr(number, lock=True)
 
     with force_locale(g.user.organization.lang):
         entries=ncmr._layout[ncmr._status]
@@ -55,6 +55,9 @@ def post_ncmr_number(number):
         created_ip=request.remote_addr
         )
     g.db.add(log)
+
+    #clear any existing approvals on phase
+    g.db.query(NCMRLog).filter_by(ncmr_id=ncmr.id, status_id=ncmr._status).delete()
 
     g.db.commit()
 
