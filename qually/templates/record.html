@@ -42,7 +42,11 @@
     <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
     <input type="hidden" name="transition_id" value="{{ tsn['id'] }}">
   </form>
-  <a class="w-100 mt-2 btn btn-{{tsn['color']}} toast-form-submit" data-form="form-transition-{{ tsn['id'] }}" href="javascript:void(0)">Approve</a>
+  {% if record.has_approved %}
+  <a class="w-100 mt-2 btn btn-{{tsn['color']}} toast-form-submit disabled" data-form="form-transition-{{ tsn['id'] }}" href="javascript:void(0)">{{_("Approved")}}</a>
+  {% else %}
+  <a class="w-100 mt-2 btn btn-{{tsn['color']}} toast-form-submit" data-form="form-transition-{{ tsn['id'] }}" href="javascript:void(0)">{{_("Approve")}}</a>
+  {% endif %}
   {% else %}
   <form id="form-transition-{{ tsn['id'] }}" action="{{ record.permalink }}/status" method="post" class="toasted">
     <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
