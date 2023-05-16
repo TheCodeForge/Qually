@@ -210,6 +210,10 @@ class NCMR(Base, core_mixin):
                 }
             ]
         }
+
+    def phase_approvals(self, phase):
+
+        return [x for x in self.approvals if x.status_id==phase]
     
 class NCMRApproval(Base, core_mixin):
 
