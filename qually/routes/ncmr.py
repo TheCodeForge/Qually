@@ -123,6 +123,9 @@ def post_ncmr_number_approve(number):
     if g.user not in transition['users']:
         return toast_error(_("You are not authorized to do that."), 403)
 
+    if ncmr.has_approved:
+        return toast_error(_("You already approved this."))
+
     ## Validate password
 
     if not transition.get("approval"):
@@ -141,14 +144,13 @@ def post_ncmr_number_approve(number):
             )
         g.db.add(appr_log)
 
-    if not ncmr.has_approved:
-        approval=NCMRApproval(
-            user_id=g.user.id,
-            ncmr_id=ncmr.id,
-            status_id=ncmr._status,
-            created_utc=g.time
-            )
-        g.db.add(approval)
+    approval=NCMRApproval(
+        user_id=g.user.id,
+        ncmr_id=ncmr.id,
+        status_id=ncmr._status,
+        created_utc=g.time
+        )
+    g.db.add(approval)
 
     g.db.flush()
     
