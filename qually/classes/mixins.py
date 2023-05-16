@@ -46,4 +46,13 @@ class core_mixin():
         tsns=self._transitions[self._status]
 
         return [x for x in tsns if tsns]
+
+    def phase_approvals(self, phase):
+
+        return [x for x in self.approvals if x.status_id==phase]
+
+    @property
+    def has_approved(self):
+
+        return g.user.id in [x.user_id for x in self.phase_approvals(self._status)]
     

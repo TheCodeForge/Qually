@@ -141,13 +141,14 @@ def post_ncmr_number_approve(number):
             )
         g.db.add(appr_log)
 
-    approval=NCMRApproval(
-        user_id=g.user.id,
-        ncmr_id=ncmr.id,
-        status_id=ncmr._status,
-        created_utc=g.time
-        )
-    g.db.add(approval)
+    if not ncmr.has_approved:
+        approval=NCMRApproval(
+            user_id=g.user.id,
+            ncmr_id=ncmr.id,
+            status_id=ncmr._status,
+            created_utc=g.time
+            )
+        g.db.add(approval)
 
     g.db.flush()
     
