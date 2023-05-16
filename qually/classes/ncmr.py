@@ -164,7 +164,8 @@ class NCMR(Base, core_mixin):
                     "name": _("Submit"),
                     "description": _("Submit this record to Document Control for review."),
                     "color": "success",
-                    "users": [self.owner]
+                    "users": [self.owner],
+                    "approval":True
                 },
                 {
                     "id":"terminate",

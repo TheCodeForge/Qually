@@ -88,6 +88,9 @@ def post_ncmr_number_status(number):
     if g.user not in transition['users']:
         return toast_error(_("You are not authorized to do that."), 403)
 
+    if transition.get("approval"):
+        return toast_error(_("This transition requires approval signatures."), 403)
+
     #transition is approved by system, update record and log
 
     ncmr._status=transition['to']
@@ -119,6 +122,9 @@ def post_ncmr_number_approve(number):
 
     if g.user not in transition['users']:
         return toast_error(_("You are not authorized to do that."), 403)
+
+    if not transition.get("approval"):
+        return toast_error(_("This transition does not require approval signatures."), 403)
 
     #approval is approved by system, update record and log
 
