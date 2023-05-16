@@ -161,10 +161,12 @@ def post_ncmr_number_approve(number):
         ncmr._status=transition['to']
         g.db.add(ncmr)
         log=NCMRLog(
+            user_id=g.user.id,
             ncmr_id=ncmr.id,
             created_utc=g.time,
             key=_("Status"),
-            value=ncmr.status
+            value=ncmr.status,
+            created_ip=request.remote_addr
             )
 
         g.db.add(log)
