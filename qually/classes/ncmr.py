@@ -213,7 +213,7 @@ class NCMR(Base, core_mixin):
     
 class NCMRApproval(Base, core_mixin):
 
-    __tablename__="ncmr_audit"
+    __tablename__="ncmr_approval"
 
     id = Column(Integer, primary_key=True)
     ncmr_id=Column(Integer, ForeignKey("ncmr.id"))
