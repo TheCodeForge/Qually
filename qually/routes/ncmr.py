@@ -16,7 +16,7 @@ def get_ncmr_number(number):
 @has_seat
 def post_ncmr_number(number):
 
-    ncmr = get_ncmr(number, lock=True)
+    ncmr = get_ncmr(number)
 
     with force_locale(g.user.organization.lang):
         entries=ncmr._layout[ncmr._status]
@@ -73,7 +73,6 @@ def post_ncmr_number(number):
         )
     g.db.add(log)
 
-
     g.db.commit()
 
     return toast(_("Changes saved"), data={"new":response})
@@ -82,7 +81,7 @@ def post_ncmr_number(number):
 @has_seat
 def post_ncmr_number_status(number):
 
-    ncmr=get_ncmr(number, lock=True)
+    ncmr=get_ncmr(number)
 
     transition = [x for x in ncmr._transitions[ncmr._status] if x['id']==request.form.get('transition_id')][0]
 
@@ -112,9 +111,9 @@ def post_ncmr_number_status(number):
 
 @app.post("/NCMR-<number>/approve")
 @has_seat
-def post_ncmr_number_status(number):
+def post_ncmr_number_approve(number):
 
-    ncmr=get_ncmr(number, lock=True)
+    ncmr=get_ncmr(number)
 
     transition = [x for x in ncmr._transitions[ncmr._status] if x['id']==request.form.get('transition_id')][0]
 
