@@ -276,6 +276,11 @@ def after_request(response):
 def teardown_request(resp):
 
     try:
+        g.db.rollback()
+    except:
+        pass
+
+    try:
         g.db.close()
     except:
         pass
