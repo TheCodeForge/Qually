@@ -143,7 +143,7 @@ def post_ncmr_number_approve(number):
         g.db.add(log)
 
     approval=NCMRApproval(
-        user_id=user.id,
+        user_id=g.user.id,
         ncmr_id=ncmr.id,
         status_id=ncmr._status,
         created_utc=g.time
