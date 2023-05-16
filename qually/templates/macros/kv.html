@@ -1,9 +1,9 @@
-{% macro kv(thing, section) %}
+{% macro kv(record, section) %}
 
-{% if g.user.has_seat and thing._status == section %}
+{% if g.user.has_seat and record._status == section %}
 
 <div>
-  {% for entry in thing._layout[section] %}
+  {% for entry in record._layout[section] %}
   <div class="d-lg-flex">
     <div class="title w-lg-25">
       <label class="mt-1">{{ entry['name'] }}</label>
@@ -11,11 +11,11 @@
     <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
         {% if entry.get('kind')=='multi' %} 
-        <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ thing.__dict__.get(entry['value']) | safe }}</div>
+        <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record.__dict__.get(entry['value']) | safe }}</div>
         {% elif entry.get('kind')=='dropdown' %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(thing.__dict__.get(entry['value']), '') }}</p>
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record.__dict__.get(entry['value']), '') }}</p>
         {% else %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ thing.__dict__.get(entry['value']) }}</p>
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record.__dict__.get(entry['value']) }}</p>
         {% endif %}
       </div>
       <div class="ms-auto on-hover-show toggle-target-class" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
@@ -23,19 +23,19 @@
       </div>
     </div>
     <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} d-none">
-      <form id="form-update-{{ entry['value'] }}-{{ loop.index0 }}" action="{{ thing.permalink }}" method="post" class="toasted w-100 me-4">
+      <form id="form-update-{{ entry['value'] }}-{{ loop.index0 }}" action="{{ record.permalink }}" method="post" class="toasted w-100 me-4">
         <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
         {% if entry.get('kind')=='multi' %} 
-        <textarea id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" name="{{ entry['value'] }}">{{ thing.__dict__.get(entry['raw']) }}</textarea>
+        <textarea id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" name="{{ entry['value'] }}">{{ record.__dict__.get(entry['raw']) }}</textarea>
         {% elif entry.get('kind')=='dropdown' %}
         <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
           <option disabled>{{_("Select One")}}</option>
           {% for x in entry['values'] %}
-          <option value="{{ x }}" {% if x==thing.__dict__.get(entry['value']) %}selected{% endif %}>{{ entry['values'][x] }}</option>
+          <option value="{{ x }}" {% if x==record.__dict__.get(entry['value']) %}selected{% endif %}>{{ entry['values'][x] }}</option>
           {% endfor %}
         </select>
         {% else %}
-        <input id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" type="text" name="{{ entry['value'] }}" value="{{ thing.__dict__.get(entry['value']) }}">
+        <input id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" type="text" name="{{ entry['value'] }}" value="{{ record.__dict__.get(entry['value']) }}">
         {% endif %}
       </form>
       <a href="javascript:void(0)" class="btn btn-secondary toggle-target-class ms-auto mb-auto" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">Cancel</a>
@@ -48,7 +48,7 @@
 {% else %}
 
 <div>
-  {% for entry in thing._layout[section] %}
+  {% for entry in record._layout[section] %}
   <div class="d-lg-flex">
     <div class="title w-lg-25">
       <label class="mt-1">{{ entry['name'] }}</label>
@@ -56,11 +56,11 @@
     <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
         {% if entry.get('kind')=='multi' %} 
-        <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ thing.__dict__.get(entry['value']) | safe }}</div>
+        <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record.__dict__.get(entry['value']) | safe }}</div>
         {% elif entry.get('kind')=='dropdown' %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(thing.__dict__.get(entry['value']), '') }}</p>
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record.__dict__.get(entry['value']), '') }}</p>
         {% else %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ thing.__dict__.get(entry['value']) }}</p>
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record.__dict__.get(entry['value']) }}</p>
         {% endif %}
       </div>
     </div>
