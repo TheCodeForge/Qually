@@ -25,7 +25,7 @@
     <h3 class="h4 text-primary mt-3">{{ record._lifecycle[stage] }}</h3>
     {{ kv.kv(record, stage) }}
     <div class="d-lg-flex">
-    {% if any([x.status_id==stage for x in record.approvals]) %}
+    {% if any([x for x in record.approvals if x.status_id==stage]) %}
       <div class="title w-lg-25">
         <label class="mt-1">{{ _("Approvals") }}</label>
       </div>
