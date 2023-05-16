@@ -123,6 +123,8 @@ def post_ncmr_number_approve(number):
     if g.user not in transition['users']:
         return toast_error(_("You are not authorized to do that."), 403)
 
+    ## Validate password here
+
     if not transition.get("approval"):
         return toast_error(_("This transition does not require approval signatures."), 403)
 
@@ -136,8 +138,8 @@ def post_ncmr_number_approve(number):
             user_id=g.user.id,
             ncmr_id=ncmr.id,
             created_utc=g.time,
-            key=_("Status"),
-            value=ncmr.status,
+            key=f"{_('Approvals')} - {ncmr.status}",
+            value=_("Approved"),
             created_ip=request.remote_addr
             )
         g.db.add(log)
