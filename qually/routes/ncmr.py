@@ -123,7 +123,7 @@ def post_ncmr_number_approve(number):
     if g.user not in transition['users']:
         return toast_error(_("You are not authorized to do that."), 403)
 
-    ## Validate password here
+    ## Validate password
 
     if not transition.get("approval"):
         return toast_error(_("This transition does not require approval signatures."), 403)
@@ -134,12 +134,22 @@ def post_ncmr_number_approve(number):
     g.db.add(ncmr)
 
     with force_locale(g.user.organization.lang):
-        log=NCMRLog(
+        appr_log=NCMRLog(
             user_id=g.user.id,
             ncmr_id=ncmr.id,
             created_utc=g.time,
             key=f"{_('Approvals')} - {ncmr.status}",
             value=_("Approved"),
+            created_ip=request.remote_addr
+            )
+        g.db.add(appr_log)
+        
+        log=NCMRLog(
+            user_id=g.user.id,
+            ncmr_id=ncmr.id,
+            created_utc=g.time,
+            key=_("Status"),
+            value=ncmr.status,
             created_ip=request.remote_addr
             )
         g.db.add(log)
