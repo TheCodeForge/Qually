@@ -39,7 +39,7 @@
         {% endif %}
       </form>
       <a href="javascript:void(0)" class="btn btn-secondary toggle-target-class ms-auto mb-auto" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">Cancel</a>
-      <a href="javascript:void(0)" class="btn btn-primary toggle-target-class record-value-edit ms-2 mb-auto" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}" data-form="form-update-{{ entry['value'] }}-{{ loop.index0 }}" data-value-target="display-value-{{ entry['value'] }}-{{ loop.index0 }}">Save</a>
+      <a href="javascript:void(0)" class="btn btn-primary toggle-target-class record-value-edit ms-2 mb-auto" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}" data-form="form-update-{{ entry['value'] }}-{{ loop.index0 }}" data-value-target="display-value-{{ entry['value'] }}-{{ loop.index0 }}" data-approvals-target="container-approvals-{{ section }}">Save</a>
     </div>
   </div>
   {% endfor %}
@@ -68,7 +68,7 @@
 {% endif %}
 
   {% if record.phase_approvals(section) %}
-  <div class="d-lg-flex">
+  <div id="container-approvals-{{ section }}" class="d-lg-flex">
     <div class="title w-lg-25">
       <label class="mt-1">{{ _("Approvals") }}</label>
     </div>

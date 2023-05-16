@@ -57,7 +57,7 @@ def post_ncmr_number(number):
     g.db.add(log)
 
     #clear any existing approvals on phase
-    g.db.query(NCMRLog).filter_by(ncmr_id=ncmr.id, status_id=ncmr._status).delete()
+    approvals_cleared = g.db.query(NCMRLog).filter_by(ncmr_id=ncmr.id, status_id=ncmr._status).delete()
 
     g.db.commit()
 

@@ -253,7 +253,11 @@ $('.toggle-target-class').click(function(){
 
 $('.record-value-edit').click(function(){
   var target = $('#'+$(this).data('value-target'))
+  var approvals = $('#'+$(this).data('approvals-target'))
   postformtoast($(this), callback=function(xhr){
-    target.html(JSON.parse(xhr.response)['new'])
+    //update displayed value
+    target.html(JSON.parse(xhr.response)['new']);
+    //visually clear approvals
+    approvals.html('');
   })
 });
