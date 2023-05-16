@@ -110,6 +110,44 @@ def post_ncmr_number_status(number):
 
     return toast_redirect(ncmr.permalink)
 
+@app.post("/NCMR-<number>/approve")
+@has_seat
+def post_ncmr_number_status(number):
+
+    ncmr=get_ncmr(number, lock=True)
+
+    transition = [x for x in ncmr._transitions[ncmr._status] if x['id']==request.form.get('transition_id')][0]
+
+    if g.user not in transition['users']:
+        return toast_error(_("You are not authorized to do that."), 403)
+
+    #approval is approved by system, update record and log
+
+    ncmr._status=transition['to']
+    g.db.add(ncmr)
+
+    with force_locale(g.user.organization.lang):
+        log=NCMRLog(
+            user_id=g.user.id,
+            ncmr_id=ncmr.id,
+            created_utc=g.time,
+            key=_("Status"),
+            value=ncmr.status,
+            created_ip=request.remote_addr
+            )
+        g.db.add(log)
+
+    approval=NCMRApproval(
+        user_id=user.id,
+        ncmr_id=ncmr.id,
+        status_id=ncmr._status,
+        created_utc=g.time
+        )
+    g.db.add(approval)
+
+    g.db.commit()
+
+    return toast_redirect(ncmr.permalink)
     
 @app.get("/create_ncmr")
 @has_seat
