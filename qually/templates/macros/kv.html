@@ -1,8 +1,8 @@
 {% macro kv(record, section) %}
 
+<div>
 {% if g.user.has_seat and record._status == section %}
 
-<div>
   {% for entry in record._layout[section] %}
   <div class="d-lg-flex">
     <div class="title w-lg-25">
@@ -43,11 +43,9 @@
     </div>
   </div>
   {% endfor %}
-</div>
 
 {% else %}
 
-<div>
   {% for entry in record._layout[section] %}
   <div class="d-lg-flex">
     <div class="title w-lg-25">
@@ -67,6 +65,8 @@
   </div>
   {% endfor %}
 
+{% endif %}
+
   {% if record.phase_approvals(section) %}
   <div class="d-lg-flex">
     <div class="title w-lg-25">
@@ -83,7 +83,5 @@
   {% endif %}
 
 </div>
-
-{% endif %}
 
 {% endmacro %}
