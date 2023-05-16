@@ -64,7 +64,7 @@ def post_ncmr_number(number):
 @has_seat
 def post_ncmr_number_status(number):
 
-    ncmr=get_ncmr(number)
+    ncmr=get_ncmr(number, lock=True)
 
     transition = [x for x in ncmr._transitions[ncmr._status] if x['id']==request.form.get('transition_id')][0]
 

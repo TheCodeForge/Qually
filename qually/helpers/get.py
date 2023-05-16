@@ -48,9 +48,14 @@ def get_account_by_email(email, graceful=False):
             return bool(user)
 
         
-def get_ncmr(number, graceful=False):
+def get_ncmr(number, lock=False, graceful=False):
     
-    ncmr = g.user.organization.ncmrs.filter_by(number=int(number)).first()
+    ncmr = g.user.organization.ncmrs.filter_by(number=int(number))
+    
+    if lock:
+        ncmr=ncmr.with_for_update()
+
+    ncmr=ncmr.first()
     if not ncmr and not graceful:
         abort(404)
     return ncmr
