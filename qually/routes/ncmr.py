@@ -57,7 +57,7 @@ def post_ncmr_number(number):
                 ncmr_id=ncmr.id,
                 created_utc=g.time,
                 key=f"{_('Approvals')} - {ncmr.status}",
-                value=value,
+                value=_("Cleared"),
                 created_ip=request.remote_addr
                 )
             g.db.add(appr_clear_log)
