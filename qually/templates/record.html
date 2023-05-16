@@ -32,7 +32,7 @@
       <div class="body ms-3 w-lg-100 d-flex">
         {% for approval in record.approvals if approval.status_id==stage %}
         <div>
-          <button class="btn btn-success m-1"><i class="fas fa-signature"></i>{{ approval.user.name }} | {{ approval.created_datetime }}</button>
+          <button class="btn btn-success m-1"><i class="fas fa-signature me-2"></i>{{ approval.user.name }} | {{ approval.created_datetime }}</button>
         </div>
         {% endfor %}
       </div>
