@@ -221,6 +221,8 @@ class NCMRApproval(Base, core_mixin):
     status_id=Column(Integer)
     created_utc=Column(Integer)
 
+    user=relationship("User", lazy="joined", innerjoin=True)
+
 
 class NCMRLog(Base, core_mixin):
 
