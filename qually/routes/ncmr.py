@@ -128,10 +128,7 @@ def post_ncmr_number_approve(number):
     if not transition.get("approval"):
         return toast_error(_("This transition does not require approval signatures."), 403)
 
-    #approval is approved by system, update record and log
-
-    ncmr._status=transition['to']
-    g.db.add(ncmr)
+    #approval is approved by system, update data log
 
     with force_locale(g.user.organization.lang):
         appr_log=NCMRLog(
@@ -143,16 +140,6 @@ def post_ncmr_number_approve(number):
             created_ip=request.remote_addr
             )
         g.db.add(appr_log)
-        
-        log=NCMRLog(
-            user_id=g.user.id,
-            ncmr_id=ncmr.id,
-            created_utc=g.time,
-            key=_("Status"),
-            value=ncmr.status,
-            created_ip=request.remote_addr
-            )
-        g.db.add(log)
 
     approval=NCMRApproval(
         user_id=g.user.id,
@@ -161,6 +148,16 @@ def post_ncmr_number_approve(number):
         created_utc=g.time
         )
     g.db.add(approval)
+
+    g.db.flush()
+    
+    #refresh ncmr and get number of apprs
+    #if all have approved, advance phase
+    g.db.refresh(ncmr)
+    if len(ncmr.phase_approvals(ncmr._status)) >= len(transition['users']):
+        ncmr._status=transition['to']
+        g.db.add(ncmr)
+
 
     g.db.commit()
 
