@@ -19,6 +19,7 @@ class NCMR(Base, core_mixin):
     organization=relationship("Organization")
     owner = relationship("User")
     logs = relationship("NCMRLog", order_by="NCMRLog.id.desc()")
+    approvals=relationship("NCMRApproval")
 
     ##New
     item_number=Column(String, default="")
@@ -210,6 +211,16 @@ class NCMR(Base, core_mixin):
             ]
         }
     
+class NCMRApproval(Base, core_mixin):
+
+    __tablename__="ncmr_audit"
+
+    id = Column(Integer, primary_key=True)
+    ncmr_id=Column(Integer, ForeignKey("ncmr.id"))
+    user_id=Column(Integer, ForeignKey("users.id"))
+    status_id=Column(Integer)
+    created_utc=Column(Integer)
+
 
 class NCMRLog(Base, core_mixin):
 
