@@ -47,7 +47,7 @@ def post_ncmr_number(number):
     g.db.add(ncmr)
 
     #clear any existing approvals on phase and log clearing
-    
+
     approvals_cleared = g.db.query(NCMRApproval).filter_by(ncmr_id=ncmr.id, status_id=ncmr._status).delete()
     if approvals_cleared:
 
@@ -56,7 +56,7 @@ def post_ncmr_number(number):
                 user_id=g.user.id,
                 ncmr_id=ncmr.id,
                 created_utc=g.time,
-                key=f"{_("Approvals")} - {ncmr.status}",
+                key=f"{_('Approvals')} - {ncmr.status}",
                 value=value,
                 created_ip=request.remote_addr
                 )
