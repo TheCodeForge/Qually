@@ -3,6 +3,8 @@
 {% import "macros/kv.html" as kv %}
 {% import "macros/logs.html" as logs %}
 
+{% block title %}{{ record.name }} | {{ 'SITE_NAME' | app_config }}
+
 {% block page %}
 <div class="mt-3 d-flex">
   <div>
