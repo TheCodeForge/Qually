@@ -12,12 +12,14 @@ class NCMR(Base, core_mixin):
     created_utc=Column(Integer)
     organization_id = Column(Integer, ForeignKey("organizations.id"))
     owner_id = Column(Integer, ForeignKey("users.id"))
+    assignee_id = Column(Integer, ForeignKey("users.id"))
     number=Column(Integer, default=0, index=True)
     _status = Column(Integer, default=0)
 
     ##relationships
     organization=relationship("Organization")
-    owner = relationship("User")
+    owner = relationship("User", primaryjoin="User.id=NCMR.owner_id")
+    assignee = relationship("User", primaryjoin="User.id=NCMR.assignee_id")
     logs = relationship("NCMRLog", order_by="NCMRLog.id.desc()")
     approvals=relationship("NCMRApproval")
 

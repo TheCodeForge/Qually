@@ -8,10 +8,23 @@ except ModuleNotFoundError:
 @app.get("/")
 def get_home():
 
-    if g.user:
-        return render_template("dashboard.html")
-    else:
+    if not g.user:
         return render_template("home.html")
+
+
+    data={
+            "ncmr": {
+            "name":_("Non-Conforming Materials"),
+            "owned":g.user.organization.ncmrs.filter_by(owner_id=g.user.id).all(),
+            "assigned":[]
+        },
+            "capa": {
+            "name":_("Corrective and Preventive Actions"),
+            "owned":[],
+            "assigned":[]
+        }
+    }
+    return render_template("dashboard.html")
 
 @app.post("/prefs/dark_mode")
 def post_settings_dark_mode():

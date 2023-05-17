@@ -7,19 +7,6 @@
   <h2 class="h3 d-md-none">{{_("Dashboard")}}</h2>
 </div>
 
-{% set data={
-  "ncmr": {
-    "name":_("Non-Conforming Materials"),
-    "owned":g.user.organization.ncmrs.filter_by(owner_id=g.user.id).all(),
-    "assigned":[]
-  },
-  "capa": {
-    "name":_("Corrective and Preventive Actions"),
-    "owned":[],
-    "assigned":[]
-  }
-} %}
-
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   {% for entry in data %}
   <li class="nav-item" role="presentation">
