@@ -37,15 +37,37 @@
 {% block rightbar %}
 <div class="mt-5">
   {% for tsn in record._transitions[record._status] if g.user in tsn['users'] %}
+
   {% if tsn.get('approval', False) %}
-  <form id="form-transition-{{ tsn['id'] }}" action="{{ record.permalink }}/approve" method="post" class="toasted">
-    <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-    <input type="hidden" name="transition_id" value="{{ tsn['id'] }}">
-  </form>
   {% if record.has_approved %}
   <a class="w-100 mt-2 btn btn-{{tsn['color']}} toast-form-submit disabled" data-form="form-transition-{{ tsn['id'] }}" href="javascript:void(0)">{{_("Approved")}}</a>
   {% else %}
-  <a class="w-100 mt-2 btn btn-{{tsn['color']}} toast-form-submit" data-form="form-transition-{{ tsn['id'] }}" href="javascript:void(0)">{{_("Approve")}}</a>
+  <!--approve button-->
+  <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal-approve-{{record.id}}-{{record._status}}">{{_("Approve")}}</button>
+
+  <!--approve modal-->
+  <div class="modal fade" id="modal-approve-{{record.id}}-{{record._status}}" tabindex="-1" aria-labelledby="modal-approve-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-approve-label">{{ _("Approve {x}").format(record.name) }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="form-approve-{{ tsn['id'] }}" action="{{ record.permalink }}/approve" method="post" class="toasted">
+            <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+            <input type="hidden" name="transition_id" value="{{ tsn['id'] }}">
+            <label for="input-password">Password</label>
+            <input type="password" name="password" autocomplete="off">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{_("Close")}}</button>
+          <button type="button" class="btn btn-success toast-form-submit" data-form="approve">{{_("Sign and Approve")}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
   {% endif %}
   {% else %}
   <form id="form-transition-{{ tsn['id'] }}" action="{{ record.permalink }}/status" method="post" class="toasted">
