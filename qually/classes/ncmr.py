@@ -74,7 +74,7 @@ class NCMR(Base, core_mixin):
             2: {
                 'name': _("Material Review Board"),
                 'users': self.organization.mrb_users,
-                }
+                },
             3: {
                 'name': _("Disposition"),
                 'users': [self.assignee]
