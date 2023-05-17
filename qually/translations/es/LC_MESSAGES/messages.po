@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-17 18:57-0400\n"
+"POT-Creation-Date: 2023-05-17 18:58-0400\n"
 "PO-Revision-Date: 2023-05-07 09:47-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -27,9 +27,8 @@ msgid "New"
 msgstr "Nuevo"
 
 #: classes/ncmr.py:71
-#, fuzzy
 msgid "Initial Review"
-msgstr "Revisión final"
+msgstr "Revisión inicial"
 
 #: classes/ncmr.py:75 classes/user.py:205
 msgid "Material Review Board"
@@ -104,83 +103,76 @@ msgid "Executed Disposition"
 msgstr "Disposición Ejecutada"
 
 #: classes/ncmr.py:187 classes/ncmr.py:250
-#, fuzzy
 msgid "Submit"
-msgstr "Enviado"
+msgstr "Enviar"
 
 #: classes/ncmr.py:188
 msgid "Submit this record to Document Control for review."
-msgstr ""
+msgstr "Envíe este registro a Control de Documentos para su revisión."
 
 #: classes/ncmr.py:195 classes/ncmr.py:229
-#, fuzzy
 msgid "Terminate"
-msgstr "Terminado"
+msgstr "Terminar"
 
 #: classes/ncmr.py:196 classes/ncmr.py:230
 msgid "Permanently archive this record. This cannot be undone."
-msgstr ""
+msgstr "Archivar permanentemente este registro. Esto no se puede deshacer"
 
 #: classes/ncmr.py:205
 msgid "Reject"
-msgstr ""
+msgstr "Rechazar"
 
-#: classes/ncmr.py:206
-msgid "Send this record back to its initiator for revision"
-msgstr ""
+#: classes/ncmr.py:
+msgid "Send this record back to its initiator for revision."
+msgstr "Envíe este registro de vuelta a su iniciador para su revisión."
 
 #: classes/ncmr.py:214
 msgid "Withdraw"
-msgstr ""
+msgstr "Retirar"
 
 #: classes/ncmr.py:221
 msgid "Advance"
-msgstr ""
+msgstr "Avance"
 
 #: classes/ncmr.py:222
-#, fuzzy
-msgid "Send this record to the Material Review Board"
-msgstr "Junta de Revisión de Materiales"
+msgid "Send this record to the Material Review Board."
+msgstr "Envíe este registro a la Junta de Revisión de Materiales."
 
 #: classes/ncmr.py:239
 msgid "Approve"
-msgstr ""
+msgstr "Aprobar"
 
 #: classes/ncmr.py:240
 msgid "Approve of the planned disposition."
-msgstr ""
+msgstr "Aprobar la disposición prevista."
 
 #: classes/ncmr.py:251
-#, fuzzy
 msgid "Submit for final review."
-msgstr "Revisión final"
+msgstr "Enviar para revisión final"
 
 #: classes/ncmr.py:260
 msgid "Reject to MRB"
-msgstr ""
+msgstr "Rechazo a la Junta de Revisión de Materiales"
 
 #: classes/ncmr.py:261
-#, fuzzy
 msgid "Reject back to the Material Review Board."
-msgstr "Junta de Revisión de Materiales"
+msgstr "Rechazar de nuevo a la Junta de revisión de materiales"
 
 #: classes/ncmr.py:268
-#, fuzzy
 msgid "Reject to  Disposition"
-msgstr "Disposición Ejecutada"
+msgstr "Rechazo a Disposición"
 
 #: classes/ncmr.py:269
 msgid "Reject back to the Disposition assignee."
-msgstr ""
+msgstr "Rechazar de nuevo al cesionario de disposición"
 
 #: classes/ncmr.py:276 templates/record.html:72 templates/record.html:101
-#, fuzzy
 msgid "Close"
-msgstr "Cerrado"
+msgstr "Cerrar"
 
 #: classes/ncmr.py:277
 msgid "Approve and close this record."
-msgstr ""
+msgstr "Aprobar y cerrar este registro."
 
 #: classes/user.py:201 templates/settings/directory.html:27
 msgid "Administrator"
@@ -188,7 +180,7 @@ msgstr "Administrador"
 
 #: classes/user.py:203
 msgid "Document Control"
-msgstr ""
+msgstr "Control de documentos"
 
 #: helpers/wrappers.py:141
 msgid "This link has expired."
@@ -271,9 +263,8 @@ msgid "Unable to save changes"
 msgstr "No se pueden guardar los cambios"
 
 #: routes/ncmr.py:60
-#, fuzzy
 msgid "Cleared"
-msgstr "Cerrado"
+msgstr "Borrado"
 
 #: routes/ncmr.py:78
 msgid "Changes saved"
@@ -281,15 +272,15 @@ msgstr "Cambios guardados"
 
 #: routes/ncmr.py:91 routes/ncmr.py:131 routes/ncmr.py:202
 msgid "This record has changed status. Please reload this page."
-msgstr ""
+msgstr "Este registro ha cambiado de estado. Vuelva a cargar esta página."
 
 #: routes/ncmr.py:94 routes/ncmr.py:134
 msgid "You are not authorized to do that."
-msgstr ""
+msgstr "No estás autorizado para hacer eso."
 
 #: routes/ncmr.py:97
 msgid "This transition requires approval signatures."
-msgstr ""
+msgstr "Esta transición requiere firmas de aprobación."
 
 #: routes/ncmr.py:109 routes/ncmr.py:179 templates/dashboard.html:27
 #: templates/dashboard.html:51 templates/ncmrs.html:15
@@ -298,23 +289,23 @@ msgstr "Estado"
 
 #: routes/ncmr.py:137
 msgid "You already approved this."
-msgstr ""
+msgstr "Ya aprobaste esto."
 
 #: routes/ncmr.py:144
 msgid "This transition does not require approval signatures."
-msgstr ""
+msgstr "Esta transición no requiere firmas de aprobación."
 
 #: routes/ncmr.py:154
 msgid "Approved"
-msgstr ""
+msgstr "Aprobado"
 
 #: routes/ncmr.py:207
 msgid "You don't have any approvals to clear."
-msgstr ""
+msgstr "No tienes ninguna aprobación para borrar."
 
 #: routes/ncmr.py:219
 msgid "Unapproved"
-msgstr ""
+msgstr "No Aprobado"
 
 #: routes/org_settings.py:19 routes/org_settings.py:227
 msgid "You didn't change anything!"
@@ -505,26 +496,24 @@ msgstr "Historia"
 
 #: templates/record.html:49
 msgid "Remove Signature"
-msgstr ""
+msgstr "Eliminar firma"
 
 #: templates/record.html:69
 msgid ""
-"When all required signatures have been collected, {x} will be "
-"automatically advanced to the {y} phase"
-msgstr ""
+"When all required signatures have been collected, {x} will be automatically advanced to the {y} phase"
+msgstr "Cuando se hayan recopilado todas las firmas requeridas, {x} avanzará automáticamente a la fase {y}"
 
 #: templates/record.html:73
 msgid "Sign and Approve"
-msgstr ""
+msgstr "Firmar y aprobar"
 
 #: templates/record.html:88
 msgid "Confirm Action on {x}"
-msgstr ""
+msgstr "Confirmar acción en {x}"
 
 #: templates/record.html:102
-#, fuzzy
 msgid "Confirm"
-msgstr "Confirmar Contraseña"
+msgstr "Confirmar"
 
 #: templates/auth/otp.html:16
 msgid "Two-Factor Code"
@@ -599,7 +588,7 @@ msgstr "Seleccione Uno"
 
 #: templates/macros/kv.html:73
 msgid "Approvals"
-msgstr ""
+msgstr "Aprobaciones"
 
 #: templates/macros/logs.html:6 templates/macros/logs.html:25
 #: templates/settings/audit.html:10
@@ -866,4 +855,3 @@ msgstr "Habilitar la autenticación de dos factores"
 
 #~ msgid "Item number"
 #~ msgstr "Número de Artículo"
-
