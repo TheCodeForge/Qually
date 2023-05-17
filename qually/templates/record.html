@@ -46,7 +46,7 @@
     <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
     <input type="hidden" name="transition_id" value="{{ tsn['id'] }}">
   </form>
-  <a class="w-100 mt-2 btn btn-warning toast-form-submit" data-form="form-unapprove-{{ tsn['id'] }}" href="javascript:void(0)">{{_("Withdraw Approval")}}</a>
+  <a class="w-100 mt-2 btn btn-warning toast-form-submit" data-form="form-unapprove-{{ tsn['id'] }}" href="javascript:void(0)">{{_("Remove Signature")}}</a>
   {% else %}
   <!--approve button-->
   <button type="button" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modal-approve-{{record.id}}-{{record._status}}">{{_("Approve")}}</button>
@@ -56,7 +56,7 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="modal-approve-label">{{ _("Approve") }}</h5>
+          <h5 class="modal-title" id="modal-approve-label">{{ tsn['name'] }}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
