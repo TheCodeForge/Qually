@@ -164,8 +164,7 @@ class NCMR(Base, core_mixin):
                     "name": _("Submit"),
                     "description": _("Submit this record to Document Control for review."),
                     "color": "success",
-                    "users": [self.owner],
-                    "approval":True
+                    "users": [self.owner]
                 },
                 {
                     "id":"terminate",
@@ -182,7 +181,7 @@ class NCMR(Base, core_mixin):
                     "to": 0,
                     "name": _("Reject"),
                     "description": _("Send this record back to its initiator for revision"),
-                    "users": [], #g.user.organization.doc_control
+                    "users": g.user.organization.doc_control_users
                     "color": "warning",
                     "comments": True,
                 },
@@ -191,14 +190,14 @@ class NCMR(Base, core_mixin):
                     "to": 0,
                     "name": _("Withdraw"),
                     "users": [self.owner],
-                    "color": "warning"
+                    "color": "muted"
                 },
                 {
                     "id":"advance",
                     "to": 2,
                     "name": _("Advance"),
                     "description": _("Send this record to the Material Review Board"),
-                    "users": [], #g.user.organization.doc_control
+                    "users": g.user.organization.doc_control_users
                     "color": "success"
                 },
                 {
@@ -206,8 +205,18 @@ class NCMR(Base, core_mixin):
                     "to": 100,
                     "name": _("Terminate"),
                     "description": _("Permanently archive this record. This cannot be undone."),
-                    "type": "reject",
-                    "users": [] #g.user.organization.doc_control
+                    "color": "danger",
+                    "users": g.user.organization.doc_control_users
+                }
+            ],
+            2: [
+                {
+                    "id":"approve",
+                    "to":3,
+                    "name": _("Approve"),
+                    "description": _("Approve of the planned disposition."),
+                    "color": "success",
+                    "users": g.user.organization.mrb_users
                 }
             ]
         }
