@@ -197,7 +197,7 @@ class NCMR(Base, core_mixin):
                     "to": 2,
                     "name": _("Advance"),
                     "description": _("Send this record to the Material Review Board"),
-                    "users": g.user.organization.doc_control_users
+                    "users": g.user.organization.doc_control_users,
                     "color": "success"
                 },
                 {
@@ -206,7 +206,7 @@ class NCMR(Base, core_mixin):
                     "name": _("Terminate"),
                     "description": _("Permanently archive this record. This cannot be undone."),
                     "color": "danger",
-                    "users": g.user.organization.doc_control_users
+                    "users": g.user.organization.doc_control_users,
                 }
             ],
             2: [
@@ -216,7 +216,7 @@ class NCMR(Base, core_mixin):
                     "name": _("Approve"),
                     "description": _("Approve of the planned disposition."),
                     "color": "success",
-                    "users": g.user.organization.mrb_users
+                    "users": g.user.organization.mrb_users,
                 }
             ]
         }
