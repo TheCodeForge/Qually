@@ -18,8 +18,8 @@ class NCMR(Base, core_mixin):
 
     ##relationships
     organization=relationship("Organization")
-    owner = relationship("User", primaryjoin="User.id=NCMR.owner_id")
-    assignee = relationship("User", primaryjoin="User.id=NCMR.assignee_id")
+    owner = relationship("User", primaryjoin="User.id==NCMR.owner_id")
+    assignee = relationship("User", primaryjoin="User.id==NCMR.assignee_id")
     logs = relationship("NCMRLog", order_by="NCMRLog.id.desc()")
     approvals=relationship("NCMRApproval")
 
