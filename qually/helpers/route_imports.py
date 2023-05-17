@@ -3,7 +3,7 @@ import secrets
 
 from flask import request, g, render_template, redirect, abort, session, jsonify, send_file, redirect, make_response, Response
 from hmac import compare_digest
-from sqlalchemy.sql import or_
+from sqlalchemy import or_
 from werkzeug.security import safe_join, generate_password_hash, check_password_hash
 
 from qually.classes import *
