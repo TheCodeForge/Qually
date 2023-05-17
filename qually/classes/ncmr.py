@@ -228,8 +228,8 @@ class NCMR(Base, core_mixin):
                     "to": 100,
                     "name": _("Terminate"),
                     "description": _("Permanently archive this record. This cannot be undone."),
-                    "color": "danger",
                     "users": g.user.organization.doc_control_users,
+                    "color": "danger"
                 }
             ],
             2: [
@@ -238,9 +238,45 @@ class NCMR(Base, core_mixin):
                     "to":3,
                     "name": _("Approve"),
                     "description": _("Approve of the planned disposition."),
-                    "color": "success",
                     "users": g.user.organization.mrb_users,
+                    "color": "success",
                     "approval":True
+                }
+            ],
+            3: [
+                {
+                    "id":"submit",
+                    "to":3,
+                    "name": _("Submit"),
+                    "description": _("Submit for final review."),
+                    "users": [self.assignee],
+                    "color": "success"
+                }
+            ],
+            4: [
+                {
+                    "id":"reject-mrb",
+                    "to":2,
+                    "name": _("Reject to Material Review Board"),
+                    "description": _("Reject back to the Material Review Board."),
+                    "users": g.user.organization.doc_control_users,
+                    "color": "warning"
+                },
+                {
+                    "id":"reject-dsp",
+                    "to":2,
+                    "name": _("Reject to  Disposition"),
+                    "description": _("Reject back to the Disposition assignee."),
+                    "users": g.user.organization.doc_control_users,
+                    "color": "warning"
+                },
+                {
+                    "id":"close",
+                    "to":2,
+                    "name": _("Close"),
+                    "description": _("Approve and close this record."),
+                    "users": g.user.organization.doc_control_users,
+                    "color": "success"
                 }
             ]
         }
