@@ -40,7 +40,11 @@
 
   {% if tsn.get('approval', False) %}
   {% if record.has_approved %}
-  <a class="w-100 mt-2 btn btn-{{tsn['color']}} toast-form-submit disabled" data-form="form-transition-{{ tsn['id'] }}" href="javascript:void(0)">{{_("Approved")}}</a>
+  <form id="form-unapprove-{{ tsn['id'] }}" action="{{ record.permalink }}/unapprove" method="post" class="toasted">
+    <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+    <input type="hidden" name="transition_id" value="{{ tsn['id'] }}">
+  </form>
+  <a class="w-100 mt-2 btn btn-warning toast-form-submit disabled" data-form="form-unapprove-{{ tsn['id'] }}" href="javascript:void(0)">{{_("Withdraw Approval")}}</a>
   {% else %}
   <!--approve button-->
   <button type="button" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modal-approve-{{record.id}}-{{record._status}}">{{_("Approve")}}</button>

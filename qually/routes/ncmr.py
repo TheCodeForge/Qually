@@ -83,7 +83,12 @@ def post_ncmr_number_status(number):
 
     ncmr=get_ncmr(number)
 
-    transition = [x for x in ncmr._transitions[ncmr._status] if x['id']==request.form.get('transition_id')][0]
+    transition = [x for x in ncmr._transitions[ncmr._status] if x['id']==request.form.get('transition_id')]
+
+    try:
+        transition=transition[0]
+    except IndexError:
+        return toast_error(_("This record has changed status. Please reload this page."), 403)
 
     if g.user not in transition['users']:
         return toast_error(_("You are not authorized to do that."), 403)
@@ -118,7 +123,12 @@ def post_ncmr_number_approve(number):
 
     ncmr=get_ncmr(number)
 
-    transition = [x for x in ncmr._transitions[ncmr._status] if x['id']==request.form.get('transition_id')][0]
+    transition = [x for x in ncmr._transitions[ncmr._status] if x['id']==request.form.get('transition_id')]
+
+    try:
+        transition=transition[0]
+    except IndexError:
+        return toast_error(_("This record has changed status. Please reload this page."), 403)
 
     if g.user not in transition['users']:
         return toast_error(_("You are not authorized to do that."), 403)
@@ -177,6 +187,33 @@ def post_ncmr_number_approve(number):
     g.db.commit()
 
     return toast_redirect(ncmr.permalink)
+
+@app.post("/NCMR-<number>/unapprove")
+@logged_in
+def post_ncmr_number_unapprove(number):
+
+    ncmr=get_ncmr(number)
+
+    transition = [x for x in ncmr._transitions[ncmr._status] if x['id']==request.form.get('transition_id')]
+
+    try:
+        transition=transition[0]
+    except IndexError:
+        return toast_error(_("This record has changed status. Please reload this page."), 403)
+
+    approvals = [x for x in ncmr.approvals if x.user_id==g.user.id and x.status_id==ncmr._status]
+
+    if not approvals:
+        return toast_error(_("You don't have any approvals to clear."))
+
+    for approval in approvals:
+        g.db.delete(approval)
+    g.db.commit()
+
+    return toast_redirect(ncmr.permalink)
+
+
+
     
 @app.get("/create_ncmr")
 @has_seat
