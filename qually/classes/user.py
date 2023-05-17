@@ -42,8 +42,10 @@ class User(Base, core_mixin):
     tz = Column(String, default="UTC")
 
     #business roles
-    is_doc_control=Column(Boolean, default=False)
-    is_mrb=Column(Boolean, default=False)
+    special_role = Column(Integer, default=0)
+        #0=none
+        #1=doc control
+        #2=material review board
 
     ## === RELATIONSHIPS ===
 
@@ -206,3 +208,11 @@ class User(Base, core_mixin):
 
         return ', '.join(roles)
     
+
+    @property
+    def is_doc_control(self):
+        return self.special_role==1
+
+    @property
+    def is_mrb(self):
+        return self.special_role==2
