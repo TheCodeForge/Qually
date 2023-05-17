@@ -11,12 +11,17 @@ def get_home():
     if not g.user:
         return render_template("home.html")
 
+    ncmr_conditions=[NCMR.assignee_id==g.user.id]
+    if g.user.is_doc_control:
+        ncmr_conditions.append(NCMR._status.in_([1,4]))
+    if g.user.is_mrb:
+        ncmr_conditions.append(NCMR._status==2)
 
     data={
             "ncmr": {
             "name":_("Non-Conforming Materials"),
-            "owned":g.user.organization.ncmrs.filter_by(owner_id=g.user.id).all(),
-            "assigned":[]
+            "owned":g.user.organization.ncmrs.filter(NCMR.owner_id=g.user.id).all(),
+            "assigned":g.user.organization.ncmrs.filter(*tuple(ncmr_conditons)).all()
         },
             "capa": {
             "name":_("Corrective and Preventive Actions"),
@@ -24,7 +29,7 @@ def get_home():
             "assigned":[]
         }
     }
-    return render_template("dashboard.html")
+    return render_template("dashboard.html", data=data)
 
 @app.post("/prefs/dark_mode")
 def post_settings_dark_mode():
