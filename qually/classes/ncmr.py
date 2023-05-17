@@ -181,7 +181,7 @@ class NCMR(Base, core_mixin):
                     "to": 0,
                     "name": _("Reject"),
                     "description": _("Send this record back to its initiator for revision"),
-                    "users": g.user.organization.doc_control_users
+                    "users": g.user.organization.doc_control_users,
                     "color": "warning",
                     "comments": True,
                 },
