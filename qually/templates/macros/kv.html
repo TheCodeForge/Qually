@@ -1,7 +1,7 @@
 {% macro kv(record, section) %}
 
 <div>
-{% if g.user.has_seat and record._status == section %}
+{% if g.user.has_seat and record._status == section and g.user in record._lifecycle[record._status]['users'] %}
 
   {% for entry in record._layout[section] %}
   <div class="d-lg-flex">
