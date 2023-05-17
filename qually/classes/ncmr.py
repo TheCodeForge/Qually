@@ -246,7 +246,7 @@ class NCMR(Base, core_mixin):
             3: [
                 {
                     "id":"submit",
-                    "to":3,
+                    "to":4,
                     "name": _("Submit"),
                     "description": _("Submit for final review."),
                     "users": [self.assignee],
@@ -264,7 +264,7 @@ class NCMR(Base, core_mixin):
                 },
                 {
                     "id":"reject-dsp",
-                    "to":2,
+                    "to":3,
                     "name": _("Reject to  Disposition"),
                     "description": _("Reject back to the Disposition assignee."),
                     "users": g.user.organization.doc_control_users,
@@ -272,7 +272,7 @@ class NCMR(Base, core_mixin):
                 },
                 {
                     "id":"close",
-                    "to":2,
+                    "to":5,
                     "name": _("Close"),
                     "description": _("Approve and close this record."),
                     "users": g.user.organization.doc_control_users,
