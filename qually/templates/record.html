@@ -51,10 +51,10 @@
   <a class="w-100 mt-2 btn btn-warning toast-form-submit" data-form="form-unapprove-{{ tsn['id'] }}" href="javascript:void(0)">{{_("Remove Signature")}}</a>
   {% else %}
   <!--{{ tsn['id'] }} approve button-->
-  <button type="button" class="btn btn-{{ tsn['color'] }} w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modal-approve-{{record.id}}-{{record._status}}">{{ tsn['name'] }}</button>
+  <button type="button" class="btn btn-{{ tsn['color'] }} w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modal-{{ tsn['id'] }}-{{record.id}}-{{record._status}}">{{ tsn['name'] }}</button>
 
   <!--{{ tsn['id'] }} approve modal-->
-  <div class="modal fade" id="modal-approve-{{record.id}}-{{record._status}}" tabindex="-1" aria-labelledby="modal-approve-label" aria-hidden="true">
+  <div class="modal fade" id="modal-{{ tsn['id'] }}-{{record.id}}-{{record._status}}" tabindex="-1" aria-labelledby="modal-approve-label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -80,10 +80,10 @@
   {% endif %}
   {% else %}
   <!--{{ tsn['id'] }} phase button-->
-  <button type="button" class="btn btn-{{ tsn['color'] }} w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modal-approve-{{record.id}}-{{record._status}}">{{ tsn['name'] }}</button>
+  <button type="button" class="btn btn-{{ tsn['color'] }} w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modal-{{ tsn['id'] }}-{{record.id}}-{{record._status}}">{{ tsn['name'] }}</button>
 
   <!--{{ tsn['id'] }} phase modal-->
-  <div class="modal fade" id="modal-approve-{{record.id}}-{{record._status}}" tabindex="-1" aria-labelledby="modal-approve-label" aria-hidden="true">
+  <div class="modal fade" id="modal-{{ tsn['id'] }}-{{record.id}}-{{record._status}}" tabindex="-1" aria-labelledby="modal-approve-label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
