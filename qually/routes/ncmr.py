@@ -221,6 +221,8 @@ def post_ncmr_number_unapprove(number):
             )
         g.db.add(appr_log)
 
+    g.db.commit()
+
     return toast_redirect(ncmr.permalink)
 
 
