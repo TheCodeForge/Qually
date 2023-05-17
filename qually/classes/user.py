@@ -37,6 +37,10 @@ class User(Base, core_mixin):
     lang = Column(String(2), default="en")
     tz = Column(String, default="UTC")
 
+    #business roles
+    is_doc_control=Column(Boolean, default=False)
+    is_mrb=Column(Boolean, default=False)
+
     ## === RELATIONSHIPS ===
 
     organization = relationship("Organization", lazy="joined", innerjoin=True, viewonly=True)
