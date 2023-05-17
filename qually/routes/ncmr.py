@@ -208,7 +208,18 @@ def post_ncmr_number_unapprove(number):
 
     for approval in approvals:
         g.db.delete(approval)
-    g.db.commit()
+    g.db.flush()
+
+    with force_locale(g.user.organization.lang):
+        appr_log=NCMRLog(
+            user_id=g.user.id,
+            ncmr_id=ncmr.id,
+            created_utc=g.time,
+            key=f"{_('Approvals')} - {ncmr.status}",
+            value=_("Unapproved"),
+            created_ip=request.remote_addr
+            )
+        g.db.add(appr_log)
 
     return toast_redirect(ncmr.permalink)
 
