@@ -63,13 +63,34 @@ class NCMR(Base, core_mixin):
     @property
     def _lifecycle(self):
         return {
-            0: _("New"),
-            1: _("Initial Review"),
-            2: _("Material Review Board"),
-            3: _("Disposition"),
-            4: _("Final Review"),
-            5: _("Closed"),
-            100: _("Terminated")
+            0: {
+                'name': _("New"),
+                'users': [self.owner]
+                },
+            1: {
+                'name': _("Initial Review"),
+                'users': self.organization.doc_control_users
+                },
+            2: {
+                'name': _("Material Review Board"),
+                'users': self.organization.mrb_users,
+                }
+            3: {
+                'name': _("Disposition"),
+                'users': [self.assignee]
+                },
+            4: {
+                'name': _("Final Review"),
+                'users': self.organization.doc_control_users
+                },
+            5: {
+                'name': _("Closed"),
+                'users': []
+                },
+            100: {
+                'name': _("Terminated"),
+                'users': []
+                }
         }
 
     @property
@@ -89,7 +110,7 @@ class NCMR(Base, core_mixin):
     @property
     def status(self):
 
-        return self._lifecycle[self._status]
+        return self._lifecycle[self._status]['name']
 
     @property
     @lazy
