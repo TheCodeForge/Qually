@@ -61,8 +61,8 @@
           <form id="form-approve-{{ tsn['id'] }}" action="{{ record.permalink }}/approve" method="post" class="toasted">
             <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
             <input type="hidden" name="transition_id" value="{{ tsn['id'] }}">
-            <label for="input-password" class="form-control">Password</label>
-            <input type="password" name="password" autocomplete="off">
+            <label for="input-password">Password</label>
+            <input type="password" name="password" autocomplete="off" class="form-control">
           </form>
         </div>
         <div class="modal-footer">
