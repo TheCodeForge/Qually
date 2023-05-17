@@ -1,6 +1,10 @@
 from secrets import token_hex
 import pyotp
 from hmac import compare_digest
+try:
+    from flask_babel import gettext as _, force_locale
+except ModuleNotFoundError:
+    pass
 
 from qually.helpers.security import otp_recovery_code
 from qually.helpers.class_imports import *
