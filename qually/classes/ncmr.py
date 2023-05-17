@@ -205,7 +205,7 @@ class NCMR(Base, core_mixin):
                     "name": _("Reject"),
                     "description": _("Send this record back to its initiator for revision"),
                     "users": g.user.organization.doc_control_users,
-                    "color": "warning",
+                    "color": "secondary",
                     "comments": True,
                 },
                 {
@@ -213,7 +213,7 @@ class NCMR(Base, core_mixin):
                     "to": 0,
                     "name": _("Withdraw"),
                     "users": [self.owner],
-                    "color": "muted"
+                    "color": "secondary"
                 },
                 {
                     "id":"advance",
