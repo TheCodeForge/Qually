@@ -137,7 +137,7 @@ def post_ncmr_number_approve(number):
         return toast_error(_("You already approved this."))
 
     ## Validate password
-    if not check_password_hash(user.passhash, request.form.get("password")):
+    if not check_password_hash(g.user.passhash, request.form.get("password")):
         return toast_error(_("Incorrect password"), 403)
 
     if not transition.get("approval"):
