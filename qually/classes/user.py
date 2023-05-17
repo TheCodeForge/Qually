@@ -195,6 +195,10 @@ class User(Base, core_mixin):
         roles=[]
         if self.is_org_admin:
             roles.append(_("Administrator"))
+        if self.is_doc_control:
+            roles.append(_("Document Control"))
+        if self.is_mrb:
+            roles.append(_("Material Review Board"))
 
         return ', '.join(roles)
     
