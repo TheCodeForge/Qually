@@ -257,7 +257,7 @@ class NCMR(Base, core_mixin):
                 {
                     "id":"reject-mrb",
                     "to":2,
-                    "name": _("Reject to Material Review Board"),
+                    "name": _("Reject to MRB"),
                     "description": _("Reject back to the Material Review Board."),
                     "users": g.user.organization.doc_control_users,
                     "color": "warning"
