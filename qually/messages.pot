@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-14 19:36-0400\n"
+"POT-Creation-Date: 2023-05-17 18:57-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,92 +17,168 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
 
-#: classes/ncmr.py:58
+#: classes/ncmr.py:61
 msgid "NCMR-"
 msgstr ""
 
-#: classes/ncmr.py:63
+#: classes/ncmr.py:67
 msgid "New"
 msgstr ""
 
-#: classes/ncmr.py:64
-msgid "Submitted"
+#: classes/ncmr.py:71
+msgid "Initial Review"
 msgstr ""
 
-#: classes/ncmr.py:65
+#: classes/ncmr.py:75 classes/user.py:205
 msgid "Material Review Board"
 msgstr ""
 
-#: classes/ncmr.py:66
+#: classes/ncmr.py:79
 msgid "Disposition"
 msgstr ""
 
-#: classes/ncmr.py:67
+#: classes/ncmr.py:83
 msgid "Final Review"
 msgstr ""
 
-#: classes/ncmr.py:68
+#: classes/ncmr.py:87
 msgid "Closed"
 msgstr ""
 
-#: classes/ncmr.py:69
+#: classes/ncmr.py:91
 msgid "Terminated"
 msgstr ""
 
-#: classes/ncmr.py:75
+#: classes/ncmr.py:101
 msgid "Scrap"
 msgstr ""
 
-#: classes/ncmr.py:76
+#: classes/ncmr.py:102
 msgid "Return to Supplier"
 msgstr ""
 
-#: classes/ncmr.py:77
+#: classes/ncmr.py:103
 msgid "Rework"
 msgstr ""
 
-#: classes/ncmr.py:78
+#: classes/ncmr.py:104
 msgid "Use As-Is"
 msgstr ""
 
-#: classes/ncmr.py:79
+#: classes/ncmr.py:105
 msgid "Reclassify"
 msgstr ""
 
-#: classes/ncmr.py:94 templates/create/ncmr.html:11
+#: classes/ncmr.py:121 templates/create/ncmr.html:11
 msgid "Item Number"
 msgstr ""
 
-#: classes/ncmr.py:99 templates/create/ncmr.html:14
+#: classes/ncmr.py:126 templates/create/ncmr.html:14
 msgid "Serial or Lot Number"
 msgstr ""
 
-#: classes/ncmr.py:104 templates/create/ncmr.html:17
+#: classes/ncmr.py:131 templates/create/ncmr.html:17
 msgid "Quantity"
 msgstr ""
 
-#: classes/ncmr.py:109
+#: classes/ncmr.py:136
 msgid "Description of Non-Conformance"
 msgstr ""
 
-#: classes/ncmr.py:115 classes/ncmr.py:143
+#: classes/ncmr.py:142 classes/ncmr.py:170
 msgid "Additional Comments"
 msgstr ""
 
-#: classes/ncmr.py:123
+#: classes/ncmr.py:150
 msgid "Assigned Disposition"
 msgstr ""
 
-#: classes/ncmr.py:129
+#: classes/ncmr.py:156
 msgid "Material Review Board Comments"
 msgstr ""
 
-#: classes/ncmr.py:137
+#: classes/ncmr.py:164
 msgid "Executed Disposition"
 msgstr ""
 
-#: classes/user.py:193 templates/settings/directory.html:27
+#: classes/ncmr.py:187 classes/ncmr.py:250
+msgid "Submit"
+msgstr ""
+
+#: classes/ncmr.py:188
+msgid "Submit this record to Document Control for review."
+msgstr ""
+
+#: classes/ncmr.py:195 classes/ncmr.py:229
+msgid "Terminate"
+msgstr ""
+
+#: classes/ncmr.py:196 classes/ncmr.py:230
+msgid "Permanently archive this record. This cannot be undone."
+msgstr ""
+
+#: classes/ncmr.py:205
+msgid "Reject"
+msgstr ""
+
+#: classes/ncmr.py:206
+msgid "Send this record back to its initiator for revision"
+msgstr ""
+
+#: classes/ncmr.py:214
+msgid "Withdraw"
+msgstr ""
+
+#: classes/ncmr.py:221
+msgid "Advance"
+msgstr ""
+
+#: classes/ncmr.py:222
+msgid "Send this record to the Material Review Board"
+msgstr ""
+
+#: classes/ncmr.py:239
+msgid "Approve"
+msgstr ""
+
+#: classes/ncmr.py:240
+msgid "Approve of the planned disposition."
+msgstr ""
+
+#: classes/ncmr.py:251
+msgid "Submit for final review."
+msgstr ""
+
+#: classes/ncmr.py:260
+msgid "Reject to MRB"
+msgstr ""
+
+#: classes/ncmr.py:261
+msgid "Reject back to the Material Review Board."
+msgstr ""
+
+#: classes/ncmr.py:268
+msgid "Reject to  Disposition"
+msgstr ""
+
+#: classes/ncmr.py:269
+msgid "Reject back to the Disposition assignee."
+msgstr ""
+
+#: classes/ncmr.py:276 templates/record.html:72 templates/record.html:101
+msgid "Close"
+msgstr ""
+
+#: classes/ncmr.py:277
+msgid "Approve and close this record."
+msgstr ""
+
+#: classes/user.py:201 templates/settings/directory.html:27
 msgid "Administrator"
+msgstr ""
+
+#: classes/user.py:203
+msgid "Document Control"
 msgstr ""
 
 #: helpers/wrappers.py:141
@@ -113,7 +189,15 @@ msgstr ""
 msgid "This page may not be embedded in other webpages."
 msgstr ""
 
-#: routes/front.py:27 routes/org_settings.py:36 routes/settings.py:99
+#: routes/front.py:22
+msgid "Non-Conforming Materials"
+msgstr ""
+
+#: routes/front.py:27
+msgid "Corrective and Preventive Actions"
+msgstr ""
+
+#: routes/front.py:45 routes/org_settings.py:36 routes/settings.py:99
 msgid "That language is not currently supported."
 msgstr ""
 
@@ -165,7 +249,7 @@ msgstr ""
 msgid "Invalid two-factor code"
 msgstr ""
 
-#: routes/login.py:202
+#: routes/login.py:202 routes/ncmr.py:141
 msgid "Incorrect password"
 msgstr ""
 
@@ -177,8 +261,49 @@ msgstr ""
 msgid "Unable to save changes"
 msgstr ""
 
-#: routes/ncmr.py:61
+#: routes/ncmr.py:60
+msgid "Cleared"
+msgstr ""
+
+#: routes/ncmr.py:78
 msgid "Changes saved"
+msgstr ""
+
+#: routes/ncmr.py:91 routes/ncmr.py:131 routes/ncmr.py:202
+msgid "This record has changed status. Please reload this page."
+msgstr ""
+
+#: routes/ncmr.py:94 routes/ncmr.py:134
+msgid "You are not authorized to do that."
+msgstr ""
+
+#: routes/ncmr.py:97
+msgid "This transition requires approval signatures."
+msgstr ""
+
+#: routes/ncmr.py:109 routes/ncmr.py:179 templates/dashboard.html:27
+#: templates/dashboard.html:51 templates/ncmrs.html:15
+msgid "Status"
+msgstr ""
+
+#: routes/ncmr.py:137
+msgid "You already approved this."
+msgstr ""
+
+#: routes/ncmr.py:144
+msgid "This transition does not require approval signatures."
+msgstr ""
+
+#: routes/ncmr.py:154
+msgid "Approved"
+msgstr ""
+
+#: routes/ncmr.py:207
+msgid "You don't have any approvals to clear."
+msgstr ""
+
+#: routes/ncmr.py:219
+msgid "Unapproved"
 msgstr ""
 
 #: routes/org_settings.py:19 routes/org_settings.py:227
@@ -312,38 +437,25 @@ msgstr ""
 msgid "Test Report"
 msgstr ""
 
-#: templates/dashboard.html:12
-msgid "Non-Conforming Materials"
-msgstr ""
-
-#: templates/dashboard.html:17
-msgid "Corrective and Preventive Actions"
-msgstr ""
-
-#: templates/dashboard.html:35
+#: templates/dashboard.html:22
 msgid "Assigned"
 msgstr ""
 
-#: templates/dashboard.html:39 templates/dashboard.html:63
+#: templates/dashboard.html:26 templates/dashboard.html:50
 #: templates/ncmrs.html:14
 msgid "ID"
 msgstr ""
 
-#: templates/dashboard.html:40 templates/dashboard.html:64
-#: templates/ncmrs.html:15
-msgid "Status"
-msgstr ""
-
-#: templates/dashboard.html:41 templates/dashboard.html:66
+#: templates/dashboard.html:28 templates/dashboard.html:53
 #: templates/ncmrs.html:17
 msgid "Due Date"
 msgstr ""
 
-#: templates/dashboard.html:59
+#: templates/dashboard.html:46
 msgid "Owned"
 msgstr ""
 
-#: templates/dashboard.html:65 templates/ncmrs.html:16
+#: templates/dashboard.html:52 templates/ncmrs.html:16
 msgid "Assigned To"
 msgstr ""
 
@@ -371,8 +483,30 @@ msgstr ""
 msgid "Non-Conforming Material Reports"
 msgstr ""
 
-#: templates/record.html:18 templates/settings/core.html:30
+#: templates/record.html:20 templates/settings/core.html:30
 msgid "History"
+msgstr ""
+
+#: templates/record.html:49
+msgid "Remove Signature"
+msgstr ""
+
+#: templates/record.html:69
+msgid ""
+"When all required signatures have been collected, {x} will be "
+"automatically advanced to the {y} phase"
+msgstr ""
+
+#: templates/record.html:73
+msgid "Sign and Approve"
+msgstr ""
+
+#: templates/record.html:88
+msgid "Confirm Action on {x}"
+msgstr ""
+
+#: templates/record.html:102
+msgid "Confirm"
 msgstr ""
 
 #: templates/auth/otp.html:16
@@ -442,6 +576,10 @@ msgstr ""
 
 #: templates/macros/kv.html:32
 msgid "Select One"
+msgstr ""
+
+#: templates/macros/kv.html:73
+msgid "Approvals"
 msgstr ""
 
 #: templates/macros/logs.html:6 templates/macros/logs.html:25

@@ -203,7 +203,7 @@ class NCMR(Base, core_mixin):
                     "id":"reject",
                     "to": 0,
                     "name": _("Reject"),
-                    "description": _("Send this record back to its initiator for revision"),
+                    "description": _("Send this record back to its initiator for revision."),
                     "users": g.user.organization.doc_control_users,
                     "color": "secondary",
                     "comments": True,
@@ -219,7 +219,7 @@ class NCMR(Base, core_mixin):
                     "id":"advance",
                     "to": 2,
                     "name": _("Advance"),
-                    "description": _("Send this record to the Material Review Board"),
+                    "description": _("Send this record to the Material Review Board."),
                     "users": g.user.organization.doc_control_users,
                     "color": "success"
                 },

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-14 19:36-0400\n"
+"POT-Creation-Date: 2023-05-17 18:57-0400\n"
 "PO-Revision-Date: 2023-05-07 09:47-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -18,93 +18,177 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
 
-#: classes/ncmr.py:58
+#: classes/ncmr.py:61
 msgid "NCMR-"
 msgstr "IMNC-"
 
-#: classes/ncmr.py:63
+#: classes/ncmr.py:67
 msgid "New"
 msgstr "Nuevo"
 
-#: classes/ncmr.py:64
-msgid "Submitted"
-msgstr "Enviado"
+#: classes/ncmr.py:71
+#, fuzzy
+msgid "Initial Review"
+msgstr "Revisión final"
 
-#: classes/ncmr.py:65
+#: classes/ncmr.py:75 classes/user.py:205
 msgid "Material Review Board"
 msgstr "Junta de Revisión de Materiales"
 
-#: classes/ncmr.py:66
+#: classes/ncmr.py:79
 msgid "Disposition"
 msgstr "Disposición"
 
-#: classes/ncmr.py:67
+#: classes/ncmr.py:83
 msgid "Final Review"
 msgstr "Revisión final"
 
-#: classes/ncmr.py:68
+#: classes/ncmr.py:87
 msgid "Closed"
 msgstr "Cerrado"
 
-#: classes/ncmr.py:69
+#: classes/ncmr.py:91
 msgid "Terminated"
 msgstr "Terminado"
 
-#: classes/ncmr.py:75
+#: classes/ncmr.py:101
 msgid "Scrap"
 msgstr "Desechar"
 
-#: classes/ncmr.py:76
+#: classes/ncmr.py:102
 msgid "Return to Supplier"
 msgstr "Devolver al Proveedor"
 
-#: classes/ncmr.py:77
+#: classes/ncmr.py:103
 msgid "Rework"
 msgstr "Rehacer"
 
-#: classes/ncmr.py:78
+#: classes/ncmr.py:104
 msgid "Use As-Is"
 msgstr "Uselo como es"
 
-#: classes/ncmr.py:79
+#: classes/ncmr.py:105
 msgid "Reclassify"
 msgstr "Reclasificar"
 
-#: classes/ncmr.py:94 templates/create/ncmr.html:11
+#: classes/ncmr.py:121 templates/create/ncmr.html:11
 msgid "Item Number"
 msgstr "Número de Artículo"
 
-#: classes/ncmr.py:99 templates/create/ncmr.html:14
+#: classes/ncmr.py:126 templates/create/ncmr.html:14
 msgid "Serial or Lot Number"
 msgstr "Número de serie o lote"
 
-#: classes/ncmr.py:104 templates/create/ncmr.html:17
+#: classes/ncmr.py:131 templates/create/ncmr.html:17
 msgid "Quantity"
 msgstr "Cantidad"
 
-#: classes/ncmr.py:109
+#: classes/ncmr.py:136
 msgid "Description of Non-Conformance"
 msgstr "Descripción de la no conformidad"
 
-#: classes/ncmr.py:115 classes/ncmr.py:143
+#: classes/ncmr.py:142 classes/ncmr.py:170
 msgid "Additional Comments"
 msgstr "Comentarios adicionales"
 
-#: classes/ncmr.py:123
+#: classes/ncmr.py:150
 msgid "Assigned Disposition"
 msgstr "Disposición asignada"
 
-#: classes/ncmr.py:129
+#: classes/ncmr.py:156
 msgid "Material Review Board Comments"
 msgstr "Comentarios de la Junta de revisión de materiales"
 
-#: classes/ncmr.py:137
+#: classes/ncmr.py:164
 msgid "Executed Disposition"
 msgstr "Disposición Ejecutada"
 
-#: classes/user.py:193 templates/settings/directory.html:27
+#: classes/ncmr.py:187 classes/ncmr.py:250
+#, fuzzy
+msgid "Submit"
+msgstr "Enviado"
+
+#: classes/ncmr.py:188
+msgid "Submit this record to Document Control for review."
+msgstr ""
+
+#: classes/ncmr.py:195 classes/ncmr.py:229
+#, fuzzy
+msgid "Terminate"
+msgstr "Terminado"
+
+#: classes/ncmr.py:196 classes/ncmr.py:230
+msgid "Permanently archive this record. This cannot be undone."
+msgstr ""
+
+#: classes/ncmr.py:205
+msgid "Reject"
+msgstr ""
+
+#: classes/ncmr.py:206
+msgid "Send this record back to its initiator for revision"
+msgstr ""
+
+#: classes/ncmr.py:214
+msgid "Withdraw"
+msgstr ""
+
+#: classes/ncmr.py:221
+msgid "Advance"
+msgstr ""
+
+#: classes/ncmr.py:222
+#, fuzzy
+msgid "Send this record to the Material Review Board"
+msgstr "Junta de Revisión de Materiales"
+
+#: classes/ncmr.py:239
+msgid "Approve"
+msgstr ""
+
+#: classes/ncmr.py:240
+msgid "Approve of the planned disposition."
+msgstr ""
+
+#: classes/ncmr.py:251
+#, fuzzy
+msgid "Submit for final review."
+msgstr "Revisión final"
+
+#: classes/ncmr.py:260
+msgid "Reject to MRB"
+msgstr ""
+
+#: classes/ncmr.py:261
+#, fuzzy
+msgid "Reject back to the Material Review Board."
+msgstr "Junta de Revisión de Materiales"
+
+#: classes/ncmr.py:268
+#, fuzzy
+msgid "Reject to  Disposition"
+msgstr "Disposición Ejecutada"
+
+#: classes/ncmr.py:269
+msgid "Reject back to the Disposition assignee."
+msgstr ""
+
+#: classes/ncmr.py:276 templates/record.html:72 templates/record.html:101
+#, fuzzy
+msgid "Close"
+msgstr "Cerrado"
+
+#: classes/ncmr.py:277
+msgid "Approve and close this record."
+msgstr ""
+
+#: classes/user.py:201 templates/settings/directory.html:27
 msgid "Administrator"
 msgstr "Administrador"
+
+#: classes/user.py:203
+msgid "Document Control"
+msgstr ""
 
 #: helpers/wrappers.py:141
 msgid "This link has expired."
@@ -114,7 +198,15 @@ msgstr "Este enlace ha caducado"
 msgid "This page may not be embedded in other webpages."
 msgstr "Esta página no puede estar incrustada en otras páginas."
 
-#: routes/front.py:27 routes/org_settings.py:36 routes/settings.py:99
+#: routes/front.py:22
+msgid "Non-Conforming Materials"
+msgstr "Materiales no Conformes"
+
+#: routes/front.py:27
+msgid "Corrective and Preventive Actions"
+msgstr "Acción Preventiva y Correctiva"
+
+#: routes/front.py:45 routes/org_settings.py:36 routes/settings.py:99
 msgid "That language is not currently supported."
 msgstr "Ese idioma no es compatible actualmente."
 
@@ -166,7 +258,7 @@ msgstr "Su cuenta ha sido deshabilitada"
 msgid "Invalid two-factor code"
 msgstr "Código de dos factores no válido"
 
-#: routes/login.py:202
+#: routes/login.py:202 routes/ncmr.py:141
 msgid "Incorrect password"
 msgstr "Contraseña incorrecta"
 
@@ -178,9 +270,51 @@ msgstr "Código de dos factores incorrecto"
 msgid "Unable to save changes"
 msgstr "No se pueden guardar los cambios"
 
-#: routes/ncmr.py:61
+#: routes/ncmr.py:60
+#, fuzzy
+msgid "Cleared"
+msgstr "Cerrado"
+
+#: routes/ncmr.py:78
 msgid "Changes saved"
 msgstr "Cambios guardados"
+
+#: routes/ncmr.py:91 routes/ncmr.py:131 routes/ncmr.py:202
+msgid "This record has changed status. Please reload this page."
+msgstr ""
+
+#: routes/ncmr.py:94 routes/ncmr.py:134
+msgid "You are not authorized to do that."
+msgstr ""
+
+#: routes/ncmr.py:97
+msgid "This transition requires approval signatures."
+msgstr ""
+
+#: routes/ncmr.py:109 routes/ncmr.py:179 templates/dashboard.html:27
+#: templates/dashboard.html:51 templates/ncmrs.html:15
+msgid "Status"
+msgstr "Estado"
+
+#: routes/ncmr.py:137
+msgid "You already approved this."
+msgstr ""
+
+#: routes/ncmr.py:144
+msgid "This transition does not require approval signatures."
+msgstr ""
+
+#: routes/ncmr.py:154
+msgid "Approved"
+msgstr ""
+
+#: routes/ncmr.py:207
+msgid "You don't have any approvals to clear."
+msgstr ""
+
+#: routes/ncmr.py:219
+msgid "Unapproved"
+msgstr ""
 
 #: routes/org_settings.py:19 routes/org_settings.py:227
 msgid "You didn't change anything!"
@@ -319,38 +453,25 @@ msgstr "Protocolo de Prueba"
 msgid "Test Report"
 msgstr "Informe de Prueba"
 
-#: templates/dashboard.html:12
-msgid "Non-Conforming Materials"
-msgstr "Materiales no Conformes"
-
-#: templates/dashboard.html:17
-msgid "Corrective and Preventive Actions"
-msgstr "Acción Preventiva y Correctiva"
-
-#: templates/dashboard.html:35
+#: templates/dashboard.html:22
 msgid "Assigned"
 msgstr "Asignado"
 
-#: templates/dashboard.html:39 templates/dashboard.html:63
+#: templates/dashboard.html:26 templates/dashboard.html:50
 #: templates/ncmrs.html:14
 msgid "ID"
 msgstr "Id."
 
-#: templates/dashboard.html:40 templates/dashboard.html:64
-#: templates/ncmrs.html:15
-msgid "Status"
-msgstr "Estado"
-
-#: templates/dashboard.html:41 templates/dashboard.html:66
+#: templates/dashboard.html:28 templates/dashboard.html:53
 #: templates/ncmrs.html:17
 msgid "Due Date"
 msgstr "Fecha de Vencimiento"
 
-#: templates/dashboard.html:59
+#: templates/dashboard.html:46
 msgid "Owned"
 msgstr "Propiedad"
 
-#: templates/dashboard.html:65 templates/ncmrs.html:16
+#: templates/dashboard.html:52 templates/ncmrs.html:16
 msgid "Assigned To"
 msgstr "Asignado a"
 
@@ -378,9 +499,32 @@ msgstr "Prueba gratis"
 msgid "Non-Conforming Material Reports"
 msgstr "Informes de material no conforme"
 
-#: templates/record.html:18 templates/settings/core.html:30
+#: templates/record.html:20 templates/settings/core.html:30
 msgid "History"
 msgstr "Historia"
+
+#: templates/record.html:49
+msgid "Remove Signature"
+msgstr ""
+
+#: templates/record.html:69
+msgid ""
+"When all required signatures have been collected, {x} will be "
+"automatically advanced to the {y} phase"
+msgstr ""
+
+#: templates/record.html:73
+msgid "Sign and Approve"
+msgstr ""
+
+#: templates/record.html:88
+msgid "Confirm Action on {x}"
+msgstr ""
+
+#: templates/record.html:102
+#, fuzzy
+msgid "Confirm"
+msgstr "Confirmar Contraseña"
 
 #: templates/auth/otp.html:16
 msgid "Two-Factor Code"
@@ -452,6 +596,10 @@ msgstr "No se puede copiar el enlace"
 #: templates/macros/kv.html:32
 msgid "Select One"
 msgstr "Seleccione Uno"
+
+#: templates/macros/kv.html:73
+msgid "Approvals"
+msgstr ""
 
 #: templates/macros/logs.html:6 templates/macros/logs.html:25
 #: templates/settings/audit.html:10
@@ -557,7 +705,9 @@ msgstr "Idioma Predeterminado"
 
 #: templates/settings/organization.html:73
 msgid "Sets the language for new users, record number prefixes, and audit logs."
-msgstr "Establece el idioma para los nuevos usuarios, los prefijos de números de registro y los registros de auditoría."
+msgstr ""
+"Establece el idioma para los nuevos usuarios, los prefijos de números de "
+"registro y los registros de auditoría."
 
 #: templates/settings/organization.html:82
 msgid "Default Time Zone"
