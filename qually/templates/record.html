@@ -43,7 +43,7 @@
   <a class="w-100 mt-2 btn btn-{{tsn['color']}} toast-form-submit disabled" data-form="form-transition-{{ tsn['id'] }}" href="javascript:void(0)">{{_("Approved")}}</a>
   {% else %}
   <!--approve button-->
-  <button type="button" class="btn btn-success w-100 mt-2 data-bs-toggle="modal" data-bs-target="#modal-approve-{{record.id}}-{{record._status}}">{{_("Approve")}}</button>
+  <button type="button" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modal-approve-{{record.id}}-{{record._status}}">{{_("Approve")}}</button>
 
   <!--approve modal-->
   <div class="modal fade" id="modal-approve-{{record.id}}-{{record._status}}" tabindex="-1" aria-labelledby="modal-approve-label" aria-hidden="true">
