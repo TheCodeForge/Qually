@@ -240,6 +240,7 @@ class NCMR(Base, core_mixin):
                     "description": _("Approve of the planned disposition."),
                     "color": "success",
                     "users": g.user.organization.mrb_users,
+                    "approval":True
                 }
             ]
         }
