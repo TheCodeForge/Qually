@@ -64,7 +64,7 @@
             <label for="input-password">Password</label>
             <input type="password" name="password" autocomplete="off" class="form-control">
           </form>
-          <p>{{ _("When all required signatures have been collected {x} will be automatically advanced to the {y} phase").format(x=record.name, y=record._lifecycle[tsn['to']]) }}</p>
+          <p>{{ _("When all required signatures have been collected, {x} will be automatically advanced to the {y} phase").format(x=record.name, y=record._lifecycle[tsn['to']]) }}</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{_("Close")}}</button>
