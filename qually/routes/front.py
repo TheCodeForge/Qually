@@ -21,7 +21,7 @@ def get_home():
             "ncmr": {
             "name":_("Non-Conforming Materials"),
             "owned":g.user.organization.ncmrs.filter(NCMR.owner_id==g.user.id).all(),
-            "assigned":g.user.organization.ncmrs.filter(*tuple(ncmr_conditions)).all()
+            "assigned":g.user.organization.ncmrs.filter(or_(*tuple(ncmr_conditions))).all()
         },
             "capa": {
             "name":_("Corrective and Preventive Actions"),
