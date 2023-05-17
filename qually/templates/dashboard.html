@@ -10,7 +10,7 @@
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   {% for entry in data %}
   <li class="nav-item" role="presentation">
-    <a id="tab-{{ entry }}" class="nav-link" href="javascript:void(0)" data-bs-toggle="tab" data-bs-target="#pane-{{ entry }}" role="tab" aria-controls="pane-{{ entry }}" aria-selected="false">{{ data[entry]["name"] }}{% if data[entry]["assigned"] %}<span class="badge">{{ data[entry]["assigned"] | length }}</span>{% endif %}</a>
+    <a id="tab-{{ entry }}" class="nav-link" href="javascript:void(0)" data-bs-toggle="tab" data-bs-target="#pane-{{ entry }}" role="tab" aria-controls="pane-{{ entry }}" aria-selected="false">{{ data[entry]["name"] }}{% if data[entry]["assigned"] %}<span class="badge bg-danger ms-2">{{ data[entry]["assigned"] | length }}</span>{% endif %}</a>
   </li>
   {% endfor %}
 </ul>
