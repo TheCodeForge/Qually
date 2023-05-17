@@ -20,7 +20,7 @@ def get_home():
     data={
             "ncmr": {
             "name":_("Non-Conforming Materials"),
-            "owned":g.user.organization.ncmrs.filter(NCMR.owner_id=g.user.id).all(),
+            "owned":g.user.organization.ncmrs.filter(NCMR.owner_id==g.user.id).all(),
             "assigned":g.user.organization.ncmrs.filter(*tuple(ncmr_conditons)).all()
         },
             "capa": {
