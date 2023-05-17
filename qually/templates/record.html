@@ -40,8 +40,6 @@
 <div class="mt-5">
   {% for tsn in record._transitions[record._status] if g.user in tsn['users'] %}
 
-  {{ tsn | debug }}
-
   {% if tsn.get('approval', False) %}
   {% if record.has_approved %}
   <form id="form-unapprove-{{ tsn['id'] }}" action="{{ record.permalink }}/unapprove" method="post" class="toasted">
