@@ -199,7 +199,7 @@ class NCMR(Base, core_mixin):
                 },
                 {
                     "id":"terminate",
-                    "to": 100,
+                    "to": 101,
                     "name": _("Terminate"),
                     "description": _("Permanently archive this record. This cannot be undone."),
                     "color": "danger",
@@ -233,7 +233,7 @@ class NCMR(Base, core_mixin):
                 },
                 {
                     "id":"terminate",
-                    "to": 100,
+                    "to": 101,
                     "name": _("Terminate"),
                     "description": _("Permanently archive this record. This cannot be undone."),
                     "users": g.user.organization.doc_control_users,
@@ -280,7 +280,7 @@ class NCMR(Base, core_mixin):
                 },
                 {
                     "id":"close",
-                    "to":5,
+                    "to":100,
                     "name": _("Close"),
                     "description": _("Approve and close this record."),
                     "users": g.user.organization.doc_control_users,
