@@ -12,7 +12,6 @@ class NCMR(Base, core_mixin):
     created_utc=Column(Integer)
     organization_id = Column(Integer, ForeignKey("organizations.id"))
     owner_id = Column(Integer, ForeignKey("users.id"))
-    assignee_id = Column(Integer, ForeignKey("users.id"))
     number=Column(Integer, default=0, index=True)
     _status = Column(Integer, default=0)
 
@@ -25,6 +24,7 @@ class NCMR(Base, core_mixin):
 
     ##New
     item_number=Column(String, default="")
+    revision=Column(String, default="")
     lot_number=Column(String, default="")
     quantity=Column(String, default="")
     nc_description=Column(String, default="")
@@ -36,6 +36,7 @@ class NCMR(Base, core_mixin):
     _disposition_determined=Column(Integer, default=None)
     mrb_comments=Column(String, default="")
     mrb_comments_raw =Column(String, default="")
+    assignee_id = Column(Integer, ForeignKey("users.id"))
 
     ##MRB
     _disposition_actual=Column(Integer, default=None)
@@ -118,59 +119,66 @@ class NCMR(Base, core_mixin):
         return {
             0:[
                 {
-                "name":_("Item Number"),
-                "value":"item_number",
-                "kind": "text"
+                    "name":_("Item Number"),
+                    "value":"item_number",
+                    "kind": "text"
                 },
                 {
-                "name":_("Serial or Lot Number"),
-                "value":"lot_number",
-                "kind": "text"
+                    "name":_("Serial or Lot Number"),
+                    "value":"lot_number",
+                    "kind": "text"
                 },
                 {
-                "name":_("Quantity"),
-                "value":"quantity",
-                "kind": "text"
+                    "name":_("Quantity"),
+                    "value":"quantity",
+                    "kind": "text"
                 },
                 {
-                "name":_("Description of Non-Conformance"),
-                "value":"nc_description",
-                "kind": "multi",
-                "raw": "nc_description_raw"
+                    "name":_("Description of Non-Conformance"),
+                    "value":"nc_description",
+                    "kind": "multi",
+                    "raw": "nc_description_raw"
                 },
                 {
-                "name":_("Additional Comments"),
-                "value":"new_comments",
-                "kind": "multi",
-                "raw": "new_comments_raw"
+                    "name":_("Additional Comments"),
+                    "value":"new_comments",
+                    "kind": "multi",
+                    "raw": "new_comments_raw"
                 }
             ],
             2:[
                 {
-                "name":_("Assigned Disposition"),
-                "value":"_disposition_determined",
-                "kind": "dropdown",
-                "values": self._dispositions
+                    "name":_("Assigned Disposition"),
+                    "value":"_disposition_determined",
+                    "kind": "dropdown",
+                    "values": self._dispositions
                 },
                 {
-                "name":_("Material Review Board Comments"),
-                "value":"mrb_comments",
-                "kind": "multi",
-                "raw": "mrb_comments_raw"
+                    "name":_("Material Review Board Comments"),
+                    "value":"mrb_comments",
+                    "kind": "multi",
+                    "raw": "mrb_comments_raw"
+                },
+                {
+                    "name":_("Disposition Assignee"),
+                    "value":"assignee_id",
+                    "kind": "user",
+                    "relationship": "assignee"
                 }
+
             ],
             3:[
                 {
-                "name":_("Executed Disposition"),
-                "value":"_disposition_actual",
-                "kind": "dropdown",
-                "values": self._dispositions
+                    "name":_("Executed Disposition"),
+                    "value":"_disposition_actual",
+                    "kind": "dropdown",
+                    "values": self._dispositions
                 },
                 {
-                "name":_("Additional Comments"),
-                "value":"dsp_comments",
-                "kind": "multi",
-                "raw": "dsp_comments_raw"
+                    "name":_("Additional Comments"),
+                    "value":"dsp_comments",
+                    "kind": "multi",
+                    "raw": "dsp_comments_raw"
                 }
             ]
         }
