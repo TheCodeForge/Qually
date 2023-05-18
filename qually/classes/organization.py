@@ -61,6 +61,7 @@ class Organization(Base, core_mixin):
         return self.ncmr_counter
 
     @property
+    @lazy
     def licenses_used(self):
         return self.users.filter_by(has_license=True).count()
     
