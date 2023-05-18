@@ -34,6 +34,11 @@ def post_ncmr_number(number):
                 key=entry['name']
                 value=entry['values'].get(int(request.form[entry['value']]))
                 response=value
+            elif entry['kind']=='user':
+                setattr(ncmr, entry['value'], int(request.form[entry['value']]))
+                key=entry['name']
+                value=getattr(ncmr, entry['relationship']).name
+                response=value
             else:
                 setattr(ncmr, entry['value'], txt(request.form[entry['value']]))
                 key=entry['name']
