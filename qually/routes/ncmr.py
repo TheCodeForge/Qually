@@ -150,6 +150,7 @@ def post_ncmr_number_approve(number):
     if ncmr.has_approved:
         return toast_error(_("You already approved this."))
 
+    print(ncmr._lifecycle[transition['to']]['users'])
     if transition['to']<100 and not ncmr._lifecycle[transition['to']]['users']:
         return toast_error(_("You must assign a user to the {x} phase first.").format(x=ncmr._lifecycle[transition['to']]['name']), 409)
 
