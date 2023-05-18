@@ -38,7 +38,7 @@
         </select>
         {% elif entry.get('kind')=='user' %}
         <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
-          <option disabled>{{_("Select User")}}</option>
+          <option value="">{{_("None")}}</option>
           {% for user in g.user.organization.assignable_users %}
           <option value="{{ user.id }}" {% if user.id==record.__dict__.get(entry['value']) %}selected{% endif %}>{{ user.name }}</option>
           {% endfor %}
