@@ -238,7 +238,7 @@ def post_settings_directory_toggle_admin_uid(uid):
         user_id=g.user.id,
         organization_id=g.user.organization_id,
         key=str(user),
-        new_value=_("Role")=ROLES[new_role]
+        new_value=_("Role")+"="+ROLES[new_role]
         )
 
     g.db.add(log)
