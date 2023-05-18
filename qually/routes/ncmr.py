@@ -41,7 +41,7 @@ def post_ncmr_number(number):
                     value=getattr(ncmr, entry['relationship']).name
                 else:
                     setattr(ncmr, entry['value'], None)
-                    value="None"
+                    value=""
                 key=entry['name']
                 response=value
             else:
