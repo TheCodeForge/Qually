@@ -124,6 +124,11 @@ class NCMR(Base, core_mixin):
                     "kind": "text"
                 },
                 {
+                    "name":_("Revision Number"),
+                    "value":"revision",
+                    "kind": "text"
+                },
+                {
                     "name":_("Serial or Lot Number"),
                     "value":"lot_number",
                     "kind": "text"
