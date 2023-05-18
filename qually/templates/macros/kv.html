@@ -11,11 +11,13 @@
     <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
         {% if entry.get('kind')=='multi' %} 
-        <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record.__dict__.get(entry['value']) | safe }}</div>
+        <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record | attr(entry['value']) | safe }}</div>
         {% elif entry.get('kind')=='dropdown' %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record.__dict__.get(entry['value']), '') }}</p>
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record | attr(entry['value']), '') }}</p>
+        {% elif entry.get('kind')=='user' %}
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ (record | attr(entry['relationship'])).name }}</p>
         {% else %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record.__dict__.get(entry['value']) }}</p>
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record | attr(entry['value']) }}</p>
         {% endif %}
       </div>
       <div class="ms-auto on-hover-show toggle-target-class" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
@@ -32,6 +34,13 @@
           <option disabled>{{_("Select One")}}</option>
           {% for x in entry['values'] %}
           <option value="{{ x }}" {% if x==record.__dict__.get(entry['value']) %}selected{% endif %}>{{ entry['values'][x] }}</option>
+          {% endfor %}
+        </select>
+        {% elif entry.get('kind')=='user' %}
+        <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
+          <option disabled>{{_("Select User")}}</option>
+          {% for user in g.user.organization.assignable_users %}
+          <option value="{{ user.id }}" {% if user.id==record.__dict__.get(entry['value']) %}selected{% endif %}>{{ user.name }}</option>
           {% endfor %}
         </select>
         {% else %}
@@ -57,6 +66,8 @@
         <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record.__dict__.get(entry['value']) | safe }}</div>
         {% elif entry.get('kind')=='dropdown' %}
         <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record.__dict__.get(entry['value']), '') }}</p>
+        {% elif entry.get('kind')=='user' %}
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ (record | attr(entry['relationship'])).name }}</p>
         {% else %}
         <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record.__dict__.get(entry['value']) }}</p>
         {% endif %}
