@@ -216,6 +216,37 @@ def post_settings_directory_toggle_admin_uid(uid):
 
     return toast(msg)
 
+@app.post("/settings/directory/select_permissions/<uid>")
+@is_admin
+def post_settings_directory_toggle_admin_uid(uid):
+
+    user=get_account(uid)
+
+    new_role=int(request.form.get("special_role"))
+
+    if new_role and not user.has_license:
+        return toast_error(_("That role requires a full license."))
+
+    if not user.is_active:
+        return toast_error(_("Deactivated users cannot be assigned roles."))
+
+
+    user.special_role=new_role
+    g.db.add(user)
+
+    log=OrganizationAuditLog(
+        user_id=g.user.id,
+        organization_id=g.user.organization_id,
+        key=str(user),
+        new_value=_("Role")=ROLES[new_role]
+        )
+
+    g.db.add(log)
+
+    g.db.commit()
+
+    return toast(_("Changes saved"))
+
 @app.post("/settings/plan")
 @is_admin
 @org_update_lock
