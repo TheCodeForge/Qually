@@ -50,6 +50,27 @@ class NCMR(Base, core_mixin):
             'organization_id', name='ncmr_org_number_unique'),
         )
 
+    @classmethod
+    def _assignment_query_args(cls):
+
+        args= [
+            and_(
+                NCMR._status==0, 
+                NCMR.owner_id==g.user.id
+                ),
+            and_(
+                NCMR._status==3,
+                NCMR.assignee_id==g.user.id
+                )
+            ]
+
+        if g.user.special_role==1:
+            args.append(NCMR._status.in_([1,4]))
+        elif g.user.special_role==2:
+            args.append(NCMR._status==2)
+
+        return args
+
 
 
     @property

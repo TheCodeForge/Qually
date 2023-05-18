@@ -19,14 +19,14 @@ def get_home():
 
     data={
             "ncmr": {
-            "name":_("Non-Conforming Materials"),
-            "owned":g.user.organization.ncmrs.filter(NCMR.owner_id==g.user.id, NCMR._status.notin_([5, 100])).all(),
-            "assigned":g.user.organization.ncmrs.filter(NCMR._status.notin_([5,100]), or_(*tuple(ncmr_conditions))).all()
-        },
-            "capa": {
-            "name":_("Corrective and Preventive Actions"),
-            "owned":[],
-            "assigned":[]
+            "name":_("Non-Conforming Material Reports"),
+            "owned":g.user.organization.ncmrs.filter(NCMR.owner_id==g.user.id, NCMR._status<100).all(),
+            "assigned":g.user.organization.ncmrs.filter(or_(NCMR._assignment_query_args(), NCMR._status<100)).all()
+        # },
+        #     "capa": {
+        #     "name":_("Corrective and Preventive Actions"),
+        #     "owned":[],
+        #     "assigned":[]
         }
     }
     return render_template("dashboard.html", data=data)
