@@ -218,7 +218,7 @@ def post_settings_directory_toggle_admin_uid(uid):
 
 @app.post("/settings/directory/select_permissions/<uid>")
 @is_admin
-def post_settings_directory_toggle_admin_uid(uid):
+def post_settings_directory_select_permissions_uid(uid):
 
     user=get_account(uid)
 
