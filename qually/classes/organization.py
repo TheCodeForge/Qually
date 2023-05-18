@@ -72,6 +72,11 @@ class Organization(Base, core_mixin):
             return self._users.filter_by(is_active=True).order_by(User.name.asc())
 
     @property
+    def assignable_users(self):
+        return self._users.filter_by(is_active=True, has_license=True).order_by(User.name.asc())
+    
+
+    @property
     @lazy
     def license_expire_date(self):
         return time.strftime("%d %B %Y", time.gmtime(self.license_expire_utc))
