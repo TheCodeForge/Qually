@@ -101,6 +101,10 @@ def post_ncmr_number_status(number):
     if transition.get("approval"):
         return toast_error(_("This transition requires approval signatures."), 403)
 
+    if transition['to']<100 and not ncmr._lifecycle[transition['to']]['users']:
+        return toast_error(_("You must assign a user to the {x} phase first.").format(x=ncmr._lifecycle[transition['to']]['name']), 409)
+
+
     #transition is approved by system, update record and log
 
     ncmr._status=transition['to']
@@ -140,6 +144,9 @@ def post_ncmr_number_approve(number):
 
     if ncmr.has_approved:
         return toast_error(_("You already approved this."))
+
+    if transition['to']<100 and not ncmr._lifecycle[transition['to']]['users']:
+        return toast_error(_("You must assign a user to the {x} phase first.").format(x=ncmr._lifecycle[transition['to']]['name']), 409)
 
     ## Validate password
     if not check_password_hash(g.user.passhash, request.form.get("password")):

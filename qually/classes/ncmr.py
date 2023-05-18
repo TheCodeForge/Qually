@@ -84,11 +84,11 @@ class NCMR(Base, core_mixin):
                 'name': _("Final Review"),
                 'users': self.organization.doc_control_users
                 },
-            5: {
+            100: {
                 'name': _("Closed"),
                 'users': []
                 },
-            100: {
+            101: {
                 'name': _("Terminated"),
                 'users': []
                 }
