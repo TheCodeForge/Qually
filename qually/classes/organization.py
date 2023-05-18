@@ -65,6 +65,7 @@ class Organization(Base, core_mixin):
         return self.users.filter_by(has_license=True).count()
     
     @property
+    @lazy
     def users(self):
         if g.user.is_org_admin:
             return self._users.order_by(User.name.asc())
@@ -72,6 +73,7 @@ class Organization(Base, core_mixin):
             return self._users.filter_by(is_active=True).order_by(User.name.asc())
 
     @property
+    @lazy
     def assignable_users(self):
         return self._users.filter_by(is_active=True, has_license=True).order_by(User.name.asc())
     
