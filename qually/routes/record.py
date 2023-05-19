@@ -278,7 +278,7 @@ def get_record_records():
 def post_record_record():
 
     kind=request.path.lstrip('/')
-    if kind not in VALID_KNDS:
+    if kind not in VALID_KINDS:
         abort(404)
 
     OBJ = VALID_KINDS[kind]
