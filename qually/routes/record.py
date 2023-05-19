@@ -288,7 +288,7 @@ def post_record_record():
         )
 
     for entry in record._layout[0]:
-        setattr(record, entry, request.form.get(entry))
+        setattr(record, entry['value'], request.form.get(entry['value']))
 
     g.db.add(record)
     g.db.flush()
