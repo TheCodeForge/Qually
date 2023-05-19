@@ -4,6 +4,10 @@ try:
 except ModuleNotFoundError:
     pass
 
+VALID_KINDS={
+    'ncmr':NCMR
+}
+
 @app.get("/<kind>-<number>")
 @logged_in
 def get_record_number(kind, number):
@@ -245,35 +249,48 @@ def post_record_number_unapprove(kind, number):
     
 @app.get("/create_ncmr")
 @has_seat
-def get_create_ncmr():
-    return render_template("create/ncmr.html")
+def get_create_record():
+
+    kind=request.path.split('_')[1]
+
+    if kind not in VALID_KINDS:
+        abort(404)
+
+    return render_template(f"create/{kind}.html")
 
 @app.get("/ncmr")
-def get_ncmr_records():
+def get_record_records():
 
-    return render_template("ncmrs.html")
+    kind=request.path.lstrip('/')
+
+    if kind not in VALID_KINDS:
+        abort(404)
+
+    return render_template(f"{kind}s.html")
 
 
 @app.post("/ncmr")
 @has_seat
 @org_update_lock
-def post_ncmr_record():
+def post_record_record():
 
-    record=NCMR(
+    kind=request.path.lstrip('/')
+    if kind not in VALID_KINDS:
+        abort(404)
+
+    record=VALID_KINDS[kind](
         owner_id=g.user.id,
         organization_id=g.user.organization.id,
-        number=g.user.organization.next_ncmr_id,
+        number=getattr(g.user.organization, f"next_{kind}_id"),
         created_utc=g.time,
-        item_number=txt(request.form.get("item_number")),
-        lot_number=txt(request.form.get("lot_number")),
-        quantity=txt(request.form.get("quantity"))
+        **{x:request.form[x] for x in request.form if x not in ['csrf_token', 'owner_id','organization_id','number','created_utc']}
         )
 
     g.db.add(record)
     g.db.flush()
 
     log = eval(record._log_class)(
-        ncmr_id=record.id,
+        record_id=record.id,
         created_utc=g.time,
         user_id=g.user.id,
         key="State",
