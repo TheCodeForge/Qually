@@ -63,11 +63,11 @@ def post_record_number(kind, number):
 
     #clear any existing approvals on phase and log clearing
 
-    approvals_cleared = g.db.query(eval(record._approval_class)).filter_by(record_id=record.id, status_id=record._status).delete()
+    approvals_cleared = g.db.query(eval(f"{record.__class__.__name__}Approval")).filter_by(record_id=record.id, status_id=record._status).delete()
     if approvals_cleared:
 
         with force_locale(g.user.organization.lang):
-            appr_clear_log=eval(record._log_class)(
+            appr_clear_log=eval(f"{record.__class__.__name__}Log")(
                 user_id=g.user.id,
                 record_id=record.id,
                 created_utc=g.time,
@@ -78,7 +78,7 @@ def post_record_number(kind, number):
             g.db.add(appr_clear_log)
 
 
-    log=eval(record._log_class)(
+    log=eval(f"{record.__class__.__name__}Log")(
         user_id=g.user.id,
         record_id=record.id,
         created_utc=g.time,
@@ -121,7 +121,7 @@ def post_record_number_status(kind, number):
     g.db.add(record)
 
     with force_locale(g.user.organization.lang):
-        log=eval(record._log_class)(
+        log=eval(f"{record.__class__.__name__}Log")(
             user_id=g.user.id,
             record_id=record.id,
             created_utc=g.time,
@@ -168,7 +168,7 @@ def post_record_number_approve(kind, number):
     #approval is approved by system, update data log
 
     with force_locale(g.user.organization.lang):
-        appr_log=eval(record._log_class)(
+        appr_log=eval(f"{record.__class__.__name__}Log")(
             user_id=g.user.id,
             record_id=record.id,
             created_utc=g.time,
@@ -178,7 +178,7 @@ def post_record_number_approve(kind, number):
             )
         g.db.add(appr_log)
 
-    approval=eval(record._approval_class)(
+    approval=eval(f"{record.__class__.__name__}Approval")(
         user_id=g.user.id,
         record_id=record.id,
         status_id=record._status,
@@ -194,7 +194,7 @@ def post_record_number_approve(kind, number):
     if len(record.phase_approvals(record._status)) >= len(transition['users']):
         record._status=transition['to']
         g.db.add(record)
-        log=eval(record._log_class)(
+        log=eval(f"{record.__class__.__name__}Log")(
             user_id=g.user.id,
             record_id=record.id,
             created_utc=g.time,
@@ -233,7 +233,7 @@ def post_record_number_unapprove(kind, number):
     g.db.flush()
 
     with force_locale(g.user.organization.lang):
-        appr_log=eval(record._log_class)(
+        appr_log=eval(f"{record.__class__.__name__}Log")(
             user_id=g.user.id,
             record_id=record.id,
             created_utc=g.time,
@@ -315,7 +315,7 @@ def post_record_record():
     g.db.add(record)
     g.db.flush()
 
-    log = eval(record._log_class)(
+    log = eval(f"{record.__class__.__name__}Log")(
         record_id=record.id,
         created_utc=g.time,
         user_id=g.user.id,
