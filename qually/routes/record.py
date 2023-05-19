@@ -247,16 +247,18 @@ def post_record_number_unapprove(kind, number):
     return toast_redirect(record.permalink)
 
     
-@app.get("/create_ncmr")
+@app.get("/create_<kind>")
 @has_seat
-def get_create_record():
+def get_create_record(kind):
 
     kind=request.path.split('_')[1]
 
     if kind not in VALID_KINDS:
         abort(404)
 
-    return render_template(f"create/{kind}.html")
+    OBJ=VALID_KINDS[kind]
+
+    return render_template(f"create_record.html", obj=OBJ)
 
 @app.get("/ncmr")
 def get_record_records():
