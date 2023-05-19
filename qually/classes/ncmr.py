@@ -15,8 +15,63 @@ class NCMR(Base, core_mixin):
     number=Column(Integer, default=0, index=True)
     _status = Column(Integer, default=0)
 
+    @classmethod
+    def _cols(cls):
+        data=cls._layout()
+        for status in data:
+            for entry in data[status]:
+                if entry['kind']=='text':
+                    setattr(cls, entry['value'], Column(String, default=''))
+                elif entry['kind']=='multi':
+                    setattr(cls, entry['value'], Column(String, default=''))
+                    setattr(cls, entry['raw'], Column(String, default=''))
+                elif entry['kind']=='user':
+                    setattr(cls, entry['value'], Column(Integer, ForeignKey("users.id")))
+                    setattr(cls, entry['relationship'], relationship("User", primaryjoin=f"User.id=={cls.__name__}.assignee_id"))
+                elif entry['kind']=='dropdown':
+                    setattr(cls, entry['value'], Column(Integer, default=None))
+
+        setattr(cls, "owner", relationship("User", primaryjoin=f"User.id=={cls.__name__}.owner_id"))
+        setattr(cls, "logs",  relationship(f"{cls.__name__}Log", order_by=f"{cls.__name__}Log.id.desc()"))
+        setattr(cls, "approvals",  relationship(f"{cls.__name__}Approval"))
+        setattr(cls, "__table_args__", (
+            UniqueConstraint(
+                'number', 
+                'organization_id', name=f'{cls.__name__.lower()}_org_number_unique'),
+            )
+        )
+
+    @classmethod
+    def _assignment_query_args(cls):
+
+        args= [
+            and_(
+                NCMR._status==0, 
+                NCMR.owner_id==g.user.id
+                ),
+            and_(
+                NCMR._status==3,
+                NCMR.assignee_id==g.user.id
+                )
+            ]
+
+        if g.user.special_role==1:
+            args.append(NCMR._status.in_([1,4]))
+        elif g.user.special_role==2:
+            args.append(NCMR._status==2)
+
+        return args
+
     @property
-    @lazy
+    def permalink(self):
+        return f"/NCMR-{self.number:0>5}"
+    
+    @property
+    def name(self):
+        with force_locale(g.user.organization.lang):
+            return _("NCMR-")+f"{self.number:0>5}"
+
+    @property
     def _lifecycle(self):
         return {
             0: {
@@ -48,63 +103,6 @@ class NCMR(Base, core_mixin):
                 'users': []
                 }
         }
-        
-    @classmethod
-    def _cols(cls):
-        data=cls._layout()
-        for status in data:
-            for entry in data[status]:
-                if entry['kind']=='text':
-                    setattr(cls, entry['value'], Column(String, default=''))
-                elif entry['kind']=='multi':
-                    setattr(cls, entry['value'], Column(String, default=''))
-                    setattr(cls, entry['raw'], Column(String, default=''))
-                elif entry['kind']=='user':
-                    setattr(cls, entry['value'], Column(Integer, ForeignKey("users.id")))
-                    setattr(cls, entry['relationship'], relationship("User", primaryjoin=f"User.id=={cls.__name__}.assignee_id"))
-                elif entry['kind']=='dropdown':
-                    setattr(cls, entry['value'], Column(Integer, default=None))
-
-        setattr(cls, "owner", relationship("User", primaryjoin=f"User.id=={cls.__name__}.owner_id"))
-        setattr(cls, "logs",  relationship(f"{cls.__name__}Log", order_by=f"{cls.__name__}Log.id.desc()"))
-        setattr(cls, "approvals",  relationship(f"{cls.__name__}Approval"))
-        setattr(cls, "__table_args__", (
-            UniqueConstraint(
-                'number', 
-                'organization_id', name=f'{cls.__name__.lower()}_org_number_unique'),
-            )
-        )
-
-
-    @classmethod
-    def _assignment_query_args(cls):
-
-        args= [
-            and_(
-                NCMR._status==0, 
-                NCMR.owner_id==g.user.id
-                ),
-            and_(
-                NCMR._status==3,
-                NCMR.assignee_id==g.user.id
-                )
-            ]
-
-        if g.user.special_role==1:
-            args.append(NCMR._status.in_([1,4]))
-        elif g.user.special_role==2:
-            args.append(NCMR._status==2)
-
-        return args
-
-    @property
-    def permalink(self):
-        return f"/NCMR-{self.number:0>5}"
-    
-    @property
-    def name(self):
-        with force_locale(g.user.organization.lang):
-            return _("NCMR-")+f"{self.number:0>5}"
 
     @classmethod
     def _dispositions(self):
