@@ -230,17 +230,6 @@ class CAPA(Base, core_mixin):
                     "approval":True
                 }
             ],
-            3: [
-                {
-                    "id":"submit",
-                    "to":4,
-                    "name": _("Submit"),
-                    "description": _("Submit for final review."),
-                    "users": [self.assignee],
-                    "color": "success",
-                    "approval":True
-                }
-            ],
             4: [
                 {
                     "id":"reject-mrb",
