@@ -73,6 +73,7 @@ class NCMR(Base, core_mixin):
 
     @property
     def _lifecycle(self):
+        print('testing')
         return {
             0: {
                 'name': _("New"),
