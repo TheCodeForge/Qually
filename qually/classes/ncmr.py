@@ -116,7 +116,7 @@ class NCMR(Base, core_mixin):
                 }
         }
 
-    @property
+    @classmethod
     def _dispositions(self):
 
         with force_locale(g.user.organization.lang):
@@ -135,8 +135,7 @@ class NCMR(Base, core_mixin):
 
         return self._lifecycle[self._status]['name']
 
-    @property
-    @lazy
+    @classmethod
     def _layout(self):
         return {
             0:[
@@ -180,7 +179,7 @@ class NCMR(Base, core_mixin):
                     "name":_("Assigned Disposition"),
                     "value":"_disposition_determined",
                     "kind": "dropdown",
-                    "values": self._dispositions
+                    "values": self._dispositions()
                 },
                 {
                     "name":_("Material Review Board Comments"),
@@ -201,7 +200,7 @@ class NCMR(Base, core_mixin):
                     "name":_("Executed Disposition"),
                     "value":"_disposition_actual",
                     "kind": "dropdown",
-                    "values": self._dispositions
+                    "values": self._dispositions()
                 },
                 {
                     "name":_("Additional Comments"),
