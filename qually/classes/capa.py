@@ -15,31 +15,7 @@ class CAPA(Base, core_mixin):
     number=Column(Integer, default=0, index=True)
     _status = Column(Integer, default=0)
 
-    @classmethod
-    def _cols(cls):
-        data=cls._layout()
-        for status in data:
-            for entry in data[status]:
-                if entry['kind']=='text':
-                    setattr(cls, entry['value'], Column(String, default=''))
-                elif entry['kind']=='multi':
-                    setattr(cls, entry['value'], Column(String, default=''))
-                    setattr(cls, entry['raw'], Column(String, default=''))
-                elif entry['kind']=='user':
-                    setattr(cls, entry['value'], Column(Integer, ForeignKey("users.id")))
-                    setattr(cls, entry['relationship'], relationship("User", primaryjoin=f"User.id=={cls.__name__}.assignee_id"))
-                elif entry['kind']=='dropdown':
-                    setattr(cls, entry['value'], Column(Integer, default=None))
-
-        setattr(cls, "owner", relationship("User", primaryjoin=f"User.id=={cls.__name__}.owner_id"))
-        setattr(cls, "logs",  relationship(f"{cls.__name__}Log", order_by=f"{cls.__name__}Log.id.desc()"))
-        setattr(cls, "approvals",  relationship(f"{cls.__name__}Approval"))
-        setattr(cls, "__table_args__", (
-            UniqueConstraint(
-                'number', 
-                'organization_id', name=f'{cls.__name__.lower()}_org_number_unique'),
-            )
-        )
+    organization=relationship("Organization")
 
     @classmethod
     def _assignment_query_args(cls):
@@ -128,8 +104,6 @@ class CAPA(Base, core_mixin):
                 8: _("Failure analysis")
             }
     
-    
-
     @property
     def status(self):
 
@@ -140,19 +114,19 @@ class CAPA(Base, core_mixin):
         return {
             0:[
                 {
-                    "name":_("Item Number"),
-                    "value":"item_number",
-                    "kind": "text"
+                    "name":_("Describe Issue"),
+                    "value":"describe_issue",
+                    "kind": "multi",
                 },
                 {
-                    "name":_("Revision Number"),
-                    "value":"revision",
-                    "kind": "text"
+                    "name":_("Who discovered issue?"),
+                    "value":"who_discovered",
+                    "kind": "user"
                 },
                 {
-                    "name":_("Serial or Lot Number"),
-                    "value":"lot_number",
-                    "kind": "text"
+                    "name":_("How was issue discovered?"),
+                    "value":"how_discovered",
+                    "kind": "multi"
                 },
                 {
                     "name":_("Quantity"),
@@ -172,32 +146,7 @@ class CAPA(Base, core_mixin):
                     "kind": "multi",
                     "raw": "new_comments_raw"
                 }
-            ],
-            1:[],
-            2:[
-                {
-                    "name":_("Material Review Board Comments"),
-                    "value":"mrb_comments",
-                    "kind": "multi",
-                    "raw": "mrb_comments_raw"
-                },
-                {
-                    "name":_("Disposition Assignee"),
-                    "value":"assignee_id",
-                    "kind": "user",
-                    "relationship": "assignee"
-                }
-
-            ],
-            3:[
-                {
-                    "name":_("Additional Comments"),
-                    "value":"dsp_comments",
-                    "kind": "multi",
-                    "raw": "dsp_comments_raw"
-                }
-            ],
-            4: []
+            ]
         }
     
     @property

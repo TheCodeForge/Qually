@@ -18,32 +18,6 @@ class NCMR(Base, core_mixin):
     organization=relationship("Organization")
 
     @classmethod
-    def _cols(cls):
-        data=cls._layout()
-        for status in data:
-            for entry in data[status]:
-                if entry['kind']=='text':
-                    setattr(cls, entry['value'], Column(String, default=''))
-                elif entry['kind']=='multi':
-                    setattr(cls, entry['value'], Column(String, default=''))
-                    setattr(cls, f"{entry['value']}_raw", Column(String, default=''))
-                elif entry['kind']=='user':
-                    setattr(cls, entry['value'], Column(Integer, ForeignKey("users.id")))
-                    setattr(cls, entry['relationship'], relationship("User", primaryjoin=f"User.id=={cls.__name__}.assignee_id"))
-                elif entry['kind']=='dropdown':
-                    setattr(cls, entry['value'], Column(Integer, default=None))
-
-        setattr(cls, "owner", relationship("User", primaryjoin=f"User.id=={cls.__name__}.owner_id"))
-        setattr(cls, "logs",  relationship(f"{cls.__name__}Log", order_by=f"{cls.__name__}Log.id.desc()"))
-        setattr(cls, "approvals",  relationship(f"{cls.__name__}Approval"))
-        setattr(cls, "__table_args__", (
-            UniqueConstraint(
-                'number', 
-                'organization_id', name=f'{cls.__name__.lower()}_org_number_unique'),
-            )
-        )
-
-    @classmethod
     def _assignment_query_args(cls):
 
         args= [

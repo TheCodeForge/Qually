@@ -248,7 +248,7 @@ def post_record_number_unapprove(kind, number):
     return toast_redirect(record.permalink)
 
     
-@app.get("/create_<Ikind>")
+@app.get("/create_<kind>")
 @has_seat
 def get_create_record(kind):
 
