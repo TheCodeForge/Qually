@@ -92,6 +92,18 @@ def get_s3_object_path(object, obj_id, path):
 
     return send_file(file, mimetype=mimetype)
 
+@app.get("/manifest.json")
+def get_manifest_json():
+    data={
+      "name": app.config["SITE_NAME"],
+      "short_name": app.config["SITE_NAME"],
+      "start_url": f"https://{app.config['SERVER_NAME']}",
+      "display": "standalone",
+      "background_color": f"#{app.config['COLOR_PRIMARY']}",
+      "description": "Your data, our processes, total quality"
+    }
+    return jsonify(data)
+
 # @app.route("/help/docs")
 # @cache.memoize(10)
 # def docs():
