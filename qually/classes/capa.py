@@ -17,9 +17,6 @@ class CAPA(Base, core_mixin):
 
     __table_args__=
 
-    _log_class = "CAPALog"
-    _approval_class="CAPAApproval"
-
     @classmethod
     def _cols(cls):
         data=cls._layout()
