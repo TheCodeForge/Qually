@@ -21,21 +21,8 @@ class CAPA(Base, core_mixin):
     logs = relationship("CAPALog", order_by="NCMRLog.id.desc()")
     approvals=relationship("CAPAApproval")
 
-    ##0. new
-    source=Column(Integer)
-    what=Column(String)
-    when=Column(String)
-    where=Column(String)
-    who=Column(String)
-    howmuch=Column(String)
 
-    ##1. Doc control
 
-    ##2. Investigation
-    root_cause=Column(String)
-    root_cause_raw=Column(String)
-    action_plan=Column(String)
-    action_plan_raw=Column(String)
 
 
 
@@ -47,6 +34,21 @@ class CAPA(Base, core_mixin):
 
     _log_class = "CAPALog"
     _approval_class="CAPAApproval"
+
+    @classmethod
+    def _cols(cls):
+        for status in cls.layout():
+            for entry in status:
+                if entry['kind']=='text':
+                    setattr(cls, entry['value'], Column(String, default=''))
+                elif entry['kind']=='multi':
+                    setattr(cls, entry['value'], Column(String, default=''))
+                    setattr(cls, entry['raw'], Column(String, default=''))
+                elif entry['kind']=='user':
+                    setattr(cls, entry['value'], Column(Integer, ForeignKey("users.id")))
+                    setattr(cls, entry['relationship'], relationship("User", primaryjoin=f"User.id=={cls.__name__}.assignee_id"))
+                elif entry['kind']=='dropdown':
+                    setattr(cls, entry['value'], Column(Integer, default=None))
 
     @classmethod
     def _assignment_query_args(cls):
@@ -321,6 +323,8 @@ class CAPA(Base, core_mixin):
                 }
             ]
         }
+
+    _cols()
     
 class CAPAApproval(Base, core_mixin):
 
