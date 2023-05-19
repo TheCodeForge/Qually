@@ -27,7 +27,7 @@
     {{ record | debug }}
     {{ record._layout | debug }}
 
-    {{ getattr(record, 'lifecycle') | debug }}
+    {{ record | attr('lifecycle') | debug }}
     
     {% for stage in (record._layout().keys() | sort) if stage<=record._status%}
     <h3 class="h4 text-primary mt-3">{{ record._lifecycle[stage]['name'] }}</h3>
