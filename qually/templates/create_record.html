@@ -12,8 +12,29 @@
 
     <label for="input-{{ loop.index0 }}">{{ entry['name'] }}</label>
 
-    {% if entry['kind']=='text' %}
-    <input type="text" class="form-control mb-2" id="input-{{ loop.index0 }}" name="{{ entry['value'] }}" autocomplete="off" required>
+    {% if entry.get('kind')=='multi' %} 
+    <textarea id="input-{{ loop.index0 }}" class="form-control" name="{{ entry['value'] }}"></textarea>
+
+    {% elif entry.get('kind')=='dropdown' %}
+    <select id="input-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
+      <option disabled>{{_("Select One")}}</option>
+      {% for x in entry['values'] %}
+      <option value="{{ x }}">{{ entry['values'][x] }}</option>
+      {% endfor %}
+    </select>
+
+    {% elif entry.get('kind')=='user' %}
+    <select id="input-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
+      <option value="">-{{_("None")}}-</option>
+      {% for user in g.user.organization.assignable_users %}
+      <option value="{{ user.id }}">{{ user.name }}</option>
+      {% endfor %}
+    </select>
+
+    {% else %}
+    <input id="input-{{ loop.index0 }}" class="form-control" type="text" name="{{ entry['value'] }}">
+
+    {% endif %}
 
     {% endfor %}
 
