@@ -50,6 +50,9 @@ class NCMR(Base, core_mixin):
             'organization_id', name='ncmr_org_number_unique'),
         )
 
+    _log_class = "NCMRLog"
+    _approval_class="NCMRApproval"
+
     @classmethod
     def _assignment_query_args(cls):
 
@@ -320,7 +323,7 @@ class NCMRApproval(Base, core_mixin):
     __tablename__="ncmr_approval"
 
     id = Column(Integer, primary_key=True)
-    ncmr_id=Column(Integer, ForeignKey("ncmr.id"))
+    record_id=Column(Integer, ForeignKey("ncmr.id"))
     user_id=Column(Integer, ForeignKey("users.id"))
     status_id=Column(Integer)
     created_utc=Column(Integer)
@@ -333,7 +336,7 @@ class NCMRLog(Base, core_mixin):
     __tablename__="ncmr_audit"
 
     id = Column(Integer, primary_key=True)
-    ncmr_id=Column(Integer, ForeignKey("ncmr.id"))
+    record_id=Column(Integer, ForeignKey("ncmr.id"))
     user_id=Column(Integer, ForeignKey("users.id"))
     created_utc=Column(Integer)
     created_ip=Column(String(64))

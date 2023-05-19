@@ -59,3 +59,22 @@ def get_ncmr(number, graceful=False):
     if not ncmr and not graceful:
         abort(404)
     return ncmr
+
+
+def get_record(kind, number, graceful=False):
+
+    kind=kind.lower()
+    if kind not in ['ncmr']:
+        abort(404)
+
+    item = getattr(g.user.organization, f"{kind}s").filter_by(number=int(number))
+
+    if request.method != "GET":
+        item=item.with_for_update()
+
+    item=item.first()
+
+    if not item and not graceful:
+        abort(404)
+
+    return item

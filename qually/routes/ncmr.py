@@ -4,69 +4,69 @@ try:
 except ModuleNotFoundError:
     pass
 
-@app.get("/NCMR-<number>")
+@app.get("/<kind>-<number>")
 @logged_in
-def get_ncmr_number(number):
+def get_record_number(kind, number):
 
-    ncmr = get_ncmr(number)
+    record = get_record(kind, number)
     
-    return render_template("record.html", record=ncmr)
+    return render_template("record.html", record=record)
 
-@app.post("/NCMR-<number>")
+@app.post("/<kind>-<number>")
 @has_seat
-def post_ncmr_number(number):
+def post_record_number(kind, number):
 
-    ncmr = get_ncmr(number)
+    record = get_record(kind, number)
 
     with force_locale(g.user.organization.lang):
-        entries=ncmr._layout[ncmr._status]
+        entries=record._layout[record._status]
 
     for entry in entries:
         if entry['value'] in request.form:
             if entry['kind']=='multi':
-                setattr(ncmr, entry['raw'], request.form[entry['value']])
-                setattr(ncmr, entry['value'], html(request.form[entry['value']]))
+                setattr(record, entry['raw'], request.form[entry['value']])
+                setattr(record, entry['value'], html(request.form[entry['value']]))
                 key=entry['name']
                 value=txt(request.form[entry['value']])
-                response=getattr(ncmr, entry['value'])
+                response=getattr(record, entry['value'])
             elif entry['kind']=='dropdown':
-                setattr(ncmr, entry['value'], int(request.form[entry['value']]))
+                setattr(record, entry['value'], int(request.form[entry['value']]))
                 key=entry['name']
                 value=entry['values'].get(int(request.form[entry['value']]))
                 response=value
             elif entry['kind']=='user':
                 n=request.form.get(entry['value'])
                 if n:
-                    setattr(ncmr, entry['value'], int(request.form[entry['value']]))
-                    value=getattr(ncmr, entry['relationship']).name
+                    setattr(record, entry['value'], int(request.form[entry['value']]))
+                    value=getattr(record, entry['relationship']).name
                 else:
-                    setattr(ncmr, entry['value'], None)
+                    setattr(record, entry['value'], None)
                     value=""
                 key=entry['name']
                 response=value
             else:
-                setattr(ncmr, entry['value'], txt(request.form[entry['value']]))
+                setattr(record, entry['value'], txt(request.form[entry['value']]))
                 key=entry['name']
-                value=getattr(ncmr, entry['value'])
+                value=getattr(record, entry['value'])
                 response=value
 
             break
     else:
         return toast_error(_("Unable to save changes"))
 
-    g.db.add(ncmr)
+    g.db.add(record)
 
     #clear any existing approvals on phase and log clearing
 
-    approvals_cleared = g.db.query(NCMRApproval).filter_by(ncmr_id=ncmr.id, status_id=ncmr._status).delete()
+    approvals_cleared = g.db.query(NCMRApproval).filter_by(record_id=record.id, status_id=record._status).delete()
     if approvals_cleared:
 
         with force_locale(g.user.organization.lang):
             appr_clear_log=NCMRLog(
                 user_id=g.user.id,
-                ncmr_id=ncmr.id,
+                record_id=record.id,
                 created_utc=g.time,
-                key=f"{_('Approvals')} - {ncmr.status}",
+                key=f"{_('Approvals')} - {record.status}",
                 value=_("Cleared"),
                 created_ip=request.remote_addr
                 )
@@ -75,7 +75,7 @@ def post_ncmr_number(number):
 
     log=NCMRLog(
         user_id=g.user.id,
-        ncmr_id=ncmr.id,
+        record_id=record.id,
         created_utc=g.time,
         key=key,
         value=value,
@@ -87,13 +87,13 @@ def post_ncmr_number(number):
 
     return toast(_("Changes saved"), data={"new":response})
 
-@app.post("/NCMR-<number>/status")
+@app.post("/<kind>-<number>/status")
 @has_seat
-def post_ncmr_number_status(number):
+def post_record_number_status(kind, number):
 
-    ncmr=get_ncmr(number)
+    record = get_record(kind, number)
 
-    transition = [x for x in ncmr._transitions[ncmr._status] if x['id']==request.form.get('transition_id')]
+    transition = [x for x in record._transitions[record._status] if x['id']==request.form.get('transition_id')]
 
     try:
         transition=transition[0]
@@ -106,22 +106,22 @@ def post_ncmr_number_status(number):
     if transition.get("approval"):
         return toast_error(_("This transition requires approval signatures."), 403)
 
-    if transition['to']<100 and (not ncmr._lifecycle[transition['to']]['users'] or not ncmr._lifecycle[transition['to']]['users'][0]):
-        return toast_error(_("A user must be assigned to the {x} phase first.").format(x=ncmr._lifecycle[transition['to']]['name']), 409)
+    if transition['to']<100 and (not record._lifecycle[transition['to']]['users'] or not record._lifecycle[transition['to']]['users'][0]):
+        return toast_error(_("A user must be assigned to the {x} phase first.").format(x=record._lifecycle[transition['to']]['name']), 409)
 
 
     #transition is approved by system, update record and log
 
-    ncmr._status=transition['to']
-    g.db.add(ncmr)
+    record._status=transition['to']
+    g.db.add(record)
 
     with force_locale(g.user.organization.lang):
         log=NCMRLog(
             user_id=g.user.id,
-            ncmr_id=ncmr.id,
+            record_id=record.id,
             created_utc=g.time,
             key=_("Status"),
-            value=ncmr.status,
+            value=record.status,
             created_ip=request.remote_addr
             )
 
@@ -129,15 +129,15 @@ def post_ncmr_number_status(number):
 
     g.db.commit()
 
-    return toast_redirect(ncmr.permalink)
+    return toast_redirect(record.permalink)
 
-@app.post("/NCMR-<number>/approve")
+@app.post("/<kind>-<number>/approve")
 @has_seat
-def post_ncmr_number_approve(number):
+def post_record_number_approve(kind, number):
 
-    ncmr=get_ncmr(number)
+    record = get_record(kind, number)
 
-    transition = [x for x in ncmr._transitions[ncmr._status] if x['id']==request.form.get('transition_id')]
+    transition = [x for x in record._transitions[record._status] if x['id']==request.form.get('transition_id')]
 
     try:
         transition=transition[0]
@@ -147,11 +147,11 @@ def post_ncmr_number_approve(number):
     if g.user not in transition['users']:
         return toast_error(_("You are not authorized to do that."), 403)
 
-    if ncmr.has_approved:
+    if record.has_approved:
         return toast_error(_("You already approved this."))
 
-    if transition['to']<100 and (not ncmr._lifecycle[transition['to']]['users'] or not ncmr._lifecycle[transition['to']]['users'][0]):
-        return toast_error(_("A user must be assigned to the {x} phase first.").format(x=ncmr._lifecycle[transition['to']]['name']), 409)
+    if transition['to']<100 and (not record._lifecycle[transition['to']]['users'] or not record._lifecycle[transition['to']]['users'][0]):
+        return toast_error(_("A user must be assigned to the {x} phase first.").format(x=record._lifecycle[transition['to']]['name']), 409)
 
     ## Validate password
     if not check_password_hash(g.user.passhash, request.form.get("password")):
@@ -165,9 +165,9 @@ def post_ncmr_number_approve(number):
     with force_locale(g.user.organization.lang):
         appr_log=NCMRLog(
             user_id=g.user.id,
-            ncmr_id=ncmr.id,
+            record_id=record.id,
             created_utc=g.time,
-            key=f"{_('Approvals')} - {ncmr.status}",
+            key=f"{_('Approvals')} - {record.status}",
             value=_("Approved"),
             created_ip=request.remote_addr
             )
@@ -175,26 +175,26 @@ def post_ncmr_number_approve(number):
 
     approval=NCMRApproval(
         user_id=g.user.id,
-        ncmr_id=ncmr.id,
-        status_id=ncmr._status,
+        record_id=record.id,
+        status_id=record._status,
         created_utc=g.time
         )
     g.db.add(approval)
 
     g.db.flush()
     
-    #refresh ncmr and get number of apprs
+    #refresh record and get number of apprs
     #if all have approved, advance phase
-    g.db.refresh(ncmr)
-    if len(ncmr.phase_approvals(ncmr._status)) >= len(transition['users']):
-        ncmr._status=transition['to']
-        g.db.add(ncmr)
+    g.db.refresh(record)
+    if len(record.phase_approvals(record._status)) >= len(transition['users']):
+        record._status=transition['to']
+        g.db.add(record)
         log=NCMRLog(
             user_id=g.user.id,
-            ncmr_id=ncmr.id,
+            record_id=record.id,
             created_utc=g.time,
             key=_("Status"),
-            value=ncmr.status,
+            value=record.status,
             created_ip=request.remote_addr
             )
 
@@ -203,22 +203,22 @@ def post_ncmr_number_approve(number):
 
     g.db.commit()
 
-    return toast_redirect(ncmr.permalink)
+    return toast_redirect(record.permalink)
 
-@app.post("/NCMR-<number>/unapprove")
+@app.post("/<kind>-<number>/unapprove")
 @logged_in
-def post_ncmr_number_unapprove(number):
+def post_record_number_unapprove(kind, number):
 
-    ncmr=get_ncmr(number)
+    record = get_record(kind, number)
 
-    transition = [x for x in ncmr._transitions[ncmr._status] if x['id']==request.form.get('transition_id')]
+    transition = [x for x in record._transitions[record._status] if x['id']==request.form.get('transition_id')]
 
     try:
         transition=transition[0]
     except IndexError:
         return toast_error(_("This record has changed status. Please reload this page."), 403)
 
-    approvals = [x for x in ncmr.approvals if x.user_id==g.user.id and x.status_id==ncmr._status]
+    approvals = [x for x in record.approvals if x.user_id==g.user.id and x.status_id==record._status]
 
     if not approvals:
         return toast_error(_("You don't have any approvals to clear."))
@@ -230,9 +230,9 @@ def post_ncmr_number_unapprove(number):
     with force_locale(g.user.organization.lang):
         appr_log=NCMRLog(
             user_id=g.user.id,
-            ncmr_id=ncmr.id,
+            record_id=record.id,
             created_utc=g.time,
-            key=f"{_('Approvals')} - {ncmr.status}",
+            key=f"{_('Approvals')} - {record.status}",
             value=_("Unapproved"),
             created_ip=request.remote_addr
             )
@@ -240,9 +240,7 @@ def post_ncmr_number_unapprove(number):
 
     g.db.commit()
 
-    return toast_redirect(ncmr.permalink)
-
-
+    return toast_redirect(record.permalink)
 
     
 @app.get("/create_ncmr")
