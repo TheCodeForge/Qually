@@ -107,14 +107,19 @@ class NCMR(Base, core_mixin):
     @classmethod
     def _dispositions(self):
 
-        with force_locale(g.user.organization.lang):
-            return {
-                0: _("Scrap"),
-                1: _("Return to Supplier"),
-                2: _("Rework"),
-                3: _("Use As-Is"),
-                4: _("Reclassify")
+        data=lambda:{
+                    0: _("Scrap"),
+                    1: _("Return to Supplier"),
+                    2: _("Rework"),
+                    3: _("Use As-Is"),
+                    4: _("Reclassify")
             }
+
+        try:
+            with force_locale(g.user.organization.lang):
+                return data()
+        except RuntimeError:
+            return data()
     
     
 
