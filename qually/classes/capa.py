@@ -121,7 +121,8 @@ class CAPA(Base, core_mixin):
                 {
                     "name":_("Who discovered issue?"),
                     "value":"who_discovered",
-                    "kind": "user"
+                    "kind": "user",
+                    "relationship":"discoverer"
                 },
                 {
                     "name":_("How was issue discovered?"),
