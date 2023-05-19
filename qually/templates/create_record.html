@@ -4,7 +4,7 @@
 <div>
   <h1 class="h2 mt-3">{{_("Create {x}").format(x=obj._name)}}</h1>
 
-  <form id="form-ncmr" action="/ncmr" method="post" class="my-0 toasted">
+  <form id="form-ncmr" action="{{ request.path }}" method="post" class="my-0 toasted">
 
     <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
 
