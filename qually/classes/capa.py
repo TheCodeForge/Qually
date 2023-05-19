@@ -88,7 +88,7 @@ class CAPA(Base, core_mixin):
         }
 
     @classmethod
-    def _sources(self):
+    def _sources(cls):
 
         data=lambda:{
                 0: _("Service request"),
@@ -109,14 +109,14 @@ class CAPA(Base, core_mixin):
             return data()
 
     @classmethod
-    def _layout(self):
+    def _layout(cls):
         return {
             0:[
                 {
                     "name":_("Issue Source"),
                     "value":"issue_source",
                     "kind": "dropdown",
-                    "values": self._sources
+                    "values": cls._sources()
                 },
                 {
                     "name":_("Describe Issue"),

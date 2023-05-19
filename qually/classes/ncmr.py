@@ -83,7 +83,7 @@ class NCMR(Base, core_mixin):
         }
 
     @classmethod
-    def _dispositions(self):
+    def _dispositions(cls):
 
         data=lambda:{
                     0: _("Scrap"),
@@ -100,7 +100,7 @@ class NCMR(Base, core_mixin):
             return data()
 
     @classmethod
-    def _layout(self):
+    def _layout(cls):
         return {
             0:[
                 {
@@ -141,7 +141,7 @@ class NCMR(Base, core_mixin):
                     "name":_("Assigned Disposition"),
                     "value":"_disposition_determined",
                     "kind": "dropdown",
-                    "values": self._dispositions()
+                    "values": cls._dispositions()
                 },
                 {
                     "name":_("Material Review Board Comments"),
@@ -161,7 +161,7 @@ class NCMR(Base, core_mixin):
                     "name":_("Executed Disposition"),
                     "value":"_disposition_actual",
                     "kind": "dropdown",
-                    "values": self._dispositions()
+                    "values": cls._dispositions()
                 },
                 {
                     "name":_("Additional Comments"),
