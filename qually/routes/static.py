@@ -98,7 +98,7 @@ def get_manifest_json():
       "name": app.config["SITE_NAME"],
       "short_name": app.config["SITE_NAME"],
       "start_url": f"https://{app.config['SERVER_NAME']}",
-      "display": "standalone",
+      "display": "fullscreen",
       "background_color": f"#{app.config['COLOR_PRIMARY']}",
       "description": "Your data, our processes, total quality"
     }
