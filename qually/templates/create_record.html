@@ -8,14 +8,14 @@
 
     <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
 
-    <label for="input-item-number">{{_("Item Number")}}</label>
-    <input type="text" class="form-control mb-2" id="input-item-number" name="item_number" autocomplete="off" required>
+    {% for entry in OBJ._layout[0] %}
 
-    <label for="input-lot-number">{{_("Serial or Lot Number")}}</label>
-    <input type="text" class="form-control mb-2" id="input-lot-number" name="lot_number" autocomplete="off" required>
+    <label for="input-{{ loop.index0 }}">{{ entry['name'] }}</label>
 
-    <label for="input-qty">{{_("Quantity")}}</label>
-    <input type="text" class="form-control mb-2" id="input-qty" name="quantity" autocomplete="off" required>
+    {% if entry['kind']=='text' %}
+    <input type="text" class="form-control mb-2" id="input-{{ loop.index0 }}" name="{{ entry['value'] }}" autocomplete="off" required>
+
+    {% endfor %}
 
   </form>
 
