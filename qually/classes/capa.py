@@ -312,7 +312,7 @@ class CAPAApproval(Base, core_mixin):
     __tablename__="capa_approval"
 
     id = Column(Integer, primary_key=True)
-    record_id=Column(Integer, ForeignKey("ncmr.id"))
+    record_id=Column(Integer, ForeignKey("capa.id"))
     user_id=Column(Integer, ForeignKey("users.id"))
     status_id=Column(Integer)
     created_utc=Column(Integer)
@@ -325,7 +325,7 @@ class CAPALog(Base, core_mixin):
     __tablename__="capa_audit"
 
     id = Column(Integer, primary_key=True)
-    record_id=Column(Integer, ForeignKey("ncmr.id"))
+    record_id=Column(Integer, ForeignKey("capa.id"))
     user_id=Column(Integer, ForeignKey("users.id"))
     created_utc=Column(Integer)
     created_ip=Column(String(64))
