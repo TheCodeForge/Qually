@@ -78,6 +78,7 @@ class core_mixin():
         setattr(cls, "__table_args__", (
             UniqueConstraint(
                 'number', 
-                'organization_id', name=f'{cls.__name__.lower()}_org_number_unique'),
+                'organization_id',
+                name=f'{cls.__name__.lower()}_org_number_unique'),
             )
         )
