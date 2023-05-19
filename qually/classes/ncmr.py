@@ -41,36 +41,6 @@ class NCMR(Base, core_mixin):
             )
         )
 
-    @classmethod
-    def _assignment_query_args(cls):
-
-        args= [
-            and_(
-                NCMR._status==0, 
-                NCMR.owner_id==g.user.id
-                ),
-            and_(
-                NCMR._status==3,
-                NCMR.assignee_id==g.user.id
-                )
-            ]
-
-        if g.user.special_role==1:
-            args.append(NCMR._status.in_([1,4]))
-        elif g.user.special_role==2:
-            args.append(NCMR._status==2)
-
-        return args
-
-    @property
-    def permalink(self):
-        return f"/NCMR-{self.number:0>5}"
-    
-    @property
-    def name(self):
-        with force_locale(g.user.organization.lang):
-            return _("NCMR-")+f"{self.number:0>5}"
-
     @property
     def _lifecycle(self):
         return {
@@ -103,6 +73,36 @@ class NCMR(Base, core_mixin):
                 'users': []
                 }
         }
+        
+    @classmethod
+    def _assignment_query_args(cls):
+
+        args= [
+            and_(
+                NCMR._status==0, 
+                NCMR.owner_id==g.user.id
+                ),
+            and_(
+                NCMR._status==3,
+                NCMR.assignee_id==g.user.id
+                )
+            ]
+
+        if g.user.special_role==1:
+            args.append(NCMR._status.in_([1,4]))
+        elif g.user.special_role==2:
+            args.append(NCMR._status==2)
+
+        return args
+
+    @property
+    def permalink(self):
+        return f"/NCMR-{self.number:0>5}"
+    
+    @property
+    def name(self):
+        with force_locale(g.user.organization.lang):
+            return _("NCMR-")+f"{self.number:0>5}"
 
     @classmethod
     def _dispositions(self):
