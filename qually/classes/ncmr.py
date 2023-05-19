@@ -24,7 +24,7 @@ class NCMR(Base, core_mixin):
                     setattr(cls, entry['value'], Column(String, default=''))
                 elif entry['kind']=='multi':
                     setattr(cls, entry['value'], Column(String, default=''))
-                    setattr(cls, entry['raw'], Column(String, default=''))
+                    setattr(cls, f"{entry['value']}_raw", Column(String, default=''))
                 elif entry['kind']=='user':
                     setattr(cls, entry['value'], Column(Integer, ForeignKey("users.id")))
                     setattr(cls, entry['relationship'], relationship("User", primaryjoin=f"User.id=={cls.__name__}.assignee_id"))
@@ -155,15 +155,13 @@ class NCMR(Base, core_mixin):
                 {
                     "name":_("Description of Non-Conformance"),
                     "value":"nc_description",
-                    "kind": "multi",
-                    "raw": "nc_description_raw",
+                    "kind": "multi"
                     "help":_("Identify the specification or requirement to which the material fails to conform.")
                 },
                 {
                     "name":_("Additional Comments"),
                     "value":"new_comments",
-                    "kind": "multi",
-                    "raw": "new_comments_raw"
+                    "kind": "multi"
                 }
             ],
             1:[],
@@ -177,8 +175,7 @@ class NCMR(Base, core_mixin):
                 {
                     "name":_("Material Review Board Comments"),
                     "value":"mrb_comments",
-                    "kind": "multi",
-                    "raw": "mrb_comments_raw"
+                    "kind": "multi"
                 },
                 {
                     "name":_("Disposition Assignee"),
@@ -198,8 +195,7 @@ class NCMR(Base, core_mixin):
                 {
                     "name":_("Additional Comments"),
                     "value":"dsp_comments",
-                    "kind": "multi",
-                    "raw": "dsp_comments_raw"
+                    "kind": "multi"
                 }
             ],
             4: []
