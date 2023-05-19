@@ -252,8 +252,6 @@ def post_record_number_unapprove(kind, number):
 @has_seat
 def get_create_record(kind):
 
-    kind=request.path.split('_')[1]
-
     if kind not in VALID_KINDS:
         abort(404)
 
@@ -272,12 +270,11 @@ def get_record_records():
     return render_template(f"{kind}s.html")
 
 
-@app.post("/ncmr")
+@app.post("/create_<kind>")
 @has_seat
 @org_update_lock
-def post_record_record():
+def post_record_record(kind):
 
-    kind=request.path.lstrip('/')
     if kind not in VALID_KINDS:
         abort(404)
 
