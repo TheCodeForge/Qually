@@ -78,16 +78,17 @@ class core_mixin():
                 elif entry['kind']=='dropdown':
                     setattr(cls, entry['value'], Column(Integer, default=None))
 
-        setattr(cls, "owner", relationship("User", primaryjoin=f"User.id=={cls.__name__}.owner_id"))
-        setattr(cls, "logs",  relationship(f"{cls.__name__}Log", order_by=f"{cls.__name__}Log.id.desc()"))
-        setattr(cls, "approvals",  relationship(f"{cls.__name__}Approval"))
-        setattr(cls, "__table_args__", (
+        cls.owner=      relationship("User", primaryjoin=f"User.id=={cls.__name__}.owner_id")
+        cls.logs=       relationship(f"{cls.__name__}Log", order_by=f"{cls.__name__}Log.id.desc()")
+        cls.approvals=  relationship(f"{cls.__name__}Approval")
+        cls.__table_args__=(
             UniqueConstraint(
                 'number', 
                 'organization_id',
-                name=f'{cls.__name__.lower()}_org_number_unique'),
+                name=f'{cls.__name__.lower()}_org_number_unique'
+                ),
             )
-        )
+        
 
     @property
     def status(self):
