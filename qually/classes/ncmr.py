@@ -73,37 +73,41 @@ class NCMR(Base, core_mixin):
 
     @property
     def _lifecycle(self):
-        print('testing')
-        return {
-            0: {
-                'name': _("New"),
-                'users': [self.owner]
-                },
-            1: {
-                'name': _("Initial Review"),
-                'users': self.organization.doc_control_users
-                },
-            2: {
-                'name': _("Material Review Board"),
-                'users': self.organization.mrb_users
-                },
-            3: {
-                'name': _("Disposition"),
-                'users': [self.assignee]
-                },
-            4: {
-                'name': _("Final Review"),
-                'users': self.organization.doc_control_users
-                },
-            100: {
-                'name': _("Closed"),
-                'users': []
-                },
-            101: {
-                'name': _("Terminated"),
-                'users': []
-                }
-        }
+        try:
+            data={
+                0: {
+                    'name': _("New"),
+                    'users': [self.owner]
+                    },
+                1: {
+                    'name': _("Initial Review"),
+                    'users': self.organization.doc_control_users
+                    },
+                2: {
+                    'name': _("Material Review Board"),
+                    'users': self.organization.mrb_users
+                    },
+                3: {
+                    'name': _("Disposition"),
+                    'users': [self.assignee]
+                    },
+                4: {
+                    'name': _("Final Review"),
+                    'users': self.organization.doc_control_users
+                    },
+                100: {
+                    'name': _("Closed"),
+                    'users': []
+                    },
+                101: {
+                    'name': _("Terminated"),
+                    'users': []
+                    }
+            }
+            return data
+        except:
+            print("there was a problem assemblign lifecycle data")
+            return {}
 
     @classmethod
     def _dispositions(self):
