@@ -248,7 +248,7 @@ def post_record_number_unapprove(kind, number):
     return toast_redirect(record.permalink)
 
     
-@app.get("/create_<kind>")
+@app.get("/create_<Ikind>")
 @has_seat
 def get_create_record(kind):
 
@@ -278,7 +278,7 @@ def get_record_records():
 def post_record_record():
 
     kind=request.path.lstrip('/')
-    if kind not in VALID_KINDS:
+    if kind not in VALID_KNDS:
         abort(404)
 
     OBJ = VALID_KINDS[kind]
@@ -299,7 +299,7 @@ def post_record_record():
     for entry in entries:
         if entry['value'] in request.form:
             if entry['kind']=='multi':
-                setattr(record, entry['raw'], request.form[entry['value']])
+                setattr(record, f"{entry['value']}_raw", request.form[entry['value']])
                 setattr(record, entry['value'], html(request.form[entry['value']]))
             elif entry['kind']=='dropdown':
                 setattr(record, entry['value'], int(request.form[entry['value']]))
