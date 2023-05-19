@@ -8,7 +8,7 @@
 
     <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
 
-    {% for entry in obj._layout[0] %}
+    {% for entry in obj._layout()[0] %}
 
     <label for="input-{{ loop.index0 }}">{{ entry['name'] }}</label>
 
