@@ -15,8 +15,6 @@ class NCMR(Base, core_mixin):
     number=Column(Integer, default=0, index=True)
     _status = Column(Integer, default=0)
 
-    __table_args__=
-
     @classmethod
     def _cols(cls):
         data=cls._layout()
