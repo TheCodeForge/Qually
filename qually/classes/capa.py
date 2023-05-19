@@ -4,9 +4,9 @@ try:
 except ModuleNotFoundError:
     pass
 
-class NCMR(Base, core_mixin):
+class CAPA(Base, core_mixin):
 
-    __tablename__="ncmr"
+    __tablename__="capa"
 
     id = Column(Integer, primary_key=True)
     created_utc=Column(Integer)
@@ -18,30 +18,25 @@ class NCMR(Base, core_mixin):
     ##relationships
     organization=relationship("Organization")
     owner = relationship("User", primaryjoin="User.id==NCMR.owner_id")
-    assignee = relationship("User", primaryjoin="User.id==NCMR.assignee_id")
-    logs = relationship("NCMRLog", order_by="NCMRLog.id.desc()")
-    approvals=relationship("NCMRApproval")
+    logs = relationship("CAPALog", order_by="NCMRLog.id.desc()")
+    approvals=relationship("CAPAApproval")
 
-    ##New
-    item_number=Column(String, default="")
-    revision=Column(String, default="")
-    lot_number=Column(String, default="")
-    quantity=Column(String, default="")
-    nc_description=Column(String, default="")
-    nc_description_raw=Column(String, default="")
-    new_comments=Column(String, default="")
-    new_comments_raw =Column(String, default="")
+    ##0. new
+    source=Column(Integer)
+    what=Column(String)
+    when=Column(String)
+    where=Column(String)
+    who=Column(String)
+    howmuch=Column(String)
 
-    ##MRB
-    _disposition_determined=Column(Integer, default=None)
-    mrb_comments=Column(String, default="")
-    mrb_comments_raw =Column(String, default="")
-    assignee_id = Column(Integer, ForeignKey("users.id"))
+    ##1. Doc control
 
-    ##MRB
-    _disposition_actual=Column(Integer, default=None)
-    dsp_comments=Column(String, default="")
-    dsp_comments_raw =Column(String, default="")
+    ##2. Investigation
+    root_cause=Column(String)
+    root_cause_raw=Column(String)
+    action_plan=Column(String)
+    action_plan_raw=Column(String)
+
 
 
     __table_args__=(
@@ -50,8 +45,8 @@ class NCMR(Base, core_mixin):
             'organization_id', name='ncmr_org_number_unique'),
         )
 
-    _log_class = "NCMRLog"
-    _approval_class="NCMRApproval"
+    _log_class = "CAPALog"
+    _approval_class="CAPAApproval"
 
     @classmethod
     def _assignment_query_args(cls):
@@ -117,15 +112,19 @@ class NCMR(Base, core_mixin):
         }
 
     @property
-    def _dispositions(self):
+    def _sources(self):
 
         with force_locale(g.user.organization.lang):
             return {
-                0: _("Scrap"),
-                1: _("Return to Supplier"),
-                2: _("Rework"),
-                3: _("Use As-Is"),
-                4: _("Reclassify")
+                0: _("Service request"),
+                1: _("Internal audit finding"),
+                2: _("External audit finding"),
+                3: _("Quality Assurance inspection"),
+                4: _("General observation"),
+                5: _("Data trend"),
+                6: _("Risk assessment"),
+                7: _("Management review"),
+                8: _("Failure analysis")
             }
     
     
@@ -285,14 +284,6 @@ class NCMR(Base, core_mixin):
             ],
             3: [
                 {
-                    "id":"return",
-                    "to":4,
-                    "name": _("Return to MRB"),
-                    "description": _("Return to Material Review Board."),
-                    "users": [self.assignee],
-                    "color": "secondary"
-                },
-                {
                     "id":"submit",
                     "to":4,
                     "name": _("Submit"),
@@ -331,9 +322,9 @@ class NCMR(Base, core_mixin):
             ]
         }
     
-class NCMRApproval(Base, core_mixin):
+class CAPAApproval(Base, core_mixin):
 
-    __tablename__="ncmr_approval"
+    __tablename__="capa_approval"
 
     id = Column(Integer, primary_key=True)
     record_id=Column(Integer, ForeignKey("ncmr.id"))
@@ -344,9 +335,9 @@ class NCMRApproval(Base, core_mixin):
     user=relationship("User", lazy="joined", innerjoin=True)
 
 
-class NCMRLog(Base, core_mixin):
+class CAPALog(Base, core_mixin):
 
-    __tablename__="ncmr_audit"
+    __tablename__="capa_audit"
 
     id = Column(Integer, primary_key=True)
     record_id=Column(Integer, ForeignKey("ncmr.id"))
