@@ -74,8 +74,6 @@ class NCMR(Base, core_mixin):
 
         return args
 
-
-
     @property
     def permalink(self):
         return f"/NCMR-{self.number:0>5}"
@@ -166,7 +164,8 @@ class NCMR(Base, core_mixin):
                     "name":_("Description of Non-Conformance"),
                     "value":"nc_description",
                     "kind": "multi",
-                    "raw": "nc_description_raw"
+                    "raw": "nc_description_raw",
+                    "help":_("Identify the specification or requirement to which the material fails to conform.")
                 },
                 {
                     "name":_("Additional Comments"),
