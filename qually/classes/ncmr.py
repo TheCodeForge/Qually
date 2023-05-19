@@ -106,7 +106,7 @@ class NCMR(Base, core_mixin):
             }
             return data
         except:
-            print("there was a problem assemblign lifecycle data")
+            print("there was a problem assembling lifecycle data")
             return {}
 
     @classmethod
