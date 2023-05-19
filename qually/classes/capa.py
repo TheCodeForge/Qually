@@ -17,8 +17,8 @@ class CAPA(Base, core_mixin):
 
     ##relationships
     organization=relationship("Organization")
-    owner = relationship("User", primaryjoin="User.id==NCMR.owner_id")
-    logs = relationship("CAPALog", order_by="NCMRLog.id.desc()")
+    owner = relationship("User", primaryjoin="User.id==CAPA.owner_id")
+    logs = relationship("CAPALog", order_by="CAPALog.id.desc()")
     approvals=relationship("CAPAApproval")
 
 
