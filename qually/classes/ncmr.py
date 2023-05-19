@@ -73,7 +73,6 @@ class NCMR(Base, core_mixin):
 
     @property
     def _lifecycle(self):
-        print('test')
         return {
             0: {
                 'name': _("New"),
@@ -85,7 +84,7 @@ class NCMR(Base, core_mixin):
                 },
             2: {
                 'name': _("Material Review Board"),
-                'users': self.organization.mrb_users,
+                'users': self.organization.mrb_users
                 },
             3: {
                 'name': _("Disposition"),
