@@ -38,7 +38,7 @@
       {% endif %}
 
       {% if entry.get('help') %}
-      <p class="text-small">{{ entry['help'] }}</p>
+      <p id="help-{{ loop.index0 }}" class="text-small">{{ entry['help'] }}</p>
       {% endif %}
     </div>
 
