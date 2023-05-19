@@ -15,13 +15,6 @@ class CAPA(Base, core_mixin):
     number=Column(Integer, default=0, index=True)
     _status = Column(Integer, default=0)
 
-    ##relationships
-    organization=relationship("Organization")
-    owner = relationship("User", primaryjoin="User.id==CAPA.owner_id")
-    logs = relationship("CAPALog", order_by="CAPALog.id.desc()")
-    approvals=relationship("CAPAApproval")
-
-
     __table_args__=(
         UniqueConstraint(
             'number', 
@@ -46,6 +39,10 @@ class CAPA(Base, core_mixin):
                     setattr(cls, entry['relationship'], relationship("User", primaryjoin=f"User.id=={cls.__name__}.assignee_id"))
                 elif entry['kind']=='dropdown':
                     setattr(cls, entry['value'], Column(Integer, default=None))
+
+        setattr(cls, "owner", relationship("User", primaryjoin=f"User.id=={cls.__name__}.owner_id"))
+        setattr(cls, "logs",  relationship(f"{cls.__name__}Log", order_by=f"{cls.__name__}Log.id.desc()"))
+        setattr(cls, "approvals",  relationship(f"{cls.__name__}Approval"))
 
     @classmethod
     def _assignment_query_args(cls):
