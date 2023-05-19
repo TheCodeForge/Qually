@@ -175,6 +175,7 @@ class NCMR(Base, core_mixin):
                     "raw": "new_comments_raw"
                 }
             ],
+            1:[],
             2:[
                 {
                     "name":_("Assigned Disposition"),
@@ -209,7 +210,8 @@ class NCMR(Base, core_mixin):
                     "kind": "multi",
                     "raw": "dsp_comments_raw"
                 }
-            ]
+            ],
+            4: []
         }
     
     @property
@@ -224,7 +226,8 @@ class NCMR(Base, core_mixin):
                     "name": _("Submit"),
                     "description": _("Submit this record to Document Control for review."),
                     "color": "success",
-                    "users": [self.owner]
+                    "users": [self.owner],
+                    "approval":True
                 },
                 {
                     "id":"terminate",
@@ -258,7 +261,8 @@ class NCMR(Base, core_mixin):
                     "name": _("Advance"),
                     "description": _("Send this record to the Material Review Board."),
                     "users": g.user.organization.doc_control_users,
-                    "color": "success"
+                    "color": "success",
+                    "approval":True
                 },
                 {
                     "id":"terminate",
@@ -287,7 +291,8 @@ class NCMR(Base, core_mixin):
                     "name": _("Submit"),
                     "description": _("Submit for final review."),
                     "users": [self.assignee],
-                    "color": "success"
+                    "color": "success",
+                    "approval":True
                 }
             ],
             4: [
@@ -313,7 +318,8 @@ class NCMR(Base, core_mixin):
                     "name": _("Close"),
                     "description": _("Approve and close this record."),
                     "users": g.user.organization.doc_control_users,
-                    "color": "success"
+                    "color": "success",
+                    "approval":True
                 }
             ]
         }
