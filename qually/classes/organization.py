@@ -93,6 +93,11 @@ class Organization(Base, core_mixin):
     @lazy
     def mrb_users(self):
         return list(self._users.filter_by(is_active=True, special_role=2).all())
+
+    @property
+    @lazy
+    def quality_mgmt_users(self):
+        return list(self._users.filter_by(is_active=True, special_role=3).all())
     
     
     
