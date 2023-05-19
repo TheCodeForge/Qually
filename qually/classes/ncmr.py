@@ -15,43 +15,33 @@ class NCMR(Base, core_mixin):
     number=Column(Integer, default=0, index=True)
     _status = Column(Integer, default=0)
 
-    ##relationships
-    organization=relationship("Organization")
-    owner = relationship("User", primaryjoin="User.id==NCMR.owner_id")
-    assignee = relationship("User", primaryjoin="User.id==NCMR.assignee_id")
-    logs = relationship("NCMRLog", order_by="NCMRLog.id.desc()")
-    approvals=relationship("NCMRApproval")
+    __table_args__=
 
-    ##New
-    item_number=Column(String, default="")
-    revision=Column(String, default="")
-    lot_number=Column(String, default="")
-    quantity=Column(String, default="")
-    nc_description=Column(String, default="")
-    nc_description_raw=Column(String, default="")
-    new_comments=Column(String, default="")
-    new_comments_raw =Column(String, default="")
+    @classmethod
+    def _cols(cls):
+        data=cls._layout()
+        for status in data:
+            for entry in data[status]:
+                if entry['kind']=='text':
+                    setattr(cls, entry['value'], Column(String, default=''))
+                elif entry['kind']=='multi':
+                    setattr(cls, entry['value'], Column(String, default=''))
+                    setattr(cls, entry['raw'], Column(String, default=''))
+                elif entry['kind']=='user':
+                    setattr(cls, entry['value'], Column(Integer, ForeignKey("users.id")))
+                    setattr(cls, entry['relationship'], relationship("User", primaryjoin=f"User.id=={cls.__name__}.assignee_id"))
+                elif entry['kind']=='dropdown':
+                    setattr(cls, entry['value'], Column(Integer, default=None))
 
-    ##MRB
-    _disposition_determined=Column(Integer, default=None)
-    mrb_comments=Column(String, default="")
-    mrb_comments_raw =Column(String, default="")
-    assignee_id = Column(Integer, ForeignKey("users.id"))
-
-    ##MRB
-    _disposition_actual=Column(Integer, default=None)
-    dsp_comments=Column(String, default="")
-    dsp_comments_raw =Column(String, default="")
-
-
-    __table_args__=(
-        UniqueConstraint(
-            'number', 
-            'organization_id', name='ncmr_org_number_unique'),
+        setattr(cls, "owner", relationship("User", primaryjoin=f"User.id=={cls.__name__}.owner_id"))
+        setattr(cls, "logs",  relationship(f"{cls.__name__}Log", order_by=f"{cls.__name__}Log.id.desc()"))
+        setattr(cls, "approvals",  relationship(f"{cls.__name__}Approval"))
+        setattr(cls, "__table_args__", (
+            UniqueConstraint(
+                'number', 
+                'organization_id', name=f'{cls.__name__.lower()}_org_number_unique'),
+            )
         )
-
-    _log_class = "NCMRLog"
-    _approval_class="NCMRApproval"
 
     @classmethod
     def _assignment_query_args(cls):
@@ -329,6 +319,8 @@ class NCMR(Base, core_mixin):
                 }
             ]
         }
+
+NCMR._cols()
     
 class NCMRApproval(Base, core_mixin):
 
