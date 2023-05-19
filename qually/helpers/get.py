@@ -64,7 +64,7 @@ def get_ncmr(number, graceful=False):
 def get_record(kind, number, graceful=False):
 
     kind=kind.lower()
-    if kind not in ['ncmr']:
+    if kind not in ['ncmr', "capa"]:
         abort(404)
 
     item = getattr(g.user.organization, f"{kind}s").filter_by(number=int(number))
