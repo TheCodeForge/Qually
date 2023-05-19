@@ -18,6 +18,14 @@ class NCMR(Base, core_mixin):
 
     _name="NCMR"
 
+    __table_args__=(
+            UniqueConstraint(
+                'number', 
+                'organization_id',
+                name=f'ncmr_org_number_unique'
+                ),
+            )
+
     organization=relationship("Organization")
 
     @classmethod

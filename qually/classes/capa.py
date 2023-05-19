@@ -18,6 +18,14 @@ class CAPA(Base, core_mixin):
 
     _name="CAPA"
 
+    __table_args__=(
+            UniqueConstraint(
+                'number', 
+                'organization_id',
+                name=f'capa_org_number_unique'
+                ),
+            )
+
     organization=relationship("Organization")
 
     @classmethod
