@@ -324,7 +324,7 @@ class CAPA(Base, core_mixin):
             ]
         }
 
-    _cols()
+CAPA._cols()
     
 class CAPAApproval(Base, core_mixin):
 
