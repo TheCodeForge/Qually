@@ -164,115 +164,111 @@ class CAPA(Base, core_mixin):
     @lazy
     def _transitions(self):
 
-        try:
-            return {
-                0: [
-                    {
-                        "id":"submit",
-                        "to": 1,
-                        "name": _("Submit"),
-                        "description": _("Submit this record to Document Control for review."),
-                        "color": "success",
-                        "users": [self.owner],
-                        "approval":True
-                    },
-                    {
-                        "id":"terminate",
-                        "to": 101,
-                        "name": _("Terminate"),
-                        "description": _("Permanently archive this record. This cannot be undone."),
-                        "color": "danger",
-                        "users": [self.owner]
-                    }
-                ],
-                1: [
-                    {
-                        "id":"reject",
-                        "to": 0,
-                        "name": _("Reject"),
-                        "description": _("Send this record back to its initiator for revision."),
-                        "users": g.user.organization.doc_control_users,
-                        "color": "secondary",
-                        "comments": True,
-                    },
-                    {
-                        "id":"withdraw",
-                        "to": 0,
-                        "name": _("Withdraw"),
-                        "users": [self.owner],
-                        "color": "secondary"
-                    },
-                    {
-                        "id":"advance",
-                        "to": 2,
-                        "name": _("Advance"),
-                        "description": _("Send this record to the Material Review Board."),
-                        "users": g.user.organization.doc_control_users,
-                        "color": "success",
-                        "approval":True
-                    },
-                    {
-                        "id":"terminate",
-                        "to": 101,
-                        "name": _("Terminate"),
-                        "description": _("Permanently archive this record. This cannot be undone."),
-                        "users": g.user.organization.doc_control_users,
-                        "color": "danger"
-                    }
-                ],
-                2: [
-                    {
-                        "id":"approve",
-                        "to":3,
-                        "name": _("Approve"),
-                        "description": _("Approve of the planned disposition."),
-                        "users": g.user.organization.mrb_users,
-                        "color": "success",
-                        "approval":True
-                    }
-                ],
-                3: [
-                    {
-                        "id":"submit",
-                        "to":4,
-                        "name": _("Submit"),
-                        "description": _("Submit for final review."),
-                        "users": [self.assignee],
-                        "color": "success",
-                        "approval":True
-                    }
-                ],
-                4: [
-                    {
-                        "id":"reject-mrb",
-                        "to":2,
-                        "name": _("Reject to MRB"),
-                        "description": _("Reject back to the Material Review Board."),
-                        "users": g.user.organization.doc_control_users,
-                        "color": "warning"
-                    },
-                    {
-                        "id":"reject-dsp",
-                        "to":3,
-                        "name": _("Reject to  Disposition"),
-                        "description": _("Reject back to the Disposition assignee."),
-                        "users": g.user.organization.doc_control_users,
-                        "color": "warning"
-                    },
-                    {
-                        "id":"close",
-                        "to":100,
-                        "name": _("Close"),
-                        "description": _("Approve and close this record."),
-                        "users": g.user.organization.doc_control_users,
-                        "color": "success",
-                        "approval":True
-                    }
-                ]
-            }
-        except Exception as e:
-            print(e)
-            return {}
+        return {
+            0: [
+                {
+                    "id":"submit",
+                    "to": 1,
+                    "name": _("Submit"),
+                    "description": _("Submit this record to Document Control for review."),
+                    "color": "success",
+                    "users": [self.owner],
+                    "approval":True
+                },
+                {
+                    "id":"terminate",
+                    "to": 101,
+                    "name": _("Terminate"),
+                    "description": _("Permanently archive this record. This cannot be undone."),
+                    "color": "danger",
+                    "users": [self.owner]
+                }
+            ],
+            1: [
+                {
+                    "id":"reject",
+                    "to": 0,
+                    "name": _("Reject"),
+                    "description": _("Send this record back to its initiator for revision."),
+                    "users": g.user.organization.doc_control_users,
+                    "color": "secondary",
+                    "comments": True,
+                },
+                {
+                    "id":"withdraw",
+                    "to": 0,
+                    "name": _("Withdraw"),
+                    "users": [self.owner],
+                    "color": "secondary"
+                },
+                {
+                    "id":"advance",
+                    "to": 2,
+                    "name": _("Advance"),
+                    "description": _("Send this record to the Material Review Board."),
+                    "users": g.user.organization.doc_control_users,
+                    "color": "success",
+                    "approval":True
+                },
+                {
+                    "id":"terminate",
+                    "to": 101,
+                    "name": _("Terminate"),
+                    "description": _("Permanently archive this record. This cannot be undone."),
+                    "users": g.user.organization.doc_control_users,
+                    "color": "danger"
+                }
+            ],
+            2: [
+                {
+                    "id":"approve",
+                    "to":3,
+                    "name": _("Approve"),
+                    "description": _("Approve of the planned disposition."),
+                    "users": g.user.organization.mrb_users,
+                    "color": "success",
+                    "approval":True
+                }
+            ],
+            3: [
+                {
+                    "id":"submit",
+                    "to":4,
+                    "name": _("Submit"),
+                    "description": _("Submit for final review."),
+                    "users": [self.assignee],
+                    "color": "success",
+                    "approval":True
+                }
+            ],
+            4: [
+                {
+                    "id":"reject-mrb",
+                    "to":2,
+                    "name": _("Reject to MRB"),
+                    "description": _("Reject back to the Material Review Board."),
+                    "users": g.user.organization.doc_control_users,
+                    "color": "warning"
+                },
+                {
+                    "id":"reject-dsp",
+                    "to":3,
+                    "name": _("Reject to  Disposition"),
+                    "description": _("Reject back to the Disposition assignee."),
+                    "users": g.user.organization.doc_control_users,
+                    "color": "warning"
+                },
+                {
+                    "id":"close",
+                    "to":100,
+                    "name": _("Close"),
+                    "description": _("Approve and close this record."),
+                    "users": g.user.organization.doc_control_users,
+                    "color": "success",
+                    "approval":True
+                }
+            ]
+        }
 
 CAPA._cols()
     
