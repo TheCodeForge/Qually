@@ -24,7 +24,7 @@ def post_record_number(kind, number):
     record = get_record(kind, number)
 
     with force_locale(g.user.organization.lang):
-        entries=record._layout[record._status]
+        entries=record._layout()[record._status]
 
     for entry in entries:
         if entry['value'] in request.form:
@@ -294,7 +294,7 @@ def post_record_record():
     g.db.flush()
 
     with force_locale(g.user.organization.lang):
-        entries=record._layout[0]
+        entries=record._layout()[0]
 
     for entry in entries:
         if entry['value'] in request.form:
