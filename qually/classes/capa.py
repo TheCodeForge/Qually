@@ -136,8 +136,7 @@ class CAPA(Base, core_mixin):
 
         return self._lifecycle[self._status]['name']
 
-    @property
-    @lazy
+    @classmethod
     def _layout(self):
         return {
             0:[
@@ -178,12 +177,6 @@ class CAPA(Base, core_mixin):
             1:[],
             2:[
                 {
-                    "name":_("Assigned Disposition"),
-                    "value":"_disposition_determined",
-                    "kind": "dropdown",
-                    "values": self._dispositions
-                },
-                {
                     "name":_("Material Review Board Comments"),
                     "value":"mrb_comments",
                     "kind": "multi",
@@ -198,12 +191,6 @@ class CAPA(Base, core_mixin):
 
             ],
             3:[
-                {
-                    "name":_("Executed Disposition"),
-                    "value":"_disposition_actual",
-                    "kind": "dropdown",
-                    "values": self._dispositions
-                },
                 {
                     "name":_("Additional Comments"),
                     "value":"dsp_comments",
