@@ -42,6 +42,7 @@ class NCMR(Base, core_mixin):
         )
 
     @property
+    @lazy
     def _lifecycle(self):
         return {
             0: {
@@ -73,7 +74,7 @@ class NCMR(Base, core_mixin):
                 'users': []
                 }
         }
-        
+
     @classmethod
     def _assignment_query_args(cls):
 
