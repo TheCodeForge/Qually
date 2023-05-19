@@ -15,6 +15,8 @@ class NCMR(Base, core_mixin):
     number=Column(Integer, default=0, index=True)
     _status = Column(Integer, default=0)
 
+    _name="NCMR"
+
     organization=relationship("Organization")
 
     @classmethod
@@ -96,13 +98,6 @@ class NCMR(Base, core_mixin):
                 return data()
         except RuntimeError:
             return data()
-    
-    
-
-    @property
-    def status(self):
-
-        return self._lifecycle[self._status]['name']
 
     @classmethod
     def _layout(self):

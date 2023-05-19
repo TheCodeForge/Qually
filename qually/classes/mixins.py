@@ -22,6 +22,10 @@ class core_mixin():
         return base36encode(self.id)
 
     @property
+    def permalink(self):
+        return f"/{self._name}-{self.number:0>5}"
+
+    @property
     @lazy
     def permalink_full(self):
         return f"http{'s' if app.config['HTTPS'] else ''}://{app.config['SERVER_NAME']}{self.permalink}"
@@ -84,3 +88,8 @@ class core_mixin():
                 name=f'{cls.__name__.lower()}_org_number_unique'),
             )
         )
+
+    @property
+    def status(self):
+
+        return self._lifecycle[self._status]['name']

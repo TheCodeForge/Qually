@@ -15,6 +15,8 @@ class CAPA(Base, core_mixin):
     number=Column(Integer, default=0, index=True)
     _status = Column(Integer, default=0)
 
+    _name="CAPA"
+
     organization=relationship("Organization")
 
     @classmethod
@@ -22,30 +24,27 @@ class CAPA(Base, core_mixin):
 
         args= [
             and_(
-                NCMR._status==0, 
-                NCMR.owner_id==g.user.id
+                CAPA._status==0, 
+                CAPA.owner_id==g.user.id
                 ),
             and_(
-                NCMR._status==3,
-                NCMR.assignee_id==g.user.id
+                CAPA._status==3,
+                CAPA.assignee_id==g.user.id
                 )
             ]
 
         if g.user.special_role==1:
-            args.append(NCMR._status.in_([1,4]))
+            args.append(CAPA._status.in_([1,4]))
         elif g.user.special_role==2:
-            args.append(NCMR._status==2)
+            args.append(CAPA._status==2)
 
         return args
 
-    @property
-    def permalink(self):
-        return f"/NCMR-{self.number:0>5}"
     
     @property
     def name(self):
         with force_locale(g.user.organization.lang):
-            return _("NCMR-")+f"{self.number:0>5}"
+            return _("CAPA-")+f"{self.number:0>5}"
 
     @property
     def _lifecycle(self):
@@ -103,20 +102,22 @@ class CAPA(Base, core_mixin):
                 7: _("Management review"),
                 8: _("Failure analysis")
             }
-    
-    @property
-    def status(self):
-
-        return self._lifecycle[self._status]['name']
 
     @classmethod
     def _layout(self):
         return {
             0:[
                 {
+                    "name":_("Issue Source"),
+                    "value":"issue_source",
+                    "kind": "dropdown",
+                    "values": self._sources
+                },
+                {
                     "name":_("Describe Issue"),
                     "value":"describe_issue",
                     "kind": "multi",
+                    "help": _("Include a reference to the particular regulation, SOP, or other standard that is not being complied with.")
                 },
                 {
                     "name":_("Who discovered issue?"),
@@ -128,11 +129,6 @@ class CAPA(Base, core_mixin):
                     "name":_("How was issue discovered?"),
                     "value":"how_discovered",
                     "kind": "multi"
-                },
-                {
-                    "name":_("Quantity"),
-                    "value":"quantity",
-                    "kind": "text"
                 },
                 {
                     "name":_("Description of Non-Conformance"),
