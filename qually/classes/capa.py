@@ -22,10 +22,6 @@ class CAPA(Base, core_mixin):
     approvals=relationship("CAPAApproval")
 
 
-
-
-
-
     __table_args__=(
         UniqueConstraint(
             'number', 
