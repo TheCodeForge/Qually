@@ -15,6 +15,8 @@ class NCMR(Base, core_mixin):
     number=Column(Integer, default=0, index=True)
     _status = Column(Integer, default=0)
 
+    organization=relationship("Organization")
+
     @classmethod
     def _cols(cls):
         data=cls._layout()
@@ -73,41 +75,36 @@ class NCMR(Base, core_mixin):
 
     @property
     def _lifecycle(self):
-        try:
-            data={
-                0: {
-                    'name': _("New"),
-                    'users': [self.owner]
-                    },
-                1: {
-                    'name': _("Initial Review"),
-                    'users': self.organization.doc_control_users
-                    },
-                2: {
-                    'name': _("Material Review Board"),
-                    'users': self.organization.mrb_users
-                    },
-                3: {
-                    'name': _("Disposition"),
-                    'users': [self.assignee]
-                    },
-                4: {
-                    'name': _("Final Review"),
-                    'users': self.organization.doc_control_users
-                    },
-                100: {
-                    'name': _("Closed"),
-                    'users': []
-                    },
-                101: {
-                    'name': _("Terminated"),
-                    'users': []
-                    }
-            }
-            return data
-        except Exception as e:
-            print(e)
-            return {}
+        return {
+            0: {
+                'name': _("New"),
+                'users': [self.owner]
+                },
+            1: {
+                'name': _("Initial Review"),
+                'users': self.organization.doc_control_users
+                },
+            2: {
+                'name': _("Material Review Board"),
+                'users': self.organization.mrb_users
+                },
+            3: {
+                'name': _("Disposition"),
+                'users': [self.assignee]
+                },
+            4: {
+                'name': _("Final Review"),
+                'users': self.organization.doc_control_users
+                },
+            100: {
+                'name': _("Closed"),
+                'users': []
+                },
+            101: {
+                'name': _("Terminated"),
+                'users': []
+                }
+        }
 
     @classmethod
     def _dispositions(self):
