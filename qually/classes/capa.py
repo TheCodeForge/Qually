@@ -15,8 +15,6 @@ class CAPA(Base, core_mixin):
     number=Column(Integer, default=0, index=True)
     _status = Column(Integer, default=0)
 
-    __table_args__=
-
     @classmethod
     def _cols(cls):
         data=cls._layout()
@@ -82,19 +80,27 @@ class CAPA(Base, core_mixin):
                 },
             1: {
                 'name': _("Initial Review"),
-                'users': self.organization.doc_control_users
+                'users': self.organization.quality_mgmt_users
                 },
             2: {
-                'name': _("Material Review Board"),
-                'users': self.organization.mrb_users,
+                'name': _("Investigation"),
+                'users': [self.owner]
                 },
             3: {
-                'name': _("Disposition"),
-                'users': [self.assignee]
+                'name': _("Approval of Action Plan"),
+                'users': self.organization.quality_mgmt_users
+                },
+            4: {
+                'name': _("Actions Taken and VoE Plan"),
+                'users': [self.owner]
+                },
+            4: {
+                'name': _("Verification of Effectiveness"),
+                'users': [self.owner]
                 },
             4: {
                 'name': _("Final Review"),
-                'users': self.organization.doc_control_users
+                'users': self.organization.quality_mgmt_users
                 },
             100: {
                 'name': _("Closed"),
