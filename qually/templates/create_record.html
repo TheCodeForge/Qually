@@ -4,41 +4,43 @@
 <div>
   <h1 class="h2">{{_("Create NCMR")}}</h1>
 
-  <form id="form-ncmr" action="/ncmr" method="post" class="mt-md-3 toasted">
+  <form id="form-ncmr" action="/ncmr" method="post" class="my-0 toasted">
 
     <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
 
     {% for entry in obj._layout()[0] %}
+    <div id="input-section-{{ loop.index0 }}" class="mt-3">
 
-    <label for="input-{{ loop.index0 }}">{{ entry['name'] }}</label>
+      <label for="input-{{ loop.index0 }}">{{ entry['name'] }}</label>
 
-    {% if entry.get('kind')=='multi' %} 
-    <textarea id="input-{{ loop.index0 }}" class="form-control" name="{{ entry['value'] }}"></textarea>
+      {% if entry.get('kind')=='multi' %} 
+      <textarea id="input-{{ loop.index0 }}" class="form-control" name="{{ entry['value'] }}"></textarea>
 
-    {% elif entry.get('kind')=='dropdown' %}
-    <select id="input-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
-      <option disabled>{{_("Select One")}}</option>
-      {% for x in entry['values'] %}
-      <option value="{{ x }}">{{ entry['values'][x] }}</option>
-      {% endfor %}
-    </select>
+      {% elif entry.get('kind')=='dropdown' %}
+      <select id="input-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
+        <option disabled>{{_("Select One")}}</option>
+        {% for x in entry['values'] %}
+        <option value="{{ x }}">{{ entry['values'][x] }}</option>
+        {% endfor %}
+      </select>
 
-    {% elif entry.get('kind')=='user' %}
-    <select id="input-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
-      <option value="">-{{_("None")}}-</option>
-      {% for user in g.user.organization.assignable_users %}
-      <option value="{{ user.id }}">{{ user.name }}</option>
-      {% endfor %}
-    </select>
+      {% elif entry.get('kind')=='user' %}
+      <select id="input-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
+        <option value="">-{{_("None")}}-</option>
+        {% for user in g.user.organization.assignable_users %}
+        <option value="{{ user.id }}">{{ user.name }}</option>
+        {% endfor %}
+      </select>
 
-    {% else %}
-    <input id="input-{{ loop.index0 }}" class="form-control" type="text" name="{{ entry['value'] }}">
+      {% else %}
+      <input id="input-{{ loop.index0 }}" class="form-control" type="text" name="{{ entry['value'] }}">
 
-    {% endif %}
-    
-    {% if entry.get('help') %}
-    <p class="text-small">{{ entry['help'] }}</p>
-    {% endif %}
+      {% endif %}
+
+      {% if entry.get('help') %}
+      <p class="text-small">{{ entry['help'] }}</p>
+      {% endif %}
+    </div>
 
     {% endfor %}
 
