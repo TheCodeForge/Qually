@@ -47,19 +47,6 @@ def get_account_by_email(email, graceful=False):
         else:
             return bool(user)
 
-        
-def get_ncmr(number, graceful=False):
-    
-    ncmr = g.user.organization.ncmrs.filter_by(number=int(number))
-
-    if request.method != "GET":
-        ncmr=ncmr.with_for_update()
-
-    ncmr=ncmr.first()
-    if not ncmr and not graceful:
-        abort(404)
-    return ncmr
-
 
 def get_record(kind, number, graceful=False):
 
