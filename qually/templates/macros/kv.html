@@ -46,7 +46,7 @@
         {% else %}
         <input id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" type="text" name="{{ entry['value'] }}" value="{{ record.__dict__.get(entry['value']) }}">
         {% endif %}
-        {% if entry['help']} %}
+        {% if entry.get('help') %}
         <p class="text-small">{{ entry['help'] }}</p>
         {% endif %}
       </form>
