@@ -33,7 +33,7 @@ class CAPA(Base, core_mixin):
 
     @classmethod
     def _cols(cls):
-        for status in cls.layout():
+        for status in cls._layout():
             for entry in status:
                 if entry['kind']=='text':
                     setattr(cls, entry['value'], Column(String, default=''))
