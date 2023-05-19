@@ -15,11 +15,7 @@ class CAPA(Base, core_mixin):
     number=Column(Integer, default=0, index=True)
     _status = Column(Integer, default=0)
 
-    __table_args__=(
-        UniqueConstraint(
-            'number', 
-            'organization_id', name='ncmr_org_number_unique'),
-        )
+    __table_args__=
 
     _log_class = "CAPALog"
     _approval_class="CAPAApproval"
@@ -43,6 +39,12 @@ class CAPA(Base, core_mixin):
         setattr(cls, "owner", relationship("User", primaryjoin=f"User.id=={cls.__name__}.owner_id"))
         setattr(cls, "logs",  relationship(f"{cls.__name__}Log", order_by=f"{cls.__name__}Log.id.desc()"))
         setattr(cls, "approvals",  relationship(f"{cls.__name__}Approval"))
+        setattr(cls, "__table_args__", (
+            UniqueConstraint(
+                'number', 
+                'organization_id', name=f'{cls.__name__.lower()}_org_number_unique'),
+            )
+        )
 
     @classmethod
     def _assignment_query_args(cls):
