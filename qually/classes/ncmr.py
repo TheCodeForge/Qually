@@ -155,7 +155,7 @@ class NCMR(Base, core_mixin):
                 {
                     "name":_("Description of Non-Conformance"),
                     "value":"nc_description",
-                    "kind": "multi"
+                    "kind": "multi",
                     "help":_("Identify the specification or requirement to which the material fails to conform.")
                 },
                 {
