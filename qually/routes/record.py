@@ -289,8 +289,27 @@ def post_record_record():
         created_utc=g.time
         )
 
-    for entry in record._layout[0]:
-        setattr(record, entry['value'], request.form.get(entry['value']))
+    g.db.add(record)
+    g.db.flush()
+
+    with force_locale(g.user.organization.lang):
+        entries=record._layout[0]
+
+    for entry in entries:
+        if entry['value'] in request.form:
+            if entry['kind']=='multi':
+                setattr(record, entry['raw'], request.form[entry['value']])
+                setattr(record, entry['value'], html(request.form[entry['value']]))
+            elif entry['kind']=='dropdown':
+                setattr(record, entry['value'], int(request.form[entry['value']]))
+            elif entry['kind']=='user':
+                n=request.form.get(entry['value'])
+                if n:
+                    setattr(record, entry['value'], int(request.form[entry['value']]))
+                else:
+                    setattr(record, entry['value'], None)
+            else:
+                setattr(record, entry['value'], txt(request.form[entry['value']]))
 
     g.db.add(record)
     g.db.flush()
