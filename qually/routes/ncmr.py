@@ -58,11 +58,11 @@ def post_record_number(kind, number):
 
     #clear any existing approvals on phase and log clearing
 
-    approvals_cleared = g.db.query(NCMRApproval).filter_by(record_id=record.id, status_id=record._status).delete()
+    approvals_cleared = g.db.query(eval(record._approval_class)).filter_by(record_id=record.id, status_id=record._status).delete()
     if approvals_cleared:
 
         with force_locale(g.user.organization.lang):
-            appr_clear_log=NCMRLog(
+            appr_clear_log=eval(record._log_class)(
                 user_id=g.user.id,
                 record_id=record.id,
                 created_utc=g.time,
@@ -73,7 +73,7 @@ def post_record_number(kind, number):
             g.db.add(appr_clear_log)
 
 
-    log=NCMRLog(
+    log=eval(record._log_class)(
         user_id=g.user.id,
         record_id=record.id,
         created_utc=g.time,
@@ -116,7 +116,7 @@ def post_record_number_status(kind, number):
     g.db.add(record)
 
     with force_locale(g.user.organization.lang):
-        log=NCMRLog(
+        log=eval(record._log_class)(
             user_id=g.user.id,
             record_id=record.id,
             created_utc=g.time,
@@ -163,7 +163,7 @@ def post_record_number_approve(kind, number):
     #approval is approved by system, update data log
 
     with force_locale(g.user.organization.lang):
-        appr_log=NCMRLog(
+        appr_log=eval(record._log_class)(
             user_id=g.user.id,
             record_id=record.id,
             created_utc=g.time,
@@ -173,7 +173,7 @@ def post_record_number_approve(kind, number):
             )
         g.db.add(appr_log)
 
-    approval=NCMRApproval(
+    approval=eval(record._approval_class)(
         user_id=g.user.id,
         record_id=record.id,
         status_id=record._status,
@@ -189,7 +189,7 @@ def post_record_number_approve(kind, number):
     if len(record.phase_approvals(record._status)) >= len(transition['users']):
         record._status=transition['to']
         g.db.add(record)
-        log=NCMRLog(
+        log=eval(record._log_class)(
             user_id=g.user.id,
             record_id=record.id,
             created_utc=g.time,
@@ -228,7 +228,7 @@ def post_record_number_unapprove(kind, number):
     g.db.flush()
 
     with force_locale(g.user.organization.lang):
-        appr_log=NCMRLog(
+        appr_log=eval(record._log_class)(
             user_id=g.user.id,
             record_id=record.id,
             created_utc=g.time,
@@ -259,7 +259,7 @@ def get_ncmr_records():
 @org_update_lock
 def post_ncmr_record():
 
-    ncmr=NCMR(
+    record=NCMR(
         owner_id=g.user.id,
         organization_id=g.user.organization.id,
         number=g.user.organization.next_ncmr_id,
@@ -269,11 +269,11 @@ def post_ncmr_record():
         quantity=txt(request.form.get("quantity"))
         )
 
-    g.db.add(ncmr)
+    g.db.add(record)
     g.db.flush()
 
-    log = NCMRLog(
-        ncmr_id=ncmr.id,
+    log = eval(record._log_class)(
+        ncmr_id=record.id,
         created_utc=g.time,
         user_id=g.user.id,
         key="State",
@@ -282,4 +282,4 @@ def post_ncmr_record():
     g.db.add(log)
     g.db.commit()
 
-    return toast_redirect(ncmr.permalink)
+    return toast_redirect(record.permalink)
