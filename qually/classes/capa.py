@@ -2,7 +2,8 @@ from qually.helpers.class_imports import *
 try:
     from flask_babel import gettext as _, force_locale
 except ModuleNotFoundError:
-    pass
+    def _(x):
+        return x
 
 class CAPA(Base, core_mixin):
 
@@ -105,7 +106,7 @@ class CAPA(Base, core_mixin):
         try:
             with force_locale(g.user.organization.lang):
                 return data()
-        except RuntimeError:
+        except RuntimeError, NameError:
             return data()
 
     @classmethod
