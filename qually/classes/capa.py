@@ -33,8 +33,9 @@ class CAPA(Base, core_mixin):
 
     @classmethod
     def _cols(cls):
-        for status in cls._layout():
-            for entry in status:
+        data=cls._layout()
+        for status in data:
+            for entry in data[status]:
                 if entry['kind']=='text':
                     setattr(cls, entry['value'], Column(String, default=''))
                 elif entry['kind']=='multi':
