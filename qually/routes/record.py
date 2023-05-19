@@ -278,13 +278,17 @@ def post_record_record():
     if kind not in VALID_KINDS:
         abort(404)
 
-    record=VALID_KINDS[kind](
+    OBJ = VALID_KINDS[kind]
+
+    record=OBJ(
         owner_id=g.user.id,
         organization_id=g.user.organization.id,
         number=getattr(g.user.organization, f"next_{kind}_id"),
-        created_utc=g.time,
-        **{x:request.form[x] for x in request.form if x not in ['csrf_token', 'owner_id','organization_id','number','created_utc']}
+        created_utc=g.time
         )
+
+    for entry in record._layout[0]:
+        setattr(record, entry, request.form.get(entry))
 
     g.db.add(record)
     g.db.flush()
