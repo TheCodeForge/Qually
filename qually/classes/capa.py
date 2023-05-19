@@ -87,11 +87,10 @@ class CAPA(Base, core_mixin):
                 }
         }
 
-    @property
+    @classmethod
     def _sources(self):
 
-        with force_locale(g.user.organization.lang):
-            return {
+        data=lambda:{
                 0: _("Service request"),
                 1: _("Internal audit finding"),
                 2: _("External audit finding"),
@@ -102,6 +101,12 @@ class CAPA(Base, core_mixin):
                 7: _("Management review"),
                 8: _("Failure analysis")
             }
+
+        try:
+            with force_locale(g.user.organization.lang):
+                return data()
+        except RuntimeError:
+            return data()
 
     @classmethod
     def _layout(self):
