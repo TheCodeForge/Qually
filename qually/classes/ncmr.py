@@ -97,7 +97,7 @@ class NCMR(Base, core_mixin):
         try:
             with force_locale(g.user.organization.lang):
                 return data()
-        except RuntimeError, NameError:
+        except (RuntimeError, NameError) as e:
             return data()
 
     @classmethod
