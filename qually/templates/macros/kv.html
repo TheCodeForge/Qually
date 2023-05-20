@@ -4,9 +4,9 @@
 {% if g.user.has_seat and record._status == section and g.user in record._lifecycle[record._status]['users'] %}
 
   {% for entry in record._layout()[section] %}
-  <div class="d-lg-flex">
+  <div class="d-lg-flex mt-2">
     <div class="title w-lg-25">
-      <label class="mt-1">{{ entry['name'] }}</label>
+      <label>{{ entry['name'] }}</label>
     </div>
     <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} toggle-target-class" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
