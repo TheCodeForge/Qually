@@ -174,50 +174,49 @@ class CAPA(Base, core_mixin):
                 {
                     "name":_("Scope and Impact"),
                     "value":"scope_and_impact",
-                    "kind":"multi"
+                    "kind":"multi",
                     "help":_("Identify the bracketing boundaries of the problem. How extensive is the impact?")
                 },
                 {
                     "name":_("Risk assessment"),
                     "value":"risk_assessment",
-                    "kind":"multi"
-                    "help":_("Identify the bracketing boundaries of the problem. How extensive is the impact?")
+                    "kind":"multi",
+                    "help":_("Identify and evaluate potential risks to the patient, to the process, and to compliance.")
                 },
                 {
                     "name":_("Action Plan"),
                     "value":"action_plan",
-                    "kind":"multi"
+                    "kind":"multi",
                     "help":_("Describe the actions to remedy the issue's root cause.")
                 },
                 {
                     "name":_("Verification of Effectiveness Plan"),
                     "value":"voe_plan",
-                    "kind":"multi"
+                    "kind":"multi",
                     "help":_("How will the effectiveness of the action plan be measured and evaluated?")
                 }
             ],
             3: [
                 {
                     "name":_("Action Plan Assignee"),
-                    "value":"action_assignee_id",
+                    "value":"action_assignee",
                     "kind": "user",
-                    "help": _("Assign someone to execute the action plan."),
-                    "relationship": "action_assignee"
+                    "help": _("Assign someone to execute the action plan.")
                 }
             ],
             4: [
                 {
-                    "name":_("Actions taken")
+                    "name":_("Actions taken"),
                     "value":"actions_taken",
-                    "kind":"multi"
+                    "kind":"multi",
                     "help":_("Describe actions performed. These should reflect the approved plan.")
                 }
             ],
             5: [
                 {
-                    "name":_("Verification of Effectiveness")
+                    "name":_("Verification of Effectiveness"),
                     "value":"voe_executed",
-                    "kind":"multi"
+                    "kind":"multi",
                     "help":_("Measure and evaluate the effectiveness of the actions performed, following the approved Verification of Effectiveness plan.")
                 }
             ],
@@ -294,7 +293,7 @@ class CAPA(Base, core_mixin):
                     "approval":True
                 }
             ],
-            4: [
+            3: [
                 {
                     "id":"reject",
                     "to": 0,
@@ -319,6 +318,15 @@ class CAPA(Base, core_mixin):
                     "users": g.user.organization.quality_mgmt_users,
                     "color": "success",
                     "approval":True
+                }
+            ],
+            4: [
+                {
+                    "id":"continue",
+                    "to": 5,
+                    "name": _("Continue to VoE"),
+                    "description":_("Continue to Verification of Effectiveness"),
+                    "users": [self.action_assignee]
                 }
             ]
         }
