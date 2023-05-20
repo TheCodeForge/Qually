@@ -269,7 +269,7 @@ def get_record_records(kind):
 
     return render_template(
         f"records.html",
-        listing=listing
+        listing=listing,
         name=VALID_KINDS[kind]._name
         )
 
