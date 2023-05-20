@@ -20,7 +20,7 @@
     <a id="tab-history" class="nav-link" href="javascript:void(0)" data-bs-toggle="tab" data-bs-target="#pane-history" role="tab" aria-controls="pane-history" aria-selected="false">{{_("History")}}</a>
   </li>
 </ul>
-<div class="tab-content border-start border-bottom border-end border-muted rounded-bottm pt-3" id="myTabContent">
+<div class="tab-content border-start border-bottom border-end border-muted rounded-bottm pt-3 mb-5" id="myTabContent">
   <div class="tab-pane fade show active p-2" id="pane-record" role="tabpanel" aria-labelledby="tab-record">
     
     {% for stage in (record._layout().keys() | sort) if stage<=record._status%}
