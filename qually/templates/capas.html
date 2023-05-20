@@ -1,0 +1,39 @@
+{% extends "core.html" %}
+
+{% block page %}
+
+<div class="mt-3">
+  <h1 class="d-none d-md-block">{{_("Corrective and Preventive Action")}}</h1>
+  <h2 class="h3 d-md-none">{{_("Corrective and Preventive Action")}}</h2>
+</div>
+
+
+<table class="table table-striped mb-5">
+  <thead class="bg-primary text-white">
+    <tr>
+      <th>{{_("ID")}}</th>
+      <th>{{_("Status")}}</th>
+      <th>{{_("Assigned To")}}</th>
+      <th>{{_("Due Date")}}</th>
+    </tr>
+  </thead>
+  {% for thing in g.user.organization.capas.filter("capa._status<100"|sql_text) %}
+  <tr>
+    <td><a href="{{ thing.permalink }}">{{ thing.name }}</a></td>
+    <td>{{ thing.status }}</td>
+    <td>{% if thing.assignee %}<a href="{{ thing.assignee.permalink }}">{{ thing.assignee.name }}</a>{% else %}-{% endif %}</td>
+    <th>-</th>
+  </tr>
+  {% else %}
+  <tr>
+    <td>None</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  {% endfor %}
+    </table>
+
+
+
+{% endblock %}
