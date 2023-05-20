@@ -259,10 +259,8 @@ def get_create_record(kind):
 
     return render_template(f"create_record.html", obj=OBJ)
 
-@app.get("/ncmr")
-def get_record_records():
-
-    kind=request.path.lstrip('/')
+@app.get("/records/<kind>")
+def get_record_records(kind):
 
     if kind not in VALID_KINDS:
         abort(404)
