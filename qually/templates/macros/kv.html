@@ -15,7 +15,7 @@
         {% elif entry.get('kind')=='dropdown' %}
         <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record | attr(entry['value']), '') }}</p>
         {% elif entry.get('kind')=='user' %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ (record | attr(entry['relationship'])).name }}</p>
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ (record | attr(entry['value'])).name }}</p>
         {% else %}
         <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record | attr(entry['value']) }}</p>
         {% endif %}
@@ -40,7 +40,7 @@
         <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
           <option value="">-{{_("None")}}-</option>
           {% for user in g.user.organization.assignable_users %}
-          <option value="{{ user.id }}" {% if user.id==record.__dict__.get(entry['value']) %}selected{% endif %}>{{ user.name }}</option>
+          <option value="{{ user.id }}" {% if user.id==(record | attr(entry['value']+'_id')) %}selected{% endif %}>{{ user.name }}</option>
           {% endfor %}
         </select>
         {% else %}
@@ -70,7 +70,7 @@
         {% elif entry.get('kind')=='dropdown' %}
         <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record.__dict__.get(entry['value']), '') }}</p>
         {% elif entry.get('kind')=='user' %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ (record | attr(entry['relationship'])).name }}</p>
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ (record | attr(entry['value'])).name }}</p>
         {% else %}
         <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record.__dict__.get(entry['value']) }}</p>
         {% endif %}

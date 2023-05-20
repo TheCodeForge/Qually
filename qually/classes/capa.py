@@ -160,10 +160,9 @@ class CAPA(Base, core_mixin):
             1: [
                 {
                     "name":_("Root Cause Investigator"),
-                    "value":"root_cause_investigator_id",
+                    "value":"root_cause_investigator",
                     "kind": "user",
                     "help": _("Assign someone to investigate this issue.")
-                    "relationship":"root_cause_investigator"
                 }
             ],
             2: [

@@ -42,8 +42,8 @@ def post_record_number(kind, number):
             elif entry['kind']=='user':
                 n=request.form.get(entry['value'])
                 if n:
-                    setattr(record, entry['value'], int(request.form[entry['value']]))
-                    value=getattr(record, entry['relationship']).name
+                    setattr(record, f"{entry['value']}_id", int(request.form[entry['value']]))
+                    value=getattr(record, entry['value']).name
                 else:
                     setattr(record, entry['value'], None)
                     value=""
@@ -303,9 +303,9 @@ def post_record_record(kind):
             elif entry['kind']=='user':
                 n=request.form.get(entry['value'])
                 if n:
-                    setattr(record, entry['value'], int(request.form[entry['value']]))
+                    setattr(record, f"{entry['value']}_id", int(request.form[entry['value']]))
                 else:
-                    setattr(record, entry['value'], None)
+                    setattr(record, f"{entry['value']}_id", None)
             else:
                 setattr(record, entry['value'], txt(request.form[entry['value']]))
 
