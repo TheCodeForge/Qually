@@ -48,7 +48,7 @@ class CAPA(Base, core_mixin):
 
         if g.user.special_role==3:
             args.append(CAPA._status.in_([1,3,6]))
-            
+
         return args
 
     
@@ -290,7 +290,7 @@ class CAPA(Base, core_mixin):
                     "to":3,
                     "name": _("Submit"),
                     "description": _("Submit investigative results to quality management."),
-                    "users": self.root_cause_investigator,
+                    "users": [self.root_cause_investigator],
                     "color": "success",
                     "approval":True
                 }
