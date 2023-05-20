@@ -339,7 +339,7 @@ class CAPA(Base, core_mixin):
                     "name": _("Submit for Final Review"),
                     "description":_("Continue to Verification of Effectiveness"),
                     "users": [self.action_assignee],
-                    "color": "success"
+                    "color": "success",
                     "approval":True
                 },
                 {
@@ -348,7 +348,7 @@ class CAPA(Base, core_mixin):
                     "name": _("Return to Implementation"),
                     "description":_("Continue to Verification of Effectiveness"),
                     "users": [self.action_assignee],
-                    "color": "secondary"
+                    "color": "secondary",
                     "approval":True
                 }
             ],
@@ -359,7 +359,7 @@ class CAPA(Base, core_mixin):
                     "name": _("Approve and Close"),
                     "description":_("Approve and close CAPA"),
                     "users": g.user.organization.quality_mgmt_users,
-                    "color": "success"
+                    "color": "success",
                     "approval":True
                 },
                 {
@@ -368,7 +368,7 @@ class CAPA(Base, core_mixin):
                     "name": _("Reject to VoE"),
                     "description":_("Reject to Verification of Effectiveness"),
                     "users": g.user.organization.quality_mgmt_users,
-                    "color": "warning"
+                    "color": "warning",
                     "approval":True
                 }
             ]
