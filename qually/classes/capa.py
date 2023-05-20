@@ -68,21 +68,21 @@ class CAPA(Base, core_mixin):
                 },
             2: {
                 'name': _("Investigation"),
-                'users': [self.owner]
+                'users': [self.root_cause_investigator]
                 },
             3: {
                 'name': _("Approval of Action Plan"),
                 'users': self.organization.quality_mgmt_users
                 },
             4: {
-                'name': _("Actions Taken and VoE Plan"),
-                'users': [self.owner]
+                'name': _("Actions Taken"),
+                'users': [self.action_assignee]
                 },
-            4: {
+            5: {
                 'name': _("Verification of Effectiveness"),
-                'users': [self.owner]
+                'users': [self.action_assignee]
                 },
-            4: {
+            6: {
                 'name': _("Final Review"),
                 'users': self.organization.quality_mgmt_users
                 },
@@ -148,16 +148,82 @@ class CAPA(Base, core_mixin):
                     "name":_("Description of Non-Conformance"),
                     "value":"nc_description",
                     "kind": "multi",
-                    "raw": "nc_description_raw",
                     "help":_("Identify the specification or requirement to which the material fails to conform.")
                 },
                 {
-                    "name":_("Additional Comments"),
+                    "name":_("Immediate Actions"),
                     "value":"new_comments",
                     "kind": "multi",
-                    "raw": "new_comments_raw"
+                    "help":_("Describe any immediate corrections that were taken, such as quarantining nonconforming product.")
                 }
-            ]
+            ],
+            1: [
+                {
+                    "name":_("Root Cause Investigator"),
+                    "value":"root_cause_investigator_id",
+                    "kind": "user",
+                    "help": _("Assign someone to investigate this issue.")
+                    "relationship":"root_cause_investigator"
+                }
+            ],
+            2: [
+                {
+                    "name":_("Root Cause Analysis"),
+                    "value":"root_cause_analysis",
+                    "kind": "multi",
+                    "help": _("Describe the root cause investigation analysis and conclusions. Use investigative techniques such as 5-Whys, fault-tree analysis, or fishbone analysis.")
+                },
+                {
+                    "name":_("Scope and Impact"),
+                    "value":"scope_and_impact",
+                    "kind":"multi"
+                    "help":_("Identify the bracketing boundaries of the problem. How extensive is the impact?")
+                },
+                {
+                    "name":_("Risk assessment"),
+                    "value":"risk_assessment",
+                    "kind":"multi"
+                    "help":_("Identify the bracketing boundaries of the problem. How extensive is the impact?")
+                },
+                {
+                    "name":_("Action Plan"),
+                    "value":"action_plan",
+                    "kind":"multi"
+                    "help":_("Describe the actions to remedy the issue's root cause.")
+                },
+                {
+                    "name":_("Verification of Effectiveness Plan"),
+                    "value":"voe_plan",
+                    "kind":"multi"
+                    "help":_("How will the effectiveness of the action plan be measured and evaluated?")
+                }
+            ],
+            3: [
+                {
+                    "name":_("Action Plan Assignee"),
+                    "value":"action_assignee_id",
+                    "kind": "user",
+                    "help": _("Assign someone to execute the action plan."),
+                    "relationship": "action_assignee"
+                }
+            ],
+            4: [
+                {
+                    "name":_("Actions taken")
+                    "value":"actions_taken",
+                    "kind":"multi"
+                    "help":_("Describe actions performed. These should reflect the approved plan.")
+                }
+            ],
+            5: [
+                {
+                    "name":_("Verification of Effectiveness")
+                    "value":"voe_executed",
+                    "kind":"multi"
+                    "help":_("Measure and evaluate the effectiveness of the actions performed, following the approved Verification of Effectiveness plan.")
+                }
+            ],
+            6: []
         }
     
     @property
@@ -170,7 +236,7 @@ class CAPA(Base, core_mixin):
                     "id":"submit",
                     "to": 1,
                     "name": _("Submit"),
-                    "description": _("Submit this record to Document Control for review."),
+                    "description": _("Submit this record to Quality Assurance for review."),
                     "color": "success",
                     "users": [self.owner],
                     "approval":True
@@ -190,7 +256,7 @@ class CAPA(Base, core_mixin):
                     "to": 0,
                     "name": _("Reject"),
                     "description": _("Send this record back to its initiator for revision."),
-                    "users": g.user.organization.doc_control_users,
+                    "users": g.user.organization.quality_mgmt_users,
                     "color": "secondary",
                     "comments": True,
                 },
