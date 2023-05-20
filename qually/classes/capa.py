@@ -316,7 +316,7 @@ class CAPA(Base, core_mixin):
                     "id":"advance",
                     "to": 4,
                     "name": _("Approve"),
-                    "description": _("Send this record to the Material Review Board."),
+                    "description": _("Advance this CAPA to implementation."),
                     "users": g.user.organization.quality_mgmt_users,
                     "color": "success",
                     "approval":True
@@ -328,7 +328,8 @@ class CAPA(Base, core_mixin):
                     "to": 5,
                     "name": _("Continue to VoE"),
                     "description":_("Continue to Verification of Effectiveness"),
-                    "users": [self.action_assignee]
+                    "users": [self.action_assignee],
+                    "color": "success"
                 }
             ],
             5: [
@@ -338,6 +339,7 @@ class CAPA(Base, core_mixin):
                     "name": _("Submit for Final Review"),
                     "description":_("Continue to Verification of Effectiveness"),
                     "users": [self.action_assignee],
+                    "color": "success"
                     "approval":True
                 },
                 {
@@ -346,15 +348,24 @@ class CAPA(Base, core_mixin):
                     "name": _("Return to Implementation"),
                     "description":_("Continue to Verification of Effectiveness"),
                     "users": [self.action_assignee],
+                    "color": "secondary"
                     "approval":True
                 }
             ],
             5: [
                 {
                     "id":"approve",
-                    "to": 5,
+                    "to": 100,
                     "name": _("Approve and Close"),
                     "description":_("Approve and close CAPA"),
+                    "users": g.user.organization.quality_mgmt_users,
+                    "approval":True
+                },
+                {
+                    "id":"reject",
+                    "to": 5,
+                    "name": _("Reject to VoE"),
+                    "description":_("Reject to Verification of Effectiveness"),
                     "users": g.user.organization.quality_mgmt_users,
                     "approval":True
                 }
