@@ -44,31 +44,9 @@
     </table>
 
     <div>{{_("Owned")}}</div>
-    <table class="table table-striped mb-5">
-      <thead class="bg-primary text-white">
-        <tr>
-          <th>{{_("ID")}}</th>
-          <th>{{_("Status")}}</th>
-          <th>{{_("Assigned To")}}</th>
-          <th>{{_("Due Date")}}</th>
-        </tr>
-      </thead>
-      {% for thing in data[entry]['owned'] %}
-      <tr>
-        <td><a href="{{ thing.permalink }}">{{ thing.name }}</a></td>
-        <td>{{ thing.status }}</td>
-        <td>{{ ', '.join([str(x) for x in thing._lifecycle[thing._status]['users']]) }}</td>
-        <th>-</th>
-      </tr>
-      {% else %}
-      <tr>
-        <td>No {{ entry }} owned</td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      {% endfor %}
-    </table>
+    {% with listing=data[entry]['owned'] %}
+    {% include "macros/listing.html" %}
+    {% endwith %}
   </div>
   {% endfor %}
 
