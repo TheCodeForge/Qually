@@ -2,12 +2,6 @@
 
 {% block content %}
 
-{% set roles={
-  0: "None",
-  1: "Document Control",
-  2: "Material Review Board"
-}%}
-
 {% if g.user.is_org_admin %}
 <h2 class="h5 mt-3">{{_("Add New User") }}</h2>
 <form id="form-invite-user" action="/settings/directory/invite" method="post" class="toasted">
@@ -51,8 +45,8 @@
       <form id="form-set-permissions-user-{{ user.base36id }}" action="/settings/directory/select_permissions/{{user.base36id}}" method="post">
         <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
         <select class="form-select toast-form-change-submit" name="special_role" data-form="form-set-permissions-user-{{ user.base36id }}">
-          {% for x in roles %}
-          <option value="{{ x }}" {% if user.special_role==x %}selected{% endif %}>{{ roles[x] }}</option>
+          {% for x in (-1|roles) %}
+          <option value="{{ x }}" {% if user.special_role==x %}selected{% endif %}>{{ x|roles }}</option>
           {% endfor %}
         </select>
       </form>

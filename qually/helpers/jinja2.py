@@ -6,6 +6,11 @@ import qrcode
 import sass
 from sqlalchemy import text
 
+try:
+    from flask_babel import gettext as _
+except ModuleNotFoundError:
+    pass
+
 from qually.helpers.languages import LANGUAGES
 from qually.helpers.timezones import TIMEZONES
 from qually.helpers.security import generate_hash
@@ -111,3 +116,18 @@ def debug(x):
 def sql_text(x):
 
     return text(x)
+
+@app.template_filter("roles")
+def biz_roles(x):
+
+    data={
+        0: _("None"),
+        1: _("Document Control"),
+        2: _("Material Review Board"),
+        3: _("Quality Management")
+        }
+
+    if x in data:
+        return data[x]
+    else:
+        return data
