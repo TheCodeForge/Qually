@@ -265,7 +265,7 @@ def get_record_records(kind):
     if kind not in VALID_KINDS:
         abort(404)
 
-    listing=getattr(g.user.organization, f"{kind}s").filter(text(f"{kind}.status<100")).all()
+    listing=getattr(g.user.organization, f"{kind}s").filter(VALID_KINDS[kind]._status<100).all()
 
     return render_template(
         f"records.html",
