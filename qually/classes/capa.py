@@ -75,7 +75,7 @@ class CAPA(Base, core_mixin):
                 'users': self.organization.quality_mgmt_users
                 },
             4: {
-                'name': _("Actions Taken"),
+                'name': _("Implementation"),
                 'users': [self.action_assignee]
                 },
             5: {
@@ -327,6 +327,34 @@ class CAPA(Base, core_mixin):
                     "name": _("Continue to VoE"),
                     "description":_("Continue to Verification of Effectiveness"),
                     "users": [self.action_assignee]
+                }
+            ],
+            5: [
+                {
+                    "id":"submit",
+                    "to": 5,
+                    "name": _("Submit for Final Review"),
+                    "description":_("Continue to Verification of Effectiveness"),
+                    "users": [self.action_assignee],
+                    "approval":True
+                },
+                {
+                    "id":"return",
+                    "to": 5,
+                    "name": _("Return to Implementation"),
+                    "description":_("Continue to Verification of Effectiveness"),
+                    "users": [self.action_assignee],
+                    "approval":True
+                }
+            ],
+            5: [
+                {
+                    "id":"approve",
+                    "to": 5,
+                    "name": _("Approve and Close"),
+                    "description":_("Approve and close CAPA"),
+                    "users": g.user.organization.quality_mgmt_users,
+                    "approval":True
                 }
             ]
         }
