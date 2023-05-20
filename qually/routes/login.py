@@ -42,6 +42,9 @@ def post_register():
     if not re.fullmatch(valid_password_regex, request.form.get("password")):
         return toast_error(_("Password must be at least {n} characters").format(n=8))
 
+    if not request.form.get("accept_tos"):
+        return toast_error(_("You must accept the terms of service."))
+
     existing=get_account_by_email(email, graceful=True)
     if existing:
         return toast_error(_("That email is already in use."))
