@@ -29,7 +29,7 @@ def post_record_number(kind, number):
     for entry in entries:
         if entry['value'] in request.form:
             if entry['kind']=='multi':
-                setattr(record, entry['raw'], request.form[entry['value']])
+                setattr(record, f"{entry['value']}_raw", request.form[entry['value']])
                 setattr(record, entry['value'], html(request.form[entry['value']]))
                 key=entry['name']
                 value=txt(request.form[entry['value']])
