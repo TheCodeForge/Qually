@@ -352,7 +352,7 @@ class CAPA(Base, core_mixin):
                     "approval":True
                 }
             ],
-            5: [
+            6: [
                 {
                     "id":"approve",
                     "to": 100,
