@@ -159,9 +159,8 @@ class NCMR(Base, core_mixin):
                 },
                 {
                     "name":_("Disposition Assignee"),
-                    "value":"assignee_id",
-                    "kind": "user",
-                    "relationship": "assignee"
+                    "value":"assignee",
+                    "kind": "user"
                 }
 
             ],
