@@ -268,9 +268,9 @@ class CAPA(Base, core_mixin):
                 {
                     "id":"advance",
                     "to": 2,
-                    "name": _("Advance"),
+                    "name": _("Approve"),
                     "description": _("Send this record to the Material Review Board."),
-                    "users": g.user.organization.doc_control_users,
+                    "users": g.user.organization.quality_mgmt_users,
                     "color": "success",
                     "approval":True
                 },
@@ -279,44 +279,44 @@ class CAPA(Base, core_mixin):
                     "to": 101,
                     "name": _("Terminate"),
                     "description": _("Permanently archive this record. This cannot be undone."),
-                    "users": g.user.organization.doc_control_users,
+                    "users": g.user.organization.quality_mgmt_users,
                     "color": "danger"
                 }
             ],
             2: [
                 {
-                    "id":"approve",
+                    "id":"submit",
                     "to":3,
-                    "name": _("Approve"),
-                    "description": _("Approve of the planned disposition."),
-                    "users": g.user.organization.mrb_users,
+                    "name": _("Submit"),
+                    "description": _("Submit investigative results to quality management."),
+                    "users": self.root_cause_investigator,
                     "color": "success",
                     "approval":True
                 }
             ],
             4: [
                 {
-                    "id":"reject-mrb",
-                    "to":2,
-                    "name": _("Reject to MRB"),
-                    "description": _("Reject back to the Material Review Board."),
-                    "users": g.user.organization.doc_control_users,
-                    "color": "warning"
+                    "id":"reject",
+                    "to": 0,
+                    "name": _("Reject"),
+                    "description": _("Send this record back to its initiator for revision."),
+                    "users": g.user.organization.quality_mgmt_users,
+                    "color": "secondary",
+                    "comments": True,
                 },
                 {
-                    "id":"reject-dsp",
-                    "to":3,
-                    "name": _("Reject to  Disposition"),
-                    "description": _("Reject back to the Disposition assignee."),
-                    "users": g.user.organization.doc_control_users,
-                    "color": "warning"
+                    "id":"withdraw",
+                    "to": 0,
+                    "name": _("Withdraw"),
+                    "users": [self.owner],
+                    "color": "secondary"
                 },
                 {
-                    "id":"close",
-                    "to":100,
-                    "name": _("Close"),
-                    "description": _("Approve and close this record."),
-                    "users": g.user.organization.doc_control_users,
+                    "id":"advance",
+                    "to": 2,
+                    "name": _("Approve"),
+                    "description": _("Send this record to the Material Review Board."),
+                    "users": g.user.organization.quality_mgmt_users,
                     "color": "success",
                     "approval":True
                 }
