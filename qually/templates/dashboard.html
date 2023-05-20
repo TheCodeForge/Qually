@@ -57,7 +57,7 @@
       <tr>
         <td><a href="{{ thing.permalink }}">{{ thing.name }}</a></td>
         <td>{{ thing.status }}</td>
-        <td>{{ ', '.join(thing._lifecycle[thing._status]['users']) }}</td>
+        <td>{{ ', '.join([str(x) for x in thing._lifecycle[thing._status]['users']]) }}</td>
         <th>-</th>
       </tr>
       {% else %}
