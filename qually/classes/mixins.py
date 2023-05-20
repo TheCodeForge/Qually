@@ -74,7 +74,7 @@ class core_mixin():
                     setattr(cls, f"{entry['value']}_raw", Column(String, default=''))
                 elif entry['kind']=='user':
                     setattr(cls, f"{entry['value']}_id", Column(Integer, ForeignKey("users.id")))
-                    setattr(cls, entry['value'], relationship("User", primaryjoin=f"User.id=={cls.__name__}.{entry['value']}"))
+                    setattr(cls, entry['value'], relationship("User", primaryjoin=f"User.id=={cls.__name__}.{entry['value']}_id"))
                 elif entry['kind']=='dropdown':
                     setattr(cls, entry['value'], Column(Integer, default=None))
 
