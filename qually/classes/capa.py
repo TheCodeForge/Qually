@@ -314,7 +314,7 @@ class CAPA(Base, core_mixin):
                 },
                 {
                     "id":"advance",
-                    "to": 2,
+                    "to": 4,
                     "name": _("Approve"),
                     "description": _("Send this record to the Material Review Board."),
                     "users": g.user.organization.quality_mgmt_users,
