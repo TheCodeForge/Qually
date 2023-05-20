@@ -359,6 +359,7 @@ class CAPA(Base, core_mixin):
                     "name": _("Approve and Close"),
                     "description":_("Approve and close CAPA"),
                     "users": g.user.organization.quality_mgmt_users,
+                    "color": "success"
                     "approval":True
                 },
                 {
@@ -367,6 +368,7 @@ class CAPA(Base, core_mixin):
                     "name": _("Reject to VoE"),
                     "description":_("Reject to Verification of Effectiveness"),
                     "users": g.user.organization.quality_mgmt_users,
+                    "color": "warning"
                     "approval":True
                 }
             ]
