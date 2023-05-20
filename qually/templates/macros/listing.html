@@ -12,7 +12,7 @@
     <td><a href="{{ thing.permalink }}">{{ thing.name }}</a></td>
     <td>{{ thing.status }}</td>
     <td>{% if thing.assignee %}<a href="{{ thing.assignee.permalink }}">{{ thing.assignee.name }}</a>{% else %}-{% endif %}</td>
-    <th>-</th>
+    <th>{{ ', '.join(thing._layout()[thing._status]['users']) }}</th>
   </tr>
   {% else %}
   <tr>
