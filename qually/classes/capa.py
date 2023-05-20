@@ -37,16 +37,18 @@ class CAPA(Base, core_mixin):
                 CAPA.owner_id==g.user.id
                 ),
             and_(
-                CAPA._status==3,
-                CAPA.assignee_id==g.user.id
+                CAPA._status==2, 
+                CAPA.root_cause_investigator_id==g.user.id
+                ),
+            and_(
+                CAPA._status.in_([4, 5]), 
+                CAPA.action_assignee_id==g.user.id
                 )
             ]
 
-        if g.user.special_role==1:
-            args.append(CAPA._status.in_([1,4]))
-        elif g.user.special_role==2:
-            args.append(CAPA._status==2)
-
+        if g.user.special_role==3:
+            args.append(CAPA._status.in_([1,3,6]))
+            
         return args
 
     

@@ -25,8 +25,8 @@ def get_home():
         },
             "capa": {
             "name":_("Corrective and Preventive Actions"),
-            "owned":g.user.organization.capas.filter(NCMR.owner_id==g.user.id, NCMR._status<100).all(),
-            "assigned":[]
+            "owned":g.user.organization.capas.filter(NCMR.owner_id==g.user.id, CAPA._status<100).all(),
+            "assigned":g.user.organization.capas.filter(or_(*CAPA._assignment_query_args()), CAPA._status<100).all()
         }
     }
     return render_template("dashboard.html", data=data)
