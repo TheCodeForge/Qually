@@ -335,7 +335,7 @@ class CAPA(Base, core_mixin):
             5: [
                 {
                     "id":"submit",
-                    "to": 5,
+                    "to": 6,
                     "name": _("Submit for Final Review"),
                     "description":_("Continue to Verification of Effectiveness"),
                     "users": [self.action_assignee],
@@ -344,7 +344,7 @@ class CAPA(Base, core_mixin):
                 },
                 {
                     "id":"return",
-                    "to": 5,
+                    "to": 4,
                     "name": _("Return to Implementation"),
                     "description":_("Continue to Verification of Effectiveness"),
                     "users": [self.action_assignee],
