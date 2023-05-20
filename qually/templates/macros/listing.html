@@ -12,7 +12,7 @@
     <td><a href="{{ thing.permalink }}">{{ thing.name }}</a></td>
     <td>{{ thing.status }}</td>
     <td>{% if thing.assignee %}<a href="{{ thing.assignee.permalink }}">{{ thing.assignee.name }}</a>{% else %}-{% endif %}</td>
-    <th>{% for u in thing._lifecycle[thing._status]['users']%}{% if loop.index0 %}, {% endif %}{{u|string}}{% endfor %}</th>
+    <th>{% for u in thing._lifecycle[thing._status]['users']%}{% if loop.index0 %}, {% endif %}<a href="{{ u.permalink }}">{{ u.name }}</a>{% endfor %}</th>
   </tr>
   {% else %}
   <tr>
