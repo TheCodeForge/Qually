@@ -348,8 +348,7 @@ class CAPA(Base, core_mixin):
                     "name": _("Return to Implementation"),
                     "description":_("Continue to Verification of Effectiveness"),
                     "users": [self.action_assignee],
-                    "color": "secondary",
-                    "approval":True
+                    "color": "secondary"
                 }
             ],
             6: [
