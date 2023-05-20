@@ -368,8 +368,7 @@ class CAPA(Base, core_mixin):
                     "name": _("Reject to VoE"),
                     "description":_("Reject to Verification of Effectiveness"),
                     "users": g.user.organization.quality_mgmt_users,
-                    "color": "warning",
-                    "approval":True
+                    "color": "warning"
                 }
             ]
         }
