@@ -75,8 +75,7 @@ class NCMR(Base, core_mixin):
                 },
             3: {
                 'name': _("Disposition"),
-                'users': [self.assignee],
-                'early':'edit'
+                'users': [self.assignee]
                 },
             4: {
                 'name': _("Final Review"),
