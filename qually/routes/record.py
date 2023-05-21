@@ -14,6 +14,9 @@ VALID_KINDS={
 def get_record_number(kind, number):
 
     record = get_record(kind, number)
+
+    if request.path != record.permalink:
+        return redirect(record.permalink)
     
     return render_template("record.html", record=record)
 
