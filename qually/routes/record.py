@@ -34,7 +34,7 @@ def post_record_number(kind, number):
 
     entries=[]
     for phase in phases:
-        entries += record._layout()[record._status]
+        entries += record._layout()[phase]
 
     print(entries)
 
