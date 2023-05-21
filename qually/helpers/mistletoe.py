@@ -16,7 +16,7 @@ class CustomRenderer(HTMLRenderer):
 
     def __init__(self, **kwargs):
         super().__init__(
-            NcmrMention
+            RecordMention
             )
 
     def render_record_mention(self, token):
