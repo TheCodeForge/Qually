@@ -41,12 +41,6 @@ class User(Base, core_mixin):
     lang = Column(String(2), default="en")
     tz = Column(String, default="UTC")
 
-    #business roles
-    special_role = Column(Integer, default=0)
-        #0=none
-        #1=doc control
-        #2=material review board
-
     ## === RELATIONSHIPS ===
 
     organization = relationship("Organization", lazy="joined", innerjoin=True, viewonly=True)
@@ -63,6 +57,12 @@ class User(Base, core_mixin):
             'email', 
             'organization_id', name='_email_org_unique')
         )
+
+    @classmethod
+    def _cols(cls):
+        for x in ['doc_control','mrb','quality_mgmt']:
+            setattr(cls, f"is_{x}", Column(Boolean, default=False))
+    _cols()
 
     def __init__(self, **kwargs):
 
@@ -207,12 +207,3 @@ class User(Base, core_mixin):
             roles.append(_("Material Review Board"))
 
         return ', '.join(roles)
-    
-
-    @property
-    def is_doc_control(self):
-        return self.special_role==1
-
-    @property
-    def is_mrb(self):
-        return self.special_role==2
