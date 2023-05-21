@@ -26,8 +26,13 @@ def post_record_number(kind, number):
 
     record = get_record(kind, number)
 
+    #allow saving of future things if editable
     with force_locale(g.user.organization.lang):
-        entries=record._layout()[record._status]
+        phases = [x for x in record._lifecycle if x==record._status or (x>record._status and record._lifecycle[x].get('early')=='edit')]
+
+    entries=[]
+    for phase in phases:
+        entries += record._layout()[record._status]
 
     for entry in entries:
         if entry['value'] in request.form:
