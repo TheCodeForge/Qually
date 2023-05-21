@@ -41,6 +41,7 @@ class Organization(Base, core_mixin):
     #relationships
     _users=relationship("User", lazy="dynamic")
     logs=relationship("OrganizationAuditLog", lazy="dynamic", order_by="OrganizationAuditLog.id.desc()")
+    
     ncmrs=relationship("NCMR", lazy="dynamic", viewonly=True)
     capas=relationship("CAPA", lazy="dynamic", viewonly=True)
 
