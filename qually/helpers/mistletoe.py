@@ -6,11 +6,11 @@ from mistletoe.html_renderer import HTMLRenderer
 
 
 class RecordMention(SpanToken):
-    pattern = re.compile(r"[A-Z]{4}-(\d{5,})")
+    pattern = re.compile(r"\w{4}-(\d{5,})")
     parse_inner = False
 
     def __init__(self, match_obj):
-        self.target=match_obj.group(0)
+        self.target=match_obj.group(0).upper()
 
 class CustomRenderer(HTMLRenderer):
 
