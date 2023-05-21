@@ -25,7 +25,6 @@
       <th>{{_("Enabled")}}</th>
       <th>{{_("Full License")}}</th>
       <th>{{_("Administrator")}}</th>
-      <th>{{_("Permission Set")}}</th>
       {% else %}
       <th>{{_("Full License")}}</th>
       <th>{{_("Roles")}}</th>
@@ -41,16 +40,6 @@
     <td><input type="checkbox" class="form-check-input check-toast" data-post-url="/settings/directory/toggle_enable/{{ user.base36id }}"{% if user.is_active %} checked{% endif %}{% if user==g.user %} disabled{% endif %}></td>
     <td><input type="checkbox" class="form-check-input check-toast" data-post-url="/settings/directory/toggle_license/{{ user.base36id }}"{% if user.has_license %} checked{% endif %}{% if user==g.user %} disabled{% endif %}></td>
     <td><input type="checkbox" class="form-check-input check-toast" data-post-url="/settings/directory/toggle_admin/{{ user.base36id }}"{% if user.is_org_admin %} checked{% endif %}{% if user==g.user %} disabled{% endif %}></td>
-    <td>
-      <form id="form-set-permissions-user-{{ user.base36id }}" action="/settings/directory/select_permissions/{{user.base36id}}" method="post">
-        <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-        <select class="form-select toast-form-change-submit" name="special_role" data-form="form-set-permissions-user-{{ user.base36id }}">
-          {% for x in (-1|roles) %}
-          <option value="{{ x }}" {% if user.special_role==x %}selected{% endif %}>{{ x|roles }}</option>
-          {% endfor %}
-        </select>
-      </form>
-    </td>
 
     {% else %}
     <td><input type="checkbox" class="form-check-input"{% if user.has_license %} checked{% endif %} disabled></td>

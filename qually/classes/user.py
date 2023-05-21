@@ -60,8 +60,8 @@ class User(Base, core_mixin):
 
     @classmethod
     def _cols(cls):
-        for x in ['doc_control','mrb','quality_mgmt']:
-            setattr(cls, f"is_{x}", Column(Boolean, default=False))
+        for x in ROLES:
+            setattr(cls, f"{x['value']}", Column(Boolean, default=False))
     _cols()
 
     def __init__(self, **kwargs):
@@ -201,9 +201,9 @@ class User(Base, core_mixin):
         roles=[]
         if self.is_org_admin:
             roles.append(_("Administrator"))
-        if self.is_doc_control:
-            roles.append(_("Document Control"))
-        if self.is_mrb:
-            roles.append(_("Material Review Board"))
+
+        for role in ROLES:
+            if getattr(self, role['value']):
+                roles.append(role['name'])
 
         return ', '.join(roles)
