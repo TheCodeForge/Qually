@@ -1,7 +1,7 @@
 {% macro kv(record, section) %}
 
 <div>
-{% if g.user.has_seat and record._status == section and g.user in record._lifecycle[record._status]['users'] %}
+{% if g.user.has_seat and g.user in record._lifecycle[section]['users'] and (record._status == section or (record._status < section and record._lifecycle[section].get('early')=="edit")) %}
 
   {% for entry in record._layout()[section] %}
   <div class="d-lg-flex mt-2">
@@ -27,8 +27,10 @@
     <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} d-none">
       <form id="form-update-{{ entry['value'] }}-{{ loop.index0 }}" action="{{ record.permalink }}" method="post" class="toasted w-100 me-4">
         <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+
         {% if entry.get('kind')=='multi' %} 
         <textarea id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" name="{{ entry['value'] }}">{{ record.__dict__.get(entry['value']+'_raw') }}</textarea>
+
         {% elif entry.get('kind')=='dropdown' %}
         <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
           <option disabled>{{_("Select One")}}</option>
@@ -36,6 +38,7 @@
           <option value="{{ x }}" {% if x==record.__dict__.get(entry['value']) %}selected{% endif %}>{{ entry['values'][x] }}</option>
           {% endfor %}
         </select>
+
         {% elif entry.get('kind')=='user' %}
         <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
           <option value="">-{{_("None")}}-</option>
@@ -43,6 +46,7 @@
           <option value="{{ user.id }}" {% if user.id==(record | attr(entry['value']+'_id')) %}selected{% endif %}>{{ user.name }}</option>
           {% endfor %}
         </select>
+
         {% else %}
         <input id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" type="text" name="{{ entry['value'] }}" value="{{ record.__dict__.get(entry['value']) }}">
         {% endif %}
