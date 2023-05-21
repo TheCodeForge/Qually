@@ -5,12 +5,12 @@ from mistletoe.span_token import SpanToken
 from mistletoe.html_renderer import HTMLRenderer
 
 
-class NcmrMention(SpanToken):
-    pattern = re.compile(r"\bNCMR-(\d{5,})")
+class RecordMention(SpanToken):
+    pattern = re.compile(r"[A-Z]{4}-(\d{5,})")
     parse_inner = False
 
     def __init__(self, match_obj):
-        self.target=match_obj.group(1)
+        self.target=match_obj.group(0)
 
 class CustomRenderer(HTMLRenderer):
 
@@ -21,4 +21,4 @@ class CustomRenderer(HTMLRenderer):
 
     def render_ncmr_mention(self, token):
 
-        return f'<a href="/NCMR-{token.target}">NCMR-{token.target}</a>'
+        return f'<a href="/{token.target}">{token.target}</a>'
