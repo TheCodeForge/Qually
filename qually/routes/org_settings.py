@@ -216,29 +216,35 @@ def post_settings_directory_toggle_admin_uid(uid):
 
     return toast(msg)
 
-@app.post("/settings/directory/select_permissions/<uid>")
+@app.post("/settings/directory/permissions/<uid>/<value>")
 @is_admin
-def post_settings_directory_select_permissions_uid(uid):
+def post_settings_directory_permissions(uid, value):
 
     user=get_account(uid)
 
-    new_role=int(request.form.get("special_role"))
-
-    if new_role and not user.has_license:
-        return toast_error(_("That role requires a full license."))
+    #simultaneously limits to valid roles and also gets role name
+    for role in ROLES:
+        if value==role['value']:
+            name=role['name']
+            break
+    else:
+        abort(404)
 
     if not user.is_active:
         return toast_error(_("Deactivated users cannot be assigned roles."))
 
+    if not getattr(user, value) and not user.has_license:
+        return toast_error(_("Special roles require a full license."))
 
-    user.special_role=new_role
+    #toggle
+    setattr(user, value, not gettattr(user, value))
     g.db.add(user)
 
     log=OrganizationAuditLog(
         user_id=g.user.id,
         organization_id=g.user.organization_id,
         key=str(user),
-        new_value=_("Role")+"="+ROLES[new_role]
+        new_value=f"{name} = {getattr(user, value)}"
         )
 
     g.db.add(log)
