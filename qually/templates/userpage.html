@@ -10,3 +10,13 @@
   </div>
 </div>
 {% endblock %}
+
+{% block rightsidebar %}
+{% if user.has_license %}
+<div>
+  {% for role in ROLES %}
+  <input type="checkbox" class="form-check-input check-toast" data-post-url="/settings/directory/permissions/{{ user.base36id }}/{{ role['value'] }}"{% if user | attr(role['value']) %} checked{% endif %}{% if not g.user.is_org_admin %} disabled{% endif %}>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

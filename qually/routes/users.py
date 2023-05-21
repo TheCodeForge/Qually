@@ -8,5 +8,6 @@ def get_user_uid(uid):
 
     return render_template(
         "/userpage.html",
-        user=user
+        user=user,
+        roles=ROLES
         )
