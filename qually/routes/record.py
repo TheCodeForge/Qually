@@ -60,7 +60,7 @@ def post_record_number(kind, number):
                     setattr(record, entry['value'], None)
                     value=""
                 key=entry['name']
-                response=value
+                response=f'<a href="{getattr(record, entry["value"]).permalink}">{getattr(record, entry["value"]).name}</a>'
             else:
                 setattr(record, entry['value'], txt(request.form[entry['value']]))
                 key=entry['name']
