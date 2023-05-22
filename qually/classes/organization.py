@@ -97,17 +97,17 @@ class Organization(Base, core_mixin):
     @property
     @lazy
     def doc_control_users(self):
-        return list(self._users.filter_by(is_active=True, special_role=1).all())
+        return list(self._users.filter_by(is_active=True, is_doc_control=True).all())
 
     @property
     @lazy
     def mrb_users(self):
-        return list(self._users.filter_by(is_active=True, special_role=2).all())
+        return list(self._users.filter_by(is_active=True, is_mrb=True).all())
 
     @property
     @lazy
     def quality_mgmt_users(self):
-        return list(self._users.filter_by(is_active=True, special_role=3).all())
+        return list(self._users.filter_by(is_active=True, is_quality_management=True).all())
     
     
     
