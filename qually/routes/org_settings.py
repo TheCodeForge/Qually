@@ -237,7 +237,7 @@ def post_settings_directory_permissions(uid, value):
         return toast_error(_("Special roles require a full license."))
 
     #toggle
-    setattr(user, value, not gettattr(user, value))
+    setattr(user, value, not getattr(user, value))
     g.db.add(user)
 
     log=OrganizationAuditLog(
