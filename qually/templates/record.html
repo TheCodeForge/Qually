@@ -50,6 +50,20 @@
 <!--{{ tsn['id'] }} approve button-->
 <button type="button" class="btn btn-{{ tsn['color'] }} w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modal-{{ tsn['id'] }}-{{record.id}}-{{record._status}}">{{ tsn['name'] }}</button>
 
+{% endif %}
+{% else %}
+<!--{{ tsn['id'] }} phase button-->
+<button type="button" class="btn btn-{{ tsn['color'] }} w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modal-{{ tsn['id'] }}-{{record.id}}-{{record._status}}">{{ tsn['name'] }}</button>
+
+{% endif %}
+{% endfor %}
+{% endblock %}
+
+{% block modals %}
+{% for tsn in record._transitions[record._status] if g.user in tsn['users'] %}
+
+{% if tsn.get('approval', False) %}
+{% if not record.has_approved %}
 <!--{{ tsn['id'] }} approve modal-->
 <div class="modal fade" id="modal-{{ tsn['id'] }}-{{record.id}}-{{record._status}}" tabindex="-1" aria-labelledby="modal-approve-label" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -76,8 +90,6 @@
 </div>
 {% endif %}
 {% else %}
-<!--{{ tsn['id'] }} phase button-->
-<button type="button" class="btn btn-{{ tsn['color'] }} w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modal-{{ tsn['id'] }}-{{record.id}}-{{record._status}}">{{ tsn['name'] }}</button>
 
 <!--{{ tsn['id'] }} phase modal-->
 <div class="modal fade" id="modal-{{ tsn['id'] }}-{{record.id}}-{{record._status}}" tabindex="-1" aria-labelledby="modal-approve-label" aria-hidden="true">
