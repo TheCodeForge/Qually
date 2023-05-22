@@ -37,75 +37,73 @@
 
 
 {% block rightbar %}
-<div class="mt-5">
-  {% for tsn in record._transitions[record._status] if g.user in tsn['users'] %}
+{% for tsn in record._transitions[record._status] if g.user in tsn['users'] %}
 
-  {% if tsn.get('approval', False) %}
-  {% if record.has_approved %}
-  <form id="form-unapprove-{{ tsn['id'] }}" action="{{ record.permalink }}/unapprove" method="post" class="toasted">
-    <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-    <input type="hidden" name="transition_id" value="{{ tsn['id'] }}">
-  </form>
-  <a class="w-100 mt-2 btn btn-warning toast-form-submit" data-form="form-unapprove-{{ tsn['id'] }}" href="javascript:void(0)">{{_("Remove Signature")}}</a>
-  {% else %}
-  <!--{{ tsn['id'] }} approve button-->
-  <button type="button" class="btn btn-{{ tsn['color'] }} w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modal-{{ tsn['id'] }}-{{record.id}}-{{record._status}}">{{ tsn['name'] }}</button>
+{% if tsn.get('approval', False) %}
+{% if record.has_approved %}
+<form id="form-unapprove-{{ tsn['id'] }}" action="{{ record.permalink }}/unapprove" method="post" class="toasted">
+  <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+  <input type="hidden" name="transition_id" value="{{ tsn['id'] }}">
+</form>
+<a class="w-100 mt-2 btn btn-warning toast-form-submit" data-form="form-unapprove-{{ tsn['id'] }}" href="javascript:void(0)">{{_("Remove Signature")}}</a>
+{% else %}
+<!--{{ tsn['id'] }} approve button-->
+<button type="button" class="btn btn-{{ tsn['color'] }} w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modal-{{ tsn['id'] }}-{{record.id}}-{{record._status}}">{{ tsn['name'] }}</button>
 
-  <!--{{ tsn['id'] }} approve modal-->
-  <div class="modal fade" id="modal-{{ tsn['id'] }}-{{record.id}}-{{record._status}}" tabindex="-1" aria-labelledby="modal-approve-label" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modal-approve-label">{{ tsn['name'] }}</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="form-approve-{{ tsn['id'] }}" action="{{ record.permalink }}/approve" method="post" class="toasted">
-            <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-            <input type="hidden" name="transition_id" value="{{ tsn['id'] }}">
-            <label for="input-password">Password</label>
-            <input type="password" name="password" autocomplete="off" class="form-control">
-          </form>
-          <p>{{ _("When all required signatures have been collected, {x} will be automatically advanced to the {y} phase").format(x=record.name, y=record._lifecycle[tsn['to']]['name']) }}</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{_("Close")}}</button>
-          <button type="button" class="btn btn-success toast-form-submit" data-form="form-approve-{{ tsn['id'] }}">{{_("Sign and Approve")}}</button>
-        </div>
+<!--{{ tsn['id'] }} approve modal-->
+<div class="modal fade" id="modal-{{ tsn['id'] }}-{{record.id}}-{{record._status}}" tabindex="-1" aria-labelledby="modal-approve-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-approve-label">{{ tsn['name'] }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="form-approve-{{ tsn['id'] }}" action="{{ record.permalink }}/approve" method="post" class="toasted">
+          <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+          <input type="hidden" name="transition_id" value="{{ tsn['id'] }}">
+          <label for="input-password">Password</label>
+          <input type="password" name="password" autocomplete="off" class="form-control">
+        </form>
+        <p>{{ _("When all required signatures have been collected, {x} will be automatically advanced to the {y} phase").format(x=record.name, y=record._lifecycle[tsn['to']]['name']) }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{_("Close")}}</button>
+        <button type="button" class="btn btn-success toast-form-submit" data-form="form-approve-{{ tsn['id'] }}">{{_("Sign and Approve")}}</button>
       </div>
     </div>
   </div>
-  {% endif %}
-  {% else %}
-  <!--{{ tsn['id'] }} phase button-->
-  <button type="button" class="btn btn-{{ tsn['color'] }} w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modal-{{ tsn['id'] }}-{{record.id}}-{{record._status}}">{{ tsn['name'] }}</button>
-
-  <!--{{ tsn['id'] }} phase modal-->
-  <div class="modal fade" id="modal-{{ tsn['id'] }}-{{record.id}}-{{record._status}}" tabindex="-1" aria-labelledby="modal-approve-label" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="modal-approve-label">{{ _("Confirm Action on {x}").format(x=record.name) }}</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="form-transition-{{ tsn['id'] }}" action="{{ record.permalink }}/status" method="post" class="toasted">
-            <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-            <input type="hidden" name="transition_id" value="{{ tsn['id'] }}">
-          </form>
-          <p class="text-center fw-bold">{{ record.status }}</p>
-          <p class="text-center"><i class="fas fa-arrow-down fa-fw"></i></p>
-          <p class="text-center fw-bold">{{ record._lifecycle[tsn['to']]['name'] }}</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{_("Close")}}</button>
-          <button type="button" class="btn btn-success toast-form-submit" data-form="form-transition-{{ tsn['id'] }}">{{_("Confirm")}}</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  {% endif %}
-  {% endfor %}
 </div>
+{% endif %}
+{% else %}
+<!--{{ tsn['id'] }} phase button-->
+<button type="button" class="btn btn-{{ tsn['color'] }} w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modal-{{ tsn['id'] }}-{{record.id}}-{{record._status}}">{{ tsn['name'] }}</button>
+
+<!--{{ tsn['id'] }} phase modal-->
+<div class="modal fade" id="modal-{{ tsn['id'] }}-{{record.id}}-{{record._status}}" tabindex="-1" aria-labelledby="modal-approve-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-approve-label">{{ _("Confirm Action on {x}").format(x=record.name) }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="form-transition-{{ tsn['id'] }}" action="{{ record.permalink }}/status" method="post" class="toasted">
+          <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+          <input type="hidden" name="transition_id" value="{{ tsn['id'] }}">
+        </form>
+        <p class="text-center fw-bold">{{ record.status }}</p>
+        <p class="text-center"><i class="fas fa-arrow-down fa-fw"></i></p>
+        <p class="text-center fw-bold">{{ record._lifecycle[tsn['to']]['name'] }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{_("Close")}}</button>
+        <button type="button" class="btn btn-success toast-form-submit" data-form="form-transition-{{ tsn['id'] }}">{{_("Confirm")}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+{% endfor %}
 {% endblock %}
