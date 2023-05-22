@@ -73,7 +73,7 @@ class CAPA(Base, core_mixin):
                 'users': [self.root_cause_investigator]
                 },
             3: {
-                'name': _("Approval of Action Plan"),
+                'name': _("Approval to Implement"),
                 'users': self.organization.quality_mgmt_users
                 },
             4: {
