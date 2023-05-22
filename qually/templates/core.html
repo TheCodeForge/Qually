@@ -10,9 +10,9 @@
 
   <!--Bootstrap and site CSS-->
   {% if g.user %}
-  <link href="/assets/style/{{ g.user.organization.color }}/{{'COLOR_SECONDARY'|app_config}}" rel="stylesheet">
+  <link href="/assets/style/{{ g.user.organization.color }}/{{'COLOR_SECONDARY'|app_config}}.css" rel="stylesheet">
   {% else %}
-  <link href="/assets/style/{{'COLOR_PRIMARY'|app_config}}/{{'COLOR_SECONDARY'|app_config}}" rel="stylesheet">
+  <link href="/assets/style/{{'COLOR_PRIMARY'|app_config}}/{{'COLOR_SECONDARY'|app_config}}.css" rel="stylesheet">
   {% endif %}
 
   <!--JQuery-->
