@@ -15,7 +15,7 @@
         {% elif entry.get('kind')=='dropdown' %}
         <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record | attr(entry['value']), '') }}</p>
         {% elif entry.get('kind')=='user' %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ (record | attr(entry['value'])).name }}</p>
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}"><a href="{{ (record | attr(entry['value'])).permalink }}">{{ (record | attr(entry['value'])).name }}</a></p>
         {% else %}
         <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record | attr(entry['value']) }}</p>
         {% endif %}
@@ -73,8 +73,10 @@
         <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record.__dict__.get(entry['value']) | safe }}</div>
         {% elif entry.get('kind')=='dropdown' %}
         <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record.__dict__.get(entry['value']), '') }}</p>
+
         {% elif entry.get('kind')=='user' %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ (record | attr(entry['value'])).name }}</p>
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}"><a href="{{ (record | attr(entry['value'])).permalink }}">{{ (record | attr(entry['value'])).name }}</a></p>
+
         {% else %}
         <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record.__dict__.get(entry['value']) }}</p>
         {% endif %}
