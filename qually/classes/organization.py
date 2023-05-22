@@ -45,6 +45,29 @@ class Organization(Base, core_mixin):
     ncmrs=relationship("NCMR", lazy="dynamic", viewonly=True)
     capas=relationship("CAPA", lazy="dynamic", viewonly=True)
 
+    @classmethod
+    def _cols(cls):
+
+
+        def wrapper(value):
+
+            @property
+            def wrapped(self):
+
+                kwargs={
+                    'is_active':True,
+                    value: True
+                    }
+
+                return list(self._users.filter_by(**kwargs).all())
+
+            wrapped.__name__=value
+            return wrapped
+
+        for role in ROLES:
+            setattr(cls, role['rel'], wrapper(role['value']))
+
+
     def __init__(self, **kwargs):
 
         if "created_utc" not in kwargs:

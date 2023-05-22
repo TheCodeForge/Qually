@@ -7,14 +7,17 @@ except:
 ROLES=[
     {
         "name": _("Document Control"),
-        "value":"is_doc_control"
+        "value":"is_doc_control",
+        "rel":"doc_control_users"
     },
     {
         "name": _("Material Review Board"),
-        "value":"is_mrb"
+        "value":"is_mrb",
+        "rel":"mrb_users"
     },
     {
         "name": _("Quality Management"),
-        "value":"is_quality_management"
+        "value":"is_quality_management",
+        "rel":"quality_mgmt_users"
     }
 ]
