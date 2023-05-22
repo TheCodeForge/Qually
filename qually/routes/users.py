@@ -6,6 +6,7 @@ def get_user_uid(uid):
 
     user=get_account(uid)
 
+    print(ROLES)
     return render_template(
         "/userpage.html",
         user=user,
