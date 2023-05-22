@@ -12,6 +12,7 @@
 {% endblock %}
 
 {% block rightbar %}
+{% if user.is_active and user.has_license %}
 <div>
   <p class="fw-bold">{{_("Special roles")}}</p>
   {% for role in ROLES %}
@@ -20,4 +21,5 @@
   </div>
   {% endfor %}
 </div>
+{% endif %}
 {% endblock %}
