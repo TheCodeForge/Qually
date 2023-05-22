@@ -200,7 +200,7 @@ class CAPA(Base, core_mixin):
             ],
             3: [
                 {
-                    "name":_("Action Plan Assignee"),
+                    "name":_("Implementation Assignee"),
                     "value":"action_assignee",
                     "kind": "user",
                     "help": _("Assign someone to execute the action plan.")
