@@ -17,7 +17,7 @@
   <p class="fw-bold">{{_("Special roles")}}</p>
   {% for role in ROLES %}
   <div>
-    <input type="checkbox" class="form-check-input check-toast" data-post-url="/settings/directory/permissions/{{ user.base36id }}/{{ role['value'] }}"{% if user | attr(role['value']) %} checked{% endif %}{% if not g.user.is_org_admin %} disabled{% endif %}>{{role['name']}}
+    <input id="input-role-check-{{ loop.index0 }}" type="checkbox" class="form-check-input check-toast" data-post-url="/settings/directory/permissions/{{ user.base36id }}/{{ role['value'] }}"{% if user | attr(role['value']) %} checked{% endif %}{% if not g.user.is_org_admin %} disabled{% endif %}><label class="ms-1" for="input-role-check-{{ loop.index0 }}">{{role['name']}}</label>
   </div>
   {% endfor %}
 </div>
