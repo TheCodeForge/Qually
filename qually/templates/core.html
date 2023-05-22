@@ -48,6 +48,51 @@
   
 </head>
 <body data-bs-theme="{{ 'dark' if session.get('dark_mode') else 'light' }}">
+
+  {% macro rightbarcontent() %}
+    {% block rightbar %}
+    {% endblock %}
+  {% endmacro %}
+
+  {% set links=[
+    {
+      "name":_("Dashboard"),
+      "icon":"house",
+      "url": "/"
+    },
+    {
+      "name":_("NCMRs"),
+      "icon":"box-open",
+      "url": "/records/ncmr",
+      "new_url": "/create_ncmr"
+    },
+    {
+      "name":_("Change Orders"),
+      "icon":"stamp"
+    },
+    {
+      "name":_("CAPAs"),
+      "icon":"arrows-spin",
+      "url": "/records/capa",
+      "new_url": "/create_capa"
+    },
+    {
+      "name":_("Deviations"),
+      "icon":"bug"
+    },
+    {
+      "name":_("Training"),
+      "icon":"book-open-cover"
+    },
+    {
+      "name":_("Test Protocol"),
+      "icon":"file-code"
+    },
+    {
+      "name":_("Test Report"),
+      "icon":"chart-column"
+    }
+  ]%}
   
   <nav class="navbar navbar-expand-sm bg-body-tertiary fixed-top py-1">
     <div class="container-fluid">
@@ -59,17 +104,42 @@
         <ul class="navbar-nav ms-auto my-1 mb-lg-0 d-print-none">
           
           {% if g.user %}
-          <li class="nav-item mx-1">
+          {% for entry in links %}
+          <li class="nav-item mx-1 mt-3">
+            <div class="d-flex">
+              <div class="hanging-indent">
+                {% if entry.get('url') %}
+                <a href="{{ entry['url'] }}" class="text-secondary fw-bold"><i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg "></i><span class="text-small">{{ entry['name'] }}</span></a>
+                {% else %}
+                <i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg text-muted"></i><span class="text-small text-muted">{{ entry['name'] }}</span>
+                {% endif %}
+              </div>
+              {% if entry.get('new_url') and g.user.has_seat %}
+              <div class="ms-auto">
+                <a href="{{ entry['new_url'] }}"><i class="fas fa-plus"></i></a>
+              </div>
+              {% endif %}
+            </div>
+          </li>
+          {% endfor %}
+          <hr>
+          <li class="nav-item mx-1 mt-3">
             <a class="btn w-100" href="/settings/profile"><i class="fas fa-cog fa-fw"></i></a>
           </li>
-          <li class="nav-item mx-1">
+          <li class="nav-item mx-1 mt-3">
             <a class="btn w-100 dark-switch"><i class="fas fa-circle-half-stroke fa-fw"></i></a>
           </li>
-          <li class="nav-item mx-1">
+          <li class="nav-item mx-1 mt-3">
             <a class="btn btn-danger w-100 post-toast" data-post-url="/logout"><i class="fas fa-right-from-bracket fa-fw"></i></a>
           </li>
           {% else %}
-          <li class="nav-item mx-1 dropdown">
+          <li class="nav-item mx-1 mt-3">
+            <a class="btn btn-primary w-100" href="/register">{{_("Free Trial")}}</a>
+          </li>
+          <li class="nav-item mx-1 mt-3">
+            <a class="btn border-primary w-100" href="/sign_in">{{_("Sign In")}}</a>
+          </li>
+          <li class="nav-item mx-auto dropdown">
             <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="lang-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{ session.get('lang', 'en') | upper }}
             </a>
@@ -78,12 +148,6 @@
               <a class="dropdown-item post-toast-reload" href="javascript:void(0)" data-post-url="/prefs/lang/{{ l | lang }}">{{ l }}</a>
               {% endfor %}
             </div>
-          </li>
-          <li class="nav-item mx-1">
-            <a class="btn btn-primary w-100" href="/register">{{_("Free Trial")}}</a>
-          </li>
-          <li class="nav-item mx-1">
-            <a class="btn border-primary w-100" href="/sign_in">{{_("Sign In")}}</a>
           </li>
           {% endif %}
         </ul>
@@ -106,47 +170,6 @@
           <div class="body mb-3">
             <div class="text-small fw-bold text-primary text-uppercase">{{_("Tools")}}</div>
             <ul class="no-bullets text-uppercase ps-3">
-
-              {% set links=[
-                {
-                  "name":_("Dashboard"),
-                  "icon":"house",
-                  "url": "/"
-                },
-                {
-                  "name":_("NCMRs"),
-                  "icon":"box-open",
-                  "url": "/records/ncmr",
-                  "new_url": "/create_ncmr"
-                },
-                {
-                  "name":_("Change Orders"),
-                  "icon":"stamp"
-                },
-                {
-                  "name":_("CAPAs"),
-                  "icon":"arrows-spin",
-                  "url": "/records/capa",
-                  "new_url": "/create_capa"
-                },
-                {
-                  "name":_("Deviations"),
-                  "icon":"bug"
-                },
-                {
-                  "name":_("Training"),
-                  "icon":"book-open-cover"
-                },
-                {
-                  "name":_("Test Protocol"),
-                  "icon":"file-code"
-                },
-                {
-                  "name":_("Test Report"),
-                  "icon":"chart-column"
-                }
-              ]%}
-
               {% for entry in links %}
               <li class="mt-3">
                 <div class="d-flex">
@@ -154,7 +177,7 @@
                     {% if entry.get('url') %}
                     <a href="{{ entry['url'] }}" class="text-secondary fw-bold"><i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg "></i><span class="text-small">{{ entry['name'] }}</span></a>
                     {% else %}
-                    <i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg text-muted"></i><span class="text-small text-muted">{{ entry['name'] }}</span></a>
+                    <i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg text-muted"></i><span class="text-small text-muted">{{ entry['name'] }}</span>
                     {% endif %}
                   </div>
                   {% if entry.get('new_url') and g.user.has_seat %}
@@ -170,11 +193,6 @@
         </div>
         {% endblock %}
       </div>
-
-      {% macro rightbarcontent() %}
-        {% block rightbar %}
-        {% endblock %}
-      {% endmacro %}
 
       <!--main content column-->
       <div class="col h-100" id="main-content-col">
