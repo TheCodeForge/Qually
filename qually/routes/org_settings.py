@@ -4,7 +4,7 @@ from qually.helpers.timezones import TIMEZONES
 from qually.helpers.languages import LANGUAGES
 from .login import valid_email_regex
 try:
-    from flask_babel import gettext as _
+    from flask_babel import gettext as _, force_locale
 except ModuleNotFoundError:
     pass
 
@@ -22,13 +22,14 @@ def post_settings_organization():
         g.user.organization.name=txt(request.form.get("org_name"))
         g.db.add(g.user.organization)
 
-        log=OrganizationAuditLog(
-            user_id=g.user.id,
-            organization_id=g.user.organization_id,
-            key="Organization Name",
-            new_value=txt(request.form.get("org_name"))
-            )
-        g.db.add(log)
+        with force_locale(g.user.organization.lang):
+            log=OrganizationAuditLog(
+                user_id=g.user.id,
+                organization_id=g.user.organization_id,
+                key=_("Organization Name"),
+                new_value=txt(request.form.get("org_name"))
+                )
+            g.db.add(log)
 
     if request.form.get("lang"):
 
@@ -38,13 +39,15 @@ def post_settings_organization():
         g.user.organization.lang=request.form.get("lang")
         g.db.add(g.user.organization)
 
-        log=OrganizationAuditLog(
-            user_id=g.user.id,
-            organization_id=g.user.organization_id,
-            key="Language",
-            new_value=request.form.get("lang")
-            )
-        g.db.add(log)
+
+        with force_locale(g.user.organization.lang):
+            log=OrganizationAuditLog(
+                user_id=g.user.id,
+                organization_id=g.user.organization_id,
+                key=_("Language"),
+                new_value=request.form.get("lang")
+                )
+            g.db.add(log)
 
     if request.form.get("tz"):
 
@@ -54,13 +57,33 @@ def post_settings_organization():
         g.user.organization.tz=request.form.get("tz")
         g.db.add(g.user.organization)
 
-        log=OrganizationAuditLog(
-            user_id=g.user.id,
-            organization_id=g.user.organization_id,
-            key="Timezone",
-            new_value=request.form.get("tz")
-            )
-        g.db.add(log)
+        with force_locale(g.user.organization.lang):
+            log=OrganizationAuditLog(
+                user_id=g.user.id,
+                organization_id=g.user.organization_id,
+                key=_("Timezone"),
+                new_value=request.form.get("tz")
+                )
+            g.db.add(log)
+
+    if request.form.get("color"):
+
+        try:
+            i=int(request.form.get('color'), 16)
+        except:
+            return toast_error("Color code must be valid RGB hex value")
+
+        g.user.organization.color=request.form.get('color')
+        g.db.add(g.user.organization)
+
+        with force_locale(g.user.organization.lang):
+            log=OrganizationAuditLog(
+                user_id=g.user.id,
+                organization_id=g.user.organization_id,
+                key=_("Color"),
+                new_value=request.form.get("color")
+                )
+            g.db.add(log)
 
     g.db.commit()
 
@@ -76,13 +99,14 @@ def post_settings_directory_toggle_otp():
     g.user.organization.requires_otp = not g.user.organization.requires_otp
     g.db.add(g.user.organization)
     
-    log=OrganizationAuditLog(
-        user_id=g.user.id,
-        organization_id=g.user.organization_id,
-        key="Organization",
-        new_value=f"Require2FA={g.user.organization.requires_otp}"
-        )
-    g.db.add(log)
+    with force_locale(g.user.organization.lang):
+        log=OrganizationAuditLog(
+            user_id=g.user.id,
+            organization_id=g.user.organization_id,
+            key=_("Require Two-Factor Authentication"),
+            new_value=f"{g.user.organization.requires_otp}"
+            )
+        g.db.add(log)
     
     g.db.commit()
     return toast(_("Settings saved"))
@@ -129,13 +153,14 @@ def post_settings_directory_toggle_license_uid(uid):
             g.db.rollback()
             return toast_error(_("Your organization has reached its purchased license count."))
 
-    log=OrganizationAuditLog(
-        user_id=g.user.id,
-        organization_id=g.user.organization_id,
-        key=str(user),
-        new_value=f"License={user.has_license}"
-        )
-    g.db.add(log)
+    with force_locale(g.user.organization.lang):
+        log=OrganizationAuditLog(
+            user_id=g.user.id,
+            organization_id=g.user.organization_id,
+            key=str(user),
+            new_value=f"{_('License')}={user.has_license}"
+            )
+        g.db.add(log)
 
     g.db.commit()
 
@@ -165,14 +190,15 @@ def post_settings_directory_toggle_enable_uid(uid):
     #user.has_license = user.is_active and user.has_license
     g.db.add(user)
 
-    log=OrganizationAuditLog(
-        user_id=g.user.id,
-        organization_id=g.user.organization_id,
-        key=str(user),
-        new_value=f"Enabled={user.is_active}"
-        )
+    with force_locale(g.user.organization.lang):
+        log=OrganizationAuditLog(
+            user_id=g.user.id,
+            organization_id=g.user.organization_id,
+            key=str(user),
+            new_value=f"{_('Enabled')}={user.is_active}"
+            )
 
-    g.db.add(log)
+        g.db.add(log)
     g.db.commit()
 
     return toast(msg)
@@ -203,14 +229,15 @@ def post_settings_directory_toggle_admin_uid(uid):
     user.is_org_admin = not user.is_org_admin
     g.db.add(user)
 
-    log=OrganizationAuditLog(
-        user_id=g.user.id,
-        organization_id=g.user.organization_id,
-        key=str(user),
-        new_value=f"Admin={user.is_org_admin}"
-        )
+    with force_locale(g.user.organization.lang):
+        log=OrganizationAuditLog(
+            user_id=g.user.id,
+            organization_id=g.user.organization_id,
+            key=str(user),
+            new_value=f"{_('Admin')}={user.is_org_admin}"
+            )
 
-    g.db.add(log)
+        g.db.add(log)
 
     g.db.commit()
 
@@ -225,7 +252,8 @@ def post_settings_directory_permissions(uid, value):
     #simultaneously limits to valid roles and also gets role name
     for role in ROLES:
         if value==role['value']:
-            name=role['name']
+            with force_locale(g.user.organization.lang):
+                name=role['name']
             break
     else:
         abort(404)
@@ -305,14 +333,15 @@ def post_settings_plan():
 
     g.db.add(g.user.organization)
 
-    log=OrganizationAuditLog(
-        user_id=g.user.id,
-        organization_id=g.user.organization_id,
-        key="License Count",
-        new_value=str(new_seat_count)
-        )
+    with force_locale(g.user.organization.lang):
+        log=OrganizationAuditLog(
+            user_id=g.user.id,
+            organization_id=g.user.organization_id,
+            key=_("License Count"),
+            new_value=str(new_seat_count)
+            )
 
-    g.db.add(log)
+        g.db.add(log)
     g.db.commit()
 
     return toast_redirect("/settings/plan")
@@ -356,14 +385,14 @@ def post_settings_directory_invite():
             )
         )
     
-    log=OrganizationAuditLog(
-        user_id=g.user.id,
-        organization_id=g.user.organization_id,
-        key="Directory",
-        new_value=f"Invited <{email}>"
-        )
+        log=OrganizationAuditLog(
+            user_id=g.user.id,
+            organization_id=g.user.organization_id,
+            key=_("Invitated"),
+            new_value=email
+            )
 
-    g.db.add(log)
+        g.db.add(log)
     g.db.commit()
     
     return toast(_("Invitation sent to {email}").format(email=email))

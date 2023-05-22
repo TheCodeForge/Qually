@@ -21,6 +21,7 @@ class Organization(Base, core_mixin):
     requires_otp = Column(Boolean, default=False)
     lang = Column(String(2), default="en")
     tz = Column(String, default="UTC")
+    color=Column(String(6), default=app.config['COLOR_PRIMARY'])
 
     #Organization record counters
     ncmr_counter = Column(Integer, default=0)

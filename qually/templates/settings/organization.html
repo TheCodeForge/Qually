@@ -21,6 +21,22 @@
         
       </div>
     </div>
+
+    <div class="title w-lg-25">
+      <label for="org_color">{{ _("Color") }}</label>
+    </div>
+
+    <div class="body w-lg-100">
+      <div class="input-group d-flex">
+
+        <form id="form-org-color" action="/settings/organization" method="post" class="w-100 toasted">
+          <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+          <input id="org_color" type="text" name="color" class="form-control w-100" value="{{ g.user.organization.color }}">
+        </form>
+        <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-org-color">{{ _("Change Organization Color") }}</a>
+        
+      </div>
+    </div>
   </div>
 </div>
 
