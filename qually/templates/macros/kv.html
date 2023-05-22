@@ -4,7 +4,7 @@
 {% if g.user.has_seat and g.user in record._lifecycle[section]['users'] and (record._status == section or (record._status < section and record._lifecycle[section].get('early')=="edit")) %}
 
   {% for entry in record._layout()[section] %}
-  <div class="d-lg-flex mt-2">
+  <div class="d-lg-flex mt-3">
     <div class="title w-lg-25">
       <label>{{ entry['name'] }}</label>
     </div>
@@ -63,9 +63,9 @@
 {% else %}
 
   {% for entry in record._layout()[section] %}
-  <div class="d-lg-flex">
+  <div class="d-lg-flex mt-3">
     <div class="title w-lg-25">
-      <label class="mt-1">{{ entry['name'] }}</label>
+      <label class="">{{ entry['name'] }}</label>
     </div>
     <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
@@ -88,9 +88,9 @@
 {% endif %}
 
   {% if record.phase_approvals(section) %}
-  <div id="container-approvals-{{ section }}" class="d-lg-flex">
+  <div id="container-approvals-{{ section }}" class="d-lg-flex mt-3">
     <div class="title w-lg-25">
-      <label class="mt-1">{{ _("Approvals") }}</label>
+      <label class="">{{ _("Approvals") }}</label>
     </div>
     <div class="body ms-3 w-lg-100 d-flex">
       {% for approval in record.phase_approvals(section) %}
