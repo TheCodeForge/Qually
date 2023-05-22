@@ -8,7 +8,7 @@
     <div class="title w-lg-25">
       <label>{{ entry['name'] }}</label>
     </div>
-    <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} toggle-target-class" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
+    <div role="button" class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} toggle-target-class" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
         {% if entry.get('kind')=='multi' %} 
         <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record | attr(entry['value']) | safe }}</div>
