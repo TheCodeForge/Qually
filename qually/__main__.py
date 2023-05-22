@@ -44,7 +44,6 @@ app.config["SUBTITLE"]=environ.get("SUBTITLE", "").lstrip().rstrip()
 #Colors - default to bootstrap defaults
 app.config['COLOR_PRIMARY']=environ.get("COLOR_PRIMARY",'0d6efd')
 app.config['COLOR_SECONDARY']=environ.get("COLOR_SECONDARY",'6c757d')
-app.config['CSS_URL']=f"/assets/style/{app.config['COLOR_PRIMARY']}/{app.config['COLOR_SECONDARY']}.css"
 
 app.config["SYSPATH"]=environ.get("SYSPATH", path.dirname(path.realpath(__file__)))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False

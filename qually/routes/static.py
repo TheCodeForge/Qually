@@ -18,6 +18,12 @@ def main_css(color1, color2, n=None):
 
     # This doesn't use python's string formatting because
     # of some odd behavior with css files
+    try:
+        i=int(color1, 16)
+        i=int(color2, 16)
+    except:
+        color1=app.config['COLOR_PRIMARY']
+        color2=app.config['COLOR_SECONDARY']
 
     output = output.replace("{primary}", color1)
     output = output.replace("{secondary}", color2)
