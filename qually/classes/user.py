@@ -62,7 +62,6 @@ class User(Base, core_mixin):
     def _cols(cls):
         for x in ROLES:
             setattr(cls, f"{x['value']}", Column(Boolean, default=False))
-    _cols()
 
     def __init__(self, **kwargs):
 
@@ -207,3 +206,5 @@ class User(Base, core_mixin):
                 roles.append(role['name'])
 
         return ', '.join(roles)
+
+User._cols()
