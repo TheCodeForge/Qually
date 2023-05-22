@@ -1,13 +1,16 @@
 {% macro kv(record, section) %}
 
+{% set can_edit=g.user.has_seat and g.user in record._lifecycle[section]['users'] and (record._status == section or (record._status < section and record._lifecycle[section].get('early')=="edit")) %}
+
 <div>
-{% if g.user.has_seat and g.user in record._lifecycle[section]['users'] and (record._status == section or (record._status < section and record._lifecycle[section].get('early')=="edit")) %}
 
   {% for entry in record._layout()[section] %}
   <div class="d-lg-flex mt-3">
     <div class="title w-lg-25">
       <label>{{ entry['name'] }}</label>
     </div>
+
+    {% if can_edit %}
     <div role="button" class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} toggle-target-class" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
         {% if entry.get('kind')=='multi' %} 
@@ -57,16 +60,7 @@
       <a href="javascript:void(0)" class="btn btn-secondary toggle-target-class ms-auto mb-auto" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">Cancel</a>
       <a href="javascript:void(0)" class="btn btn-primary toggle-target-class record-value-edit ms-2 mb-auto" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}" data-form="form-update-{{ entry['value'] }}-{{ loop.index0 }}" data-value-target="display-value-{{ entry['value'] }}-{{ loop.index0 }}" data-approvals-target="container-approvals-{{ section }}">Save</a>
     </div>
-  </div>
-  {% endfor %}
-
-{% else %}
-
-  {% for entry in record._layout()[section] %}
-  <div class="d-lg-flex mt-3">
-    <div class="title w-lg-25">
-      <label class="">{{ entry['name'] }}</label>
-    </div>
+    {% else %}
     <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
         {% if entry.get('kind')=='multi' %} 
@@ -82,10 +76,10 @@
         {% endif %}
       </div>
     </div>
+    {% endif %}
+
   </div>
   {% endfor %}
-
-{% endif %}
 
   {% if record.phase_approvals(section) %}
   <div id="container-approvals-{{ section }}" class="d-lg-flex mt-3">
