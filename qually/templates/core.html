@@ -171,20 +171,23 @@
         {% endblock %}
       </div>
 
+      {% macro rightbarcontent() %}
+        {% block rightbar %}
+        {% endblock %}
+      {% endmacro}
+
       <!--main content column-->
       <div class="col h-100" id="main-content-col">
         {% block page %}
         {% endblock %}
         <div class="d-block d-lg-none">
-          {% block rightbar %}
-          {% endblock %}
+          {{ rightbarcontent () }}
         </div>
       </div>
 
       <!--right sidebar goes here-->
       <div class="col sidebar text-left d-none d-lg-block pt-3 border-left">
-        {% block rightbar %}
-        {% endblock %}
+        {{ rightbarcontent () }}
       </div>
 
       <!--right spacer-->
