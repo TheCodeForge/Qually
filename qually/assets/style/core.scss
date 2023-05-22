@@ -350,7 +350,8 @@ ul.no-bullets {
     list-style-type: none;
 }
 
-.sidebar-left a {
+.sidebar-left a,
+.navbar-collapse .nav-item.featurelink a {
     text-decoration:none;
 }
 
@@ -365,4 +366,8 @@ ul.no-bullets {
 
 .on-hover:hover .on-hover-show {
   display: block;
+}
+
+.sidebar .sticky-top {
+  top:66px;
 }
