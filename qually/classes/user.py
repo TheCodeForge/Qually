@@ -198,7 +198,7 @@ class User(Base, core_mixin):
     def role_string(self):
         
         roles=[]
-        if self.is_org_admin:
+        if self.is_org_admin and not g.user.is_org_admin:
             roles.append(_("Administrator"))
 
         for role in ROLES:
