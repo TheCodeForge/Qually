@@ -73,7 +73,7 @@ class CAPA(Base, core_mixin):
                 'users': [self.root_cause_investigator]
                 },
             3: {
-                'name': _("Approval of Action Plan"),
+                'name': _("Approval to Implement"),
                 'users': self.organization.quality_mgmt_users
                 },
             4: {
@@ -200,7 +200,7 @@ class CAPA(Base, core_mixin):
             ],
             3: [
                 {
-                    "name":_("Action Plan Assignee"),
+                    "name":_("Implementation Assignee"),
                     "value":"action_assignee",
                     "kind": "user",
                     "help": _("Assign someone to execute the action plan.")
