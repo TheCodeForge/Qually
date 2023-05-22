@@ -385,6 +385,7 @@ def post_settings_directory_invite():
             )
         )
     
+    with force_locale(g.user.organization.lang):
         log=OrganizationAuditLog(
             user_id=g.user.id,
             organization_id=g.user.organization_id,
