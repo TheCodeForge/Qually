@@ -42,9 +42,9 @@ class NCMR(Base, core_mixin):
                 )
             ]
 
-        if g.user.special_role==1:
+        if g.user.is_doc_control==1:
             args.append(NCMR._status.in_([1,4]))
-        elif g.user.special_role==2:
+        elif g.user.is_mrb==2:
             args.append(NCMR._status==2)
 
         return args
