@@ -257,7 +257,7 @@ class NCMR(Base, core_mixin):
                     "to":4,
                     "name": _("Return to MRB"),
                     "description": _("Return to Material Review Board."),
-                    "users": [self.assignee],
+                    "users": [self.assignee]+g.user.organization.doc_control_users,
                     "color": "secondary"
                 },
                 {
