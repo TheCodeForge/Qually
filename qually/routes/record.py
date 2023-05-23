@@ -272,6 +272,7 @@ def get_create_record(kind):
     return render_template(f"create_record.html", obj=OBJ)
 
 @app.get("/records/<kind>")
+@logged_in
 def get_record_records(kind):
 
     if kind not in VALID_KINDS:
