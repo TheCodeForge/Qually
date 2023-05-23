@@ -1,5 +1,6 @@
 # Prevents certain properties from having to be recomputed each time they
 # are referenced
+from flask import abort
 
 def lazy(f):
 
