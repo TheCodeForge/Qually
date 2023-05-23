@@ -119,7 +119,7 @@ class Organization(Base, core_mixin):
     def license_expire_date(self):
         return time.strftime("%d %B %Y", time.gmtime(self.license_expire_utc))
     
-    
+Organization._cols()
     
 
 class OrganizationAuditLog(Base, core_mixin):
