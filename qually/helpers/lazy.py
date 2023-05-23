@@ -17,3 +17,17 @@ def lazy(f):
 
     wrapper.__name__ = f.__name__
     return wrapper
+
+
+def tryer(f):
+
+    def wrapper(*args, **kwargs):
+
+        try:
+            return f(*args, **kwargs)
+        except Exception as e:
+            print(e)
+            abort(500)
+
+    wrapper.__name__=f.__name__
+    return wrapper

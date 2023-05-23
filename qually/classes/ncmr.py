@@ -60,6 +60,7 @@ class NCMR(Base, core_mixin):
             return _("NCMR-")+f"{self.number:0>5}"
 
     @property
+    @tryer
     def _lifecycle(self):
         return {
             0: {
