@@ -254,7 +254,7 @@ class NCMR(Base, core_mixin):
             3: [
                 {
                     "id":"return",
-                    "to":4,
+                    "to":2,
                     "name": _("Return to MRB"),
                     "description": _("Return to Material Review Board."),
                     "users": g.user.organization.doc_control_users,
