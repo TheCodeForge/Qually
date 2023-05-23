@@ -50,7 +50,9 @@ def post_record_number(kind, number):
             elif entry['kind']=='user':
                 n=request.form.get(entry['value'])
                 if n:
-                    setattr(record, f"{entry['value']}_id", int(request.form[entry['value']]))
+                    if not g.user.organization.users.filter_by(id=int(n)).first():
+                        return toast_error(_("Invalid user"))
+                    setattr(record, f"{entry['value']}_id", int(n))
                     g.db.add(record)
                     g.db.flush()
                     g.db.refresh(record)
