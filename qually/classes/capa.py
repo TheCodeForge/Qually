@@ -46,7 +46,7 @@ class CAPA(Base, core_mixin):
                 )
             ]
 
-        if g.user.is_quality_management==3:
+        if g.user.is_quality_management:
             args.append(CAPA._status.in_([1,3,6]))
 
         return args
