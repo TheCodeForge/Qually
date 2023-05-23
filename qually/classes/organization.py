@@ -117,21 +117,6 @@ class Organization(Base, core_mixin):
     @lazy
     def license_expire_date(self):
         return time.strftime("%d %B %Y", time.gmtime(self.license_expire_utc))
-
-    @property
-    @lazy
-    def doc_control_users(self):
-        return list(self._users.filter_by(is_active=True, is_doc_control=True).all())
-
-    @property
-    @lazy
-    def mrb_users(self):
-        return list(self._users.filter_by(is_active=True, is_mrb=True).all())
-
-    @property
-    @lazy
-    def quality_mgmt_users(self):
-        return list(self._users.filter_by(is_active=True, is_quality_management=True).all())
     
     
     
