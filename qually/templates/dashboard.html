@@ -32,7 +32,7 @@
       <tr>
         <td><a href="{{ thing.permalink }}">{{ thing.name }}</a></td>
         <td>{{ thing.status }}</td>
-        <td>{% if thing | attr('phase_{x}_due_utc'.format(x=thing.status)) %}{{ thing | attr('phase_{x}_due_utc'.format(x=thing.status)) | date }}{% endif %}</td>
+        <td>{% if thing | attr('phase_{x}_due_utc'.format(x=thing._status)) %}{{ thing | attr('phase_{x}_due_utc'.format(x=thing._status)) | date }}{% endif %}</td>
       </tr>
       {% else %}
       <tr>
