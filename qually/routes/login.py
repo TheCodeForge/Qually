@@ -115,7 +115,7 @@ def post_sign_in():
         return toast_error(_("Invalid username or password"))
 
     if not user.is_active:
-        return toast_error(_("Your user account has been disabled."))
+        return toast_error(_("Your user account has been disabled by your organization administrator."))
 
     if user.organization.is_banned:
         return toast_error(_("Your organization's {x} access has been terminated due to a terms of service violation.").format(x=app.config['SITE_NAME']))
