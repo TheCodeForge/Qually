@@ -1,5 +1,6 @@
 from flask import g, session
 import base64
+import datetime
 import io
 import pyotp
 import qrcode
@@ -7,7 +8,7 @@ import sass
 from sqlalchemy import text
 
 try:
-    from flask_babel import gettext as _
+    from flask_babel import gettext as _, format_datetime
 except ModuleNotFoundError:
     pass
 
@@ -131,3 +132,11 @@ def biz_roles(x):
         return data[x]
     else:
         return data
+
+@app.template_filter("date")
+def jinja_date(x):
+    return format_datetime(datetime.datetime.fromtimestamp(self.created_utc), "dd MMMM yyyy")
+
+@app.template_filter("datetime")
+def jinja_date(x):
+    return format_datetime(datetime.datetime.fromtimestamp(self.created_utc), "dd MMMM yyyy HH:mm")
