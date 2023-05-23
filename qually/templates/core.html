@@ -215,7 +215,11 @@
 
   {% include "elements/clipboard.html" %}
   {% include "elements/toasts.html" %}
-
+  {% if request.path=="/" and g.time - session.get('tooltip_dismiss', 0) > 60*60*24*7 %}
+  <div id="mobile-prompt-container" class="fixed-bottom">
+    <div id="mobile-prompt" href="javascript:void(0)" data-bs-toggle="tooltip" data-container="#mobile-prompt-container" data-bs-placement="top" data-bs-title="Install the {{ 'SITE_NAME' | app_config }} webapp by saving this page to your home screen!"></div>
+  </div>
+  {% endif %}
   <!--Bootstrap js-->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
   
