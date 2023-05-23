@@ -19,7 +19,7 @@
 
   {% for entry in data %}
   <div class="tab-pane fade p-2" id="pane-{{ entry }}" role="tabpanel" aria-labelledby="tab-{{ entry }}">
-    <div>{{_("Assigned")}}</div>
+    <h3 class="h4">{{_("Assigned")}}</h3>
     <table class="table table-striped mb-5">
       <thead class="bg-primary text-white">
         <tr>
@@ -43,7 +43,7 @@
       {% endfor %}
     </table>
 
-    <div>{{_("Owned")}}</div>
+    <h3 class="h4">{{_("Owned")}}</h3>
     {% with listing=data[entry]['owned'] %}
     {% include "macros/listing.html" %}
     {% endwith %}
