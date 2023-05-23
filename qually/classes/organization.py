@@ -50,9 +50,10 @@ class Organization(Base, core_mixin):
     def _cols(cls):
 
 
-        def wrapper(value):
+        def wrapper(rel, value):
 
             @property
+            @lazy
             def wrapped(self):
 
                 kwargs={
@@ -62,11 +63,11 @@ class Organization(Base, core_mixin):
 
                 return list(self._users.filter_by(**kwargs).all())
 
-            wrapped.__name__=value
+            wrapped.__name__=role['rel']
             return wrapped
 
         for role in ROLES:
-            setattr(cls, role['rel'], wrapper(role['value']))
+            setattr(cls, role['rel'], wrapper(role['rel'], role['value']))
 
 
     def __init__(self, **kwargs):
