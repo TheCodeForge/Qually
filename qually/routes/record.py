@@ -53,6 +53,7 @@ def post_record_number(kind, number):
                     setattr(record, f"{entry['value']}_id", int(request.form[entry['value']]))
                     g.db.add(record)
                     g.db.flush()
+                    g.db.refresh(record)
                     value=getattr(record, entry['value']).name
                 else:
                     setattr(record, entry['value'], None)
