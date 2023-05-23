@@ -66,6 +66,7 @@ class core_mixin():
     def _cols(cls):
         data=cls._layout()
         for status in data:
+            setattr(cls, f"phase_{status}_due_utc", Column(BigInteger))
             for entry in data[status]:
                 if entry['kind']=='text':
                     setattr(cls, entry['value'], Column(String, default=''))
@@ -81,6 +82,8 @@ class core_mixin():
         cls.owner=      relationship("User", primaryjoin=f"User.id=={cls.__name__}.owner_id")
         cls.logs=       relationship(f"{cls.__name__}Log", order_by=f"{cls.__name__}Log.id.desc()")
         cls.approvals=  relationship(f"{cls.__name__}Approval")
+
+
         
 
     @property
