@@ -276,12 +276,16 @@ if (("standalone" in window.navigator) &&       // Check if "standalone" propert
 
 } else {
   if (window.innerWidth <= 767){
-    $('#mobile-prompt').tooltip('show')
-    $('.tooltip').click(function(event){
-      $('#mobile-prompt').tooltip('hide');
-      post('/dismiss_mobile_tooltip')
+    setTimeout(function(){
+      $('#mobile-prompt').tooltip('show')
+      $('.tooltip').click(function(event){
+        $('#mobile-prompt').tooltip('hide');
+        post('/dismiss_mobile_tooltip')
 
-    })
+      })
+    },
+    1500
+    )
   }
 }
 
