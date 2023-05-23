@@ -24,7 +24,7 @@
   <div class="tab-pane fade show active p-2" id="pane-record" role="tabpanel" aria-labelledby="tab-record">
     
     {% for stage in (record._layout().keys() | sort) if (stage<=record._status or record._lifecycle[stage].get('early')) %}
-    <h3 class="h4 text-primary {% if loop.index0 %}mt-3{% endif %}">{{ record._lifecycle[stage]['name'] }}<span class="text-small text-secondary">{% for user in record._lifecycle[stage]['users'] %}{% if loop.index0 %}, {% endif %}<a href="{{ user.permalink }}">{{ user.name }}</a>{% endfor %}</span></h3>
+    <h3 class="h4 text-primary {% if loop.index0 %}mt-3{% endif %}">{{ record._lifecycle[stage]['name'] }}</h3>
     {{ kv.kv(record, stage) }}
     {% endfor %}
     
