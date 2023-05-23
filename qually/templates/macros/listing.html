@@ -12,7 +12,7 @@
     <td><a href="{{ thing.permalink }}">{{ thing.name }}</a></td>
     <td>{{ thing.status }}</td>
     <td>{% for u in thing._lifecycle[thing._status]['users']%}{% if loop.index0 %}, {% endif %}<a href="{{ u.permalink }}">{{ u.name }}</a>{% endfor %}</td>
-    <td></td>
+    <td>{% if thing | attr('phase_{x}_due_utc'.format(x=thing._status)) %}{{ thing | attr('phase_{x}_due_utc'.format(x=thing._status)) | date }}{% endif %}</td>
   </tr>
   {% else %}
   <tr>
