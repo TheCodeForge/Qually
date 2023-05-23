@@ -40,6 +40,9 @@ document.addEventListener('input', function (event) {
   autoExpand(event.target);
 }, false);
 
+
+
+
 //posty
 
 function post(url, callback=function(){}, errortext="") {
@@ -262,3 +265,51 @@ $('.record-value-edit').click(function(){
     approvals.html('');
   })
 });
+
+
+//mobile prompt
+if (("standalone" in window.navigator) &&       // Check if "standalone" property exists
+    window.navigator.standalone){               // Test if using standalone navigator
+
+    // Web page is loaded via app mode (full-screen mode)
+    // (window.navigator.standalone is TRUE if user accesses website via App Mode)
+
+} else {
+  if (window.innerWidth <= 767){
+    try {
+      $('#mobile-prompt').tooltip('show')
+      $('.tooltip').on(
+        'click',
+        function(event){
+          $('#mobile-prompt').tooltip('hide');
+          post('/dismiss_mobile_tip')
+        }
+      )
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+//iOS webapp stuff
+
+(function(document, navigator, standalone) {
+    // prevents links from apps from oppening in mobile safari
+    // this javascript must be the first script in your <head>
+    if ((standalone in navigator) && navigator[standalone]) {
+        var curnode, location = document.location, stop = /^(a|html)$/i;
+        document.addEventListener('click', function(e) {
+            curnode = e.target;
+            while (!(stop).test(curnode.nodeName)) {
+                curnode = curnode.parentNode;
+            }
+            // Condidions to do this only on links to your own app
+            // if you want all links, use if('href' in curnode) instead.
+            if ('href'in curnode && (curnode.href.indexOf('http') || ~curnode.href.indexOf(location.host))) {
+                e.preventDefault();
+                location.href = curnode.href;
+            }
+        }, false);
+    }
+}
+)(document, window.navigator, 'standalone');
