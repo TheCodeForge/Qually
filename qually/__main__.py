@@ -213,11 +213,14 @@ def before_request():
     #Check for authentication
     if session.get("user_id"):
         user = g.db.query(User).options(joinedload(User.organization)).filter_by(id=session.get("user_id")).first()
-        if user and user.is_active and user.login_nonce == session.get("login_nonce", 0):
+        if user.organization.is_banned:
+            session.pop('user_id')
+            session.pop('login_nonce')
+        elif user and user.is_active and user.login_nonce == session.get("login_nonce", 0):
             g.user = user
-        # else:
-        #     session.pop("user_id")
-        #     session.pop("login_nonce")
+        else:
+            session.pop("user_id")
+            session.pop("login_nonce")
 
     #for non-idempotent requests, check csrf token
     if request.method in ["POST", "PUT", "PATCH", "DELETE"] and request.url_rule:
