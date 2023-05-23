@@ -46,3 +46,8 @@ def post_prefs_lang_lang(lang):
 
     session["lang"] = lang
     return "", 204
+
+@app.post("/dismiss_mobile_tooltip")
+def post_dismiss_mobile_tooltip():
+    session['tooltip_dismiss']=g.time
+    return "", 204
