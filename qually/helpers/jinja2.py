@@ -135,8 +135,8 @@ def biz_roles(x):
 
 @app.template_filter("date")
 def jinja_date(x):
-    return format_datetime(datetime.datetime.fromtimestamp(self.created_utc), "dd MMMM yyyy")
+    return format_datetime(datetime.datetime.fromtimestamp(x), "dd MMMM yyyy")
 
 @app.template_filter("datetime")
 def jinja_date(x):
-    return format_datetime(datetime.datetime.fromtimestamp(self.created_utc), "dd MMMM yyyy HH:mm")
+    return format_datetime(datetime.datetime.fromtimestamp(x), "dd MMMM yyyy HH:mm")
