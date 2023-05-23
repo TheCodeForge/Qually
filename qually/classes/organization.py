@@ -50,7 +50,7 @@ class Organization(Base, core_mixin):
     def _cols(cls):
 
 
-        def wrapper(rel, value):
+        def wrapper(value):
 
             @property
             @lazy
@@ -66,7 +66,7 @@ class Organization(Base, core_mixin):
             return wrapped
 
         for role in ROLES:
-            setattr(cls, role['rel'], wrapper(role['rel'], role['value']))
+            setattr(cls, role['rel'], wrapper(role['value']))
 
 
     def __init__(self, **kwargs):
