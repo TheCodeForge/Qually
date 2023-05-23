@@ -5,7 +5,7 @@ except ModuleNotFoundError:
     def _(x):
         return x
 
-class CAPA(Base, core_mixin):
+class CAPA(Base, core_mixin, process_mixin):
 
     __tablename__="capa"
 

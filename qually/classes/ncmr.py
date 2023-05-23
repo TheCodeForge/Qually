@@ -5,7 +5,7 @@ except ModuleNotFoundError:
     def _(x):
         return x
 
-class NCMR(Base, core_mixin):
+class NCMR(Base, core_mixin, process_mixin):
 
     __tablename__="ncmr"
 

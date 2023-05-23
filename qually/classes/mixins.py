@@ -45,6 +45,8 @@ class core_mixin():
     def created_datetime(self):
         return format_datetime(datetime.datetime.fromtimestamp(self.created_utc), "dd MMMM yyyy HH:mm")
 
+class process_mixin()
+
     @property
     @lazy
     def available_transitions(self):
@@ -82,8 +84,6 @@ class core_mixin():
         cls.owner=      relationship("User", primaryjoin=f"User.id=={cls.__name__}.owner_id")
         cls.logs=       relationship(f"{cls.__name__}Log", order_by=f"{cls.__name__}Log.id.desc()")
         cls.approvals=  relationship(f"{cls.__name__}Approval")
-
-
         
 
     @property

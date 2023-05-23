@@ -11,7 +11,7 @@ from qually.helpers.roles import ROLES
 from qually.helpers.security import generate_hash, validate_hash
 import qually.helpers.aws as aws
 
-from qually.classes.mixins import core_mixin
+from qually.classes.mixins import core_mixin, process_mixin
 
 from qually.__main__ import Base, cache, app, debug
 
