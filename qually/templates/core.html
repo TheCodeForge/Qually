@@ -157,13 +157,10 @@
   </nav>
 
   {% block pagebody %}
-  <div class="container-fluid mt-5">
+  <div class="container mt-5">
     <div class="row justify-content-around" id="main-content-row">
 
       {% block wholepage %}
-      <!--left spacer-->
-      <div class="col d-none d-xl-block col-xl-1 col-xxl-2">
-      </div>
       <!--left sidebar goes here-->
       <div id="sidebar-left" class="col sidebar sidebar-left hide-scrollbar border-right d-none d-md-block py-3">
         {% block leftbar %}
@@ -209,9 +206,6 @@
         {{ rightbarcontent() }}
       </div>
 
-      <!--right spacer-->
-      <div class="col d-none d-xl-block col-xl-1 col-xxl-2">
-      </div>
       {% endblock %}
 
     </div>
