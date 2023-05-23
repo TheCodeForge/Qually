@@ -63,7 +63,6 @@ class Organization(Base, core_mixin):
 
                 return list(self._users.filter_by(**kwargs).all())
 
-            wrapped.__name__=role['rel']
             return wrapped
 
         for role in ROLES:
