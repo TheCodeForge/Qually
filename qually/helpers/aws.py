@@ -1,4 +1,5 @@
 import boto3
+import magic
 from os import remove
 from io import BytesIO
 from PIL import Image
@@ -50,7 +51,7 @@ def upload_file(name, file, resize=None):
         Bucket=app.config["S3_BUCKET"],
         Key=name,
         ExtraArgs={
-            "ContentType":"image/png",
+            "ContentType":magic.from_file(tempname, mime=True),
             "StorageClass":"INTELLIGENT_TIERING"
             }
         )

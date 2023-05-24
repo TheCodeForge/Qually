@@ -66,18 +66,34 @@ class process_mixin():
 
     @classmethod
     def _cols(cls):
+
+        #Iterate through process template to create db columns for data captured in process
         data=cls._layout()
+
+        #for each phase in the template...
         for status in data:
+
+            #Due date property
             setattr(cls, f"phase_{status}_due_utc", Column(BigInteger))
+
+            #for each field...
             for entry in data[status]:
+
+                #single line text - safe html only
                 if entry['kind']=='text':
                     setattr(cls, entry['value'], Column(String, default=''))
+
+                #multi line text - raw and safe properties
                 elif entry['kind']=='multi':
                     setattr(cls, entry['value'], Column(String, default=''))
                     setattr(cls, f"{entry['value']}_raw", Column(String, default=''))
+
+                #user selection property
                 elif entry['kind']=='user':
                     setattr(cls, f"{entry['value']}_id", Column(Integer, ForeignKey("users.id")))
                     setattr(cls, entry['value'], relationship("User", primaryjoin=f"User.id=={cls.__name__}.{entry['value']}_id"))
+
+                #other dropdown property, stored as int
                 elif entry['kind']=='dropdown':
                     setattr(cls, entry['value'], Column(Integer, default=None))
 

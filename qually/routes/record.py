@@ -346,4 +346,29 @@ def post_record_record(kind):
 @app.post("/<kind>-<number>/file")
 def kind_number_add_file(kind, number):
 
+    if kind not in VALID_KINDS:
+        abort(404)
+
     record=get_record(kind, number)
+
+    file=request.files.get('file')
+
+    file_obj = File(
+        organization_id=g.user.organization.id,
+        creator_id=g.user.id,
+        created_utc=g.time,
+        ncmr_id=record.id if isinstance(record, NCMR) else None,
+        capa_id=record.id if isinstance(record, CAPA) else None
+        )
+    g.db.add(file_obj)
+    g.db.flush()
+    g.db.refresh(file_obj)
+    
+    aws.upload_file(
+        file,
+        file_obj.s3_name
+        )
+
+    g.db.commit()
+
+    return toast_redirect(record.permalink)
