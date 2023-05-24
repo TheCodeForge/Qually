@@ -44,6 +44,10 @@ def post_record_number(kind, number):
                 value=txt(request.form[entry['value']])
                 response=getattr(record, entry['value']) or "<p></p>"
             elif entry['kind']=='dropdown':
+
+                if int(request.form[entry['value']]) not in entry['values']:
+                    return toast_error(_("Invalid selection for {x}").format(x=entry['name']))
+                    
                 setattr(record, entry['value'], int(request.form[entry['value']]))
                 key=entry['name']
                 value=entry['values'].get(int(request.form[entry['value']]))
@@ -328,6 +332,8 @@ def post_record_record(kind):
                 setattr(record, f"{entry['value']}_raw", request.form[entry['value']])
                 setattr(record, entry['value'], html(request.form[entry['value']]))
             elif entry['kind']=='dropdown':
+                if int(request.form[entry['value']]) not in entry['values']:
+                    return toast_error(_("Invalid selection for {x}").format(x=entry['name']))
                 setattr(record, entry['value'], int(request.form[entry['value']]))
             elif entry['kind']=='user':
                 n=request.form.get(entry['value'])
