@@ -285,7 +285,7 @@ class DeviationApproval(Base, core_mixin):
     __tablename__="dvtn_approval"
 
     id = Column(Integer, primary_key=True)
-    record_id=Column(Integer, ForeignKey("ncmr.id"))
+    record_id=Column(Integer, ForeignKey("dvtn.id"))
     user_id=Column(Integer, ForeignKey("users.id"))
     status_id=Column(Integer)
     created_utc=Column(Integer)
@@ -298,7 +298,7 @@ class DeviationLog(Base, core_mixin):
     __tablename__="dvtn_audit"
 
     id = Column(Integer, primary_key=True)
-    record_id=Column(Integer, ForeignKey("ncmr.id"))
+    record_id=Column(Integer, ForeignKey("dvtn.id"))
     user_id=Column(Integer, ForeignKey("users.id"))
     created_utc=Column(Integer)
     created_ip=Column(String(64))
