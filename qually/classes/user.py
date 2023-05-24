@@ -144,7 +144,7 @@ class User(Base, core_mixin):
         self.del_profile()
         self.profile_nonce += 1
 
-        aws.upload_file(name=f"user/{self.base36id}/profile-{self.profile_nonce}.png",
+        aws.upload_file(name=f"organization/{self.organization.base36id}/user/{self.base36id}/profile-{self.profile_nonce}.png",
                         file=file,
                         resize=(100, 100)
                         )
@@ -156,7 +156,7 @@ class User(Base, core_mixin):
 
     def del_profile(self, db=None):
 
-        aws.delete_file(name=f"user/{self.base36id}/profile-{self.profile_nonce}.png")
+        aws.delete_file(name=f"organization/{self.organization.base36id}/user/{self.base36id}/profile-{self.profile_nonce}.png")
         self.has_profile = False
         self.profile_nonce+=1
         if db:
@@ -171,7 +171,7 @@ class User(Base, core_mixin):
     def profile_url(self):
 
         if self.has_profile:
-            return f"/s3/user/{self.base36id}/profile-{self.profile_nonce}.png"
+            return f"/s3/organization/{self.organization.base36id}/user/{self.base36id}/profile-{self.profile_nonce}.png"
         else:
             return f"/icon/fontawesome/solid//{app.config['COLOR_PRIMARY']}/100"
 

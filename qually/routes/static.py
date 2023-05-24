@@ -83,18 +83,15 @@ def help_home():
 def get_favicon_ico():
     return send_file('./assets/images/logo.png')
 
-
-@app.get("/s3/<object>/<obj_id>/<path:path>")
+@app.get("/s3/organization/<oid>/<path:path>")
 @logged_in
-def get_s3_object_path(object, obj_id, path):
+def get_s3_object_path(oid, path):
 
-    if object=="user":
-        thing = g.user.organization.users.filter_by(id=base36decode(obj_id)).first()
 
-    if not thing:
+    if not g.user.organization_id==int(oid, 36):
         abort(404)
 
-    file, mimetype = aws.download_file(f"{object}/{obj_id}/{path}")
+    file, mimetype = aws.download_file(f"{organization}/{oid}/{path}")
 
     return send_file(file, mimetype=mimetype)
 
