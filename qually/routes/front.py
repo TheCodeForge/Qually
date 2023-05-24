@@ -30,8 +30,8 @@ def get_home():
         },
         "dvtn": {
             "name":_("Deviations"),
-            "owned":g.user.organization.deviations.filter(Deviation.owner_id==g.user.id, Deviation._status<100).all(),
-            "assigned":g.user.organization.deviations.filter(or_(*Deviation._assignment_query_args()), Deviation._status<100).all()
+            "owned":g.user.organization.dvtns.filter(Deviation.owner_id==g.user.id, Deviation._status<100).all(),
+            "assigned":g.user.organization.dvtns.filter(or_(*Deviation._assignment_query_args()), Deviation._status<100).all()
         }
     }
     return render_template("dashboard.html", data=data)
