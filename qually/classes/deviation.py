@@ -33,20 +33,17 @@ class Deviation(Base, core_mixin, process_mixin):
 
         args= [
             and_(
-                NCMR._status==0, 
-                NCMR.owner_id==g.user.id
+                Deviation._status==0, 
+                Deviation.owner_id==g.user.id
                 ),
             and_(
-                NCMR._status==3,
-                NCMR.assignee_id==g.user.id
+                Deviation._status==2,
+                Deviation.corrections_assignee_id==g.user.id
                 )
             ]
 
         if g.user.is_quality_management:
-            args.append(NCMR._status.in_([1,4]))
-        
-        if g.user.is_mrb:
-            args.append(NCMR._status==2)
+            args.append(Deviation._status.in_([1,3]))
 
         return args
     
