@@ -65,7 +65,7 @@ class Deviation(Base, core_mixin, process_mixin):
                 },
             2: {
                 'name': _("Corrections"),
-                'users': self.organization.mrb_users
+                'users': [self.corrections_assignee]
                 },
             3: {
                 'name': _("Final Review"),
