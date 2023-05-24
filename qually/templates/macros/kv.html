@@ -14,7 +14,7 @@
     <div role="button" class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} toggle-target-class" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
         {% if entry.get('kind')=='multi' %} 
-        <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record | attr(entry['value']) | safe }}</div>
+        <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ (record | attr(entry['value']) | safe) or ('<p></p>'|safe) }}</div>
         {% elif entry.get('kind')=='dropdown' %}
         <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record | attr(entry['value']), '') }}</p>
         {% elif entry.get('kind')=='user' %}
@@ -64,7 +64,7 @@
     <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
         {% if entry.get('kind')=='multi' %} 
-        <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record.__dict__.get(entry['value']) | safe }}</div>
+        <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ (record.__dict__.get(entry['value']) | safe) or ('<p></p>'|safe) }}</div>
         {% elif entry.get('kind')=='dropdown' %}
         <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record.__dict__.get(entry['value']), '') }}</p>
 

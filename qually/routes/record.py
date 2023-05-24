@@ -42,7 +42,7 @@ def post_record_number(kind, number):
                 setattr(record, entry['value'], html(request.form[entry['value']]))
                 key=entry['name']
                 value=txt(request.form[entry['value']])
-                response=getattr(record, entry['value'])
+                response=getattr(record, entry['value']) or "<p></p>"
             elif entry['kind']=='dropdown':
                 setattr(record, entry['value'], int(request.form[entry['value']]))
                 key=entry['name']
