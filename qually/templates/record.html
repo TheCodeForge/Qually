@@ -73,6 +73,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <p>{{ tsn.description }}</p>
         <form id="form-approve-{{ tsn['id'] }}" action="{{ record.permalink }}/approve" method="post" class="toasted">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <input type="hidden" name="transition_id" value="{{ tsn['id'] }}">
@@ -100,6 +101,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <p>{{ tsn.description }}</p>
         <form id="form-transition-{{ tsn['id'] }}" action="{{ record.permalink }}/status" method="post" class="toasted">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <input type="hidden" name="transition_id" value="{{ tsn['id'] }}">

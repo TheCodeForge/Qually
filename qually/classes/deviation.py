@@ -226,7 +226,7 @@ class Deviation(Base, core_mixin, process_mixin):
                 {
                     "id":"return",
                     "to": 0,
-                    "name": _("Reject"),
+                    "name": _("Return to Quality Management"),
                     "description": _("Return this record back to Quality Management."),
                     "users": g.user.organization.doc_control_users,
                     "color": "secondary",
