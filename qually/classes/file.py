@@ -12,6 +12,13 @@ class File(Base, core_mixin):
     created_by=Column(Integer, ForeignKey("users.id"))
     sha_256=Column(String(512))
 
+    #connection IDs
+    ncmr_id = Column(Integer, ForeignKey("ncmr.id"))
+    capa_id = Column(Integer, ForeignKey("capa.id"))
+
+    ncmr=relationship("NCMR", lazy="joined", backref="files")
+    capa=relationship("CAPA", lazy="joined", backref="files")
+
     #relationships
     organization=relationship("Organization", lazy="joined")
     creator=relationship("User", lazy="joined")
