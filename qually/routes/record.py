@@ -146,6 +146,11 @@ def post_record_number_status(kind, number):
 
     g.db.add(log)
 
+    #delete any pre-existing approvals on the new status
+    for approval in record.approvals:
+        if approval.status_id==record._status:
+            g.db.delete(approval)
+
     g.db.commit()
 
     return toast_redirect(record.permalink)
@@ -218,6 +223,11 @@ def post_record_number_approve(kind, number):
             )
 
         g.db.add(log)
+
+        #delete any pre-existing approvals on the new status
+        for approval in record.approvals:
+            if approval.status_id==record._status:
+                g.db.delete(approval)
 
 
     g.db.commit()
