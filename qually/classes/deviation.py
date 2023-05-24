@@ -204,7 +204,8 @@ class Deviation(Base, core_mixin, process_mixin):
                     "name": _("Close - No Further Corrections"),
                     "description": _("Approve and close this record with no further corrections needed."),
                     "users": g.user.organization.quality_mgmt_users,
-                    "color": "success"
+                    "color": "success",
+                    "approval":True
                 },
                 {
                     "id":"terminate",
