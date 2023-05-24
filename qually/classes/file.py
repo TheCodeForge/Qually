@@ -30,4 +30,9 @@ class File(Base, core_mixin):
     def s3_link(self):
 
         return f"/s3/organization/{self.organization.base36id}/file/{self.base36id}"
+
+    @property
+    def owning_object(self):
+        return self.ncmr or self.capa
+    
     
