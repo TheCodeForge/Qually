@@ -43,8 +43,9 @@ class Organization(Base, core_mixin):
     _users=relationship("User", lazy="dynamic")
     logs=relationship("OrganizationAuditLog", lazy="dynamic", order_by="OrganizationAuditLog.id.desc()")
     
-    ncmrs=relationship("NCMR", lazy="dynamic", viewonly=True)
-    capas=relationship("CAPA", lazy="dynamic", viewonly=True)
+    ncmrs       =relationship("NCMR",       lazy="dynamic", viewonly=True)
+    capas       =relationship("CAPA",       lazy="dynamic", viewonly=True)
+    deviations  =relationship("Deviation",  lazy="dynamic", viewonly=True)
 
     @classmethod
     def _cols(cls):

@@ -22,11 +22,16 @@ def get_home():
             "name":_("Non-Conforming Material Reports"),
             "owned":g.user.organization.ncmrs.filter(NCMR.owner_id==g.user.id, NCMR._status<100).all(),
             "assigned":g.user.organization.ncmrs.filter(or_(*NCMR._assignment_query_args()), NCMR._status<100).all()
-            },
+        },
         "capa": {
             "name":_("Corrective and Preventive Actions"),
             "owned":g.user.organization.capas.filter(CAPA.owner_id==g.user.id, CAPA._status<100).all(),
             "assigned":g.user.organization.capas.filter(or_(*CAPA._assignment_query_args()), CAPA._status<100).all()
+        },
+        "dvtn": {
+            "name":_("Deviations"),
+            "owned":g.user.organization.deviations.filter(Deviation.owner_id==g.user.id, Deviation._status<100).all(),
+            "assigned":g.user.organization.deviations.filter(or_(*Deviation._assignment_query_args()), Deviation._status<100).all()
         }
     }
     return render_template("dashboard.html", data=data)
