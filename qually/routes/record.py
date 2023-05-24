@@ -47,7 +47,7 @@ def post_record_number(kind, number):
 
                 if int(request.form[entry['value']]) not in entry['values']:
                     return toast_error(_("Invalid selection for {x}").format(x=entry['name']))
-                    
+
                 setattr(record, entry['value'], int(request.form[entry['value']]))
                 key=entry['name']
                 value=entry['values'].get(int(request.form[entry['value']]))
@@ -107,6 +107,9 @@ def post_record_number(kind, number):
     g.db.add(log)
 
     g.db.commit()
+
+    if entry.get('reload'):
+        return toast_redirect(record.permalink)
 
     return toast(_("Changes saved"), data={"new":response})
 

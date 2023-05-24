@@ -151,6 +151,7 @@ class Deviation(Base, core_mixin, process_mixin):
                     "value":"approve_to",
                     "kind": "dropdown",
                     "values": cls._approval_to(),
+                    "reload": True
                 }
             ],
             2:[
@@ -208,18 +209,9 @@ class Deviation(Base, core_mixin, process_mixin):
                 },
                 {
                     "id":"advance",
-                    "to": 2,
+                    "to": self.approve_to,
                     "name": _("Advance"),
                     "description": _("Advance this record to Corrections."),
-                    "users": g.user.organization.quality_mgmt_users,
-                    "color": "success",
-                    "approval":True
-                },
-                {
-                    "id":"approve_and_close",
-                    "to": 100,
-                    "name": _("Close - No Further Corrections"),
-                    "description": _("Approve and close this record with no further corrections needed."),
                     "users": g.user.organization.quality_mgmt_users,
                     "color": "success",
                     "approval":True
