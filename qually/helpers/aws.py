@@ -61,14 +61,14 @@ def download_file(name):
 
     b=BytesIO()
 
-    #try:
-    S3.download_fileobj(
-        app.config["S3_BUCKET"],
-        name,
-        b
-        )
-    #except:
-    #    abort(404)
+    try:
+        S3.download_fileobj(
+            app.config["S3_BUCKET"],
+            name,
+            b
+            )
+    except:
+       abort(404)
 
     b.seek(0)
 
