@@ -95,6 +95,14 @@ class Organization(Base, core_mixin):
         g.db.commit()
         return self.capa_counter
 
+
+    @property
+    def next_dvtn_id(self):
+        self.capa_counter+=1
+        g.db.add(self)
+        g.db.commit()
+        return self.capa_counter
+
     @property
     @lazy
     def licenses_used(self):

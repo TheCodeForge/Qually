@@ -6,7 +6,8 @@ except ModuleNotFoundError:
 
 VALID_KINDS={
     'ncmr':NCMR,
-    'capa':CAPA
+    'capa':CAPA,
+    'dvtn':Deviation
 }
 
 @app.get("/<kind>-<number>")

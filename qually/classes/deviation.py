@@ -7,7 +7,7 @@ except ModuleNotFoundError:
 
 class Deviation(Base, core_mixin, process_mixin):
 
-    __tablename__="ncmr"
+    __tablename__="dvtn"
 
     id = Column(Integer, primary_key=True)
     created_utc=Column(Integer)
@@ -278,11 +278,11 @@ class Deviation(Base, core_mixin, process_mixin):
             ]
         }
 
-NCMR._cols()
+Deviation._cols()
     
 class DeviationApproval(Base, core_mixin):
 
-    __tablename__="ncmr_approval"
+    __tablename__="dvtn_approval"
 
     id = Column(Integer, primary_key=True)
     record_id=Column(Integer, ForeignKey("ncmr.id"))
@@ -295,7 +295,7 @@ class DeviationApproval(Base, core_mixin):
 
 class DeviationLog(Base, core_mixin):
 
-    __tablename__="ncmr_audit"
+    __tablename__="dvtn_audit"
 
     id = Column(Integer, primary_key=True)
     record_id=Column(Integer, ForeignKey("ncmr.id"))
