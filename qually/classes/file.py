@@ -19,6 +19,8 @@ class File(Base, core_mixin):
     ncmr=relationship("NCMR", lazy="joined", backref="files")
     capa=relationship("CAPA", lazy="joined", backref="files")
 
+    stage_id=Column(Integer)
+
     #relationships
     organization=relationship("Organization", lazy="joined")
     creator=relationship("User", lazy="joined")
