@@ -1,9 +1,14 @@
 import boto3
-import magic
 from os import remove
 from io import BytesIO
 from PIL import Image
 from flask import abort
+
+try:
+    import magic
+except:
+    pass
+
 from qually.__main__ import app
 
 if app.config.get("SERVER_NAME"):
