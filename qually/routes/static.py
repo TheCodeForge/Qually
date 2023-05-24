@@ -91,9 +91,7 @@ def get_s3_object_path(oid, path):
     if not g.user.organization_id==int(oid, 36):
         abort(404)
 
-    path=f"{organization}/{oid}/{path}"
-
-    file, mimetype = aws.download_file(path)
+    file, mimetype = aws.download_file(f"organization/{oid}/{path}")
 
     return send_file(file, mimetype=mimetype)
 
