@@ -49,10 +49,6 @@ class NCMR(Base, core_mixin, process_mixin):
             args.append(NCMR._status==2)
 
         return args
-
-    @property
-    def permalink(self):
-        return f"/NCMR-{self.number:0>5}"
     
     @property
     def name(self):

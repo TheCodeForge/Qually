@@ -49,15 +49,11 @@ class Deviation(Base, core_mixin, process_mixin):
             args.append(NCMR._status==2)
 
         return args
-
-    @property
-    def permalink(self):
-        return f"/NCMR-{self.number:0>5}"
     
     @property
     def name(self):
         with force_locale(g.user.organization.lang):
-            return _("NCMR-")+f"{self.number:0>5}"
+            return _("DVTN-")+f"{self.number:0>5}"
 
     @property
     def _lifecycle(self):
@@ -110,7 +106,7 @@ class Deviation(Base, core_mixin, process_mixin):
                     "name":_("Description of deviation"),
                     "value":"dvtn_description",
                     "kind": "multi",
-                    "help":_("Identify the process or procedure not being followed.")
+                    "help":_("Identify the process or procedure deviated from, and the manner in which that deviation occurred.")
                 },
                 {
                     "name":_("Planned?"),

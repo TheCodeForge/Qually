@@ -48,6 +48,11 @@ class core_mixin():
 class process_mixin():
 
     @property
+    def permalink(self):
+        return f"{self._name}-{self.number:0>5}"
+
+
+    @property
     @lazy
     def available_transitions(self):
 
