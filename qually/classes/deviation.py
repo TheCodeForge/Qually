@@ -96,6 +96,20 @@ class Deviation(Base, core_mixin, process_mixin):
             return data()
 
     @classmethod
+    def _approval_to(cls):
+
+        data=lambda:{
+                    2: _("Corrections"),
+                    100: _("Closed")
+            }
+
+        try:
+            with force_locale(g.user.organization.lang):
+                return data()
+        except (RuntimeError, NameError) as e:
+            return data()
+
+    @classmethod
     def _layout(cls):
         return {
             0:[
@@ -131,6 +145,12 @@ class Deviation(Base, core_mixin, process_mixin):
                     "value": "corrections_assignee",
                     "kind": "user",
                     "help": _("Identify individual responsible for completing further corrections.")
+                },
+                {
+                    "name":_("Approve to"),
+                    "value":"approve_to",
+                    "kind": "dropdown",
+                    "values": cls._approval_to(),
                 }
             ],
             2:[
