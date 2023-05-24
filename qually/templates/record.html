@@ -62,8 +62,7 @@
 {% block modals %}
 {% for tsn in record._transitions[record._status] if g.user in tsn['users'] %}
 
-{% if tsn.get('approval', False) %}
-{% if not record.has_approved %}
+{% if tsn.get('approval', False) and not record.has_approved %}
 <!--{{ tsn['id'] }} approve modal-->
 <div class="modal fade" id="modal-{{ tsn['id'] }}-{{record.base36id}}" tabindex="-1" aria-labelledby="modal-approve-label" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -89,9 +88,13 @@
     </div>
   </div>
 </div>
-{% endif %}
-{% else %}
 
+
+
+{% endif %}
+{% endfor %}
+
+{% if record.has_approved %}
 <!--{{ tsn['id'] }} phase modal-->
 <div class="modal fade" id="modal-{{ tsn['id'] }}-{{record.base36id}}" tabindex="-1" aria-labelledby="modal-approve-label" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -117,7 +120,6 @@
     </div>
   </div>
 </div>
-
 {% endif %}
-{% endfor %}
+
 {% endblock %}
