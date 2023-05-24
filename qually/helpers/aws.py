@@ -2,6 +2,7 @@ import boto3
 from os import remove
 from io import BytesIO
 from PIL import Image
+from flask import abort
 from qually.__main__ import app
 
 if app.config.get("SERVER_NAME"):
@@ -60,11 +61,14 @@ def download_file(name):
 
     b=BytesIO()
 
+    #try:
     S3.download_fileobj(
         app.config["S3_BUCKET"],
         name,
         b
         )
+    #except:
+    #    abort(404)
 
     b.seek(0)
 
