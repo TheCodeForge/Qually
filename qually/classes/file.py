@@ -10,7 +10,8 @@ class File(Base, core_mixin):
     created_utc=Column(Integer)
     organization_id = Column(Integer, ForeignKey("organizations.id"))
     created_by=Column(Integer, ForeignKey("users.id"))
-    sha_256=Column(String(512))
+    sha512=Column(String(128))
+    file_name=Column(String)
 
     #connection IDs
     ncmr_id = Column(Integer, ForeignKey("ncmr.id"))
@@ -28,7 +29,6 @@ class File(Base, core_mixin):
 
     @property
     def s3_link(self):
-
         return f"/s3/organization/{self.organization.base36id}/file/{self.base36id}"
 
     @property

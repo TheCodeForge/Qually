@@ -341,3 +341,9 @@ def post_record_record(kind):
     g.db.commit()
 
     return toast_redirect(record.permalink)
+
+
+@app.post("/<kind>-<number>/file")
+def kind_number_add_file(kind, number):
+
+    record=get_record(kind, number)
