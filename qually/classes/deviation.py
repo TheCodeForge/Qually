@@ -22,7 +22,7 @@ class Deviation(Base, core_mixin, process_mixin):
             UniqueConstraint(
                 'number', 
                 'organization_id',
-                name=f'ncmr_org_number_unique'
+                name=f'dvtn_org_number_unique'
                 ),
             )
 

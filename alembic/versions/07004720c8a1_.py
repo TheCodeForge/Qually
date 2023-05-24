@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: eeadb93f7835
+Revision ID: 07004720c8a1
 Revises: f770130d3180
-Create Date: 2023-05-24 17:45:12.589988
+Create Date: 2023-05-24 17:51:22.538107
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'eeadb93f7835'
+revision = '07004720c8a1'
 down_revision = 'f770130d3180'
 branch_labels = None
 depends_on = None
@@ -43,7 +43,7 @@ def upgrade() -> None:
     sa.ForeignKeyConstraint(['organization_id'], ['organizations.id'], ),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('number', 'organization_id', name='ncmr_org_number_unique')
+    sa.UniqueConstraint('number', 'organization_id', name='dvtn_org_number_unique')
     )
     op.create_index(op.f('ix_dvtn_number'), 'dvtn', ['number'], unique=False)
     op.create_table('dvtn_approval',
@@ -52,7 +52,7 @@ def upgrade() -> None:
     sa.Column('user_id', sa.Integer(), nullable=True),
     sa.Column('status_id', sa.Integer(), nullable=True),
     sa.Column('created_utc', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['record_id'], ['ncmr.id'], ),
+    sa.ForeignKeyConstraint(['record_id'], ['dvtn.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -64,7 +64,7 @@ def upgrade() -> None:
     sa.Column('created_ip', sa.String(length=64), nullable=True),
     sa.Column('key', sa.String(), nullable=True),
     sa.Column('value', sa.String(), nullable=True),
-    sa.ForeignKeyConstraint(['record_id'], ['ncmr.id'], ),
+    sa.ForeignKeyConstraint(['record_id'], ['dvtn.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
