@@ -45,7 +45,7 @@ class core_mixin():
     def created_datetime(self):
         return format_datetime(datetime.datetime.fromtimestamp(self.created_utc), "dd MMMM yyyy HH:mm")
 
-class process_mixin()
+class process_mixin():
 
     @property
     @lazy
