@@ -352,7 +352,8 @@ def post_record_record(kind):
         created_utc=g.time,
         user_id=g.user.id,
         key="State",
-        value="Open"
+        value="Open",
+        ip_address=request.remote_addr
         )
     g.db.add(log)
     g.db.commit()
