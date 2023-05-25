@@ -62,11 +62,12 @@ def post_record_number(kind, number):
                     g.db.flush()
                     g.db.refresh(record)
                     value=getattr(record, entry['value']).name
+                    response=f'<a href="{getattr(record, entry["value"]).permalink}">{getattr(record, entry["value"]).name}</a>'
                 else:
                     setattr(record, entry['value'], None)
+                    response="<p></p>"
                     value=""
                 key=entry['name']
-                response=f'<a href="{getattr(record, entry["value"]).permalink}">{getattr(record, entry["value"]).name}</a>'
             else:
                 setattr(record, entry['value'], txt(request.form[entry['value']]))
                 key=entry['name']
