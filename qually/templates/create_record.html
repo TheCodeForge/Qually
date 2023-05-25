@@ -2,7 +2,7 @@
 
 {% block page %}
 <div>
-  <h1 class="h2 mt-3">{{_("Create {x}").format(x=obj._name)}}</h1>
+  <h1 class="h2 mt-3">{{_("Create {x}").format(x=obj.name_readable)}}</h1>
 
   <form id="form-ncmr" action="{{ request.path }}" method="post" class="my-0 toasted">
 
