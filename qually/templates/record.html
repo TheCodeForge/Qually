@@ -39,8 +39,7 @@
 {% block rightbar %}
 {% for tsn in record._transitions[record._status] if g.user in tsn['users'] %}
 
-{% if not tsn['to'] %}
-
+{% if tsn['to']==None %}
 <button type="button" class="btn btn-{{ tsn['color'] }} w-100 mt-2 disabled">{{ tsn['name'] }}</button>
 
 {% elif tsn.get('approval', False) %}
