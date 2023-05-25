@@ -37,7 +37,7 @@
 
 
 {% block rightbar %}
-{% for tsn in record._transitions[record._status] if g.user in tsn['users'] %}
+{% for tsn in record._transitions[record._status] if g.user in tsn['users'] and tsn['to'] %}
 
 {% if tsn.get('approval', False) %}
 {% if not record.has_approved %}
