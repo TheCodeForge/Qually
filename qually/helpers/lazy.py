@@ -24,6 +24,8 @@ def tryer(f):
 
     def wrapper(*args, **kwargs):
 
+        print(f"WARNING - use of @tryer on {f}")
+
         try:
             return f(*args, **kwargs)
         except Exception as e:
