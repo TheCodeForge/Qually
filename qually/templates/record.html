@@ -53,10 +53,11 @@
 {% endfor %}
 
 {% if record.has_approved %}
-<form id="form-unapprove-{{ tsn['id'] }}" action="{{ record.permalink }}/unapprove" method="post" class="toasted">
+<form id="form-unapprove-{{ record._status }}" action="{{ record.permalink }}/unapprove" method="post" class="toasted">
   <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+  <input type="hidden" name="status" value="{{ record._status }}">
 </form>
-<a class="w-100 mt-2 btn btn-warning toast-form-submit" data-form="form-unapprove-{{ tsn['id'] }}" href="javascript:void(0)">{{_("Remove Signature")}}</a>
+<a class="w-100 mt-2 btn btn-warning toast-form-submit" data-form="form-unapprove-{{ record._status }}" href="javascript:void(0)">{{_("Remove Signature")}}</a>
 {% endif %}
 
 {% endblock %}
