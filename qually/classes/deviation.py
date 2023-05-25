@@ -66,12 +66,12 @@ class Deviation(Base, core_mixin, process_mixin):
             2: {
                 'name': _("Corrections"),
                 'users': [self.corrections_assignee],
-                'hide':lambda:self.approve_to==100
+                'hide': self.approve_to==100
                 },
             3: {
                 'name': _("Final Review"),
                 'users': self.organization.quality_mgmt_users,
-                'hide':lambda:self.approve_to==100
+                'hide': self.approve_to==100
                 },
             100: {
                 'name': _("Closed"),
@@ -148,14 +148,14 @@ class Deviation(Base, core_mixin, process_mixin):
                     "value": "outstanding_corrections",
                     "kind": "multi",
                     "help": _("Identify outstanding corrections needed, if any."),
-                    "hide":lambda:self.approve_to==100
+                    "hide": self.approve_to==100
                 },
                 {
                     "name":_("Corrections Assignee"),
                     "value": "corrections_assignee",
                     "kind": "user",
                     "help": _("Identify individual responsible for completing further corrections."),
-                    "hide":lambda:self.approve_to==100
+                    "hide": self.approve_to==100
                 }
             ],
             2:[
