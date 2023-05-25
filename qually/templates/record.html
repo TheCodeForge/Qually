@@ -57,7 +57,8 @@
   <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
 </form>
 <a class="w-100 mt-2 btn btn-warning toast-form-submit" data-form="form-unapprove-{{ tsn['id'] }}" href="javascript:void(0)">{{_("Remove Signature")}}</a>
-{% e}
+{% endif %}
+
 {% endblock %}
 
 {% block modals %}
