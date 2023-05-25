@@ -28,8 +28,8 @@ class NCMR(Base, core_mixin, process_mixin):
 
     organization=relationship("Organization")
 
-    @property
-    def name_readable(self):
+    @classmethod
+    def name_readable(cls):
         return _("Non-Conforming Material Report")
 
     @classmethod
