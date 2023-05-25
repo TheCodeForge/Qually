@@ -4,7 +4,7 @@
 
 <div>
 
-  {% for entry in record._layout()[section] %}
+  {% for entry in record._layout()[section] if ('hide' not in entry or entry['hide']()==False) %}
   <div class="d-lg-flex mt-3">
     <div class="title w-lg-25">
       <label>{{ entry['name'] }}</label>
