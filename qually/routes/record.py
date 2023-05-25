@@ -109,7 +109,7 @@ def post_record_number(kind, number):
 
     g.db.commit()
 
-    if entry.get('reload'):
+    if entry.get('reload') or approvals_cleared:
         return toast_redirect(record.permalink)
 
     return toast(_("Changes saved"), data={"new":response})
