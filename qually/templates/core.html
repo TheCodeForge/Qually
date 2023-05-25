@@ -107,13 +107,11 @@
         <ul class="navbar-nav ms-auto my-1 mb-lg-0 d-print-none">
           
           {% if g.user %}
-          {% for entry in links %}
+          {% for entry in links if entry.get('url') %}
           <li class="nav-item mx-1 mt-3 d-md-none featurelink text-uppercase">
             <div class="d-flex">
               <div class="hanging-indent">
-                {% if entry.get('url') %}
                 <a href="{{ entry['url'] }}" class="text-secondary fw-bold"><i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg text-primary"></i><span class="text-small">{{ entry['name'] }}</span></a>
-                {% endif %}
               </div>
               {% if entry.get('new_url') and g.user.has_seat %}
               <div class="ms-auto">
