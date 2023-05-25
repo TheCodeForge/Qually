@@ -247,11 +247,7 @@ def post_record_number_unapprove(kind, number):
 
     record = get_record(kind, number)
 
-    transition = [x for x in record._transitions[record._status] if x['id']==request.form.get('transition_id')]
-
-    try:
-        transition=transition[0]
-    except IndexError:
+    if int(request.form.get("status"))!=record._status:
         return toast_error(_("This record has changed status. Please reload this page."), 403)
 
     approvals = [x for x in record.approvals if x.user_id==g.user.id and x.status_id==record._status]
