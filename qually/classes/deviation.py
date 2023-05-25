@@ -171,7 +171,6 @@ class Deviation(Base, core_mixin, process_mixin):
         }
     
     @property
-    @tryer
     def _transitions(self):
 
         return {
