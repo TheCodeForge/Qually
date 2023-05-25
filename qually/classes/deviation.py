@@ -211,7 +211,7 @@ class Deviation(Base, core_mixin, process_mixin):
                     "id":"advance",
                     "to": self.approve_to,
                     "name": _("Advance"),
-                    "description": _("Advance this record to Corrections."),
+                    "description": _("Advance this record to {x}.").format(x=self.layout()[self.approve_to]['name']),
                     "users": g.user.organization.quality_mgmt_users,
                     "color": "success",
                     "approval":True
