@@ -90,6 +90,10 @@
     {
       "name":_("Test Report"),
       "icon":"chart-column"
+    },
+    {
+      "name":_("Requirements"),
+      "icon":"list-check"
     }
   ]%}
   
@@ -108,9 +112,7 @@
             <div class="d-flex">
               <div class="hanging-indent">
                 {% if entry.get('url') %}
-                <a href="{{ entry['url'] }}" class="text-secondary fw-bold"><i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg "></i><span class="text-small">{{ entry['name'] }}</span></a>
-                {% else %}
-                <i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg text-muted"></i><span class="text-small text-muted">{{ entry['name'] }}</span>
+                <a href="{{ entry['url'] }}" class="text-secondary fw-bold"><i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg text-primary"></i><span class="text-small">{{ entry['name'] }}</span></a>
                 {% endif %}
               </div>
               {% if entry.get('new_url') and g.user.has_seat %}
@@ -172,7 +174,7 @@
                 <div class="d-flex">
                   <div class="hanging-indent">
                     {% if entry.get('url') %}
-                    <a href="{{ entry['url'] }}" class="text-secondary fw-bold"><i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg "></i><span class="text-small">{{ entry['name'] }}</span></a>
+                    <a href="{{ entry['url'] }}" class="text-secondary fw-bold"><i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg text-primary"></i><span class="text-small">{{ entry['name'] }}</span></a>
                     {% else %}
                     <i class="fas fa-fw fa-{{ entry['icon'] }} fa-lg text-muted"></i><span class="text-small text-muted">{{ entry['name'] }}</span>
                     {% endif %}
