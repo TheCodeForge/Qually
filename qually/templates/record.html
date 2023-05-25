@@ -56,7 +56,7 @@
 {% endfor %}
 
 {% if record.has_approved %}
-<form id="form-unapprove-{{ record._status }}" action="{{ record.permalink }}/unapprove" method="post" class="toasted">
+<form id="form-unapprove-{{ record._status }}" action="{{ record.permalink }}/unapprove" method="post" class="toasted d-none">
   <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
   <input type="hidden" name="status" value="{{ record._status }}">
 </form>
