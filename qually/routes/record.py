@@ -347,15 +347,16 @@ def post_record_record(kind):
     g.db.add(record)
     g.db.flush()
 
-    log = eval(f"{record.__class__.__name__}Log")(
-        record_id=record.id,
-        created_utc=g.time,
-        user_id=g.user.id,
-        key="State",
-        value="Open",
-        ip_address=request.remote_addr
-        )
-    g.db.add(log)
+    with force_locale(g.user.organization.lang):
+        log = eval(f"{record.__class__.__name__}Log")(
+            record_id=record.id,
+            created_utc=g.time,
+            user_id=g.user.id,
+            key=_("State"),
+            value=_("Open"),
+            ip_address=request.remote_addr
+            )
+        g.db.add(log)
     g.db.commit()
 
     return toast_redirect(record.permalink)
@@ -369,7 +370,8 @@ def kind_number_add_file(kind, number):
     if not record.can_edit(int(request.form.get("status_id"))):
         return toast_error(_("This record has changed status. Please reload this page."), 403)
 
-    for upload in request.files.getlist('file'):
+    uploads=request.files.getlist('file')
+    for upload in uploads:
 
         file_obj = File(
             organization_id=g.user.organization.id,
@@ -393,6 +395,34 @@ def kind_number_add_file(kind, number):
 
         g.db.commit()
 
+        log = eval(f"{record.__class__.__name__}Log")(
+        record_id=record.id,
+        created_utc=g.time,
+        user_id=g.user.id,
+        key="",
+        value="Open",
+        ip_address=request.remote_addr
+        )
+    g.db.add(log)
+
+    g.db.flush()
+
+    with force_locale(g.user.organization.lang):
+        log = eval(f"{record.__class__.__name__}Log")(
+            record_id=record.id,
+            created_utc=g.time,
+            user_id=g.user.id,
+            key=_("Files"),
+            value=_("Upload to {stage}: {names}").format(
+                stage=record._lifecycle[int(request.form.get("status_id"))].name, 
+                names=", ".join([x.filename for x in uploads])
+                ),
+            ip_address=request.remote_addr
+            )
+        g.db.add(log)
+
+    g.db.commit()
+
     return toast_redirect(record.permalink)
 
 @app.post("/<kind>-<number>/file/<fid>/delete")
@@ -401,12 +431,31 @@ def kind_number_delete_file(kind, number, fid):
     record=get_record(kind, number)
     file_obj=[f for f in record.files if f.id==int(fid, 36)][0]
 
-    if not record.can_edit(file_obj.status_id):
+    status=file_obj.status_id
+
+    if not record.can_edit(status):
         return toast_error(_("This record has changed status. Please reload this page."), 403)
 
+    name=file_obj.file_name
 
     aws.delete_file(file_obj.s3_name)
 
     g.db.delete(file_obj)
+
+    g.db.flush()
+
+    with force_locale(g.user.organization.lang):
+        log = eval(f"{record.__class__.__name__}Log")(
+            record_id=record.id,
+            created_utc=g.time,
+            user_id=g.user.id,
+            key=_("Files"),
+            value=_("Delete from {stage}: {name}").format(
+                stage=record._lifecycle[status].name, 
+                name=name),
+            ip_address=request.remote_addr
+            )
+        g.db.add(log)
+
     g.db.commit()
     return toast_redirect(record.permalink)
