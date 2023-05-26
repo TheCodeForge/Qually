@@ -366,6 +366,9 @@ def kind_number_add_file(kind, number):
 
     record=get_record(kind, number)
 
+    if not record.can_edit(int(request.form.get("status_id"))):
+        return toast_error(_("This record has changed status. Please reload this page."), 403)
+
     file=request.files.get('file')
 
     file_obj = File(

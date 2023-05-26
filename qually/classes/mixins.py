@@ -111,3 +111,6 @@ class process_mixin():
     def status(self):
 
         return self._lifecycle[self._status]['name']
+
+    def can_edit(self, section):
+        return g.user.has_seat and g.user in record._lifecycle[section]['users'] and (record._status == section or (record._status < section and record._lifecycle[section].get('early')=="edit"))

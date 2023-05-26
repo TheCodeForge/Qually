@@ -1,6 +1,6 @@
 {% macro kv(record, section) %}
 
-{% set can_edit=g.user.has_seat and g.user in record._lifecycle[section]['users'] and (record._status == section or (record._status < section and record._lifecycle[section].get('early')=="edit")) %}
+{% set can_edit= record.can_edit(section) %}
 
 <div>
 
