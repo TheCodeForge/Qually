@@ -29,7 +29,7 @@ def post_record_number(kind, number):
 
     #allow saving of future things if editable
     with force_locale(g.user.organization.lang):
-        phases = [x for x in record._lifecycle if x==record._status or (x>record._status and record._lifecycle[x].get('early')=='edit')]
+        phases = [x for x in record._lifecycle if record.can_edit(x)]
 
     entries=[]
     for phase in phases:
@@ -381,6 +381,7 @@ def kind_number_add_file(kind, number):
         dvtn_id=record.id if isinstance(record, Deviation) else None,
         file_name=file.filename
         )
+
     g.db.add(file_obj)
     g.db.flush()
     g.db.refresh(file_obj)
@@ -392,4 +393,20 @@ def kind_number_add_file(kind, number):
 
     g.db.commit()
 
+    return toast_redirect(record.permalink)
+
+@app.post("/<kind>-<number>/file/<fid>/delete")
+def kind_number_delete_file(kind, number, fid):
+
+    record=get_record(kind, number)
+
+    if not record.can_edit(int(request.form.get("status_id"))):
+        return toast_error(_("This record has changed status. Please reload this page."), 403)
+
+    file_obj=[f for f in record.files if f.id==int(fid, 36)][0]
+
+    aws.delete_file(file_obj.s3_name)
+
+    g.db.delete(file_obj)
+    g.db.commit()
     return toast_redirect(record.permalink)
