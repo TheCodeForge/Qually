@@ -92,12 +92,14 @@
         <a href="{{ file.s3_link }}" target="_blank">{{ file.file_name }}</a>
       </div>
       {% endfor %}
+      {% if can_edit %}
       <div>
-        <form action="{{ record.permalink }}/file" method="post" enctype="multipart/form-data">
+        <form id="form-attach-file-{{ section }}" action="{{ record.permalink }}/file" method="post" enctype="multipart/form-data" class="toasted">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-          <input type="file" name="file">
+          <input type="file" name="file" class="form-control toast-form-change-submit" data-form="form-attach-file-{{ section }}">
         </form>
       </div>
+      {% endif %}
     </div>
   </div>
   {% endif %}
