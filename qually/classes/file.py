@@ -16,9 +16,11 @@ class File(Base, core_mixin):
     #connection IDs
     ncmr_id = Column(Integer, ForeignKey("ncmr.id"))
     capa_id = Column(Integer, ForeignKey("capa.id"))
+    dvtn_id = Column(Integer, ForeignKey("deviation.id"))
 
     ncmr=relationship("NCMR", lazy="joined", backref="files")
     capa=relationship("CAPA", lazy="joined", backref="files")
+    deviation=relationship("Deviation", lazy="joined", backref="files")
 
     stage_id=Column(Integer)
 
