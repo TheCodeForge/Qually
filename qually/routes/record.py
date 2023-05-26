@@ -368,9 +368,6 @@ def kind_number_add_file(kind, number):
 
     file=request.files.get('file')
 
-    print(file)
-    print(dir(file))
-
     file_obj = File(
         organization_id=g.user.organization.id,
         creator_id=g.user.id,
@@ -378,7 +375,8 @@ def kind_number_add_file(kind, number):
         status_id=int(request.form.get("status_id")),
         ncmr_id=record.id if isinstance(record, NCMR) else None,
         capa_id=record.id if isinstance(record, CAPA) else None,
-        dvtn_id=record.id if isinstance(record, Deviation) else None
+        dvtn_id=record.id if isinstance(record, Deviation) else None,
+        name=file.filename
         )
     g.db.add(file_obj)
     g.db.flush()
