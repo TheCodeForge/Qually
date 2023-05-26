@@ -31,12 +31,11 @@ class File(Base, core_mixin):
 
     @property
     def s3_name(self):
-        return f"organization/{self.organization.base36id}/file/{self.base36id}"
+        return f"organization/{self.organization.base36id}/file/{self.base36id}/{self.file_name}"
 
     @property
     def s3_link(self):
         return f"/s3/{self.s3_name}"
-    
 
     @property
     def owning_object(self):
