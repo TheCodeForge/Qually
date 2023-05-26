@@ -376,7 +376,7 @@ def kind_number_add_file(kind, number):
         ncmr_id=record.id if isinstance(record, NCMR) else None,
         capa_id=record.id if isinstance(record, CAPA) else None,
         dvtn_id=record.id if isinstance(record, Deviation) else None,
-        name=file.filename
+        file_name=file.filename
         )
     g.db.add(file_obj)
     g.db.flush()
