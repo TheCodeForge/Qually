@@ -369,29 +369,29 @@ def kind_number_add_file(kind, number):
     if not record.can_edit(int(request.form.get("status_id"))):
         return toast_error(_("This record has changed status. Please reload this page."), 403)
 
-    file=request.files.get('file')
+    for upload in request.files.getlist('file'):
 
-    file_obj = File(
-        organization_id=g.user.organization.id,
-        creator_id=g.user.id,
-        created_utc=g.time,
-        status_id=int(request.form.get("status_id")),
-        ncmr_id=record.id if isinstance(record, NCMR) else None,
-        capa_id=record.id if isinstance(record, CAPA) else None,
-        dvtn_id=record.id if isinstance(record, Deviation) else None,
-        file_name=file.filename
-        )
+        file_obj = File(
+            organization_id=g.user.organization.id,
+            creator_id=g.user.id,
+            created_utc=g.time,
+            status_id=int(request.form.get("status_id")),
+            ncmr_id=record.id if isinstance(record, NCMR) else None,
+            capa_id=record.id if isinstance(record, CAPA) else None,
+            dvtn_id=record.id if isinstance(record, Deviation) else None,
+            file_name=upload.filename
+            )
 
-    g.db.add(file_obj)
-    g.db.flush()
-    g.db.refresh(file_obj)
-    
-    aws.upload_file(
-        file_obj.s3_name,
-        file
-        )
+        g.db.add(file_obj)
+        g.db.flush()
+        g.db.refresh(file_obj)
+        
+        aws.upload_file(
+            file_obj.s3_name,
+            upload
+            )
 
-    g.db.commit()
+        g.db.commit()
 
     return toast_redirect(record.permalink)
 
