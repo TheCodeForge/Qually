@@ -11,6 +11,7 @@ class File(Base, core_mixin):
     organization_id = Column(Integer, ForeignKey("organizations.id"))
     creator_id=Column(Integer, ForeignKey("users.id"))
     sha512=Column(String(128))
+    status_id=Column(Integer)
     file_name=Column(String)
 
     #connection IDs
