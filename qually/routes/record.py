@@ -354,7 +354,7 @@ def post_record_record(kind):
             user_id=g.user.id,
             key=_("State"),
             value=_("Open"),
-            ip_address=request.remote_addr
+            created_ip=request.remote_addr
             )
         g.db.add(log)
     g.db.commit()
@@ -393,19 +393,7 @@ def kind_number_add_file(kind, number):
             upload
             )
 
-        g.db.commit()
-
-        log = eval(f"{record.__class__.__name__}Log")(
-        record_id=record.id,
-        created_utc=g.time,
-        user_id=g.user.id,
-        key="",
-        value="Open",
-        ip_address=request.remote_addr
-        )
-    g.db.add(log)
-
-    g.db.flush()
+        g.db.flush()
 
     with force_locale(g.user.organization.lang):
         log = eval(f"{record.__class__.__name__}Log")(
@@ -417,7 +405,7 @@ def kind_number_add_file(kind, number):
                 stage=record._lifecycle[int(request.form.get("status_id"))].name, 
                 names=", ".join([x.filename for x in uploads])
                 ),
-            ip_address=request.remote_addr
+            created_ip=request.remote_addr
             )
         g.db.add(log)
 
@@ -453,7 +441,7 @@ def kind_number_delete_file(kind, number, fid):
             value=_("Delete from {stage}: {name}").format(
                 stage=record._lifecycle[status].name, 
                 name=name),
-            ip_address=request.remote_addr
+            created_ip=request.remote_addr
             )
         g.db.add(log)
 
