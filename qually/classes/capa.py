@@ -66,7 +66,8 @@ class CAPA(Base, core_mixin, process_mixin):
         return {
             0: {
                 'name': _("New"),
-                'users': [self.owner]
+                'users': [self.owner],
+                'files': True
                 },
             1: {
                 'name': _("Initial Review"),
@@ -74,7 +75,8 @@ class CAPA(Base, core_mixin, process_mixin):
                 },
             2: {
                 'name': _("Investigation"),
-                'users': [self.root_cause_investigator]
+                'users': [self.root_cause_investigator],
+                'files': True
                 },
             3: {
                 'name': _("Approval to Implement"),
@@ -82,11 +84,13 @@ class CAPA(Base, core_mixin, process_mixin):
                 },
             4: {
                 'name': _("Implementation"),
-                'users': [self.action_assignee]
+                'users': [self.action_assignee],
+                'files': True
                 },
             5: {
                 'name': _("Verification of Effectiveness"),
-                'users': [self.action_assignee]
+                'users': [self.action_assignee],
+                'files': True
                 },
             6: {
                 'name': _("Final Review"),

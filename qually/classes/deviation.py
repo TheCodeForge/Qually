@@ -72,7 +72,8 @@ class Deviation(Base, core_mixin, process_mixin):
             2: {
                 'name': _("Corrections"),
                 'users': [self.corrections_assignee],
-                'hide': self.approve_to==100
+                'hide': self.approve_to==100,
+                'files': True
                 },
             3: {
                 'name': _("Final Review"),

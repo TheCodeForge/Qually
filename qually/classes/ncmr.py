@@ -64,7 +64,8 @@ class NCMR(Base, core_mixin, process_mixin):
         return {
             0: {
                 'name': _("New"),
-                'users': [self.owner]
+                'users': [self.owner],
+                'files': True
                 },
             1: {
                 'name': _("Initial Review"),
@@ -76,7 +77,8 @@ class NCMR(Base, core_mixin, process_mixin):
                 },
             3: {
                 'name': _("Disposition"),
-                'users': [self.assignee]
+                'users': [self.assignee],
+                'files': True
                 },
             4: {
                 'name': _("Final Review"),
