@@ -81,6 +81,7 @@
   </div>
   {% endfor %}
 
+  {% if record._lifecycle[section].get('files') %}
   <div class="d-lg-flex mt-3">
     <div class="title w-lg-25">
       <label>{{ _("Attached Files") }}</label>
@@ -93,6 +94,7 @@
       {% endfor %}
     </div>
   </div>
+  {% endif %}
   
 
   {% if record.phase_approvals(section) %}
