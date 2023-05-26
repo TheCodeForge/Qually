@@ -402,7 +402,7 @@ def kind_number_add_file(kind, number):
             user_id=g.user.id,
             key=_("Files"),
             value=_("Upload to {stage}: {names}").format(
-                stage=record._lifecycle[int(request.form.get("status_id"))].name, 
+                stage=record._lifecycle[int(request.form.get("status_id"))]['name'], 
                 names=", ".join([x.filename for x in uploads])
                 ),
             created_ip=request.remote_addr
@@ -439,7 +439,7 @@ def kind_number_delete_file(kind, number, fid):
             user_id=g.user.id,
             key=_("Files"),
             value=_("Delete from {stage}: {name}").format(
-                stage=record._lifecycle[status].name, 
+                stage=record._lifecycle[status]['name'], 
                 name=name),
             created_ip=request.remote_addr
             )
