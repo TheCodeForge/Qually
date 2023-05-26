@@ -86,7 +86,7 @@
       <label>{{ _("Attached Files") }}</label>
     </div>
     <div class="body ms-3 w-lg-100">
-      {% for file in record files if file.status_id==section}
+      {% for file in record files if file.status_id==section %}
       <div>
         <a href="{{ file.s3_link }}" target="_blank">{{ file.file_name }}</a>
       </div>
