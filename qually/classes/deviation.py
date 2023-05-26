@@ -62,7 +62,8 @@ class Deviation(Base, core_mixin, process_mixin):
         return {
             0: {
                 'name': _("New"),
-                'users': [self.owner]
+                'users': [self.owner],
+                'files': True
                 },
             1: {
                 'name': _("Initial Review"),

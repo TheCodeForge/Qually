@@ -39,6 +39,6 @@ class File(Base, core_mixin):
 
     @property
     def owning_object(self):
-        return self.ncmr or self.capa
+        return self.ncmr or self.capa or self.deviation
     
     
