@@ -92,6 +92,12 @@
         <a href="{{ file.s3_link }}" target="_blank">{{ file.file_name }}</a>
       </div>
       {% endfor %}
+      <div>
+        <form action="{{ record.permalink }}/file" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+          <input type="file" name="file">
+        </form>
+      </div>
     </div>
   </div>
   {% endif %}
