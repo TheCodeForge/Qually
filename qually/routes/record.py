@@ -364,7 +364,7 @@ def post_record_record(kind):
 @app.post("/<kind>-<number>/file")
 def kind_number_add_file(kind, number):
 
-    if kind not in VALID_KINDS:
+    if kind.lower() not in VALID_KINDS:
         abort(404)
 
     record=get_record(kind, number)
