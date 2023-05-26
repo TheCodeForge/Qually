@@ -385,8 +385,8 @@ def kind_number_add_file(kind, number):
     g.db.refresh(file_obj)
     
     aws.upload_file(
-        file,
-        file_obj.s3_name
+        file_obj.s3_name,
+        file
         )
 
     g.db.commit()
