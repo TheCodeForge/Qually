@@ -35,7 +35,7 @@ class File(Base, core_mixin):
 
     @property
     def s3_link(self):
-        return f"/s3{self.s3_name}"
+        return f"/s3/{self.s3_name}"
     
 
     @property
