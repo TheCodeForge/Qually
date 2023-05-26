@@ -81,6 +81,20 @@
   </div>
   {% endfor %}
 
+  <div class="d-lg-flex mt-3">
+    <div class="title w-lg-25">
+      <label>{{ _("Attached Files") }}</label>
+    </div>
+    <div class="body ms-3 w-lg-100">
+      {% for file in record files if file.status_id==section}
+      <div>
+        <a href="{{ file.s3_link }}" target="_blank">{{ file.file_name }}</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+
   {% if record.phase_approvals(section) %}
   <div id="container-approvals-{{ section }}" class="d-lg-flex mt-3">
     <div class="title w-lg-25">
