@@ -399,11 +399,11 @@ def kind_number_add_file(kind, number):
 def kind_number_delete_file(kind, number, fid):
 
     record=get_record(kind, number)
+    file_obj=[f for f in record.files if f.id==int(fid, 36)][0]
 
-    if not record.can_edit(int(request.form.get("status_id"))):
+    if not record.can_edit(file_obj.status_id):
         return toast_error(_("This record has changed status. Please reload this page."), 403)
 
-    file_obj=[f for f in record.files if f.id==int(fid, 36)][0]
 
     aws.delete_file(file_obj.s3_name)
 

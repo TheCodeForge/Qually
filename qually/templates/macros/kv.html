@@ -88,8 +88,16 @@
     </div>
     <div class="body ms-3 w-lg-100">
       {% for file in record.files if file.status_id==section %}
-      <div>
+      <div class="d-flex">
         <a href="{{ file.s3_link }}" target="_blank">{{ file.file_name }}</a>
+        {% if can_edit %}
+        <div class="ms-auto">
+          <form id="form-delete-file-{{ file.base36id }}" action="{{ record.permalink }}/file/{{ file.base36id }}/delete" method="post" class="toasted">
+            <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+            <a href="javascript:void(0)" class="toast-form-submit" data-form="form-delete-file-{{ file.base36id }}"><i class="fas fa-trash fa-fw"></i></a>
+          </form>
+        </div>
+        {% endif %}
       </div>
       {% endfor %}
       {% if can_edit %}
