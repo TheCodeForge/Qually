@@ -16,6 +16,8 @@ from qually.helpers.languages import LANGUAGES
 from qually.helpers.timezones import TIMEZONES
 from qually.helpers.security import generate_hash
 
+from qually.classes import *
+
 from qually.__main__ import app
 
 @app.template_filter("app_config")
@@ -140,3 +142,17 @@ def jinja_date(x):
 @app.template_filter("datetime")
 def jinja_date(x):
     return format_datetime(datetime.datetime.fromtimestamp(x), "dd MMMM yyyy HH:mm")
+
+@app.template_filter("processes")
+def jinja_processes(x):
+
+    data={
+        'capa':CAPA,
+        'dvtn':Deviation,
+        'ncmr':NCMR
+    }
+
+    if x and x in data:
+        return data[x]
+    else:
+        return data
