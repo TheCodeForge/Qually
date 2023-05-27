@@ -14,7 +14,7 @@ VALID_KINDS={
 @logged_in
 def get_record_number(kind, number):
 
-    record = get_record(kind, number)
+    record = g.user.organization.get_record(kind, number)
 
     if request.path != record.permalink:
         return redirect(record.permalink)
@@ -25,7 +25,7 @@ def get_record_number(kind, number):
 @has_seat
 def post_record_number(kind, number):
 
-    record = get_record(kind, number)
+    record = g.user.organization.get_record(kind, number)
 
     #allow saving of future things if editable
     with force_locale(g.user.organization.lang):
@@ -118,7 +118,7 @@ def post_record_number(kind, number):
 @has_seat
 def post_record_number_status(kind, number):
 
-    record = get_record(kind, number)
+    record = g.user.organization.get_record(kind, number)
 
     transition = [x for x in record._transitions[record._status] if x['id']==request.form.get('transition_id')]
 
@@ -167,7 +167,7 @@ def post_record_number_status(kind, number):
 @has_seat
 def post_record_number_approve(kind, number):
 
-    record = get_record(kind, number)
+    record = g.user.organization.get_record(kind, number)
 
     transition = [x for x in record._transitions[record._status] if x['id']==request.form.get('transition_id')]
 
@@ -246,7 +246,7 @@ def post_record_number_approve(kind, number):
 @logged_in
 def post_record_number_unapprove(kind, number):
 
-    record = get_record(kind, number)
+    record = g.user.organization.get_record(kind, number)
 
     if int(request.form.get("status"))!=record._status:
         return toast_error(_("This record has changed status. Please reload this page."), 403)
@@ -365,7 +365,7 @@ def post_record_record(kind):
 @app.post("/<kind>-<number>/file")
 def kind_number_add_file(kind, number):
 
-    record=get_record(kind, number)
+    record=g.user.organization.get_record(kind, number)
 
     if not record.can_edit(int(request.form.get("status_id"))):
         return toast_error(_("This record has changed status. Please reload this page."), 403)
@@ -416,7 +416,7 @@ def kind_number_add_file(kind, number):
 @app.post("/<kind>-<number>/file/<fid>/delete")
 def kind_number_delete_file(kind, number, fid):
 
-    record=get_record(kind, number)
+    record=g.user.organization.get_record(kind, number)
     file_obj=[f for f in record.files if f.id==int(fid, 36)][0]
 
     status=file_obj.status_id

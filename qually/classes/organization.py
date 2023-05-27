@@ -23,6 +23,11 @@ class Organization(Base, core_mixin):
     tz = Column(String, default="UTC")
     color=Column(String(6), default=app.config['COLOR_PRIMARY'])
 
+    #Prefix settings
+    ncmr_prefix = Column(String(5), default="NCMR")
+    capa_prefix = Column(String(5), default="CAPA")
+    dvtn_prefix = Column(String(5), default="DVTN")
+
     #Organization record counters
     ncmr_counter = Column(Integer, default=0)
     capa_counter = Column(Integer, default=0)
@@ -79,6 +84,21 @@ class Organization(Base, core_mixin):
             kwargs["creation_ip"] = request.remote_addr
 
         super().__init__(**kwargs)
+
+    def get_record(self, prefix, number):
+
+        for kind in ['ncmr', 'capa', 'dvtn']:
+            if getattr(self, f"{kind}_prefix").lower()==prefix.lower():
+                break
+
+        else:
+            abort(404)
+
+        record= getattr(self, f"{kind}s").filter_by(number=int(number)).first()
+        if not record:
+            abort(404)
+
+        return record
 
     @property
     def next_ncmr_id(self):
