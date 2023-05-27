@@ -45,7 +45,7 @@ class process_mixin():
 
     @property
     def name(self):
-        return f"{getattr(g.user.organization, f'{self._name}_prefix')}-{self.number:0>5}"
+        return f"{getattr(g.user.organization, f'{self._name.lower()}_prefix')}-{self.number:0>5}"
 
     @property
     def permalink(self):
