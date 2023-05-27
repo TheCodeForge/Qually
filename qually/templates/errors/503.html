@@ -1,13 +1,11 @@
 {% extends "errors/core.html" %}
 
-{% block title %}
-<title>503 Service Unavailable</title>
-{% endblock %}
+{% block title %}503 Service Unavailable{% endblock %}
 
 {% block icon %}
 <i class="fad fa-dumpster-fire text-primary"></i>
 {% endblock %}
 {% block pagetitle %}503 Service Unavailable{% endblock %}
-{% block pagebody %}
+{% block pagetext %}
 <p class="text-muted mb-5">{{ 'SITE_NAME' | app_config }} is not available right now. Please try again later.</p>
 {% endblock %}
