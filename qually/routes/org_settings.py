@@ -414,7 +414,7 @@ def post_settings_org_prefix():
     new_prefix=request.form.get('prefix')
 
     if new_prefix in reserved and new_prefix.lower() != ALL_PROCESSES[request.form['kind']]._name.lower():
-        return toast_error(_(f"Prefix {x} already in use").format(x=new_prefix))
+        return toast_error(_("Prefix {x} already in use").format(x=new_prefix))
 
     setattr(g.user.organization, f"{ALL_PROCESSES[request.form['kind']]._name.lower()}_prefix", new_prefix)
     g.db.add(g.user.organization)
