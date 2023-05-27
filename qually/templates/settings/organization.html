@@ -121,60 +121,33 @@
 <h2 class="h5 mt-3">{{ _("Record Prefixes") }}</h2>
 <div class="settings-section rounded">
 
+
+  {% set kinds={
+    'capa':_("Corrective and Preventive Action"),
+    'dvtn':_("Deviation"),
+    'ncmr':_("Non-Conforming Materials Report"),
+  } %}
+
+  {% for kind in kinds %}
   <div class="d-lg-flex">
 
     <div class="title w-lg-25">
-      <label for="require-2fa">{{ _("Corrective and Preventive Action") }}</label>
+      <label for="require-2fa">{{ kinds[kind] }}</label>
     </div>
 
     <div class="body w-lg-100">
       <div class="input-group d-flex">
 
-        <form id="form-org-prefix-capa" action="/settings/organization" method="post">
+        <form id="form-org-prefix-{{ kind }}" action="/settings/organization/prefix" method="post">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-          <input type="text" name="prefix" value="{{ g.user.organization.capa_prefix }}" class="toast-form-change-submit" data-form="form-org-prefix-capa">
+          <input type="hidden" name="kind" value="{{ kind }}">
+          <input type="text" name="prefix" value="{{ g.user.organization | attr(kind+'_prefix') }}" class="toast-form-change-submit" data-form="form-org-prefix-{{ kind }}">
         </form>
 
       </div>
     </div>
   </div>
-
-  <div class="d-lg-flex">
-
-    <div class="title w-lg-25">
-      <label for="require-2fa">{{ _("Deviation") }}</label>
-    </div>
-
-    <div class="body w-lg-100">
-      <div class="input-group d-flex">
-
-        <form id="form-org-prefix-dvtn" action="/settings/organization" method="post">
-          <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-          <input type="text" name="prefix" value="{{ g.user.organization.dvtn_prefix }}" class="toast-form-change-submit" data-form="form-org-prefix-dvtn">
-        </form>
-
-      </div>
-    </div>
-  </div>
-
-  <div class="d-lg-flex">
-
-    <div class="title w-lg-25">
-      <label for="require-2fa">{{ _("Non-Conforming Materials Report") }}</label>
-    </div>
-
-    <div class="body w-lg-100">
-      <div class="input-group d-flex">
-
-        <form id="form-org-prefix-ncmr" action="/settings/organization" method="post">
-          <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-          <input type="text" name="prefix" value="{{ g.user.organization.ncmr_prefix }}" class="toast-form-change-submit" data-form="form-org-prefix-ncmr">
-        </form>
-
-      </div>
-    </div>
-  </div>
-
+  {% endfor %}
 
 </div>
 {% endblock %}
