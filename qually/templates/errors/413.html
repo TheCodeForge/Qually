@@ -1,4 +1,4 @@
-{% extends "errors/default.html" %}
+{% extends "errors/core.html" %}
 
 {% block title %}
 <title>413 Request Entity Too Large</title>
@@ -7,6 +7,5 @@
 {% block icon %}<i class="fas fa-mountain text-muted"></i>{% endblock %}
 {% block pagetitle %}413 Request Entity Too Large{% endblock %}
 {% block pagebody %}
-<p class="text-muted mb-5">There's a shortage of perfect request entities in this world. Would be a pity to damage yours.</p>
-<p class="text-muted mb-5">(But you'll have to. There's a 16 MB limit to all file uploads, or 64 MB with {{ "SITE_NAME" | app_config }} Premium.)</p>
+<p class="text-muted mb-5"></p>
 {% endblock %}
