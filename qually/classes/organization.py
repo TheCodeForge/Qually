@@ -31,7 +31,7 @@ class Organization(Base, core_mixin):
     #Organization record counters
     ncmr_counter = Column(Integer, default=0)
     capa_counter = Column(Integer, default=0)
-    dev_counter = Column(Integer, default=0)
+    dvtn_counter = Column(Integer, default=0)
     
     sop_counter = Column(Integer, default=0)
     wi_counter = Column(Integer, default=0)
@@ -118,10 +118,10 @@ class Organization(Base, core_mixin):
 
     @property
     def next_dvtn_id(self):
-        self.capa_counter+=1
+        self.dvtn_counter+=1
         g.db.add(self)
         g.db.commit()
-        return self.capa_counter
+        return self.dvtn_counter
 
     @property
     @lazy
