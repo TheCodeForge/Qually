@@ -132,10 +132,10 @@
     <div class="body w-lg-100">
       <div class="input-group d-flex">
 
-        <form id="form-org-prefix-{{ kind }}" action="/settings/organization/prefix" method="post">
+        <form id="form-org-prefix-{{ kind }}" action="/settings/organization/prefix" method="post" class="toasted">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <input type="hidden" name="kind" value="{{ kind }}">
-          <input id="input-org-prefix-{{ kind }}" type="text" name="prefix" value="{{ g.user.organization | attr(kind+'_prefix') }}" class="form-control">
+          <input id="input-org-prefix-{{ kind }}" type="text" name="prefix" value="{{ g.user.organization | attr(kind+'_prefix') }}" class="toast-form-change-submit" data-form="form-org-prefix-{{ kind }}">
         </form>
 
       </div>
