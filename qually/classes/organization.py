@@ -88,13 +88,13 @@ class Organization(Base, core_mixin):
     def get_record(self, prefix, number):
 
         for kind in ['ncmr', 'capa', 'dvtn']:
-            if getattr(self, f"{kind}_prefix").lower()==prefix.lower():
+            if getattr(self, f"{kind.lower()}_prefix").lower()==prefix.lower():
                 break
 
         else:
             abort(404)
 
-        record= getattr(self, f"{kind}s").filter_by(number=int(number)).first()
+        record= getattr(self, f"{kind.lower()}s").filter_by(number=int(number)).first()
         if not record:
             abort(404)
 
