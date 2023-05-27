@@ -51,11 +51,6 @@ class Deviation(Base, core_mixin, process_mixin):
             args.append(Deviation._status.in_([1,3]))
 
         return args
-    
-    @property
-    def name(self):
-        with force_locale(g.user.organization.lang):
-            return _("DVTN-")+f"{self.number:0>5}"
 
     @property
     def _lifecycle(self):

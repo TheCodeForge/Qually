@@ -53,11 +53,6 @@ class NCMR(Base, core_mixin, process_mixin):
             args.append(NCMR._status==2)
 
         return args
-    
-    @property
-    def name(self):
-        with force_locale(g.user.organization.lang):
-            return _("NCMR-")+f"{self.number:0>5}"
 
     @property
     def _lifecycle(self):

@@ -55,12 +55,6 @@ class CAPA(Base, core_mixin, process_mixin):
 
         return args
 
-    
-    @property
-    def name(self):
-        with force_locale(g.user.organization.lang):
-            return _("CAPA-")+f"{self.number:0>5}"
-
     @property
     def _lifecycle(self):
         return {
