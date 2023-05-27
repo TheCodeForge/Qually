@@ -48,12 +48,12 @@ class core_mixin():
 class process_mixin():
 
     @property
-    def record_id(self):
+    def name(self):
         return f"{getattr(g.user.organization, f'{self._name}_prefix')}-{self.number:0>5}"
 
     @property
     def permalink(self):
-        return f"/{self.record_id}"
+        return f"/{self.name}"
     
     @property
     @lazy
