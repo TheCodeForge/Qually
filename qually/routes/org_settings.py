@@ -399,3 +399,25 @@ def post_settings_directory_invite():
     return toast(_("Invitation sent to {email}").format(email=email))
         
         
+@app.post('/settings/organization/prefix')
+def post_settings_org_prefix():
+
+    if request.form.get('kind') not in ALL_PROCESSES:
+        abort(404)
+
+    reserved=list(
+        set(
+            [ALL_PROCESSES[x]._name.lower() for x in ALL_PROCESSES]+[getattr(g.user.organization, f'{x.lower()}_prefix') for x in ALL_PROCESSES]
+            )
+        )
+
+    new_prefix=request.form.get('prefix')
+
+    if new_prefix in reserved and new_prefix.lower() != ALL_PROCESSES[request.form['kind']]._name.lower():
+        return toast_error(_(f"Prefix {x} already in use").format(x=new_prefix))
+
+    setattr(g.user.organization, f'{ALL_PROCESSES[request.form['kind']]._name.lower()}_prefix', new_prefix)
+    g.db.add(g.user.organization)
+    g.db.commit()
+
+    return toast(_("Changes saved"))

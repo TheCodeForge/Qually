@@ -146,13 +146,7 @@ def jinja_date(x):
 @app.template_filter("processes")
 def jinja_processes(x):
 
-    data={
-        'capa':CAPA,
-        'dvtn':Deviation,
-        'ncmr':NCMR
-    }
-
-    if x and x in data:
-        return data[x]
+    if x and x in ALL_PROCESSES:
+        return ALL_PROCESSES[x]
     else:
-        return data
+        return ALL_PROCESSES
