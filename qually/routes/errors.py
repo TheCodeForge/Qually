@@ -53,12 +53,10 @@ def error_429(e):
 
 
 @app.errorhandler(451)
-@api()
 def error_451(e):
     return render_template('errors/451.html'), 451
 
 @app.errorhandler(500)
-@api()
 def error_500(e):
     try:
         g.db.rollback()
@@ -77,6 +75,5 @@ def error_503(e):
     return render_template('errors/503.html'), 503
 
 @app.route("/error/<eid>", methods=["GET"])
-@auth_desired
 def error_all_preview(eid):
      return render_template(safe_join('errors', f"{eid}.html"))
