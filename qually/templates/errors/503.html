@@ -7,5 +7,5 @@
 {% endblock %}
 {% block pagetitle %}503 Service Unavailable{% endblock %}
 {% block pagetext %}
-<p class="text-muted mb-5">{{ 'SITE_NAME' | app_config }} is not available right now. Please try again later.</p>
+<p class="text-muted mb-5">{{_("{x} is not available right now. Please try again later.").format(x=('SITE_NAME'|app_config)}}</p>
 {% endblock %}
