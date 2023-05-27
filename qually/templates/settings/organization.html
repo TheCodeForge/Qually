@@ -126,7 +126,7 @@
   <div class="d-lg-flex">
 
     <div class="title w-lg-25">
-      <label for="require-2fa">{{ kinds[kind] }}</label>
+      <label for="input-org-prefix-{{ kind }}">{{ (kind|processes).name_readable() }}</label>
     </div>
 
     <div class="body w-lg-100">
@@ -135,7 +135,7 @@
         <form id="form-org-prefix-{{ kind }}" action="/settings/organization/prefix" method="post">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <input type="hidden" name="kind" value="{{ kind }}">
-          <input type="text" name="prefix" value="{{ g.user.organization | attr(kind+'_prefix') }}" class="toast-form-change-submit" data-form="form-org-prefix-{{ kind }}">
+          <input id="input-org-prefix-{{ kind }}" type="text" name="prefix" value="{{ g.user.organization | attr(kind+'_prefix') }}" class="toast-form-change-submit" data-form="form-org-prefix-{{ kind }}">
         </form>
 
       </div>
