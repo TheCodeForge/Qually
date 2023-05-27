@@ -1,0 +1,11 @@
+{% extends "errors/default.html" %}
+
+{% block title %}
+<title>422 Unprocessable Entity</title>
+{% endblock %}
+
+{% block icon %}<i class="fas fa-laptop-code text-muted"></i>{% endblock %}
+{% block pagetitle %}422 Unprocessable Entity{% endblock %}
+{% block pagebody %}
+<p class="text-muted mb-5">{{ 'SITE_NAME' | app_config }} doesn't know how to process that.</p>
+{% endblock %}

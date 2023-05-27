@@ -1,0 +1,14 @@
+{% extends "errors/default.html" %}
+
+{% block title %}
+<title>401 Not Authorized</title>
+{% endblock %}
+
+{% block icon %}<i class="fas fa-arrow-right-to-bracket text-muted"></i>{% endblock %}
+{% block pagetitle %}401 Not Authorized{% endblock %}
+{% block pagebody %}
+<p class="text-muted mb-5">You must sign in access this page.</p>
+{% endblock %}
+{% block continue %}
+<div><a href="/signup" class="btn btn-primary mr-2">Sign up</a><a href="/login" class="btn btn-secondary">Log in</a></div>
+{% endblock %}
