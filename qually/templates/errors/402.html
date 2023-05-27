@@ -1,11 +1,9 @@
 {% extends "errors/core.html" %}
 
-{% block title %}
-<title>402 Payment Required</title>
-{% endblock %}
+{% block title %}402 Payment Required{% endblock %}
 
 {% block icon %}<i class="fas fa-sack-dollar text-muted"></i>{% endblock %}
 {% block pagetitle %}402 Payment Required{% endblock %}
-{% block pagebody %}
+{% block pagetext %}
 <p class="text-muted mb-5">There is a billing issue with your organization. Contact your organization's {{ 'SITE_NAME' | app_config }} administrator to have them resolve the issue.</p>
 {% endblock %}

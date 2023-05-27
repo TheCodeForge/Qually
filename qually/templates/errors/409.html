@@ -1,11 +1,9 @@
 {% extends "errors/core.html" %}
 
-{% block title %}
-<title>409 Conflict</title>
-{% endblock %}
+{% block title %}409 Conflict{% endblock %}
 
 {% block icon %}<i class="fas fa-swords text-muted"></i>{% endblock %}
 {% block pagetitle %}409 Conflict{% endblock %}
-{% block pagebody %}
+{% block pagetext %}
 <p class="text-muted mb-5">{{ 'SITE_NAME' | app_config }} is unable to fulfill this request due to the state of other data.</p>
 {% endblock %}
