@@ -201,11 +201,13 @@
       </div>
 
       <!--right sidebar goes here-->
+      {% block hide_rightbar %}
       <div id="sidebar-right" class="col sidebar text-left d-none d-lg-block d-print-none py-3 border-left">
         <div class="sticky-top">
           {{ rightbarcontent() }}
         </div>
       </div>
+      {% endblock %}
 
       {% endblock %}
 
