@@ -7,7 +7,5 @@ from .paypal import PayPalClient, PayPalTxn
 from .user import User
 
 ALL_PROCESSES={
-    CAPA._name: CAPA,
-    Deviation._name: Deviation,
-    NCMR._name: NCMR
+    x._name.lower(): x for x in [CAPA, Deviation, NCMR]
 }
