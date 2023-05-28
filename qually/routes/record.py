@@ -31,9 +31,9 @@ def post_record_number(kind, number):
     with force_locale(g.user.organization.lang):
         phases = [x for x in record._lifecycle if record.can_edit(x)]
 
-    entries=[]
-    for phase in phases:
-        entries += record._layout()[phase]
+        entries=[]
+        for phase in phases:
+            entries += record._layout()[phase]
 
     for entry in entries:
         if entry['value'] in request.form:
@@ -96,16 +96,16 @@ def post_record_number(kind, number):
                 )
             g.db.add(appr_clear_log)
 
-
-    log=eval(f"{record.__class__.__name__}Log")(
-        user_id=g.user.id,
-        record_id=record.id,
-        created_utc=g.time,
-        key=key,
-        value=value,
-        created_ip=request.remote_addr
-        )
-    g.db.add(log)
+    with force_locale(g.user.organization.lang):
+        log=eval(f"{record.__class__.__name__}Log")(
+            user_id=g.user.id,
+            record_id=record.id,
+            created_utc=g.time,
+            key=key,
+            value=value,
+            created_ip=request.remote_addr
+            )
+        g.db.add(log)
 
     g.db.commit()
 
