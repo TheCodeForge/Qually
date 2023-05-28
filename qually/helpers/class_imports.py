@@ -5,7 +5,7 @@ from sqlalchemy import Column, Integer, BigInteger, Float, String, Boolean, Fore
 from sqlalchemy.orm import deferred, relationship
 
 from qually.helpers.base36 import base36encode, base36decode
-from qually.helpers.languages import LANGUAGES
+from qually.helpers.languages import LANGUAGES, org_lang
 from qually.helpers.lazy import lazy, tryer
 from qually.helpers.roles import ROLES
 from qually.helpers.security import generate_hash, validate_hash

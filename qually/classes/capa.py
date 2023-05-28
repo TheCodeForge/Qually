@@ -101,6 +101,7 @@ class CAPA(Base, core_mixin, process_mixin):
         }
 
     @classmethod
+    @org_lang
     def _sources(cls):
 
         data=lambda:{
@@ -114,12 +115,6 @@ class CAPA(Base, core_mixin, process_mixin):
                 7: _("Management review"),
                 8: _("Failure analysis")
             }
-
-        try:
-            with force_locale(g.user.organization.lang):
-                return data()
-        except (RuntimeError, NameError) as e:
-            return data()
 
     @classmethod
     def _layout(cls):
