@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-28 09:23-0400\n"
+"POT-Creation-Date: 2023-05-28 09:49-0400\n"
 "PO-Revision-Date: 2023-05-07 09:47-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -44,7 +44,7 @@ msgstr ""
 msgid "Implementation"
 msgstr ""
 
-#: classes/capa.py:85 classes/capa.py:221
+#: classes/capa.py:85 classes/capa.py:215
 msgid "Verification of Effectiveness"
 msgstr ""
 
@@ -60,31 +60,27 @@ msgstr "Cerrado"
 msgid "Terminated"
 msgstr "Terminado"
 
-#: classes/capa.py:107
+#: classes/capa.py:108
 msgid "Service request"
 msgstr ""
 
-#: classes/capa.py:108
+#: classes/capa.py:109
 msgid "Internal audit finding"
 msgstr ""
 
-#: classes/capa.py:109
+#: classes/capa.py:110
 msgid "External audit finding"
 msgstr ""
 
-#: classes/capa.py:110
+#: classes/capa.py:111
 msgid "Quality Assurance inspection"
 msgstr ""
 
-#: classes/capa.py:111
+#: classes/capa.py:112
 msgid "General observation"
 msgstr ""
 
-#: classes/capa.py:112
-msgid "Data trend"
-msgstr ""
-
-#: classes/capa.py:113 classes/capa.py:185
+#: classes/capa.py:113 classes/capa.py:179
 msgid "Risk assessment"
 msgstr ""
 
@@ -97,207 +93,207 @@ msgstr "Revisión final"
 msgid "Failure analysis"
 msgstr ""
 
-#: classes/capa.py:129
+#: classes/capa.py:123
 msgid "Issue Source"
 msgstr ""
 
-#: classes/capa.py:135
+#: classes/capa.py:129
 msgid "Describe Issue"
 msgstr ""
 
-#: classes/capa.py:138
+#: classes/capa.py:132
 msgid ""
 "Include a reference to the particular regulation, SOP, or other standard "
 "that is not being complied with."
 msgstr ""
 
-#: classes/capa.py:141
+#: classes/capa.py:135
 msgid "Who discovered issue?"
 msgstr ""
 
-#: classes/capa.py:146
+#: classes/capa.py:140
 msgid "How was issue discovered?"
 msgstr ""
 
-#: classes/capa.py:151 classes/ncmr.py:134
+#: classes/capa.py:145 classes/ncmr.py:129
 msgid "Description of Non-Conformance"
 msgstr "Descripción de la no conformidad"
 
-#: classes/capa.py:154 classes/ncmr.py:137
+#: classes/capa.py:148 classes/ncmr.py:132
 msgid ""
 "Identify the specification or requirement to which the material fails to "
 "conform."
 msgstr ""
 
-#: classes/capa.py:157
+#: classes/capa.py:151
 msgid "Immediate Actions"
 msgstr ""
 
-#: classes/capa.py:160
+#: classes/capa.py:154
 msgid ""
 "Describe any immediate corrections that were taken, such as quarantining "
 "nonconforming product."
 msgstr ""
 
-#: classes/capa.py:165
+#: classes/capa.py:159
 msgid "Root Cause Investigator"
 msgstr ""
 
-#: classes/capa.py:168
+#: classes/capa.py:162
 msgid "Assign someone to investigate this issue."
 msgstr ""
 
-#: classes/capa.py:173
+#: classes/capa.py:167
 msgid "Root Cause Analysis"
 msgstr ""
 
-#: classes/capa.py:176
+#: classes/capa.py:170
 msgid ""
 "Describe the root cause investigation analysis and conclusions. Use "
 "investigative techniques such as 5-Whys, fault-tree analysis, or fishbone"
 " analysis."
 msgstr ""
 
-#: classes/capa.py:179
+#: classes/capa.py:173
 msgid "Scope and Impact"
 msgstr ""
 
-#: classes/capa.py:182
+#: classes/capa.py:176
 msgid ""
 "Identify the bracketing boundaries of the problem. How extensive is the "
 "impact?"
 msgstr ""
 
-#: classes/capa.py:188
+#: classes/capa.py:182
 msgid ""
 "Identify and evaluate potential risks to the patient, to the process, and"
 " to compliance."
 msgstr ""
 
-#: classes/capa.py:191
+#: classes/capa.py:185
 msgid "Action Plan"
 msgstr ""
 
-#: classes/capa.py:194
+#: classes/capa.py:188
 msgid "Describe the actions to remedy the issue's root cause."
 msgstr ""
 
-#: classes/capa.py:197
+#: classes/capa.py:191
 msgid "Verification of Effectiveness Plan"
 msgstr ""
 
-#: classes/capa.py:200
+#: classes/capa.py:194
 msgid "How will the effectiveness of the action plan be measured and evaluated?"
 msgstr ""
 
-#: classes/capa.py:205
+#: classes/capa.py:199
 msgid "Implementation Assignee"
 msgstr ""
 
-#: classes/capa.py:208
+#: classes/capa.py:202
 msgid "Assign someone to execute the action plan."
 msgstr ""
 
-#: classes/capa.py:213
+#: classes/capa.py:207
 msgid "Actions taken"
 msgstr ""
 
-#: classes/capa.py:216
+#: classes/capa.py:210
 msgid "Describe actions performed. These should reflect the approved plan."
 msgstr ""
 
-#: classes/capa.py:224
+#: classes/capa.py:218
 msgid ""
 "Measure and evaluate the effectiveness of the actions performed, "
 "following the approved Verification of Effectiveness plan."
 msgstr ""
 
-#: classes/capa.py:239 classes/capa.py:293 classes/deviation.py:184
-#: classes/deviation.py:238 classes/ncmr.py:190 classes/ncmr.py:263
+#: classes/capa.py:233 classes/capa.py:287 classes/deviation.py:174
+#: classes/deviation.py:228 classes/ncmr.py:185 classes/ncmr.py:258
 msgid "Submit"
 msgstr "Enviar"
 
-#: classes/capa.py:240
+#: classes/capa.py:234
 #, fuzzy
 msgid "Submit this record to Quality Assurance for review."
 msgstr "Envíe este registro a Control de Documentos para su revisión."
 
-#: classes/capa.py:248 classes/capa.py:283 classes/deviation.py:193
-#: classes/deviation.py:228 classes/ncmr.py:199 classes/ncmr.py:234
+#: classes/capa.py:242 classes/capa.py:277 classes/deviation.py:183
+#: classes/deviation.py:218 classes/ncmr.py:194 classes/ncmr.py:229
 msgid "Terminate"
 msgstr "Terminar"
 
-#: classes/capa.py:249 classes/capa.py:284 classes/deviation.py:194
-#: classes/deviation.py:229 classes/ncmr.py:200 classes/ncmr.py:235
+#: classes/capa.py:243 classes/capa.py:278 classes/deviation.py:184
+#: classes/deviation.py:219 classes/ncmr.py:195 classes/ncmr.py:230
 msgid "Permanently archive this record. This cannot be undone."
 msgstr "Archivar permanentemente este registro. Esto no se puede deshacer"
 
-#: classes/capa.py:258 classes/capa.py:304 classes/deviation.py:203
-#: classes/ncmr.py:209
+#: classes/capa.py:252 classes/capa.py:298 classes/deviation.py:193
+#: classes/ncmr.py:204
 msgid "Reject"
 msgstr "Rechazar"
 
-#: classes/capa.py:259 classes/capa.py:305 classes/deviation.py:204
-#: classes/ncmr.py:210
+#: classes/capa.py:253 classes/capa.py:299 classes/deviation.py:194
+#: classes/ncmr.py:205
 msgid "Send this record back to its initiator for revision."
 msgstr "Envíe este registro de vuelta a su iniciador para su revisión."
 
-#: classes/capa.py:267 classes/capa.py:313 classes/deviation.py:212
-#: classes/ncmr.py:218
+#: classes/capa.py:261 classes/capa.py:307 classes/deviation.py:202
+#: classes/ncmr.py:213
 msgid "Withdraw"
 msgstr "Retirar"
 
-#: classes/capa.py:274 classes/capa.py:320 classes/ncmr.py:244
+#: classes/capa.py:268 classes/capa.py:314 classes/ncmr.py:239
 msgid "Approve"
 msgstr "Aprobar"
 
-#: classes/capa.py:275 classes/ncmr.py:226
+#: classes/capa.py:269 classes/ncmr.py:221
 msgid "Send this record to the Material Review Board."
 msgstr "Envíe este registro a la Junta de Revisión de Materiales."
 
-#: classes/capa.py:294
+#: classes/capa.py:288
 msgid "Submit investigative results to quality management."
 msgstr ""
 
-#: classes/capa.py:321
+#: classes/capa.py:315
 msgid "Advance this CAPA to implementation."
 msgstr ""
 
-#: classes/capa.py:331
+#: classes/capa.py:325
 #, fuzzy
 msgid "Continue to VoE"
 msgstr "Continuar"
 
-#: classes/capa.py:332 classes/capa.py:342 classes/capa.py:351
+#: classes/capa.py:326 classes/capa.py:336 classes/capa.py:345
 msgid "Continue to Verification of Effectiveness"
 msgstr ""
 
-#: classes/capa.py:341
+#: classes/capa.py:335
 #, fuzzy
 msgid "Submit for Final Review"
 msgstr "Enviar para revisión final"
 
-#: classes/capa.py:350
+#: classes/capa.py:344
 #, fuzzy
 msgid "Return to Implementation"
 msgstr "Devolver al Proveedor"
 
-#: classes/capa.py:360 classes/deviation.py:266
+#: classes/capa.py:354 classes/deviation.py:256
 #, fuzzy
 msgid "Approve and Close"
 msgstr "Aprobar y cerrar este registro."
 
-#: classes/capa.py:361
+#: classes/capa.py:355
 #, fuzzy
 msgid "Approve and close CAPA"
 msgstr "Aprobar y cerrar este registro."
 
-#: classes/capa.py:369
+#: classes/capa.py:363
 #, fuzzy
 msgid "Reject to VoE"
 msgstr "Rechazo a la Junta de Revisión de Materiales"
 
-#: classes/capa.py:370
+#: classes/capa.py:364
 msgid "Reject to Verification of Effectiveness"
 msgstr ""
 
@@ -310,133 +306,133 @@ msgstr "Desviación"
 msgid "Corrections"
 msgstr ""
 
-#: classes/deviation.py:92
+#: classes/deviation.py:93
 #, fuzzy
 msgid "Planned"
 msgstr "Plan"
 
-#: classes/deviation.py:93
+#: classes/deviation.py:94
 #, fuzzy
 msgid "Unplanned"
 msgstr "Plan"
 
-#: classes/deviation.py:106
+#: classes/deviation.py:102
 msgid "Yes"
 msgstr ""
 
-#: classes/deviation.py:107
+#: classes/deviation.py:103
 msgid "No"
 msgstr ""
 
-#: classes/deviation.py:121
+#: classes/deviation.py:111
 #, fuzzy
 msgid "Description of deviation"
 msgstr "Descripción de la no conformidad"
 
-#: classes/deviation.py:124
+#: classes/deviation.py:114
 msgid ""
 "Identify the process or procedure deviated from, and the manner in which "
 "that deviation occurred."
 msgstr ""
 
-#: classes/deviation.py:127
+#: classes/deviation.py:117
 #, fuzzy
 msgid "Planned?"
 msgstr "Plan"
 
-#: classes/deviation.py:133
+#: classes/deviation.py:123
 msgid "Immediate Corrections"
 msgstr ""
 
-#: classes/deviation.py:137
+#: classes/deviation.py:127
 msgid "Describe initial corrections performed, if any."
 msgstr ""
 
-#: classes/deviation.py:142
+#: classes/deviation.py:132
 msgid "Further corrections needed?"
 msgstr ""
 
-#: classes/deviation.py:149
+#: classes/deviation.py:139
 msgid "Further corrections"
 msgstr ""
 
-#: classes/deviation.py:152
+#: classes/deviation.py:142
 msgid "Identify outstanding corrections needed, if any."
 msgstr ""
 
-#: classes/deviation.py:156
+#: classes/deviation.py:146
 msgid "Corrections Assignee"
 msgstr ""
 
-#: classes/deviation.py:159
+#: classes/deviation.py:149
 msgid "Identify individual responsible for completing further corrections."
 msgstr ""
 
-#: classes/deviation.py:165
+#: classes/deviation.py:155
 #, fuzzy
 msgid "Final corrections"
 msgstr "Revisión final"
 
-#: classes/deviation.py:168
+#: classes/deviation.py:158
 msgid "Record corrective actions performed."
 msgstr ""
 
-#: classes/deviation.py:185 classes/ncmr.py:191
+#: classes/deviation.py:175 classes/ncmr.py:186
 msgid "Submit this record to Document Control for review."
 msgstr "Envíe este registro a Control de Documentos para su revisión."
 
-#: classes/deviation.py:219 classes/deviation.py:293 classes/ncmr.py:290
+#: classes/deviation.py:209 classes/deviation.py:283 classes/ncmr.py:285
 #: templates/record.html:92 templates/record.html:120
 msgid "Close"
 msgstr "Cerrar"
 
-#: classes/deviation.py:219 classes/ncmr.py:225
+#: classes/deviation.py:209 classes/ncmr.py:220
 msgid "Advance"
 msgstr "Avance"
 
-#: classes/deviation.py:220
+#: classes/deviation.py:210
 #, fuzzy
 msgid "Advance this record to {x}."
 msgstr "Aprobar y cerrar este registro."
 
-#: classes/deviation.py:239 classes/deviation.py:267 classes/ncmr.py:264
+#: classes/deviation.py:229 classes/deviation.py:257 classes/ncmr.py:259
 msgid "Submit for final review."
 msgstr "Enviar para revisión final"
 
-#: classes/deviation.py:247
+#: classes/deviation.py:237
 #, fuzzy
 msgid "Return to Quality Management"
 msgstr "Devolver al Proveedor"
 
-#: classes/deviation.py:248
+#: classes/deviation.py:238
 msgid "Return this record back to Quality Management."
 msgstr ""
 
-#: classes/deviation.py:258
+#: classes/deviation.py:248
 msgid "Return to Corrections"
 msgstr ""
 
-#: classes/deviation.py:259
+#: classes/deviation.py:249
 msgid "Return to Corrections."
 msgstr ""
 
-#: classes/deviation.py:277 classes/ncmr.py:274
+#: classes/deviation.py:267 classes/ncmr.py:269
 msgid "Reject to MRB"
 msgstr "Rechazo a la Junta de Revisión de Materiales"
 
-#: classes/deviation.py:278 classes/ncmr.py:275
+#: classes/deviation.py:268 classes/ncmr.py:270
 msgid "Reject back to the Material Review Board."
 msgstr "Rechazar de nuevo a la Junta de revisión de materiales"
 
-#: classes/deviation.py:285 classes/ncmr.py:282
+#: classes/deviation.py:275 classes/ncmr.py:277
 msgid "Reject to  Disposition"
 msgstr "Rechazo a Disposición"
 
-#: classes/deviation.py:286 classes/ncmr.py:283
+#: classes/deviation.py:276 classes/ncmr.py:278
 msgid "Reject back to the Disposition assignee."
 msgstr "Rechazar de nuevo al cesionario de disposición"
 
-#: classes/deviation.py:294 classes/ncmr.py:291
+#: classes/deviation.py:284 classes/ncmr.py:286
 msgid "Approve and close this record."
 msgstr "Aprobar y cerrar este registro."
 
@@ -453,74 +449,74 @@ msgstr "Junta de Revisión de Materiales"
 msgid "Disposition"
 msgstr "Disposición"
 
-#: classes/ncmr.py:96
+#: classes/ncmr.py:97
 msgid "Scrap"
 msgstr "Desechar"
 
-#: classes/ncmr.py:97
+#: classes/ncmr.py:98
 msgid "Return to Supplier"
 msgstr "Devolver al Proveedor"
 
-#: classes/ncmr.py:98
+#: classes/ncmr.py:99
 msgid "Rework"
 msgstr "Rehacer"
 
-#: classes/ncmr.py:99
+#: classes/ncmr.py:100
 msgid "Use As-Is"
 msgstr "Uselo como es"
 
-#: classes/ncmr.py:100
+#: classes/ncmr.py:101
 msgid "Reclassify"
 msgstr "Reclasificar"
 
-#: classes/ncmr.py:114
+#: classes/ncmr.py:109
 msgid "Item Number"
 msgstr "Número de Artículo"
 
-#: classes/ncmr.py:119
+#: classes/ncmr.py:114
 #, fuzzy
 msgid "Revision Number"
 msgstr "Número de Artículo"
 
-#: classes/ncmr.py:124
+#: classes/ncmr.py:119
 msgid "Serial or Lot Number"
 msgstr "Número de serie o lote"
 
-#: classes/ncmr.py:129
+#: classes/ncmr.py:124
 msgid "Quantity"
 msgstr "Cantidad"
 
-#: classes/ncmr.py:140 classes/ncmr.py:173
+#: classes/ncmr.py:135 classes/ncmr.py:168
 msgid "Additional Comments"
 msgstr "Comentarios adicionales"
 
-#: classes/ncmr.py:148
+#: classes/ncmr.py:143
 msgid "Assigned Disposition"
 msgstr "Disposición asignada"
 
-#: classes/ncmr.py:154
+#: classes/ncmr.py:149
 msgid "Material Review Board Comments"
 msgstr "Comentarios de la Junta de revisión de materiales"
 
-#: classes/ncmr.py:159
+#: classes/ncmr.py:154
 #, fuzzy
 msgid "Disposition Assignee"
 msgstr "Disposición"
 
-#: classes/ncmr.py:167
+#: classes/ncmr.py:162
 msgid "Executed Disposition"
 msgstr "Disposición Ejecutada"
 
-#: classes/ncmr.py:245
+#: classes/ncmr.py:240
 msgid "Approve of the planned disposition."
 msgstr "Aprobar la disposición prevista."
 
-#: classes/ncmr.py:255
+#: classes/ncmr.py:250
 #, fuzzy
 msgid "Return to MRB"
 msgstr "Rechazo a la Junta de Revisión de Materiales"
 
-#: classes/ncmr.py:256
+#: classes/ncmr.py:251
 #, fuzzy
 msgid "Return to Material Review Board."
 msgstr "Rechazar de nuevo a la Junta de revisión de materiales"
@@ -1349,4 +1345,7 @@ msgstr "Habilitar la autenticación de dos factores"
 
 #~ msgid "Create NCMR"
 #~ msgstr "Crear Informe de Material no Conforme"
+
+#~ msgid "Data trend"
+#~ msgstr ""
 
