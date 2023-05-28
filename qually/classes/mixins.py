@@ -43,16 +43,6 @@ class core_mixin():
 
 class process_mixin():
 
-    def org_lang(f):
-
-        def wrapper(*args, **kwargs)
-
-            with force_locale(g.user.organization.lang):
-                return f(*args, **kwargs)
-
-        wrapper.__name__=f.__name__
-        return wrapper
-
 
     @property
     def name(self):
