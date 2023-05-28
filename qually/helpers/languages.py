@@ -1,3 +1,4 @@
+from flask import g
 try:
     from flask_babel import force_locale
 except:
