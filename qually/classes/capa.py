@@ -312,7 +312,7 @@ class CAPA(Base, core_mixin, process_mixin):
                     "id":"advance",
                     "to": 4,
                     "name": _("Approve"),
-                    "description": _("Advance this CAPA to implementation."),
+                    "description": _("Advance to implementation."),
                     "users": g.user.organization.quality_mgmt_users,
                     "color": "success",
                     "approval":True
@@ -322,8 +322,8 @@ class CAPA(Base, core_mixin, process_mixin):
                 {
                     "id":"continue",
                     "to": 5,
-                    "name": _("Continue to VoE"),
-                    "description":_("Continue to Verification of Effectiveness"),
+                    "name": _("Continue to Verification of Effectiveness"),
+                    "description":_("Continue to Verification of Effectiveness."),
                     "users": [self.action_assignee],
                     "color": "success"
                 }
@@ -332,8 +332,8 @@ class CAPA(Base, core_mixin, process_mixin):
                 {
                     "id":"submit",
                     "to": 6,
-                    "name": _("Submit for Final Review"),
-                    "description":_("Continue to Verification of Effectiveness"),
+                    "name": _("Submit"),
+                    "description":_("Submit to Final Review"),
                     "users": [self.action_assignee],
                     "color": "success",
                     "approval":True
@@ -342,7 +342,7 @@ class CAPA(Base, core_mixin, process_mixin):
                     "id":"return",
                     "to": 4,
                     "name": _("Return to Implementation"),
-                    "description":_("Continue to Verification of Effectiveness"),
+                    "description":_("Return to Implementation"),
                     "users": [self.action_assignee],
                     "color": "secondary"
                 }
@@ -352,7 +352,7 @@ class CAPA(Base, core_mixin, process_mixin):
                     "id":"approve",
                     "to": 100,
                     "name": _("Approve and Close"),
-                    "description":_("Approve and close CAPA"),
+                    "description":_("Approve and close"),
                     "users": g.user.organization.quality_mgmt_users,
                     "color": "success",
                     "approval":True
@@ -360,7 +360,7 @@ class CAPA(Base, core_mixin, process_mixin):
                 {
                     "id":"reject",
                     "to": 5,
-                    "name": _("Reject to VoE"),
+                    "name": _("Reject to Verification of Effectiveness"),
                     "description":_("Reject to Verification of Effectiveness"),
                     "users": g.user.organization.quality_mgmt_users,
                     "color": "warning"

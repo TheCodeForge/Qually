@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-28 09:49-0400\n"
+"POT-Creation-Date: 2023-05-28 10:25-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -204,8 +204,9 @@ msgid ""
 "following the approved Verification of Effectiveness plan."
 msgstr ""
 
-#: classes/capa.py:233 classes/capa.py:287 classes/deviation.py:174
-#: classes/deviation.py:228 classes/ncmr.py:185 classes/ncmr.py:258
+#: classes/capa.py:233 classes/capa.py:287 classes/capa.py:335
+#: classes/deviation.py:174 classes/deviation.py:228 classes/ncmr.py:185
+#: classes/ncmr.py:258
 msgid "Submit"
 msgstr ""
 
@@ -251,23 +252,27 @@ msgid "Submit investigative results to quality management."
 msgstr ""
 
 #: classes/capa.py:315
-msgid "Advance this CAPA to implementation."
+msgid "Advance to implementation."
 msgstr ""
 
 #: classes/capa.py:325
-msgid "Continue to VoE"
-msgstr ""
-
-#: classes/capa.py:326 classes/capa.py:336 classes/capa.py:345
 msgid "Continue to Verification of Effectiveness"
 msgstr ""
 
-#: classes/capa.py:335
-msgid "Submit for Final Review"
+#: classes/capa.py:326
+msgid "Continue to Verification of Effectiveness."
+msgstr ""
+
+#: classes/capa.py:336
+msgid "Submit to Final Review"
 msgstr ""
 
 #: classes/capa.py:344
 msgid "Return to Implementation"
+msgstr ""
+
+#: classes/capa.py:345
+msgid "Return to Implementation."
 msgstr ""
 
 #: classes/capa.py:354 classes/deviation.py:256
@@ -275,15 +280,15 @@ msgid "Approve and Close"
 msgstr ""
 
 #: classes/capa.py:355
-msgid "Approve and close CAPA"
+msgid "Approve and close."
 msgstr ""
 
 #: classes/capa.py:363
-msgid "Reject to VoE"
+msgid "Reject to Verification of Effectiveness"
 msgstr ""
 
 #: classes/capa.py:364
-msgid "Reject to Verification of Effectiveness"
+msgid "Reject to Verification of Effectiveness."
 msgstr ""
 
 #: classes/deviation.py:33
@@ -490,7 +495,7 @@ msgid "Approve of the planned disposition."
 msgstr ""
 
 #: classes/ncmr.py:250
-msgid "Return to MRB"
+msgid "Return to Material Review Board"
 msgstr ""
 
 #: classes/ncmr.py:251
@@ -1133,7 +1138,7 @@ msgid "Sets the default time zone for new users."
 msgstr ""
 
 #: templates/settings/organization.html:121
-msgid "Record Prefixes"
+msgid "Prefixes"
 msgstr ""
 
 #: templates/settings/plan.html:4

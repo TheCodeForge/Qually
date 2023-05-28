@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-28 09:49-0400\n"
+"POT-Creation-Date: 2023-05-28 10:25-0400\n"
 "PO-Revision-Date: 2023-05-07 09:47-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -19,7 +19,6 @@ msgstr ""
 "Generated-By: Babel 2.12.1\n"
 
 #: classes/capa.py:33
-#, fuzzy
 msgid "Corrective and Preventive Action"
 msgstr "Acción Preventiva y Correctiva"
 
@@ -32,21 +31,20 @@ msgid "Initial Review"
 msgstr "Revisión inicial"
 
 #: classes/capa.py:71
-#, fuzzy
 msgid "Investigation"
-msgstr "Desviación"
+msgstr "Investigación"
 
 #: classes/capa.py:76
 msgid "Approval to Implement"
-msgstr ""
+msgstr "Aprobación para implementar"
 
 #: classes/capa.py:80
 msgid "Implementation"
-msgstr ""
+msgstr "Implementación"
 
 #: classes/capa.py:85 classes/capa.py:215
 msgid "Verification of Effectiveness"
-msgstr ""
+msgstr "Verificación de Eficacia"
 
 #: classes/capa.py:90 classes/deviation.py:74 classes/ncmr.py:79
 msgid "Final Review"
@@ -62,58 +60,59 @@ msgstr "Terminado"
 
 #: classes/capa.py:108
 msgid "Service request"
-msgstr ""
+msgstr "Petición de servicio"
 
 #: classes/capa.py:109
 msgid "Internal audit finding"
-msgstr ""
+msgstr "Hallazgo de auditoría interna"
 
 #: classes/capa.py:110
 msgid "External audit finding"
-msgstr ""
+msgstr "Hallazgo de auditoría externa"
 
 #: classes/capa.py:111
 msgid "Quality Assurance inspection"
-msgstr ""
+msgstr "Inspección de control de calidad"
 
 #: classes/capa.py:112
 msgid "General observation"
-msgstr ""
+msgstr "Observacion general"
 
 #: classes/capa.py:113 classes/capa.py:179
 msgid "Risk assessment"
-msgstr ""
+msgstr "Evaluación de riesgos"
 
 #: classes/capa.py:114
-#, fuzzy
 msgid "Management review"
-msgstr "Revisión final"
+msgstr "Revisión de gestión"
 
 #: classes/capa.py:115
 msgid "Failure analysis"
-msgstr ""
+msgstr "Analisis fallido"
 
 #: classes/capa.py:123
 msgid "Issue Source"
-msgstr ""
+msgstr "Origen del problema"
 
 #: classes/capa.py:129
 msgid "Describe Issue"
-msgstr ""
+msgstr "Describir problema"
 
 #: classes/capa.py:132
 msgid ""
 "Include a reference to the particular regulation, SOP, or other standard "
 "that is not being complied with."
 msgstr ""
+"Incluya una referencia a la regulación particular, SOP u otro estándar "
+"que no se está cumpliendo."
 
 #: classes/capa.py:135
 msgid "Who discovered issue?"
-msgstr ""
+msgstr "¿Quién descubrió el problema?"
 
 #: classes/capa.py:140
 msgid "How was issue discovered?"
-msgstr ""
+msgstr "¿Cómo se descubrió el problema?"
 
 #: classes/capa.py:145 classes/ncmr.py:129
 msgid "Description of Non-Conformance"
@@ -124,28 +123,32 @@ msgid ""
 "Identify the specification or requirement to which the material fails to "
 "conform."
 msgstr ""
+"Identificar la especificación o requisito con el que el material no se "
+"ajusta."
 
 #: classes/capa.py:151
 msgid "Immediate Actions"
-msgstr ""
+msgstr "Acciones inmediatas"
 
 #: classes/capa.py:154
 msgid ""
 "Describe any immediate corrections that were taken, such as quarantining "
 "nonconforming product."
 msgstr ""
+"Describa las correcciones inmediatas que se tomaron, como poner en "
+"cuarentena el producto no conforme"
 
 #: classes/capa.py:159
 msgid "Root Cause Investigator"
-msgstr ""
+msgstr "Investigador de causa raíz"
 
 #: classes/capa.py:162
 msgid "Assign someone to investigate this issue."
-msgstr ""
+msgstr "Asigne a alguien para que investigue este problema."
 
 #: classes/capa.py:167
 msgid "Root Cause Analysis"
-msgstr ""
+msgstr "Análisis de raíz de la causa"
 
 #: classes/capa.py:170
 msgid ""
@@ -153,70 +156,79 @@ msgid ""
 "investigative techniques such as 5-Whys, fault-tree analysis, or fishbone"
 " analysis."
 msgstr ""
+"Describir el análisis y las conclusiones de la investigación de causa "
+"raíz. Utilizar técnicas de investigación como los 5 porqués, el análisis "
+"de árbol de fallas o el análisis de espina de pescado"
 
 #: classes/capa.py:173
 msgid "Scope and Impact"
-msgstr ""
+msgstr "Alcance e impacto"
 
 #: classes/capa.py:176
 msgid ""
 "Identify the bracketing boundaries of the problem. How extensive is the "
 "impact?"
 msgstr ""
+"Identifique los límites entre paréntesis del problema. ¿Qué tan extenso "
+"es el impacto?"
 
 #: classes/capa.py:182
 msgid ""
 "Identify and evaluate potential risks to the patient, to the process, and"
 " to compliance."
 msgstr ""
+"Identificar y evaluar los riesgos potenciales para el paciente, el "
+"proceso y el cumplimiento."
 
 #: classes/capa.py:185
 msgid "Action Plan"
-msgstr ""
+msgstr "Plan de Accion"
 
 #: classes/capa.py:188
 msgid "Describe the actions to remedy the issue's root cause."
-msgstr ""
+msgstr "Describa las acciones para remediar la causa raíz del problema."
 
 #: classes/capa.py:191
 msgid "Verification of Effectiveness Plan"
-msgstr ""
+msgstr "Verificación del Plan de Eficacia"
 
 #: classes/capa.py:194
 msgid "How will the effectiveness of the action plan be measured and evaluated?"
-msgstr ""
+msgstr "¿Cómo se medirá y evaluará la eficacia del plan de acción?"
 
 #: classes/capa.py:199
 msgid "Implementation Assignee"
-msgstr ""
+msgstr "Cesionario de implementación"
 
 #: classes/capa.py:202
 msgid "Assign someone to execute the action plan."
-msgstr ""
+msgstr "Asigne a alguien para ejecutar el plan de acción."
 
 #: classes/capa.py:207
 msgid "Actions taken"
-msgstr ""
+msgstr "Acciones realizadas"
 
 #: classes/capa.py:210
 msgid "Describe actions performed. These should reflect the approved plan."
-msgstr ""
+msgstr "Describir las acciones realizadas. Estos deben reflejar el plan aprobado."
 
 #: classes/capa.py:218
 msgid ""
 "Measure and evaluate the effectiveness of the actions performed, "
 "following the approved Verification of Effectiveness plan."
 msgstr ""
+"Medir y evaluar la eficacia de las acciones realizadas, siguiendo el plan"
+" de Verificación de Eficacia aprobado."
 
-#: classes/capa.py:233 classes/capa.py:287 classes/deviation.py:174
-#: classes/deviation.py:228 classes/ncmr.py:185 classes/ncmr.py:258
+#: classes/capa.py:233 classes/capa.py:287 classes/capa.py:335
+#: classes/deviation.py:174 classes/deviation.py:228 classes/ncmr.py:185
+#: classes/ncmr.py:258
 msgid "Submit"
 msgstr "Enviar"
 
 #: classes/capa.py:234
-#, fuzzy
 msgid "Submit this record to Quality Assurance for review."
-msgstr "Envíe este registro a Control de Documentos para su revisión."
+msgstr "Envíe este registro a Garantía de calidad para su revisión."
 
 #: classes/capa.py:242 classes/capa.py:277 classes/deviation.py:183
 #: classes/deviation.py:218 classes/ncmr.py:194 classes/ncmr.py:229
@@ -253,129 +265,125 @@ msgstr "Envíe este registro a la Junta de Revisión de Materiales."
 
 #: classes/capa.py:288
 msgid "Submit investigative results to quality management."
-msgstr ""
+msgstr "Presentar los resultados de la investigación a la gestión de calidad."
 
 #: classes/capa.py:315
-msgid "Advance this CAPA to implementation."
-msgstr ""
+msgid "Advance to implementation."
+msgstr "Avance a la implementación."
 
 #: classes/capa.py:325
-#, fuzzy
-msgid "Continue to VoE"
-msgstr "Continuar"
-
-#: classes/capa.py:326 classes/capa.py:336 classes/capa.py:345
 msgid "Continue to Verification of Effectiveness"
-msgstr ""
+msgstr "Continuar a Verificación de Eficacia"
 
-#: classes/capa.py:335
-#, fuzzy
-msgid "Submit for Final Review"
+#: classes/capa.py:326
+msgid "Continue to Verification of Effectiveness."
+msgstr "Continuar a Verificación de Eficacia"
+
+#: classes/capa.py:336
+msgid "Submit to Final Review"
 msgstr "Enviar para revisión final"
 
 #: classes/capa.py:344
-#, fuzzy
 msgid "Return to Implementation"
-msgstr "Devolver al Proveedor"
+msgstr "Devolver a Implementación"
+
+#: classes/capa.py:345
+msgid "Return to Implementation."
+msgstr "Devolver a Implementación."
 
 #: classes/capa.py:354 classes/deviation.py:256
-#, fuzzy
 msgid "Approve and Close"
-msgstr "Aprobar y cerrar este registro."
+msgstr "Aprobar y Cerrar"
 
 #: classes/capa.py:355
-#, fuzzy
-msgid "Approve and close CAPA"
-msgstr "Aprobar y cerrar este registro."
+msgid "Approve and close."
+msgstr "Aprobar y cerrar."
 
 #: classes/capa.py:363
-#, fuzzy
-msgid "Reject to VoE"
-msgstr "Rechazo a la Junta de Revisión de Materiales"
+msgid "Reject to Verification of Effectiveness"
+msgstr "Rechazo a Verificación de Eficacia"
 
 #: classes/capa.py:364
-msgid "Reject to Verification of Effectiveness"
-msgstr ""
+msgid "Reject to Verification of Effectiveness."
+msgstr "Rechazo a Verificación de Eficacia."
 
 #: classes/deviation.py:33
-#, fuzzy
 msgid "Deviation"
 msgstr "Desviación"
 
 #: classes/deviation.py:68
 msgid "Corrections"
-msgstr ""
+msgstr "Correcciones"
 
 #: classes/deviation.py:93
-#, fuzzy
 msgid "Planned"
-msgstr "Plan"
+msgstr "Planificada"
 
 #: classes/deviation.py:94
-#, fuzzy
 msgid "Unplanned"
-msgstr "Plan"
+msgstr "No planificada"
 
 #: classes/deviation.py:102
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 #: classes/deviation.py:103
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #: classes/deviation.py:111
-#, fuzzy
 msgid "Description of deviation"
-msgstr "Descripción de la no conformidad"
+msgstr "Descripción de la desviación"
 
 #: classes/deviation.py:114
 msgid ""
 "Identify the process or procedure deviated from, and the manner in which "
 "that deviation occurred."
 msgstr ""
+"Identificar el proceso o procedimiento del que se desvió y la manera en "
+"que ocurrió esa desviación."
 
 #: classes/deviation.py:117
-#, fuzzy
 msgid "Planned?"
-msgstr "Plan"
+msgstr "¿Planificada?"
 
 #: classes/deviation.py:123
 msgid "Immediate Corrections"
-msgstr ""
+msgstr "Correcciones Inmediatas"
 
 #: classes/deviation.py:127
 msgid "Describe initial corrections performed, if any."
-msgstr ""
+msgstr "Describa las correcciones iniciales realizadas, si las hubiere."
 
 #: classes/deviation.py:132
 msgid "Further corrections needed?"
-msgstr ""
+msgstr "¿Se necesitan más correcciones?"
 
 #: classes/deviation.py:139
 msgid "Further corrections"
-msgstr ""
+msgstr "Más correcciones"
 
 #: classes/deviation.py:142
 msgid "Identify outstanding corrections needed, if any."
-msgstr ""
+msgstr "Identifique las correcciones pendientes necesarias, si las hubiere."
 
 #: classes/deviation.py:146
 msgid "Corrections Assignee"
-msgstr ""
+msgstr "Asignado de correcciones"
 
 #: classes/deviation.py:149
 msgid "Identify individual responsible for completing further corrections."
 msgstr ""
+"Identificar a la persona responsable de completar las correcciones "
+"adicionales."
 
 #: classes/deviation.py:155
-#, fuzzy
 msgid "Final corrections"
-msgstr "Revisión final"
+msgstr "Correcciones finales"
 
 #: classes/deviation.py:158
 msgid "Record corrective actions performed."
-msgstr ""
+msgstr "Registrar las acciones correctivas realizadas."
 
 #: classes/deviation.py:175 classes/ncmr.py:186
 msgid "Submit this record to Document Control for review."
@@ -391,30 +399,28 @@ msgid "Advance"
 msgstr "Avance"
 
 #: classes/deviation.py:210
-#, fuzzy
 msgid "Advance this record to {x}."
-msgstr "Aprobar y cerrar este registro."
+msgstr "Avance este registro a {x}."
 
 #: classes/deviation.py:229 classes/deviation.py:257 classes/ncmr.py:259
 msgid "Submit for final review."
 msgstr "Enviar para revisión final"
 
 #: classes/deviation.py:237
-#, fuzzy
 msgid "Return to Quality Management"
-msgstr "Devolver al Proveedor"
+msgstr "Devolver a Gestión de calidad"
 
 #: classes/deviation.py:238
 msgid "Return this record back to Quality Management."
-msgstr ""
+msgstr "Devuelva este registro a Gestión de calidad."
 
 #: classes/deviation.py:248
 msgid "Return to Corrections"
-msgstr ""
+msgstr "Return to Corrections"
 
 #: classes/deviation.py:249
 msgid "Return to Corrections."
-msgstr ""
+msgstr "Return to Corrections."
 
 #: classes/deviation.py:267 classes/ncmr.py:269
 msgid "Reject to MRB"
@@ -437,9 +443,8 @@ msgid "Approve and close this record."
 msgstr "Aprobar y cerrar este registro."
 
 #: classes/ncmr.py:33
-#, fuzzy
 msgid "Non-Conforming Material Report"
-msgstr "Informes de material no conforme"
+msgstr "Informe de Material no Conforme"
 
 #: classes/ncmr.py:70 helpers/jinja2.py:129 helpers/roles.py:14
 msgid "Material Review Board"
@@ -474,9 +479,8 @@ msgid "Item Number"
 msgstr "Número de Artículo"
 
 #: classes/ncmr.py:114
-#, fuzzy
 msgid "Revision Number"
-msgstr "Número de Artículo"
+msgstr "Número de revisión"
 
 #: classes/ncmr.py:119
 msgid "Serial or Lot Number"
@@ -499,9 +503,8 @@ msgid "Material Review Board Comments"
 msgstr "Comentarios de la Junta de revisión de materiales"
 
 #: classes/ncmr.py:154
-#, fuzzy
 msgid "Disposition Assignee"
-msgstr "Disposición"
+msgstr "Cesionario de Disposición"
 
 #: classes/ncmr.py:162
 msgid "Executed Disposition"
@@ -512,14 +515,12 @@ msgid "Approve of the planned disposition."
 msgstr "Aprobar la disposición prevista."
 
 #: classes/ncmr.py:250
-#, fuzzy
-msgid "Return to MRB"
-msgstr "Rechazo a la Junta de Revisión de Materiales"
+msgid "Return to Material Review Board"
+msgstr "Regresar a la Junta de Revisión de Materiales"
 
 #: classes/ncmr.py:251
-#, fuzzy
 msgid "Return to Material Review Board."
-msgstr "Rechazar de nuevo a la Junta de revisión de materiales"
+msgstr "Regresar a la Junta de Revisión de Materiales."
 
 #: classes/user.py:202 templates/settings/directory.html:27
 msgid "Administrator"
@@ -527,9 +528,8 @@ msgstr "Administrador"
 
 #: helpers/jinja2.py:127 templates/create_record.html:29
 #: templates/macros/kv.html:47
-#, fuzzy
 msgid "None"
-msgstr "Propiedad"
+msgstr "Ninguno"
 
 #: helpers/jinja2.py:128 helpers/roles.py:9
 msgid "Document Control"
@@ -537,7 +537,7 @@ msgstr "Control de documentos"
 
 #: helpers/jinja2.py:130 helpers/roles.py:19
 msgid "Quality Management"
-msgstr ""
+msgstr "Gestión de la calidad"
 
 #: helpers/wrappers.py:141
 msgid "This link has expired."
@@ -589,7 +589,7 @@ msgstr "La contraseña debe tener al menos {n} caracteres"
 
 #: routes/login.py:46
 msgid "You must accept the terms of service."
-msgstr ""
+msgstr "Debes aceptar los términos del servicio."
 
 #: routes/login.py:50 routes/login.py:250 routes/org_settings.py:367
 msgid "That email is already in use."
@@ -608,15 +608,16 @@ msgid "Invalid username or password"
 msgstr "Usuario o contraseña invalido"
 
 #: routes/login.py:118
-#, fuzzy
 msgid "Your user account has been disabled by your organization administrator."
-msgstr "Su cuenta ha sido deshabilitada"
+msgstr "Su cuenta de usuario ha sido deshabilitada por el administrador de su organización."
 
 #: routes/login.py:121
 msgid ""
 "Your organization's {x} access has been terminated due to a terms of "
 "service violation."
 msgstr ""
+"Se canceló el acceso de {x} de su organización debido a una infracción de"
+" los términos del servicio"
 
 #: routes/login.py:154
 msgid "Invalid two-factor code"
@@ -648,21 +649,18 @@ msgid "Invalid timezone"
 msgstr "Zona horaria no válida"
 
 #: routes/org_settings.py:64
-#, fuzzy
 msgid "Timezone"
 msgstr "Zona horaria"
 
 #: routes/org_settings.py:83 templates/settings/organization.html:28
-#, fuzzy
 msgid "Color"
-msgstr "Cerrar"
+msgstr "Color"
 
 #: routes/org_settings.py:97
 msgid "Enable two-factor authentication on your own account first."
 msgstr "Habilite primero la autenticación de dos factores en su propia cuenta."
 
 #: routes/org_settings.py:106
-#, fuzzy
 msgid "Require Two-Factor Authentication"
 msgstr "Requerir autenticación de dos factores"
 
@@ -725,14 +723,12 @@ msgid "Administrator status granted to {name}"
 msgstr "Estado de administrador otorgado a {name}"
 
 #: routes/org_settings.py:262
-#, fuzzy
 msgid "Deactivated users cannot be assigned roles."
-msgstr "Los usuarios desactivados no pueden ser administradores."
+msgstr "A los usuarios desactivados no se les pueden asignar roles."
 
 #: routes/org_settings.py:265
-#, fuzzy
 msgid "Special roles require a full license."
-msgstr "Los administradores requieren una licencia completa."
+msgstr "Los roles especiales requieren una licencia completa."
 
 #: routes/org_settings.py:282 routes/org_settings.py:423 routes/record.py:115
 msgid "Changes saved"
@@ -753,18 +749,16 @@ msgstr ""
 "de licencias antes de que se reduzca."
 
 #: routes/org_settings.py:340
-#, fuzzy
 msgid "License Count"
-msgstr "Cambiar número de licencias"
+msgstr "Recuento de licencias"
 
 #: routes/org_settings.py:380 routes/org_settings.py:384
 msgid "You've been invited to join {orgname} on {sitename}"
 msgstr "Has sido invitado a unirte a {orgname} en {sitename}"
 
 #: routes/org_settings.py:392
-#, fuzzy
 msgid "Invitated"
-msgstr "Terminado"
+msgstr "Invitado"
 
 #: routes/org_settings.py:399
 msgid "Invitation sent to {email}"
@@ -772,17 +766,15 @@ msgstr "Invitación enviada a {email}"
 
 #: routes/org_settings.py:417
 msgid "Prefix {x} already in use"
-msgstr ""
+msgstr "Prefijo {x} ya en uso"
 
 #: routes/record.py:49 routes/record.py:336
-#, fuzzy
 msgid "Invalid selection for {x}"
-msgstr "Confirmar acción en {x}"
+msgstr "Selección no válida para {x}"
 
 #: routes/record.py:59
-#, fuzzy
 msgid "Invalid user"
-msgstr "Invitar usuario"
+msgstr "Usuario invalido"
 
 #: routes/record.py:79
 msgid "Unable to save changes"
@@ -807,7 +799,7 @@ msgstr "Esta transición requiere firmas de aprobación."
 
 #: routes/record.py:137 routes/record.py:186
 msgid "A user must be assigned to the {x} phase first."
-msgstr ""
+msgstr "Primero se debe asignar un usuario a la fase {x}."
 
 #: routes/record.py:150 routes/record.py:228 templates/dashboard.html:27
 #: templates/macros/listing.html:5
@@ -835,26 +827,24 @@ msgid "Unapproved"
 msgstr "No Aprobado"
 
 #: routes/record.py:355
-#, fuzzy
 msgid "State"
 msgstr "Estado"
 
 #: routes/record.py:356
 msgid "Open"
-msgstr ""
+msgstr "Abierto"
 
 #: routes/record.py:403 routes/record.py:440
-#, fuzzy
 msgid "Files"
-msgstr "Perfil"
+msgstr "Archivos"
 
 #: routes/record.py:404
 msgid "Upload to {stage}: {names}"
-msgstr ""
+msgstr "Subir a {stage}: {names}"
 
 #: routes/record.py:441
 msgid "Delete from {stage}: {name}"
-msgstr ""
+msgstr "Eliminar de {etapa}: {nombre}"
 
 #: templates/core.html:56 templates/dashboard.html:6 templates/dashboard.html:7
 msgid "Dashboard"
@@ -886,7 +876,7 @@ msgstr "Informe de Prueba"
 
 #: templates/core.html:95
 msgid "Requirements"
-msgstr ""
+msgstr "Requisitos"
 
 #: templates/core.html:137
 msgid "Free Trial"
@@ -901,9 +891,8 @@ msgid "Tools"
 msgstr "Instrumentos"
 
 #: templates/create_record.html:5
-#, fuzzy
 msgid "Create {x}"
-msgstr "Crear"
+msgstr "Crear {x}"
 
 #: templates/create_record.html:21 templates/macros/kv.html:39
 msgid "Select One"
@@ -979,7 +968,7 @@ msgstr "Confirmar"
 
 #: templates/userpage.html:17
 msgid "Special roles"
-msgstr ""
+msgstr "Roles especiales"
 
 #: templates/auth/otp.html:16
 msgid "Two-Factor Code"
@@ -998,11 +987,9 @@ msgid "Register for a free trial."
 msgstr "Regístrese para una prueba gratuita."
 
 #: templates/auth/register.html:10
-#, fuzzy
 msgid "Create a new organization on Qually, and get a 5-seat, 30-day free trial"
 msgstr ""
-"Inicie su QMS con tecnología Qually con una prueba gratuita de 30 días "
-"para 5 usuarios"
+"Cree una nueva organización en Qually y obtenga una prueba gratuita de 30 días para 5 usuarios"
 
 #: templates/auth/register.html:17 templates/settings/directory.html:9
 #: templates/settings/directory.html:22
@@ -1039,24 +1026,23 @@ msgstr "No se puede copiar el enlace"
 
 #: templates/errors/401.html:8
 msgid "You must sign in to access this page."
-msgstr ""
+msgstr "Debe iniciar sesión para acceder a esta página."
 
 #: templates/errors/403.html:8
-#, fuzzy
 msgid "You aren't allowed to access this page."
-msgstr "No estás autorizado para hacer eso."
+msgstr "No tienes permiso para acceder a esta página."
 
 #: templates/errors/429.html:8
 msgid "Slow down, please."
-msgstr ""
+msgstr "Más despacio, por favor."
 
 #: templates/errors/500.html:8
 msgid "Something went wrong. We're working on fixing it."
-msgstr ""
+msgstr "Algo salió mal. Estamos trabajando para arreglarlo."
 
 #: templates/macros/kv.html:87
 msgid "Attached Files"
-msgstr ""
+msgstr "Archivos adjuntos"
 
 #: templates/macros/kv.html:120
 msgid "Approvals"
@@ -1149,9 +1135,8 @@ msgid "Change Organization Name"
 msgstr "Cambiar el nombre de la organización"
 
 #: templates/settings/organization.html:38
-#, fuzzy
 msgid "Change Organization Color"
-msgstr "Cambiar el nombre de la organización"
+msgstr "Cambiar el color de la organización"
 
 #: templates/settings/organization.html:51
 msgid "Require two-factor authentication"
@@ -1188,8 +1173,8 @@ msgid "Sets the default time zone for new users."
 msgstr "Establece la zona horaria predeterminada para los nuevos usuarios."
 
 #: templates/settings/organization.html:121
-msgid "Record Prefixes"
-msgstr ""
+msgid "Prefixes"
+msgstr "Prefijos"
 
 #: templates/settings/plan.html:4
 msgid "Licensing"
@@ -1348,4 +1333,19 @@ msgstr "Habilitar la autenticación de dos factores"
 
 #~ msgid "Data trend"
 #~ msgstr ""
+
+#~ msgid "Advance this CAPA to implementation."
+#~ msgstr ""
+
+#~ msgid "Continue to VoE"
+#~ msgstr "Continuar"
+
+#~ msgid "Approve and close CAPA"
+#~ msgstr "Aprobar y cerrar este registro."
+
+#~ msgid "Reject to VoE"
+#~ msgstr "Rechazo a la Junta de Revisión de Materiales"
+
+#~ msgid "Return to MRB"
+#~ msgstr "Rechazo a la Junta de Revisión de Materiales"
 
