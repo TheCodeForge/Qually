@@ -100,28 +100,12 @@ class Organization(Base, core_mixin):
 
         return record
 
-    @property
-    def next_ncmr_id(self):
-        self.ncmr_counter+=1
+    def next_id(self, kind):
+        setattr(self, f"{kind}_counter", 1+getattr(self, f"{kind}_counter"))
         g.db.add(self)
         g.db.commit()
-        return self.ncmr_counter
-
-
-    @property
-    def next_capa_id(self):
-        self.capa_counter+=1
-        g.db.add(self)
-        g.db.commit()
-        return self.capa_counter
-
-
-    @property
-    def next_dvtn_id(self):
-        self.dvtn_counter+=1
-        g.db.add(self)
-        g.db.commit()
-        return self.dvtn_counter
+        return getattr(self, f"{kind}_counter")
+    
 
     @property
     @lazy

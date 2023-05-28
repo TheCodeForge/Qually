@@ -110,10 +110,9 @@ class CAPA(Base, core_mixin, process_mixin):
                 2: _("External audit finding"),
                 3: _("Quality Assurance inspection"),
                 4: _("General observation"),
-                5: _("Data trend"),
-                6: _("Risk assessment"),
-                7: _("Management review"),
-                8: _("Failure analysis")
+                5: _("Risk assessment"),
+                6: _("Management review"),
+                7: _("Failure analysis")
             }
 
     @classmethod
