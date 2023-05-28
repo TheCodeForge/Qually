@@ -89,7 +89,7 @@ class Deviation(Base, core_mixin, process_mixin):
     @org_lang
     def _plan_types(cls):
 
-        return {
+        return lambda:{
                     0: _("Planned"),
                     1: _("Unplanned")
             }

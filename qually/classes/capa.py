@@ -104,7 +104,7 @@ class CAPA(Base, core_mixin, process_mixin):
     @org_lang
     def _sources(cls):
 
-        return {
+        return lambda:{
                 0: _("Service request"),
                 1: _("Internal audit finding"),
                 2: _("External audit finding"),
