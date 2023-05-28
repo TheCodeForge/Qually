@@ -10,7 +10,7 @@ LANGUAGES = {
     
 def org_lang(f):
 
-    def wrapper(*args, **kwargs)
+    def wrapper(*args, **kwargs):
 
         try:
             with force_locale(g.user.organization.lang):
