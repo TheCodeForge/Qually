@@ -99,7 +99,7 @@
   
   <nav class="navbar navbar-expand-md bg-body-tertiary fixed-top py-1 border-bottom">
     <div class="container-fluid">
-      <a class="navbar-brand text-primary" href="/">{{ 'SITE_NAME' | app_config }}</a>
+      <a class="navbar-brand text-primary" href="/">{{ 'SITE_NAME' | app_config }}{% if g.user %}<span class="text-muted text-small"> | {{ g.user.organization.name }}</span>{% endif %}</a>
       <button class="navbar-toggler d-print-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
