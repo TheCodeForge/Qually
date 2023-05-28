@@ -15,9 +15,9 @@ def org_lang(f):
 
         try:
             with force_locale(g.user.organization.lang):
-                return f(*args, **kwargs)()
+                return f(*args, **kwargs)
         except (RuntimeError, NameError) as e:
-            return f(*args, **kwargs)()
+            return f(*args, **kwargs)
 
     wrapper.__name__=f.__name__
     return wrapper

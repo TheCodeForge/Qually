@@ -1334,8 +1334,14 @@ msgstr "Habilitar la autenticación de dos factores"
 #~ msgid "Data trend"
 #~ msgstr ""
 
+#~ msgid "Advance this CAPA to implementation."
+#~ msgstr ""
+
 #~ msgid "Continue to VoE"
 #~ msgstr "Continuar"
+
+#~ msgid "Approve and close CAPA"
+#~ msgstr "Aprobar y cerrar este registro."
 
 #~ msgid "Reject to VoE"
 #~ msgstr "Rechazo a la Junta de Revisión de Materiales"

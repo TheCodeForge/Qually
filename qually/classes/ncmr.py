@@ -93,7 +93,7 @@ class NCMR(Base, core_mixin, process_mixin):
     @org_lang
     def _dispositions(cls):
 
-        return lambda:{
+        return {
                     0: _("Scrap"),
                     1: _("Return to Supplier"),
                     2: _("Rework"),
