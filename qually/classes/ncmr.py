@@ -1,6 +1,6 @@
 from qually.helpers.class_imports import *
 try:
-    from flask_babel import gettext as _, force_locale
+    from flask_babel import gettext as _
 except ModuleNotFoundError:
     def _(x):
         return x
@@ -90,21 +90,16 @@ class NCMR(Base, core_mixin, process_mixin):
         }
 
     @classmethod
+    @org_lang
     def _dispositions(cls):
 
-        data=lambda:{
+        return {
                     0: _("Scrap"),
                     1: _("Return to Supplier"),
                     2: _("Rework"),
                     3: _("Use As-Is"),
                     4: _("Reclassify")
             }
-
-        try:
-            with force_locale(g.user.organization.lang):
-                return data()
-        except (RuntimeError, NameError) as e:
-            return data()
 
     @classmethod
     def _layout(cls):

@@ -1,6 +1,6 @@
 from qually.helpers.class_imports import *
 try:
-    from flask_babel import gettext as _, force_locale
+    from flask_babel import gettext as _
 except ModuleNotFoundError:
     def _(x):
         return x
@@ -86,32 +86,22 @@ class Deviation(Base, core_mixin, process_mixin):
         }
 
     @classmethod
+    @org_lang
     def _plan_types(cls):
 
-        data=lambda:{
+        return {
                     0: _("Planned"),
                     1: _("Unplanned")
             }
 
-        try:
-            with force_locale(g.user.organization.lang):
-                return data()
-        except (RuntimeError, NameError) as e:
-            return data()
-
     @classmethod
+    @org_lang
     def _approval_to(cls):
 
-        data=lambda:{
+        return lambda:{
                     2: _("Yes"),
                     100: _("No")
             }
-
-        try:
-            with force_locale(g.user.organization.lang):
-                return data()
-        except (RuntimeError, NameError) as e:
-            return data()
 
     @classmethod
     def _layout(cls):
