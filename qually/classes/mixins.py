@@ -56,7 +56,7 @@ class process_mixin():
     @lazy
     def available_transitions(self):
 
-        tsns=self._transitions[self._status]
+        tsns=self._transitions.get(self._status, {})
 
         return [x for x in tsns if tsns]
 

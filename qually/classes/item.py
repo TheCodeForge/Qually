@@ -6,7 +6,7 @@ except ModuleNotFoundError:
         return x
 
 
-class Item(Base, core_mixin):
+class Item(Base, core_mixin, process_mixin):
 
     __tablename__="item"
 
@@ -25,20 +25,25 @@ class Item(Base, core_mixin):
                 },
             1: {
                 'name': _("Design"),
-                'users': self.organization.doc_control_users
+                'users': []
                 },
             2: {
                 'name': _("Production"),
-                'users': self.organization.mrb_users
+                'users': []
                 },
             100: {
                 'name': _("Obsolete"),
-                'users': [self.assignee],
-                'files': True
+                'users': []
                 }
         }
 
     @property
+    @lazy
+    def _transitions(self):
+        return {}
+
+    @property
+    @lazy
     def current_revision(self):
         return self.revisions.filter_by(_status=1).first()
     
