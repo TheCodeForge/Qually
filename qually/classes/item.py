@@ -102,5 +102,5 @@ class ItemRelationship(Base, core_mixin):
     child_id=Column(Integer, ForeignKey(Item.id))
     quantity=Column(Integer)
 
-    parent=relationship(Item, primaryjoin="itemrelationship.parent_id==item.id", lazy="joined")
-    child=relationship(Item, primaryjoin="itemrelationship.child_id==item.id", lazy="joined")
+    parent=relationship(Item, primaryjoin="ItemRelationship.parent_id==Item.id", lazy="joined")
+    child=relationship(Item, primaryjoin="ItemRelationship.child_id==Item.id", lazy="joined")
