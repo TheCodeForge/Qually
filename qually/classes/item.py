@@ -23,6 +23,8 @@ class Item(Base, core_mixin, process_mixin):
 
     _name="ITEM"
 
+    name_readable="Item"
+
     @property
     @lazy
     def parents(self):
