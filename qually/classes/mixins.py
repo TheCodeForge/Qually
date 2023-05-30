@@ -77,10 +77,8 @@ class process_mixin():
         cls.created_utc=Column(Integer)
 
         #Iterate through process template to create db columns for data captured in process
-        data=cls._layout()
-
         #for each phase in the template...
-        for status in data:
+        for status in cls._layout():
 
             #Due date property
             setattr(cls, f"phase_{status}_due_utc", Column(BigInteger))
