@@ -79,7 +79,7 @@ class Item(Base, core_mixin, process_mixin):
         return self.revisions.filter_by(_status=1).first()
     
 
-class ItemRevision(Base, core_mixin, process_mixin):
+class ItemRevision(Base, core_mixin):
 
     __tablename__="itemrevision"
 
@@ -87,6 +87,9 @@ class ItemRevision(Base, core_mixin, process_mixin):
     created_utc=Column(Integer)
     item_id=Column(Integer, ForeignKey(Item.id))
     file_id=Column(Integer, ForeignKey("files.id"))
+    object_name=Column(String)
+    object_description=Column(String)
+    object_description_raw=Column(String)
 
     _status=Column(Integer, default=0)
 
@@ -119,8 +122,6 @@ class ItemRevision(Base, core_mixin, process_mixin):
                 }
             ]
         }
-
-ItemRevision._cols()
     
 
 class ItemRelationship(Base, core_mixin):
