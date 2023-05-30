@@ -15,8 +15,8 @@ class Item(Base, core_mixin, process_mixin):
 
     revisions=relationship("ItemRevision", lazy="dynamic", order_by="ItemRevision.id.desc()")
 
-    child_relationships=relationship(Item, primaryjoin="itemrelationship.parent_id==item.id")
-    parent_relationships=relationship(Item, primaryjoin="itemrelationship.child_id==item.id")
+    child_relationships=relationship("Item", primaryjoin="itemrelationship.parent_id==item.id")
+    parent_relationships=relationship("Item", primaryjoin="itemrelationship.child_id==item.id")
 
     @property
     def parents(self):
