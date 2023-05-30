@@ -18,8 +18,8 @@ class Item(Base, core_mixin, process_mixin):
     revisions=relationship("ItemRevision", lazy="dynamic", order_by="ItemRevision.id.desc()")
 
     owner=relationship("User")
-    child_relationships=relationship("ItemRelationship", primaryjoin="ItemRelationship.parent_id==Item.id")
-    parent_relationships=relationship("ItemRelationship", primaryjoin="ItemRelationship.child_id==Item.id")
+    child_relationships=relationship("ItemRelationship", primaryjoin="ItemRelationship.parent_id==Item.id", backref="parent")
+    parent_relationships=relationship("ItemRelationship", primaryjoin="ItemRelationship.child_id==Item.id", backref="child")
 
     _name="ITEM"
 
@@ -137,9 +137,6 @@ class ItemRelationship(Base, core_mixin):
     parent_id=Column(Integer, ForeignKey(Item.id))
     child_id=Column(Integer, ForeignKey(Item.id))
     quantity=Column(Integer)
-
-    parent=relationship("Item", primaryjoin="ItemRelationship.parent_id==Item.id", lazy="joined")
-    child=relationship("Item", primaryjoin="ItemRelationship.child_id==Item.id", lazy="joined")
 
 class ItemLog(Base, core_mixin):
 
