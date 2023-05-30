@@ -280,10 +280,10 @@ def post_record_number_unapprove(kind, number):
 @has_seat
 def get_create_record(kind):
 
-    if kind not in VALID_KINDS:
+    if kind not in ALL_PROCESSES:
         abort(404)
 
-    OBJ=VALID_KINDS[kind]
+    OBJ=ALL_PROCESSES[kind]
 
     return render_template(f"create_record.html", obj=OBJ)
 
