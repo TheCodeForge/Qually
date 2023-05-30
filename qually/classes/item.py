@@ -19,10 +19,12 @@ class Item(Base, core_mixin, process_mixin):
     parent_relationships=relationship("ItemRelationship", primaryjoin="ItemRelationship.child_id==Item.id")
 
     @property
+    @lazy
     def parents(self):
         return [x.parent for x in self.parent_relationships]
 
     @property
+    @lazy
     def children(self):
         return [x.child for x in self.child_relationships]
 
@@ -58,7 +60,6 @@ class Item(Base, core_mixin, process_mixin):
         }
 
     @property
-    @lazy
     def _transitions(self):
         return {}
 
@@ -130,7 +131,7 @@ class ItemRelationship(Base, core_mixin):
 
 class ItemLog(Base, core_mixin):
 
-    __tablename__="ncmr_audit"
+    __tablename__="item_audit"
 
     id = Column(Integer, primary_key=True)
     record_id=Column(Integer, ForeignKey("item.id"))
