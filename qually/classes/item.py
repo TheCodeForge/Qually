@@ -12,9 +12,11 @@ class Item(Base, core_mixin, process_mixin):
 
     id=Column(Integer, primary_key=True)
     _kind_id=Column(Integer, default=1)
+    owner_id=Column(Integer, ForeignKey("users.id"))
 
     revisions=relationship("ItemRevision", lazy="dynamic", order_by="ItemRevision.id.desc()")
 
+    owner=relationship("User")
     child_relationships=relationship("ItemRelationship", primaryjoin="ItemRelationship.parent_id==Item.id")
     parent_relationships=relationship("ItemRelationship", primaryjoin="ItemRelationship.child_id==Item.id")
 
