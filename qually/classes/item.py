@@ -127,3 +127,18 @@ class ItemRelationship(Base, core_mixin):
 
     parent=relationship("Item", primaryjoin="ItemRelationship.parent_id==Item.id", lazy="joined")
     child=relationship("Item", primaryjoin="ItemRelationship.child_id==Item.id", lazy="joined")
+
+class ItemLog(Base, core_mixin):
+
+    __tablename__="ncmr_audit"
+
+    id = Column(Integer, primary_key=True)
+    record_id=Column(Integer, ForeignKey("item.id"))
+    user_id=Column(Integer, ForeignKey("users.id"))
+    created_utc=Column(Integer)
+    created_ip=Column(String(64))
+
+    key=Column(String)
+    value=Column(String)
+
+    user=relationship("User", lazy="joined", innerjoin=True)
