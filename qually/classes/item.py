@@ -62,13 +62,17 @@ class Item(Base, core_mixin, process_mixin):
     def _transitions(self):
         return {}
 
+    @classmethod
+    def _layout:
+        return eval("ItemRevision._layout()")
+
     @property
     @lazy
     def current_revision(self):
         return self.revisions.filter_by(_status=1).first()
     
 
-class ItemRevision(Base, core_mixin):
+class ItemRevision(Base, core_mixin, process_mixin):
 
     __tablename__="itemrevision"
 
@@ -91,6 +95,25 @@ class ItemRevision(Base, core_mixin):
     @property
     def status(self):
         return self._lifecycle[self._status]
+
+    @classmethod
+    def _layout(cls):
+        return {
+            0: [
+                {
+                    "name":_("Name"),
+                    "value":"object_name",
+                    "kind": "text"
+                },
+                {
+                    "name": _("Description"),
+                    "value":"object_description",
+                    "kind": "multi"
+                }
+            ]
+        }
+
+ItemRevision._cols()
     
 
 class ItemRelationship(Base, core_mixin):
