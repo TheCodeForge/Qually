@@ -72,6 +72,12 @@ class process_mixin():
     @classmethod
     def _cols(cls):
 
+        #set columns that all processes need
+
+        cls.created_utc=Column(Integer)
+        cls.organization_id = Column(Integer, ForeignKey("organizations.id"))
+        cls.owner_id = Column(Integer, ForeignKey("users.id"))
+
         #Iterate through process template to create db columns for data captured in process
         data=cls._layout()
 

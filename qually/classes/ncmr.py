@@ -10,9 +10,6 @@ class NCMR(Base, core_mixin, process_mixin):
     __tablename__="ncmr"
 
     id = Column(Integer, primary_key=True)
-    created_utc=Column(Integer)
-    organization_id = Column(Integer, ForeignKey("organizations.id"))
-    owner_id = Column(Integer, ForeignKey("users.id"))
     number=Column(Integer, default=0, index=True)
     _status = Column(Integer, default=0)
 

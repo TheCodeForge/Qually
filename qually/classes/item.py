@@ -11,8 +11,6 @@ class Item(Base, core_mixin, process_mixin):
     __tablename__="item"
 
     id=Column(Integer, primary_key=True)
-    created_utc=Column(Integer)
-    owner_id=Column(Integer, ForeignKey("users.id"))
     _kind_id=Column(Integer, default=1)
 
     revisions=relationship("ItemRevision", lazy="dynamic", order_by="ItemRevision.id.desc()")
