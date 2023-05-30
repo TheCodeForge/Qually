@@ -18,6 +18,8 @@ class Item(Base, core_mixin, process_mixin):
     child_relationships=relationship("ItemRelationship", primaryjoin="ItemRelationship.parent_id==Item.id")
     parent_relationships=relationship("ItemRelationship", primaryjoin="ItemRelationship.child_id==Item.id")
 
+    _name="ITEM"
+
     @property
     @lazy
     def parents(self):
