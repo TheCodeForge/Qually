@@ -77,7 +77,7 @@ class Item(Base, core_mixin, process_mixin):
         return {}
 
     @classmethod
-    def _layout():
+    def _layout(cls):
         return eval("ItemRevision._layout()")
 
     @property
