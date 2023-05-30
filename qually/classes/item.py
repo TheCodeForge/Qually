@@ -13,6 +13,7 @@ class Item(Base, core_mixin, process_mixin):
     id=Column(Integer, primary_key=True)
     created_utc=Column(Integer)
     owner_id=Column(Integer, ForeignKey("users.id"))
+    _kind_id=Column(Integer, default=1)
 
     revisions=relationship("ItemRevision", lazy="dynamic", order_by="ItemRevision.id.desc()")
 
@@ -35,10 +36,14 @@ class Item(Base, core_mixin, process_mixin):
     @org_lang
     def _kinds(cls):
         return {
-            1: "Part",
-            2: "Standard Operating Procedure",
-            3: "Work Instruction"
+            1: _("Part"),
+            2: _("Standard Operating Procedure"),
+            3: _("Work Instruction")
         }
+
+    @property
+    def kind(self):
+        return self._kinds()[self._kind_id]
 
     @property
     def _lifecycle(self):
