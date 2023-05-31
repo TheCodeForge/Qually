@@ -24,16 +24,16 @@ class Organization(Base, core_mixin):
     color=Column(String(6), default=app.config['COLOR_PRIMARY'])
 
     #Prefix settings
-    # ncmr_prefix = Column(String(5), default="NCMR")
-    # capa_prefix = Column(String(5), default="CAPA")
-    # dvtn_prefix = Column(String(5), default="DVTN")
+    ncmr_prefix = Column(String(5), default="NCMR")
+    capa_prefix = Column(String(5), default="CAPA")
+    dvtn_prefix = Column(String(5), default="DVTN")
 
     #Organization record counters
-    # ncmr_counter = Column(Integer, default=0)
-    # capa_counter = Column(Integer, default=0)
-    # dvtn_counter = Column(Integer, default=0)
+    ncmr_counter = Column(Integer, default=0)
+    capa_counter = Column(Integer, default=0)
+    dvtn_counter = Column(Integer, default=0)
 
-    # part_counter = Column(Integer, default=0)    
+    item_counter = Column(Integer, default=0)    
     # sop_counter = Column(Integer, default=0)
     # wi_counter = Column(Integer, default=0)
 
