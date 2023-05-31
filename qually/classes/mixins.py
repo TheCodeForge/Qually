@@ -114,6 +114,8 @@ class process_mixin():
 
         #create relationship on org
         setattr(Organization, f"{cls._name.lower()}s", relationship(cls,  lazy="dynamic", viewonly=True))
+        setattr(Organization, f"{cls._name.lower()}_prefix", Column(String(5), default=cls._name))
+        setattr(Organization, f"{cls._name.lower()}_counter", Column(Integer, default=0))
         
 
     @property
