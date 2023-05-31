@@ -4,11 +4,6 @@ try:
 except ModuleNotFoundError:
     pass
 
-VALID_KINDS={
-    'ncmr':NCMR,
-    'capa':CAPA,
-    'dvtn':Deviation
-}
 
 @app.get("/<kind>-<number>")
 @logged_in
@@ -291,15 +286,15 @@ def get_create_record(kind):
 @logged_in
 def get_record_records(kind):
 
-    if kind not in VALID_KINDS:
+    if kind not in ALL_PROCESSES:
         abort(404)
 
-    listing=getattr(g.user.organization, f"{kind}s").filter(VALID_KINDS[kind]._status<100).all()
+    listing=getattr(g.user.organization, f"{kind}s").filter(ALL_PROCESSES[kind]._status<100).all()
 
     return render_template(
         f"records.html",
         listing=listing,
-        name=VALID_KINDS[kind].name_readable()
+        name=ALL_PROCESSES[kind].name_readable()
         )
 
 
@@ -308,10 +303,10 @@ def get_record_records(kind):
 @org_update_lock
 def post_record_record(kind):
 
-    if kind not in VALID_KINDS:
+    if kind not in ALL_PROCESSES:
         abort(404)
 
-    OBJ = VALID_KINDS[kind]
+    OBJ = ALL_PROCESSES[kind]
 
     record=OBJ(
         owner_id=g.user.id,
