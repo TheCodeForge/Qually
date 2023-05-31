@@ -25,6 +25,15 @@ class Item(Base, core_mixin, process_mixin):
 
     _name="ITEM"
 
+    __table_args__=(
+            UniqueConstraint(
+                '_kind_id',
+                'number', 
+                'organization_id',
+                name=f'ncmr_org_number_unique'
+                ),
+            )
+
     @classmethod
     def name_readable(cls):
         return _("Item")

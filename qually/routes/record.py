@@ -311,7 +311,7 @@ def post_record_record(kind):
     record=OBJ(
         owner_id=g.user.id,
         organization_id=g.user.organization.id,
-        number=g.user.organization.next_id(kind),
+        number=OBJ._next_number(),
         created_utc=g.time
         )
 
