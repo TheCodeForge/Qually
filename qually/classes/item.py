@@ -35,6 +35,11 @@ class Item(Base, core_mixin, process_mixin):
             )
 
     @classmethod
+    def _next_number(cls):
+
+        return g.user.organization.next_id(self._kinds()[int(request.form.get('type'))]['orgname'])
+
+    @classmethod
     def name_readable(cls):
         return _("Item")
 
@@ -52,14 +57,23 @@ class Item(Base, core_mixin, process_mixin):
     @org_lang
     def _kinds(cls):
         return {
-            1: _("Part"),
-            2: _("Standard Operating Procedure"),
-            3: _("Work Instruction")
+            1: {
+                'name': _("Part"),
+                'orgname': 'part'
+                },
+            2: {
+                'name': _("Standard Operating Procedure"),
+                'orgname': 'sop'
+                },
+            3: {
+                'name': _("Work Instruction"),
+                'orgname': 'wi'
+                }
         }
 
     @property
     def kind(self):
-        return self._kinds()[self._kind_id]
+        return self._kinds()[self._kind_id]['name']
 
     @property
     def _lifecycle(self):
@@ -89,7 +103,17 @@ class Item(Base, core_mixin, process_mixin):
 
     @classmethod
     def _layout(cls):
-        return eval("ItemRevision._layout()")
+        data = eval("ItemRevision._layout()")
+
+        data[0].append(
+            {
+                "name": _("Type"),
+                "value":"type",
+                "kind": "dropdown",
+                "values": {x:self._kinds()[x]['name'] for x in self._kinds()}
+            }
+        )
+        return data
 
     @property
     @lazy

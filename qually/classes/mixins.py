@@ -110,7 +110,9 @@ class process_mixin():
         cls.logs=       relationship(f"{cls.__name__}Log", order_by=f"{cls.__name__}Log.id.desc()")
         cls.approvals=  relationship(f"{cls.__name__}Approval")
 
-        cls._next_number=lambda:g.user.organization.next_id(cls._name.lower())
+    @classmethod
+    def _next_number(cls):
+        return g.user.organization.next_id(cls._name.lower())
         
 
     @property
