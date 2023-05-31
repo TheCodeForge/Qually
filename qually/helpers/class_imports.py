@@ -1,5 +1,3 @@
-from qually.__main__ import Base, cache, app, debug
-
 import time
 
 from flask import g, abort, session, request
@@ -15,6 +13,7 @@ import qually.helpers.aws as aws
 
 from qually.classes.mixins import core_mixin, process_mixin
 
+from qually.__main__ import Base, cache, app, debug
 
 
 try:
