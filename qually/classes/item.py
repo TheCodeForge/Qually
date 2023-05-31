@@ -84,6 +84,14 @@ class Item(Base, core_mixin, process_mixin):
     @lazy
     def current_revision(self):
         return self.revisions.filter_by(_status=1).first()
+
+    def __getattr__(self, attr):
+
+        return getattr(self.current_revision, attr)
+
+    def __setattr__(self, attr, value):
+
+        return setattr(self.current_revision, attr, value)
     
 
 class ItemRevision(Base, core_mixin):
