@@ -11,6 +11,8 @@ import datetime
 from qually.helpers.base36 import *
 from qually.helpers.lazy import lazy
 
+from .organization import Organization
+
 from qually.__main__ import app, Base
 
 class core_mixin():
@@ -109,6 +111,9 @@ class process_mixin():
         cls.owner=      relationship("User", primaryjoin=f"User.id=={cls.__name__}.owner_id")
         cls.logs=       relationship(f"{cls.__name__}Log", order_by=f"{cls.__name__}Log.id.desc()")
         cls.approvals=  relationship(f"{cls.__name__}Approval")
+
+        #create relationship on org
+        setattr(Organization, f"{cls._name.lower()}s", relationship(cls,  lazy="dynamic", viewonly=True))
         
 
     @property
