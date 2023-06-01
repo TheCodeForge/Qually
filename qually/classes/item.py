@@ -108,7 +108,7 @@ class Item(Base, core_mixin, process_mixin):
     def _layout(cls):
         data = eval("ItemRevision._layout()")
 
-        data =[
+        data[0] =[
             {
                 "name": _("Type"),
                 "value":"type",
@@ -121,8 +121,8 @@ class Item(Base, core_mixin, process_mixin):
                 "kind": "text",
                 "placeholder": _("Leave blank to set item number automatically.")
             }
-        ]+data
-        
+        ]+data[0]
+
         return data
 
     @property
