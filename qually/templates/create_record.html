@@ -14,7 +14,7 @@
       <label for="input-{{ loop.index0 }}">{{ entry['name'] }}</label>
 
       {% if entry.get('kind')=='multi' %} 
-      <textarea id="input-{{ loop.index0 }}" class="form-control" name="{{ entry['value'] }}"></textarea>
+      <textarea id="input-{{ loop.index0 }}" class="form-control" name="{{ entry['value'] }}" placeholder="{{ entry.get('placeholder','') }}"></textarea>
 
       {% elif entry.get('kind')=='dropdown' %}
       <select id="input-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
@@ -33,7 +33,7 @@
       </select>
 
       {% else %}
-      <input id="input-{{ loop.index0 }}" class="form-control" type="text" name="{{ entry['value'] }}">
+      <input id="input-{{ loop.index0 }}" class="form-control" type="text" name="{{ entry['value'] }}" placeholder="{{ entry.get('placeholder','') }}">
 
       {% endif %}
 

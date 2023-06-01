@@ -103,6 +103,7 @@ class Item(Base, core_mixin, process_mixin):
         return {}
 
     @classmethod
+    @org_lang
     def _layout(cls):
         data = eval("ItemRevision._layout()")
 
@@ -112,6 +113,7 @@ class Item(Base, core_mixin, process_mixin):
                 "value":"type",
                 "kind": "dropdown",
                 "values": {x:cls._kinds()[x]['name'] for x in cls._kinds()}
+                "placeholder": _("Leave blank to auto-assign item number")
             }
         )
         return data

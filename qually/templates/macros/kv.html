@@ -32,7 +32,7 @@
         <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
 
         {% if entry.get('kind')=='multi' %} 
-        <textarea id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" name="{{ entry['value'] }}">{{ record.__dict__.get(entry['value']+'_raw') }}</textarea>
+        <textarea id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" name="{{ entry['value'] }}" placeholder="{{ entry.get('placeholder','') }}">{{ record.__dict__.get(entry['value']+'_raw') }}</textarea>
 
         {% elif entry.get('kind')=='dropdown' %}
         <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
@@ -51,7 +51,7 @@
         </select>
 
         {% else %}
-        <input id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" type="text" name="{{ entry['value'] }}" value="{{ record.__dict__.get(entry['value']) }}">
+        <input id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" type="text" name="{{ entry['value'] }}" value="{{ record.__dict__.get(entry['value']) }}" placeholder="{{ entry.get('placeholder','') }}">
         {% endif %}
         {% if entry.get('help') %}
         <p class="text-small">{{ entry['help'] }}</p>
