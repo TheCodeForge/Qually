@@ -321,9 +321,8 @@ def post_record_record(kind):
         entries=record._layout()[0]
 
     for entry in entries:
-        if request.form.get(entry['value']) in ['',None]:
+        if entry.get("required") and request.form.get(entry['value']) in ['',None]:
             return toast_error(_("Provide response for {x}").format(x=entry['name']))
-    for entry in entries:
         if entry['value'] in request.form:
             if entry['kind']=='multi':
                 setattr(record, f"{entry['value']}_raw", request.form[entry['value']])
