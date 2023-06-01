@@ -17,6 +17,7 @@ class Item(Base, core_mixin, process_mixin):
     number=Column(Integer, default=0)
     organization_id = Column(Integer, ForeignKey("organizations.id"))
     _status = Column(Integer, default=0)
+    custom_number=Column(String)
 
     revisions=relationship("ItemRevision", lazy="dynamic", order_by="ItemRevision.id.desc()")
 
@@ -113,8 +114,16 @@ class Item(Base, core_mixin, process_mixin):
                 "name": _("Type"),
                 "value":"type",
                 "kind": "dropdown",
-                "values": {x:cls._kinds()[x]['name'] for x in cls._kinds()},
-                "placeholder": _("Leave blank to auto-assign item number.")
+                "values": {x:cls._kinds()[x]['name'] for x in cls._kinds()}
+            }
+        )
+        data[0].insert(
+            1,
+            {
+                "name": _("Custom Number"),
+                "value":"custom_number",
+                "kind": "text",
+                "placeholder": _("Leave blank to set item number automatically.")
             }
         )
         return data
