@@ -111,7 +111,7 @@ class Item(Base, core_mixin, process_mixin):
                 "name": _("Type"),
                 "value":"type",
                 "kind": "dropdown",
-                "values": {x:self._kinds()[x]['name'] for x in self._kinds()}
+                "values": {x:cls._kinds()[x]['name'] for x in cls._kinds()}
             }
         )
         return data
