@@ -122,3 +122,6 @@ class process_mixin():
 
     def can_edit(self, section):
         return g.user.has_seat and g.user in self._lifecycle[section]['users'] and (self._status == section or (self._status < section and self._lifecycle[section].get('early')=="edit"))
+
+    def _after_create(self):
+        pass

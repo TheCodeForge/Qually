@@ -347,6 +347,8 @@ def post_record_record(kind):
     g.db.add(record)
     g.db.flush()
 
+    record._after_create()
+
     with force_locale(g.user.organization.lang):
         log = eval(f"{record.__class__.__name__}Log")(
             record_id=record.id,
