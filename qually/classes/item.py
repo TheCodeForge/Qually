@@ -39,7 +39,7 @@ class Item(Base, core_mixin, process_mixin):
     @classmethod
     def _next_number(cls):
 
-        return g.user.organization.next_id(cls._kinds()[int(request.form.get('type'))]['orgname'])
+        return g.user.organization.next_id(cls._kinds()[int(request.form.get('_kind_id'))]['orgname'])
 
     @classmethod
     def name_readable(cls):
@@ -111,7 +111,7 @@ class Item(Base, core_mixin, process_mixin):
         data[0] =[
             {
                 "name": _("Type"),
-                "value":"type",
+                "value":"_kind_id",
                 "kind": "dropdown",
                 "values": {x:cls._kinds()[x]['name'] for x in cls._kinds()}
             },
