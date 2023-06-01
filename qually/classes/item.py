@@ -108,24 +108,20 @@ class Item(Base, core_mixin, process_mixin):
     def _layout(cls):
         data = eval("ItemRevision._layout()")
 
-        data[0].insert(
-            0,
+        data =[
             {
                 "name": _("Type"),
                 "value":"type",
                 "kind": "dropdown",
                 "values": {x:cls._kinds()[x]['name'] for x in cls._kinds()}
-            }
-        )
-        data[0].insert(
-            1,
+            },
             {
                 "name": _("Custom Number"),
                 "value":"custom_number",
                 "kind": "text",
                 "placeholder": _("Leave blank to set item number automatically.")
             }
-        )
+        ]+data
         return data
 
     @property
