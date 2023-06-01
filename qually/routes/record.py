@@ -308,7 +308,6 @@ def post_record_record(kind):
 
     OBJ = ALL_PROCESSES[kind]
 
-
     record=OBJ(
         owner_id=g.user.id,
         organization_id=g.user.organization.id,
