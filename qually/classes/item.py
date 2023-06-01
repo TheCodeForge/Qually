@@ -31,7 +31,7 @@ class Item(Base, core_mixin, process_mixin):
                 '_kind_id',
                 'number', 
                 'organization_id',
-                name=f'ncmr_org_number_unique'
+                name=f'item_org_number_unique'
                 ),
             )
 
