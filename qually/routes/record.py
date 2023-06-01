@@ -308,10 +308,10 @@ def post_record_record(kind):
 
     OBJ = ALL_PROCESSES[kind]
 
+
     record=OBJ(
         owner_id=g.user.id,
         organization_id=g.user.organization.id,
-        number=OBJ._next_number(),
         created_utc=g.time
         )
 
@@ -341,6 +341,9 @@ def post_record_record(kind):
                     setattr(record, f"{entry['value']}_id", None)
             else:
                 setattr(record, entry['value'], txt(request.form[entry['value']]))
+
+
+    record.number=OBJ._next_number(),
 
     g.db.add(record)
     g.db.flush()
