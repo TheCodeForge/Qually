@@ -39,7 +39,7 @@ class Item(Base, core_mixin, process_mixin):
     @classmethod
     def _next_number(cls):
 
-        return g.user.organization.next_id(self._kinds()[int(request.form.get('type'))]['orgname'])
+        return g.user.organization.next_id(cls._kinds()[int(request.form.get('type'))]['orgname'])
 
     @classmethod
     def name_readable(cls):
@@ -122,6 +122,7 @@ class Item(Base, core_mixin, process_mixin):
                 "placeholder": _("Leave blank to set item number automatically.")
             }
         ]+data
+        
         return data
 
     @property
