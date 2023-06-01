@@ -33,9 +33,9 @@ class Organization(Base, core_mixin):
     capa_counter = Column(Integer, default=0)
     dvtn_counter = Column(Integer, default=0)
 
-    item_counter = Column(Integer, default=0)    
-    # sop_counter = Column(Integer, default=0)
-    # wi_counter = Column(Integer, default=0)
+    part_counter = Column(Integer, default=0)    
+    sop_counter = Column(Integer, default=0)
+    wi_counter = Column(Integer, default=0)
 
     # tp_counter = Column(Integer, default=0)
     # tr_counter = Column(Integer, default=0)
