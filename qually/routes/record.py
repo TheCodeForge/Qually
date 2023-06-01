@@ -306,6 +306,13 @@ def post_record_record(kind):
     if kind not in ALL_PROCESSES:
         abort(404)
 
+    with force_locale(g.user.organization.lang):
+        entries=record._layout()[0]
+
+    for entry in entries:
+        if request.form.get(entry['value']) in ['',None]:
+            return toast_error(_("Provide response for {x}").format(x=entry['name']))
+
     OBJ = ALL_PROCESSES[kind]
 
     record=OBJ(
@@ -318,12 +325,8 @@ def post_record_record(kind):
     g.db.add(record)
     g.db.flush()
 
-    with force_locale(g.user.organization.lang):
-        entries=record._layout()[0]
 
     for entry in entries:
-        if request.form.get(entry['value']) in ['',None]:
-            return toast_error(_("Provide response for {x}").format(x=entry['name']))
         if entry['value'] in request.form:
             if entry['kind']=='multi':
                 setattr(record, f"{entry['value']}_raw", request.form[entry['value']])
