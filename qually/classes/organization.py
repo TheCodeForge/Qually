@@ -57,6 +57,9 @@ class Organization(Base, core_mixin):
     capas=relationship("CAPA",      lazy="dynamic", viewonly=True)
     dvtns=relationship("Deviation", lazy="dynamic", viewonly=True)
     items=relationship("Item",      lazy="dynamic", viewonly=True)
+    parts=relationship("Item",      lazy="dynamic", viewonly=True, primaryjoin="item.organization_id==organization.id AND item._kind_id==1")
+    sops =relationship("Item",      lazy="dynamic", viewonly=True, primaryjoin="item.organization_id==organization.id AND item._kind_id==2")
+    wis  =relationship("Item",      lazy="dynamic", viewonly=True, primaryjoin="item.organization_id==organization.id AND item._kind_id==3")
 
     @classmethod
     def _cols(cls):
@@ -100,12 +103,7 @@ class Organization(Base, core_mixin):
         else:
             abort(404)
 
-        _kinds=['part','sop','wi']
-        if kind in _kinds:
-            record= getattr(self, f"{kind.lower()}s").filter_by(number=int(number), _kind_id=_kinds.index(kind)+1).first()
-            kind='item'
-        else:
-            record= getattr(self, f"{kind.lower()}s").filter_by(number=int(number)).first()
+        record= getattr(self, f"{kind.lower()}s").filter_by(number=int(number)).first()
 
         if not record:
             abort(404)

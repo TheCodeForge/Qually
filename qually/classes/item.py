@@ -133,6 +133,21 @@ class Item(Base, core_mixin, process_mixin):
     @property
     def name(self):
         return self.custom_number or f"{getattr(g.user.organization, f'{self.kind.lower()}_prefix')}-{self.number:0>5}"
+
+    def _after_create(self):
+
+        ir = ItemRevision(
+            item_id=self.id,
+            created_utc=g.time,
+            object_name=txt(request.form.get("object_name")),
+            object_description=txt(request.form.get("object_description")),
+            object_description_raw=html(request.form.get("object_description")),
+            _status=1
+            )
+        self._status=0
+        g.db.add(ir)
+        g.db.add(self)
+        g.db.commit()
     
 
 class ItemRevision(Base, core_mixin):
