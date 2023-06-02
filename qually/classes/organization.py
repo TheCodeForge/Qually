@@ -27,6 +27,10 @@ class Organization(Base, core_mixin):
     ncmr_prefix = Column(String(5), default="NCMR")
     capa_prefix = Column(String(5), default="CAPA")
     dvtn_prefix = Column(String(5), default="DVTN")
+    part_prefix = Column(String(5), default="PART")
+    sop_prefix = Column(String(5), default="SOP")
+    wi_prefix = Column(String(5), default="WI")
+    
 
     #Organization record counters
     ncmr_counter = Column(Integer, default=0)
