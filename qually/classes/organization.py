@@ -102,10 +102,8 @@ class Organization(Base, core_mixin):
 
         _kinds=['part','sop','wi']
         if kind in _kinds:
-
-
-            kind='item'
             record= getattr(self, f"{kind.lower()}s").filter_by(number=int(number), _kind_id=_kinds.index(kind)+1).first()
+            kind='item'
         else:
             record= getattr(self, f"{kind.lower()}s").filter_by(number=int(number)).first()
 
