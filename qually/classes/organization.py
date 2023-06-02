@@ -57,9 +57,9 @@ class Organization(Base, core_mixin):
     capas=relationship("CAPA",      lazy="dynamic", viewonly=True)
     dvtns=relationship("Deviation", lazy="dynamic", viewonly=True)
     items=relationship("Item",      lazy="dynamic", viewonly=True)
-    parts=relationship("Item",      lazy="dynamic", viewonly=True, primaryjoin="item.organization_id==organization.id and item._kind_id==1")
-    sops =relationship("Item",      lazy="dynamic", viewonly=True, primaryjoin="item.organization_id==organization.id and item._kind_id==2")
-    wis  =relationship("Item",      lazy="dynamic", viewonly=True, primaryjoin="item.organization_id==organization.id and item._kind_id==3")
+    parts=relationship("Item",      lazy="dynamic", viewonly=True, primaryjoin="Item.organization_id==Organization.id and Item._kind_id==1")
+    sops =relationship("Item",      lazy="dynamic", viewonly=True, primaryjoin="Item.organization_id==Organization.id and Item._kind_id==2")
+    wis  =relationship("Item",      lazy="dynamic", viewonly=True, primaryjoin="Item.organization_id==Organization.id and Item._kind_id==3")
 
     @classmethod
     def _cols(cls):
