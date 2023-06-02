@@ -129,6 +129,10 @@ class Item(Base, core_mixin, process_mixin):
     @lazy
     def current_revision(self):
         return self.revisions.filter_by(_status=1).first()
+
+    @property
+    def name(self):
+        return self.custom_number or f"{getattr(g.user.organization, f'{self.kind.lower()}_prefix')}-{self.number:0>5}"
     
 
 class ItemRevision(Base, core_mixin):
@@ -174,7 +178,6 @@ class ItemRevision(Base, core_mixin):
                 }
             ]
         }
-    
 
 class ItemRelationship(Base, core_mixin):
 
