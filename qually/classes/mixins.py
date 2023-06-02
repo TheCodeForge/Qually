@@ -62,7 +62,7 @@ class process_mixin():
 
     def phase_approvals(self, phase):
 
-        return [x for x in self.approvals if x.status_id==phase]
+        return [x for x in getattr(self, "approvals", []) if x.status_id==phase]
 
     @property
     def has_approved(self):
