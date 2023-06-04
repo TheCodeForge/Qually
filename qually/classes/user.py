@@ -47,7 +47,8 @@ class User(Base, core_mixin):
 
     __table_args__=(
         Index(
-            "users_email_trgm_idx", "email",
+            "users_email_trgm_idx",
+            "email",
             postgresql_using="gin",
             postgresql_ops={
                 'email':'gin_trgm_ops'
