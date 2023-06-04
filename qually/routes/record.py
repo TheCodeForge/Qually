@@ -22,7 +22,7 @@ def post_record_number(kind, number):
 
     record = g.user.organization.get_record(kind, number)
 
-    key, value = record._edit_form()
+    key, value, do_reload = record._edit_form()
 
     #clear any existing approvals on phase and log clearing
     if getattr(record, "approvals"):
@@ -54,7 +54,7 @@ def post_record_number(kind, number):
 
         g.db.commit()
 
-    if entry.get('reload') or approvals_cleared:
+    if do_reload or approvals_cleared:
         return toast_redirect(record.permalink)
 
     return toast(_("Changes saved"), data={"new":response})

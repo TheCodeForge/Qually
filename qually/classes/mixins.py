@@ -11,6 +11,7 @@ import datetime
 from qually.helpers.base36 import *
 from qually.helpers.lazy import lazy
 from qually.helpers.sanitize import txt, html
+from qually.helpers.posttoast import *
 
 from qually.__main__ import app, Base
 
@@ -182,4 +183,4 @@ class process_mixin():
 
         g.db.add(self)
 
-        return key, value
+        return key, value, entry.get("reload", False)
