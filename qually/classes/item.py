@@ -127,6 +127,11 @@ class Item(Base, core_mixin, process_mixin):
 
     @property
     @lazy
+    def proposed_revision(self):
+        return self.revisions.filter_by(_status=0).first()
+
+    @property
+    @lazy
     def current_revision(self):
         return self.revisions.filter_by(_status=1).first()
 
@@ -142,7 +147,7 @@ class Item(Base, core_mixin, process_mixin):
             object_name=txt(request.form.get("object_name")),
             object_description=txt(request.form.get("object_description")),
             object_description_raw=html(request.form.get("object_description")),
-            _status=1
+            _status=0
             )
         self._status=0
         g.db.add(ir)
@@ -152,21 +157,21 @@ class Item(Base, core_mixin, process_mixin):
     def _edit_form(self):
 
         if self._status==0:
-            return self.current_revision._edit_form()
+            return self.proposed_revision._edit_form()
 
         elif self._status==1:
 
-            self.current_revision._status=2
+            self.proposed_revision._status=2
 
             ir = ItemRevision(
                 item_id=self.id,
                 created_utc=g.time,
-                _status=1,
+                _status=0,
                 revision_number = self.current_revision+1
                 )
 
             g.db.add(ir)
-            g.db.add(self.current_revision)
+            g.db.add(self.proposed_revision)
             results = ir._edit_form()
             g.db.flush()
             return results
@@ -209,7 +214,7 @@ class ItemRevision(Base, core_mixin, process_mixin):
             },
             1:{
                 'name':_("Effective"),
-                'users': [g.user] if self.item._status==0 else []
+                'users': []
             },
             2:{
                 'name':_("Superceded"),
