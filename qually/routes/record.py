@@ -54,7 +54,7 @@ def post_record_number(kind, number):
                 )
             g.db.add(log)
 
-        g.db.commit()
+    g.db.commit()
 
     if do_reload or approvals_cleared:
         return toast_redirect(record.permalink)
