@@ -4,7 +4,7 @@ from qually.helpers.route_imports import *
 #custom errors
 @app.errorhandler(ToastError)
 def error_toasterror(e):
-    return jsonify({"error":e.message}), e.status
+    return jsonify({"error":e.message}), e.status_code
 
 # Standard Errors
 @app.errorhandler(401)
