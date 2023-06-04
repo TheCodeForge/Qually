@@ -197,6 +197,10 @@ class Item(Base, core_mixin, process_mixin):
         else:
             return toast_error("Can't edit that right now")
 
+    def __getattr__(self, target):
+
+        return getattr(self.display_revision, target)
+
 class ItemRevision(Base, core_mixin, process_mixin):
 
     __tablename__="itemrevision"
