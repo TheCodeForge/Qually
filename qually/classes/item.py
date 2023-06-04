@@ -171,7 +171,8 @@ class Item(Base, core_mixin, process_mixin):
             g.db.flush()
             return results
 
-        elif self._status
+        else:
+            return toast_error("Can't edit that right now")
 
 class ItemRevision(Base, core_mixin, process_mixin):
 
