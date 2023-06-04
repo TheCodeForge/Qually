@@ -19,7 +19,7 @@ class Item(Base, core_mixin, process_mixin):
     _status = Column(Integer, default=0)
     custom_number=Column(String)
 
-    revisions=relationship("ItemRevision", lazy="dynamic", order_by="ItemRevision.id.desc()")
+    revisions=relationship("ItemRevision", lazy="dynamic", order_by="ItemRevision.id.desc()", viewonly=True)
 
     owner=relationship("User")
     child_relationships=relationship("ItemRelationship", primaryjoin="ItemRelationship.parent_id==Item.id", backref="parent")
@@ -166,6 +166,8 @@ class ItemRevision(Base, core_mixin, process_mixin):
 
     _status=Column(Integer, default=0)
 
+    item=relationship("Item", lazy="joined" viewonly=True)
+
 
     @property
     def _lifecycle(self):
@@ -176,7 +178,7 @@ class ItemRevision(Base, core_mixin, process_mixin):
             },
             1:{
                 'name':_("Effective"),
-                'users': []
+                'users': [g.user] if self.item._status==0 else []
             },
             2:{
                 'name':_("Superceded"),
