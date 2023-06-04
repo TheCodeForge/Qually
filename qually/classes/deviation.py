@@ -97,7 +97,7 @@ class Deviation(Base, core_mixin, process_mixin):
     @org_lang
     def _approval_to(cls):
 
-        return lambda:{
+        return {
                     2: _("Yes"),
                     100: _("No")
             }
