@@ -149,6 +149,8 @@ class Item(Base, core_mixin, process_mixin):
         g.db.add(self)
         g.db.commit()
     
+    def _edit_form(self):
+        return self.current_revision._edit_form()
 
 class ItemRevision(Base, core_mixin):
 
