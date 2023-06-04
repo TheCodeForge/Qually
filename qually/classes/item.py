@@ -170,9 +170,15 @@ class ItemRevision(Base, core_mixin, process_mixin):
     @property
     def _lifecycle(self):
         return {
-            0:_("Proposed"),
-            1:_("Effective"),
-            2:_("Superceded")
+            0:{
+                'name':_("Proposed")
+            },
+            1:{
+                'name':_("Effective")
+            },
+            2:{
+                'name':_("Superceded")
+            }
         }
 
     @property
