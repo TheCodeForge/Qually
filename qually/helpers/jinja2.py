@@ -150,3 +150,12 @@ def jinja_processes(x):
         return ALL_PROCESSES[x]
     else:
         return ALL_PROCESSES
+
+
+@app.template_filter("lambda")
+def jinja_lambda(value, arg=False):
+
+    if arg:
+        return lambda x: value
+    else:
+        return lambda:value
