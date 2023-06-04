@@ -152,9 +152,12 @@ class Item(Base, core_mixin, process_mixin):
 
     @property
     def name(self):
+
+        if self.custom_number:
+            return self.custom_number
+
         prefix_id=self._kinds()[self._kind_id]['orgname'].lower()
         prefix=getattr(g.user.organization, f"{prefix_id}_prefix")
-
         return f"{prefix}-{self.number:0>5}"
 
     def _after_create(self):
@@ -200,6 +203,10 @@ class Item(Base, core_mixin, process_mixin):
     def __getattr__(self, target):
 
         return getattr(self.display_revision, target)
+
+    def __setattr__(self, target, value):
+
+        setattr(self.display_revision, target, value)
 
 class ItemRevision(Base, core_mixin, process_mixin):
 
