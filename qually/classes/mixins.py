@@ -3,7 +3,7 @@ import time
 from sqlalchemy import Column, Integer, BigInteger, Float, String, Boolean, ForeignKey, Index, UniqueConstraint, text, or_, and_
 from sqlalchemy.orm import deferred, relationship
 try:
-    from flask_babel import format_datetime
+    from flask_babel import format_datetime, force_locale, gettext as _
 except ModuleNotFoundError:
     pass
 import datetime
