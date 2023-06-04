@@ -9,4 +9,4 @@ class ToastError(Exception):
     def __init__(self, text, code=409):
         self.message=text
         self.status_code=code
-        Exception.__init(self)
+        Exception.__init__(self)
