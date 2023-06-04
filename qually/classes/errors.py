@@ -6,7 +6,7 @@ class PaymentRequired(Exception):
 
 class ToastError(Exception):
 
-    def __init(self, text, code=409):
+    def __init__(self, text, code=409):
         self.message=text
         self.status_code=code
         Exception.__init(self)
