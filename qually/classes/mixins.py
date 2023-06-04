@@ -183,8 +183,7 @@ class process_mixin():
         g.db.add(self)
 
         #clear any existing approvals on phase and log clearing
-
-        try:
+        if getattr(self, "approvals"):
             approvals_cleared = g.db.query(eval(f"{self.__class__.__name__}Approval")).filter_by(record_id=self.id, status_id=self._status).delete()
             if approvals_cleared:
 
@@ -198,9 +197,6 @@ class process_mixin():
                         created_ip=request.remote_addr
                         )
                     g.db.add(appr_clear_log)
-        except NameError as e:
-            if f"{self.__class__.__name__}Approval" not in e:
-                raise e
 
         with force_locale(g.user.organization.lang):
             log=eval(f"{self.__class__.__name__}Log")(
