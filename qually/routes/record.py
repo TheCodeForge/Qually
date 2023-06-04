@@ -22,58 +22,9 @@ def post_record_number(kind, number):
 
     record = g.user.organization.get_record(kind, number)
 
-    #allow saving of future things if editable
-    with force_locale(g.user.organization.lang):
-        phases = [x for x in record._lifecycle if record.can_edit(x)]
-
-        entries=[]
-        for phase in phases:
-            entries += record._layout()[phase]
-
-    for entry in entries:
-        if entry['value'] in request.form:
-            if entry['kind']=='multi':
-                setattr(record, f"{entry['value']}_raw", request.form[entry['value']])
-                setattr(record, entry['value'], html(request.form[entry['value']]))
-                key=entry['name']
-                value=txt(request.form[entry['value']])
-                response=getattr(record, entry['value']) or "<p></p>"
-            elif entry['kind']=='dropdown':
-
-                if int(request.form[entry['value']]) not in entry['values']:
-                    return toast_error(_("Invalid selection for {x}").format(x=entry['name']))
-
-                setattr(record, entry['value'], int(request.form[entry['value']]))
-                key=entry['name']
-                value=entry['values'].get(int(request.form[entry['value']]))
-                response=value
-            elif entry['kind']=='user':
-                n=request.form.get(entry['value'])
-                if n:
-                    if not g.user.organization.users.filter_by(id=int(n)).first():
-                        return toast_error(_("Invalid user"))
-                    setattr(record, f"{entry['value']}_id", int(n))
-                    g.db.add(record)
-                    g.db.flush()
-                    g.db.refresh(record)
-                    value=getattr(record, entry['value']).name
-                    response=f'<a href="{getattr(record, entry["value"]).permalink}">{getattr(record, entry["value"]).name}</a>'
-                else:
-                    setattr(record, entry['value'], None)
-                    response="<p></p>"
-                    value=""
-                key=entry['name']
-            else:
-                setattr(record, entry['value'], txt(request.form[entry['value']]))
-                key=entry['name']
-                value=getattr(record, entry['value'])
-                response=value
-
-            break
-    else:
-        return toast_error(_("Unable to save changes"))
-
-    g.db.add(record)
+    process_edits = record._edit_form()
+    if process_edits:
+        return process_edits
 
     #clear any existing approvals on phase and log clearing
 
