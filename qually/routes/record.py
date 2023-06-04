@@ -40,7 +40,7 @@ def post_record_number(kind, number):
                     )
                 g.db.add(appr_clear_log)
 
-    if getattr(record, "logs")
+    if getattr(record, "logs"):
         with force_locale(g.user.organization.lang):
             log=eval(f"{record.__class__.__name__}Log")(
                 user_id=g.user.id,
