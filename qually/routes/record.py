@@ -24,6 +24,9 @@ def post_record_number(kind, number):
 
     key, value, response, do_reload = record._edit_form()
 
+    if not key:
+        return toast_error(_("Unable to save changes"))
+
     #clear any existing approvals on phase and log clearing
     if getattr(record, "approvals", None):
         approvals_cleared = g.db.query(eval(f"{record.__class__.__name__}Approval")).filter_by(record_id=record.id, status_id=record._status).delete()

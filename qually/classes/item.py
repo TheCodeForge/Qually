@@ -6,7 +6,7 @@ except ModuleNotFoundError:
         return x
 
 
-class Item(Base, core_mixin, process_mixin):
+class Item(Base, core_mixin, revisioned_process_mixin):
 
     __tablename__="item"
 
@@ -133,24 +133,6 @@ class Item(Base, core_mixin, process_mixin):
         return data
 
     @property
-    @lazy
-    def proposed_revision(self):
-        return self.revisions.filter_by(_status=0).first()
-
-    @property
-    @lazy
-    def current_revision(self):
-        return self.revisions.filter_by(_status=1).first()
-
-    @property
-    @lazy
-    def display_revision(self):
-        if self._status<=1:
-            return self.proposed_revision
-        else:
-            return self.current_revision
-
-    @property
     def name(self):
 
         if self.custom_number:
@@ -177,7 +159,9 @@ class Item(Base, core_mixin, process_mixin):
     
     def _edit_form(self):
 
-        process_mixin._edit_form(self)
+        checks= process_mixin._edit_form(self)
+        if checks[0]:
+            return checks
 
         if self._status==0:
             return self.proposed_revision._edit_form()

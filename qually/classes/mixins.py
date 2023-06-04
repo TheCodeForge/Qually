@@ -179,8 +179,28 @@ class process_mixin():
 
                 break
         else:
-            return toast_error(_("Unable to save changes"))
+            return None, None, None, None
 
         g.db.add(self)
 
         return key, value, response, entry.get("reload", False)
+
+class revisioned_process_mixin(process_mixin):
+
+    @property
+    @lazy
+    def proposed_revisions(self):
+        return self.revisions.filter_by(_status=0).first()
+
+    @property
+    @lazy
+    def effective_revision(self):
+        return self.revisions.filter_by(_status=1).first()
+
+    @property
+    @lazy
+    def display_revision(self):
+        if self._status<=1:
+            return self.proposed_revision
+        else:
+            return self.current_revision
