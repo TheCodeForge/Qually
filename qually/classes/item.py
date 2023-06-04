@@ -177,6 +177,8 @@ class Item(Base, core_mixin, process_mixin):
     
     def _edit_form(self):
 
+        process_mixin._edit_form(self)
+
         if self._status==0:
             return self.proposed_revision._edit_form()
 
