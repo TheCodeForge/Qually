@@ -34,6 +34,11 @@ class Item(Base, core_mixin, process_mixin):
                 'organization_id',
                 name=f'item_org_number_unique'
                 ),
+            UniqueConstraint(
+                'custom_number',
+                'organization_id',
+                name=f'item_org_custom_number_unique'
+                )
             )
 
     @classmethod
@@ -120,8 +125,8 @@ class Item(Base, core_mixin, process_mixin):
                 "name": _("Custom Number"),
                 "value":"custom_number",
                 "kind": "text",
-                "placeholder": _("Leave blank to set item number automatically."),
-                "hide": lambda self: True
+                "placeholder": _("Assign a custom number to this item."),
+                "hide": lambda self: bool(self.custom_number)
             }
         ]+data[0]
 
@@ -147,7 +152,7 @@ class Item(Base, core_mixin, process_mixin):
 
     @property
     def name(self):
-        return self.custom_number or f"{getattr(g.user.organization, f'{self.kinds[self._kind_id]['orgname'].lower()}_prefix')}-{self.number:0>5}"
+        return f"{getattr(g.user.organization, f'{self.kinds[self._kind_id]['orgname'].lower()}_prefix')}-{self.number:0>5}"
 
     def _after_create(self):
 
