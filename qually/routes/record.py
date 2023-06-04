@@ -22,7 +22,7 @@ def post_record_number(kind, number):
 
     record = g.user.organization.get_record(kind, number)
 
-    key, value, do_reload = record._edit_form()
+    key, value, response, do_reload = record._edit_form()
 
     #clear any existing approvals on phase and log clearing
     if getattr(record, "approvals"):

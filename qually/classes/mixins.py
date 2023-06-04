@@ -183,4 +183,4 @@ class process_mixin():
 
         g.db.add(self)
 
-        return key, value, entry.get("reload", False)
+        return key, value, response, entry.get("reload", False)
