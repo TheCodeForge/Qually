@@ -191,7 +191,7 @@ class ItemRevision(Base, core_mixin, process_mixin):
 
     item=relationship("Item", lazy="joined", viewonly=True)
 
-     __table_args__=(
+    __table_args__=(
         UniqueConstraint(
             'item_id', 
             'revision_number',
