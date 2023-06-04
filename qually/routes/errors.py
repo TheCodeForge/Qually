@@ -1,8 +1,12 @@
+from qually.classes.errors import ToastError
 from qually.helpers.route_imports import *
 
-# Errors
+#custom errors
+@app.errorhandler(ToastError)
+def error_toasterror(e):
+    return jsonify({"error":e.message}), e.status
 
-
+# Standard Errors
 @app.errorhandler(401)
 def error_401(e):
     return render_template('errors/401.html'), 401

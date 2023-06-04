@@ -182,33 +182,4 @@ class process_mixin():
 
         g.db.add(self)
 
-        #clear any existing approvals on phase and log clearing
-        if getattr(self, "approvals"):
-            approvals_cleared = g.db.query(eval(f"{self.__class__.__name__}Approval")).filter_by(record_id=self.id, status_id=self._status).delete()
-            if approvals_cleared:
-
-                with force_locale(g.user.organization.lang):
-                    appr_clear_log=eval(f"{self.__class__.__name__}Log")(
-                        user_id=g.user.id,
-                        record_id=self.id,
-                        created_utc=g.time,
-                        key=f"{_('Approvals')} - {self.status}",
-                        value=_("Cleared"),
-                        created_ip=request.remote_addr
-                        )
-                    g.db.add(appr_clear_log)
-
-        with force_locale(g.user.organization.lang):
-            log=eval(f"{self.__class__.__name__}Log")(
-                user_id=g.user.id,
-                record_id=self.id,
-                created_utc=g.time,
-                key=key,
-                value=value,
-                created_ip=request.remote_addr
-                )
-            g.db.add(log)
-
-        g.db.commit()
-
-        return None
+        return key, value

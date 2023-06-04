@@ -22,38 +22,37 @@ def post_record_number(kind, number):
 
     record = g.user.organization.get_record(kind, number)
 
-    process_edits = record._edit_form()
-    if process_edits:
-        return process_edits
+    key, value = record._edit_form()
 
     #clear any existing approvals on phase and log clearing
+    if getattr(record, "approvals"):
+        approvals_cleared = g.db.query(eval(f"{record.__class__.__name__}Approval")).filter_by(record_id=record.id, status_id=record._status).delete()
+        if approvals_cleared:
 
-    approvals_cleared = g.db.query(eval(f"{record.__class__.__name__}Approval")).filter_by(record_id=record.id, status_id=record._status).delete()
-    if approvals_cleared:
+            with force_locale(g.user.organization.lang):
+                appr_clear_log=eval(f"{record.__class__.__name__}Log")(
+                    user_id=g.user.id,
+                    record_id=record.id,
+                    created_utc=g.time,
+                    key=f"{_('Approvals')} - {record.status}",
+                    value=_("Cleared"),
+                    created_ip=request.remote_addr
+                    )
+                g.db.add(appr_clear_log)
 
+    if getattr(record, "logs")
         with force_locale(g.user.organization.lang):
-            appr_clear_log=eval(f"{record.__class__.__name__}Log")(
+            log=eval(f"{record.__class__.__name__}Log")(
                 user_id=g.user.id,
                 record_id=record.id,
                 created_utc=g.time,
-                key=f"{_('Approvals')} - {record.status}",
-                value=_("Cleared"),
+                key=key,
+                value=value,
                 created_ip=request.remote_addr
                 )
-            g.db.add(appr_clear_log)
+            g.db.add(log)
 
-    with force_locale(g.user.organization.lang):
-        log=eval(f"{record.__class__.__name__}Log")(
-            user_id=g.user.id,
-            record_id=record.id,
-            created_utc=g.time,
-            key=key,
-            value=value,
-            created_ip=request.remote_addr
-            )
-        g.db.add(log)
-
-    g.db.commit()
+        g.db.commit()
 
     if entry.get('reload') or approvals_cleared:
         return toast_redirect(record.permalink)
