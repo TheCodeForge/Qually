@@ -138,6 +138,14 @@ class Item(Base, core_mixin, process_mixin):
         return self.revisions.filter_by(_status=1).first()
 
     @property
+    @lazy
+    def display_revision(self):
+        if self._status<=1:
+            return self.proposed_revision
+        else:
+            return self.current_revision
+
+    @property
     def name(self):
         return self.custom_number or f"{getattr(g.user.organization, f'{self.kind.lower()}_prefix')}-{self.number:0>5}"
 
