@@ -189,7 +189,7 @@ class ItemRevision(Base, core_mixin, process_mixin):
 
     _status=Column(Integer, default=0)
 
-    item=relationship("Item", lazy="joined" viewonly=True)
+    item=relationship("Item", lazy="joined", viewonly=True)
 
      __table_args__=(
             UniqueConstraint(
