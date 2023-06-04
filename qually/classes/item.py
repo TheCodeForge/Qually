@@ -152,7 +152,10 @@ class Item(Base, core_mixin, process_mixin):
 
     @property
     def name(self):
-        return f"{getattr(g.user.organization, f"{self.kinds[self._kind_id]['orgname'].lower()}_prefix")}-{self.number:0>5}"
+        prefix_id={self.kinds[self._kind_id]['orgname'].lower()
+        prefix=getattr(g.user.organization, f"{prefix_id}_prefix")
+
+        return f"{prefix}-{self.number:0>5}"
 
     def _after_create(self):
 
