@@ -42,7 +42,7 @@ def post_record_number(kind, number):
     else:
         approvals_cleared=False
 
-    if getattr(record, "logs"):
+    if getattr(record, "logs", None):
         with force_locale(g.user.organization.lang):
             log=eval(f"{record.__class__.__name__}Log")(
                 user_id=g.user.id,
