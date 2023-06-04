@@ -160,9 +160,9 @@ class ItemRevision(Base, core_mixin, process_mixin):
     created_utc=Column(Integer)
     item_id=Column(Integer, ForeignKey(Item.id))
     file_id=Column(Integer, ForeignKey("files.id"))
-    object_name=Column(String)
-    object_description=Column(String)
-    object_description_raw=Column(String)
+    object_name=Column(String, default="")
+    object_description=Column(String, default="")
+    object_description_raw=Column(String, default="")
 
     _status=Column(Integer, default=0)
 
@@ -171,13 +171,16 @@ class ItemRevision(Base, core_mixin, process_mixin):
     def _lifecycle(self):
         return {
             0:{
-                'name':_("Proposed")
+                'name':_("Proposed"),
+                'users': [g.user],
             },
             1:{
-                'name':_("Effective")
+                'name':_("Effective"),
+                'users': []
             },
             2:{
-                'name':_("Superceded")
+                'name':_("Superceded"),
+                'users':[]
             }
         }
 
