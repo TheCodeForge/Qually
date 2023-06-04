@@ -114,14 +114,14 @@ class Item(Base, core_mixin, process_mixin):
                 "value":"_kind_id",
                 "kind": "dropdown",
                 "values": {x:cls._kinds()[x]['name'] for x in cls._kinds()},
-                "hide":True
+                "hide": lambda self: True
             },
             {
                 "name": _("Custom Number"),
                 "value":"custom_number",
                 "kind": "text",
                 "placeholder": _("Leave blank to set item number automatically."),
-                "hide":True
+                "hide": lambda self: True
             }
         ]+data[0]
 
