@@ -152,7 +152,7 @@ class Item(Base, core_mixin, process_mixin):
     def _edit_form(self):
         return self.current_revision._edit_form()
 
-class ItemRevision(Base, core_mixin):
+class ItemRevision(Base, core_mixin, process_mixin):
 
     __tablename__="itemrevision"
 
