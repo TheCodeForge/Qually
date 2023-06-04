@@ -200,13 +200,30 @@ class Item(Base, core_mixin, process_mixin):
         else:
             return toast_error("Can't edit that right now")
 
-    def __getattr__(self, target):
+    @property
+    def object_name(self):
+        return self.display_revision.object_name
 
-        return getattr(self.display_revision, target)
+    @object_name.setter
+    def object_name(self, value):
+        self.display_revision.object_name = value
 
-    def __setattr__(self, target, value):
+    @property
+    def object_description(self):
+        return self.display_revision.object_description
 
-        setattr(self.display_revision, target, value)
+    @object_description.setter
+    def object_description(self, value):
+        self.display_revision.object_description = value
+
+    @property
+    def object_description_raw(self):
+        return self.display_revision.object_description_raw
+
+    @object_description_raw.setter
+    def object_description_raw(self, value):
+        self.display_revision.object_description_raw = value
+
 
 class ItemRevision(Base, core_mixin, process_mixin):
 
