@@ -39,6 +39,8 @@ def post_record_number(kind, number):
                     created_ip=request.remote_addr
                     )
                 g.db.add(appr_clear_log)
+    else:
+        approvals_cleared=False
 
     if getattr(record, "logs"):
         with force_locale(g.user.organization.lang):
