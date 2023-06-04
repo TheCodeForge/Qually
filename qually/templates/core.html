@@ -139,12 +139,6 @@
             <a class="btn btn-danger w-100 post-toast" data-post-url="/logout"><i class="fas fa-right-from-bracket fa-fw"></i></a>
           </li>
           {% else %}
-          <li class="nav-item mx-1">
-            <a class="btn btn-primary w-100" href="/register">{{_("Free Trial")}}</a>
-          </li>
-          <li class="nav-item mx-1">
-            <a class="btn border-primary w-100" href="/sign_in">{{_("Sign In")}}</a>
-          </li>
           <li class="nav-item mx-auto dropdown">
             <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="lang-dropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{ session.get('lang', 'en') | upper }}
@@ -155,6 +149,12 @@
               {% endfor %}
             </div>
           </li>
+          <li class="nav-item mx-1">
+            <a class="btn btn-primary w-100" href="/register">{{_("Free Trial")}}</a>
+          </li>
+          <li class="nav-item mx-1">
+            <a class="btn border-primary w-100" href="/sign_in">{{_("Sign In")}}</a>
+          </li>
           {% endif %}
         </ul>
       </div>
@@ -162,7 +162,7 @@
   </nav>
 
   {% block pagebody %}
-  <div class="container mt-5">
+  <div class="container-fluid mt-5">
     <div class="row justify-content-around" id="main-content-row">
 
       {% block wholepage %}
