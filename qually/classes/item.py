@@ -150,7 +150,28 @@ class Item(Base, core_mixin, process_mixin):
         g.db.commit()
     
     def _edit_form(self):
-        return self.current_revision._edit_form()
+
+        if self._status==0:
+            return self.current_revision._edit_form()
+
+        elif self._status==1:
+
+            self.current_revision._status=2
+
+            ir = ItemRevision(
+                item_id=self.id,
+                created_utc=g.time,
+                _status=1,
+                revision_number = self.current_revision+1
+                )
+
+            g.db.add(ir)
+            g.db.add(self.current_revision)
+            results = ir._edit_form()
+            g.db.flush()
+            return results
+
+        elif self._status
 
 class ItemRevision(Base, core_mixin, process_mixin):
 
@@ -163,10 +184,19 @@ class ItemRevision(Base, core_mixin, process_mixin):
     object_name=Column(String, default="")
     object_description=Column(String, default="")
     object_description_raw=Column(String, default="")
+    revision_number=Column(Integer, default=0)
 
     _status=Column(Integer, default=0)
 
     item=relationship("Item", lazy="joined" viewonly=True)
+
+     __table_args__=(
+            UniqueConstraint(
+                'item_id', 
+                'revision_number',
+                name=f'item_rev_number_unique'
+                ),
+            )   
 
 
     @property
