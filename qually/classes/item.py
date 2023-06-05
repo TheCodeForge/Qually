@@ -103,12 +103,37 @@ class Item(Base, core_mixin, revisioned_process_mixin):
             100: {
                 'name': _("Obsolete"),
                 'users': []
+                },
+            101: {
+                'name': _("Abandoned"),
+                'users': []
                 }
         }
 
     @property
     def _transitions(self):
-        return {}
+        return {
+            0: [
+                {
+                    "id":"abandon",
+                    "to": 101,
+                    "name": _("Abandon"),
+                    "description": _("Abandon this record. You may recover it later if you wish."),
+                    "color": "danger",
+                    "users": [self.owner]
+                }
+            ],
+            101: [
+                {
+                    "id":"abandon",
+                    "to": 0,
+                    "name": _("Restore"),
+                    "description": _("Restore this record to the draft state."),
+                    "color": "success",
+                    "users": [self.owner]
+                }
+            ]
+        }
 
     @classmethod
     @org_lang
