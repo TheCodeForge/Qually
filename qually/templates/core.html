@@ -167,8 +167,13 @@
   <div class="container-fluid mt-5">
 
     {% if g.user and g.user.organization.license_expire_utc < g.time %}
-    <div class="row text-center sticky-66 bg-danger text-white" id="warning-row">
+    <div class="row text-center sticky-66 bg-danger text-white" id="danger-row">
       <p class="my-0">{{_("Your organization's license has expired.")}} {% if g.user.is_org_admin %}{{_("Renew your license to restore full functionality for your users.")}}{% else %}{{_("Contact your organization's {x} admin for renewal.").format(x=('SITE_NAME'|app_config))}}{% endif %}</p>
+    </div>
+    {% elif g.user and g.user.is_org_admin and g.user.organization.license_expire_utc < g.time+60*60*24*30 %}
+    {% set days=(g.user.organization.license_expire_utc - g.time) // (60*60*24) %}
+    <div class="row text-center sticky-66 bg-warning text-black" id="warning-row">
+      <p class="my-0">{{_("Your organization's license expires in {x} days. Renew to ensure continuous, uninterrupted access for your users.").format(x=days) }}</p>
     </div>
     {% endif %}
 
