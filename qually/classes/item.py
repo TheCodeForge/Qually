@@ -188,27 +188,30 @@ class Item(Base, core_mixin, revisioned_process_mixin):
 
     @property
     def object_name(self):
-        return self.display_revision.object_name
+        return self.effective_revision.object_name
 
     @object_name.setter
     def object_name(self, value):
-        self.display_revision.object_name = value
+        if self._status==0:
+            self.effective_revision.object_name = value
 
     @property
     def object_description(self):
-        return self.display_revision.object_description
+        return self.effective_revision.object_description
 
     @object_description.setter
     def object_description(self, value):
-        self.display_revision.object_description = value
+        if self._status==0:
+            self.effective_revision.object_description = value
 
     @property
     def object_description_raw(self):
-        return self.display_revision.object_description_raw
+        return self.effective_revision.object_description_raw
 
     @object_description_raw.setter
     def object_description_raw(self, value):
-        self.display_revision.object_description_raw = value
+        if self._status==0:
+            self.effective_revision.object_description_raw = value
 
 
 class ItemRevision(Base, core_mixin, process_mixin):
