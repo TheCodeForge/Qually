@@ -89,7 +89,8 @@ class Item(Base, core_mixin, revisioned_process_mixin):
             0: {
                 'name': _("Draft"),
                 'users': [self.owner],
-                'files': True
+                'files': True,
+                'hide_title':True
                 },
             1: {
                 'name': _("Design"),

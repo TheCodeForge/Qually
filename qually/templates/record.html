@@ -24,7 +24,9 @@
   <div class="tab-pane fade show active p-2" id="pane-record" role="tabpanel" aria-labelledby="tab-record">
     
     {% for stage in (record._layout().keys() | sort) if (stage<=record._status or record._lifecycle[stage].get('early')) and not record._lifecycle[stage].get('hide', False) %}
+    {% if not record._lifecycle[stage].get('hide_title', False %}
     <h3 class="h4 text-primary {% if loop.index0 %}mt-3{% endif %}">{{ record._lifecycle[stage]['name'] }}</h3>
+    {% endif %}
     {{ kv.kv(record, stage) }}
     {% endfor %}
     
