@@ -148,8 +148,8 @@ class Item(Base, core_mixin, revisioned_process_mixin):
             item_id=self.id,
             created_utc=g.time,
             object_name=txt(request.form.get("object_name")),
-            object_description=txt(request.form.get("object_description")),
-            object_description_raw=html(request.form.get("object_description")),
+            object_description=html(request.form.get("object_description")),
+            object_description_raw=txt(request.form.get("object_description")),
             _status=1
             )
         self._status=0
