@@ -32,13 +32,13 @@
         <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
 
         {% if entry.get('kind')=='multi' %} 
-        <textarea id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" name="{{ entry['value'] }}" placeholder="{{ entry.get('placeholder','') }}">{{ record.__dict__.get(entry['value']+'_raw') }}</textarea>
+        <textarea id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" name="{{ entry['value'] }}" placeholder="{{ entry.get('placeholder','') }}">{{ record | attr(entry['value']+'_raw')) }}</textarea>
 
         {% elif entry.get('kind')=='dropdown' %}
         <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
           <option disabled>{{_("Select One")}}</option>
           {% for x in entry['values'] %}
-          <option value="{{ x }}" {% if x==record.__dict__.get(entry['value']) %}selected{% endif %}>{{ entry['values'][x] }}</option>
+          <option value="{{ x }}" {% if x==(record | attr(entry['value'])) %}selected{% endif %}>{{ entry['values'][x] }}</option>
           {% endfor %}
         </select>
 
@@ -51,7 +51,7 @@
         </select>
 
         {% else %}
-        <input id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" type="text" name="{{ entry['value'] }}" value="{{ record.__dict__.get(entry['value']) }}" placeholder="{{ entry.get('placeholder','') }}">
+        <input id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" type="text" name="{{ entry['value'] }}" value="{{ record | attr(entry['value']) }}" placeholder="{{ entry.get('placeholder','') }}">
         {% endif %}
         {% if entry.get('help') %}
         <p class="text-small">{{ entry['help'] }}</p>
@@ -64,15 +64,15 @@
     <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
         {% if entry.get('kind')=='multi' %} 
-        <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ (record.__dict__.get(entry['value']) | safe) or ('<p></p>'|safe) }}</div>
+        <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ (record | attr(entry['value']) | safe) or ('<p></p>'|safe) }}</div>
         {% elif entry.get('kind')=='dropdown' %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record.__dict__.get(entry['value']), '') }}</p>
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record | attr(entry['value'])]), '') }}</p>
 
         {% elif entry.get('kind')=='user' %}
         <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}"><a href="{{ (record | attr(entry['value'])).permalink }}">{{ (record | attr(entry['value'])).name }}</a></p>
 
         {% else %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record.__dict__.get(entry['value']) }}</p>
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record | attr(entry['value']) }}</p>
         {% endif %}
       </div>
     </div>
