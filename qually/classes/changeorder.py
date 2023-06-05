@@ -78,6 +78,11 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "name":_("Description of Changes"),
                     "value":"change_description",
                     "kind": "multi"
+                },
+                {
+                    "name":_("Rationale for Changes"),
+                    "value":"change_rationale",
+                    "kind": "multi"
                 }
             ]
         }
