@@ -135,3 +135,6 @@ alembic.ini
 #redis cache
 tempcache/*
 */tempcache/*
+
+# custom
+to-do.txt
