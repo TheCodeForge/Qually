@@ -92,22 +92,24 @@ def post_record_number_status(kind, number):
     record._status=transition['to']
     g.db.add(record)
 
-    with force_locale(g.user.organization.lang):
-        log=eval(f"{record.__class__.__name__}Log")(
-            user_id=g.user.id,
-            record_id=record.id,
-            created_utc=g.time,
-            key=_("Status"),
-            value=record.status,
-            created_ip=request.remote_addr
-            )
+    if getattr(record, "logs", None):
+        with force_locale(g.user.organization.lang):
+            log=eval(f"{record.__class__.__name__}Log")(
+                user_id=g.user.id,
+                record_id=record.id,
+                created_utc=g.time,
+                key=_("Status"),
+                value=record.status,
+                created_ip=request.remote_addr
+                )
 
-    g.db.add(log)
+        g.db.add(log)
 
     #delete any pre-existing approvals on the new status
-    for approval in record.approvals:
-        if approval.status_id==record._status:
-            g.db.delete(approval)
+    if getattr(record, "approvals", None):
+        for approval in record.approvals:
+            if approval.status_id==record._status:
+                g.db.delete(approval)
 
     g.db.commit()
 
