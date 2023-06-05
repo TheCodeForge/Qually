@@ -11,9 +11,9 @@ def error_toasterror(e):
 def error_401(e):
     return render_template('errors/401.html'), 401
 
-# @app.errorhandler(PaymentRequired)
-# def error_402(e):
-#     return render_template('errors/402.html'), 402
+@app.errorhandler(PaymentRequired)
+def error_402(e):
+    return jsonify({"error":"Licensing Expired"}), 402
 
 @app.errorhandler(403)
 def error_403(e):

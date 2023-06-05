@@ -10,6 +10,7 @@ from .security import validate_hash
 from .posttoast import *
 
 from qually.classes import User
+from qually.classes.errors import PaymentRequired
 from qually.__main__ import Base, app, g, debug
 
 
@@ -68,7 +69,7 @@ def has_seat(f):
             abort(401)
 
         if g.user.organization.license_expire_utc < g.time:
-            abort(402)
+            raise PaymentRequired
 
         resp = make_response(f(*args, **kwargs))
 

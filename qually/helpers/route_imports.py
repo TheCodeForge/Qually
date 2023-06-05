@@ -7,6 +7,7 @@ from sqlalchemy import and_, or_
 from werkzeug.security import safe_join, generate_password_hash, check_password_hash
 
 from qually.classes import *
+from qually.classes.errors import PaymentRequired
 from qually.helpers.get import *
 from qually.helpers.languages import LANGUAGES
 from qually.helpers.mail import send_mail

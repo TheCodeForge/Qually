@@ -70,9 +70,14 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         return {
             0:[
                 {
-                    "name":_("name"),
+                    "name":_("Name"),
                     "value":"record_name",
                     "kind": "text"
+                },
+                {
+                    "name":_("Description of Changes"),
+                    "value":"change_description",
+                    "kind": "multi"
                 }
             ]
         }
