@@ -150,7 +150,7 @@ class Item(Base, core_mixin, revisioned_process_mixin):
             object_name=txt(request.form.get("object_name")),
             object_description=txt(request.form.get("object_description")),
             object_description_raw=html(request.form.get("object_description")),
-            _status=0
+            _status=1
             )
         self._status=0
         g.db.add(ir)
@@ -164,7 +164,7 @@ class Item(Base, core_mixin, revisioned_process_mixin):
             return checks
 
         if self._status==0:
-            return self.proposed_revision._edit_form()
+            return self.effective_revision._edit_form()
 
         elif self._status==1:
 
@@ -246,7 +246,7 @@ class ItemRevision(Base, core_mixin, process_mixin):
             },
             1:{
                 'name':_("Effective"),
-                'users': []
+                'users': [g.user] if self.item._status==0 else []
             },
             2:{
                 'name':_("Superceded"),
