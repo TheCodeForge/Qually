@@ -49,7 +49,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 },
             3: {
                 'name': _("Implementation"),
-                'users': [self.assignee],
+                'users': [self.owner],
                 'files': True
                 },
             4: {
