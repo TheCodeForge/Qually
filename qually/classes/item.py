@@ -222,7 +222,6 @@ class ItemRevision(Base, core_mixin, process_mixin):
     id=Column(Integer, primary_key=True)
     created_utc=Column(Integer)
     item_id=Column(Integer, ForeignKey(Item.id))
-    file_id=Column(Integer, ForeignKey("files.id"))
     object_name=Column(String, default="")
     object_description=Column(String, default="")
     object_description_raw=Column(String, default="")

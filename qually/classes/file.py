@@ -18,10 +18,12 @@ class File(Base, core_mixin):
     ncmr_id = Column(Integer, ForeignKey("ncmr.id"))
     capa_id = Column(Integer, ForeignKey("capa.id"))
     dvtn_id = Column(Integer, ForeignKey("dvtn.id"))
+    rvsn_id = Column(Integer, ForeignKey("itemrevision.id"))
 
-    ncmr=relationship("NCMR", lazy="joined", backref="files")
-    capa=relationship("CAPA", lazy="joined", backref="files")
-    deviation=relationship("Deviation", lazy="joined", backref="files")
+    ncmr=           relationship("NCMR",            lazy="joined", backref="files")
+    capa=           relationship("CAPA",            lazy="joined", backref="files")
+    deviation=      relationship("Deviation",       lazy="joined", backref="files")
+    itemrevision=   relationship("ItemRevision",    lazy="joined", backref="files")
 
     stage_id=Column(Integer)
 
@@ -39,6 +41,6 @@ class File(Base, core_mixin):
 
     @property
     def owning_object(self):
-        return self.ncmr or self.capa or self.deviation
+        return self.ncmr or self.capa or self.deviation or self.itemrevision
     
     
