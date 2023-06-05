@@ -59,6 +59,7 @@ class Organization(Base, core_mixin):
     capas=relationship("CAPA",      lazy="dynamic", viewonly=True)
     dvtns=relationship("Deviation", lazy="dynamic", viewonly=True)
     items=relationship("Item",      lazy="dynamic", viewonly=True)
+    chngs=relationship("ChangeOrder", lazy="dynamic", viewonly=True)
     parts=relationship("Item",      lazy="dynamic", viewonly=True, primaryjoin="Item.organization_id==Organization.id and Item._kind_id==1")
     sops =relationship("Item",      lazy="dynamic", viewonly=True, primaryjoin="Item.organization_id==Organization.id and Item._kind_id==2")
     wis  =relationship("Item",      lazy="dynamic", viewonly=True, primaryjoin="Item.organization_id==Organization.id and Item._kind_id==3")
@@ -98,7 +99,7 @@ class Organization(Base, core_mixin):
 
     def get_record(self, prefix, number):
 
-        for kind in ['ncmr', 'capa', 'dvtn', 'part', 'sop', 'wi']:
+        for kind in ['ncmr', 'capa', 'dvtn', 'chng', 'part', 'sop', 'wi']:
             if getattr(self, f"{kind.lower()}_prefix").lower()==prefix.lower():
                 break
 
