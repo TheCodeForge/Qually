@@ -173,6 +173,11 @@
     <div class="row justify-content-around" id="main-content-row">
 
       {% block wholepage %}
+
+      <!-- left spacer-->
+      <div class="col d-none d-lg-1 d-xl-2">
+      </div>
+
       <!--left sidebar goes here-->
       <div id="sidebar-left" class="col sidebar sidebar-left hide-scrollbar border-right d-none d-md-block d-print-none py-3">
         {% block leftbar %}
@@ -221,6 +226,10 @@
         </div>
       </div>
       {% endblock %}
+
+      <!-- left spacer-->
+      <div class="col d-none d-lg-1 d-xl-2">
+      </div>
 
       {% endblock %}
 
