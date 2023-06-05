@@ -214,6 +214,11 @@ class Item(Base, core_mixin, revisioned_process_mixin):
         if self._status==0:
             self.effective_revision.object_description_raw = value
 
+    @property
+    def files(self):
+        return self.effective_revision.files
+    
+
 
 class ItemRevision(Base, core_mixin, process_mixin):
 
