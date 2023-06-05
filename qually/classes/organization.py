@@ -46,8 +46,6 @@ class Organization(Base, core_mixin):
     # tp_counter = Column(Integer, default=0)
     # tr_counter = Column(Integer, default=0)
 
-    # co_counter = Column(Integer, default=0)
-
     #Organization staffmin settings
     is_banned=Column(Boolean, default=False)
 
