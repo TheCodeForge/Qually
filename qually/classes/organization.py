@@ -28,6 +28,7 @@ class Organization(Base, core_mixin):
     capa_prefix = Column(String(5), default="CAPA")
     dvtn_prefix = Column(String(5), default="DVTN")
     part_prefix = Column(String(5), default="PART")
+    chng_prefix = Column(String(5), default="CHNG")
     sop_prefix = Column(String(5), default="SOP")
     wi_prefix = Column(String(5), default="WI")
     
@@ -36,6 +37,7 @@ class Organization(Base, core_mixin):
     ncmr_counter = Column(Integer, default=0)
     capa_counter = Column(Integer, default=0)
     dvtn_counter = Column(Integer, default=0)
+    chng_counter = Column(Integer, default=0)
 
     part_counter = Column(Integer, default=0)    
     sop_counter = Column(Integer, default=0)
