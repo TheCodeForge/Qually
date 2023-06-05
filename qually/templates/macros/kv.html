@@ -46,7 +46,7 @@
         <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
           <option value="">-{{_("None")}}-</option>
           {% for user in g.user.organization.assignable_users %}
-          <option value="{{ user.id }}" {% if user.id==(record | attr(entry['value']+'_id') %}selected{% endif %}>{{ user.name }}</option>
+          <option value="{{ user.id }}" {% if user.id==(record | attr(entry['value']+'_id')) %}selected{% endif %}>{{ user.name }}</option>
           {% endfor %}
         </select>
 
