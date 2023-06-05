@@ -12,7 +12,7 @@ from qually.helpers.sanitize import txt, html
 from qually.helpers.security import generate_hash, validate_hash
 import qually.helpers.aws as aws
 
-from qually.classes.mixins import core_mixin, process_mixin, revisio
+from qually.classes.mixins import core_mixin, process_mixin, revisioned_process_mixin
 
 from qually.__main__ import Base, cache, app, debug
 
