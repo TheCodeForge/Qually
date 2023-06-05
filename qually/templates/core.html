@@ -164,7 +164,7 @@
   {% block pagebody %}
   <div class="container-fluid mt-5">
 
-    {% if g.user.organization.license_expire_utc < g.time %}
+    {% if g.user and g.user.organization.license_expire_utc < g.time %}
     <div class="row text-center sticky-66 bg-danger text-white" id="warning-row">
       <p class="my-0">{{_("Your organization's license has expired.")}} {% if g.user.is_org_admin %}{{_("Renew your license to restore full functionality for your users.")}}{% else %}{{_("Contact your organization's {x} admin for renewal.").format(x=('SITE_NAME'|app_config))}}{% endif %}</p>
     </div>
