@@ -66,6 +66,15 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 }
         }
 
+    @classmethod
+    def _layout(cls):
+        return {}
+
+    @property
+    @lazy
+    def _transitions(self):
+        return {}
+
 ChangeOrder._cols()
     
 class ChangeOrderApproval(Base, core_mixin):
