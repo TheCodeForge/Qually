@@ -36,8 +36,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         return {
             0: {
                 'name': _("New"),
-                'users': [self.owner],
-                'files': True
+                'users': [self.owner]
                 },
             1: {
                 'name': _("Initial Review"),
@@ -47,12 +46,12 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 'name': _("Approvals"),
                 'users': []
                 },
-            3: {
+            98: {
                 'name': _("Implementation"),
                 'users': [self.owner],
                 'files': True
                 },
-            4: {
+            99: {
                 'name': _("Approval of Implementation"),
                 'users': self.organization.quality_mgmt_users
                 },
