@@ -73,7 +73,27 @@ class ChangeOrder(Base, core_mixin, process_mixin):
     @property
     @lazy
     def _transitions(self):
-        return {}
+        return {
+            0: [
+                # {
+                #     "id":"submit",
+                #     "to": 1,
+                #     "name": _("Submit"),
+                #     "description": _("Submit this record to Document Control for review."),
+                #     "color": "success",
+                #     "users": [self.owner],
+                #     "approval":True
+                # },
+                {
+                    "id":"terminate",
+                    "to": 101,
+                    "name": _("Terminate"),
+                    "description": _("Permanently archive this record. This cannot be undone."),
+                    "color": "danger",
+                    "users": [self.owner]+g.user.organization.doc_control_users
+                }
+            ]
+        }
 
 ChangeOrder._cols()
     

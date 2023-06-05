@@ -406,14 +406,16 @@ def post_settings_org_prefix():
         abort(404)
 
     reserved=list(
-        set(
-            [ALL_PROCESSES[x]._name.lower() for x in ALL_PROCESSES]+[getattr(g.user.organization, f'{x.lower()}_prefix') for x in ALL_PROCESSES]
-            )
-        )
+        [ALL_PROCESSES[x]._name.lower() for x in ALL_PROCESSES]
+    )
+
+    for x in ALL_PROCESSES:
+        if getattr(g.user.organization, f'{x.lower()}_prefix', None):
+            reserved.append(getattr(g.user.organization, f'{x.lower()}_prefix').lower())
 
     new_prefix=request.form.get('prefix')
 
-    if new_prefix in reserved and new_prefix.lower() != ALL_PROCESSES[request.form['kind']]._name.lower():
+    if new_prefix.lower() in reserved and new_prefix.lower() != ALL_PROCESSES[request.form['kind']]._name.lower():
         return toast_error(_("Prefix {x} already in use").format(x=new_prefix))
 
     setattr(g.user.organization, f"{ALL_PROCESSES[request.form['kind']]._name.lower()}_prefix", new_prefix)
