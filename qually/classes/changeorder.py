@@ -68,7 +68,15 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
     @classmethod
     def _layout(cls):
-        return {}
+        return {
+            0:[
+                {
+                    "name":_("name"),
+                    "value":"record_name",
+                    "kind": "text"
+                }
+            ]
+        }
 
     @property
     @lazy
