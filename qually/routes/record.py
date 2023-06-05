@@ -307,7 +307,7 @@ def post_record_record(kind):
             created_utc=g.time,
             user_id=g.user.id,
             key=_("State"),
-            value=_("Open"),
+            value=record._lifecycle[0]['name'],
             created_ip=request.remote_addr
             )
         g.db.add(log)
