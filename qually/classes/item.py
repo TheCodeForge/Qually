@@ -260,7 +260,10 @@ class ItemRevision(Base, core_mixin, process_mixin):
 
     _status=Column(Integer, default=0)
 
+    change_id = Column(Integer, ForeignKey("chng.id"))
+
     item=relationship("Item", lazy="joined", viewonly=True)
+    change=relationship("ChangeOrder")
 
     __table_args__=(
         UniqueConstraint(
@@ -284,6 +287,10 @@ class ItemRevision(Base, core_mixin, process_mixin):
             },
             2:{
                 'name':_("Superceded"),
+                'users':[]
+            },
+            2:{
+                'name':_("Expired"),
                 'users':[]
             }
         }
