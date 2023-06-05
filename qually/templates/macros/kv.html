@@ -14,13 +14,13 @@
     <div role="button" class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} toggle-target-class" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
         {% if entry.get('kind')=='multi' %} 
-        <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ (record | attr(entry['value']) | safe) or ('<p></p>'|safe) }}</div>
+        <div id="display-value-{{ section }}-{{ entry['value'] }}-{{ loop.index0 }}">{{ (record | attr(entry['value']) | safe) or ('<p></p>'|safe) }}</div>
         {% elif entry.get('kind')=='dropdown' %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record | attr(entry['value']), '') }}</p>
+        <p id="display-value-{{ section }}-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record | attr(entry['value']), '') }}</p>
         {% elif entry.get('kind')=='user' %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}"><a href="{{ (record | attr(entry['value'])).permalink }}">{{ (record | attr(entry['value'])).name }}</a></p>
+        <p id="display-value-{{ section }}-{{ entry['value'] }}-{{ loop.index0 }}"><a href="{{ (record | attr(entry['value'])).permalink }}">{{ (record | attr(entry['value'])).name }}</a></p>
         {% else %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record | attr(entry['value']) }}</p>
+        <p id="display-value-{{ section }}-{{ entry['value'] }}-{{ loop.index0 }}">{{ record | attr(entry['value']) }}</p>
         {% endif %}
       </div>
       <div class="ms-auto on-hover-show">
@@ -58,21 +58,21 @@
         {% endif %}
       </form>
       <a href="javascript:void(0)" class="btn btn-secondary toggle-target-class ms-auto mb-auto" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">Cancel</a>
-      <a href="javascript:void(0)" class="btn btn-primary toggle-target-class record-value-edit ms-2 mb-auto" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}" data-form="form-update-{{ entry['value'] }}-{{ loop.index0 }}" data-value-target="display-value-{{ entry['value'] }}-{{ loop.index0 }}" data-approvals-target="container-approvals-{{ section }}">Save</a>
+      <a href="javascript:void(0)" class="btn btn-primary toggle-target-class record-value-edit ms-2 mb-auto" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}" data-form="form-update-{{ entry['value'] }}-{{ loop.index0 }}" data-value-target="display-value-{{ section }}-{{ entry['value'] }}-{{ loop.index0 }}" data-approvals-target="container-approvals-{{ section }}">Save</a>
     </div>
     {% else %}
     <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
         {% if entry.get('kind')=='multi' %} 
-        <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ (record | attr(entry['value']) | safe) or ('<p></p>'|safe) }}</div>
+        <div id="display-value-{{ section }}-{{ entry['value'] }}-{{ loop.index0 }}">{{ (record | attr(entry['value']) | safe) or ('<p></p>'|safe) }}</div>
         {% elif entry.get('kind')=='dropdown' %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record | attr(entry['value']), '') }}</p>
+        <p id="display-value-{{ section }}-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record | attr(entry['value']), '') }}</p>
 
         {% elif entry.get('kind')=='user' %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}"><a href="{{ (record | attr(entry['value'])).permalink }}">{{ (record | attr(entry['value'])).name }}</a></p>
+        <p id="display-value-{{ section }}-{{ entry['value'] }}-{{ loop.index0 }}"><a href="{{ (record | attr(entry['value'])).permalink }}">{{ (record | attr(entry['value'])).name }}</a></p>
 
         {% else %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ record | attr(entry['value']) }}</p>
+        <p id="display-value-{{ section }}-{{ entry['value'] }}-{{ loop.index0 }}">{{ record | attr(entry['value']) }}</p>
         {% endif %}
       </div>
     </div>
