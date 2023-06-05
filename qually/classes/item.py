@@ -17,7 +17,7 @@ class Item(Base, core_mixin, revisioned_process_mixin):
     number=Column(Integer, default=0)
     organization_id = Column(Integer, ForeignKey("organizations.id"))
     _status = Column(Integer, default=0)
-    custom_number=Column(String)
+    custom_number=Column(String, default=None)
 
     logs=relationship("ItemLog", order_by="ItemLog.id.desc()")
     revisions=relationship("ItemRevision", lazy="dynamic", order_by="ItemRevision.id.desc()", viewonly=True)
