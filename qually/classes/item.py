@@ -126,7 +126,7 @@ class Item(Base, core_mixin, revisioned_process_mixin):
                 "value":"custom_number",
                 "kind": "text",
                 "placeholder": _("Assign a custom number to this item."),
-                "hide": lambda self: bool(self.custom_number)
+                "hide": lambda self: not bool(self.custom_number)
             }
         ]+data[0]
 
