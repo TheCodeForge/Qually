@@ -66,7 +66,7 @@
         {% if entry.get('kind')=='multi' %} 
         <div id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ (record | attr(entry['value']) | safe) or ('<p></p>'|safe) }}</div>
         {% elif entry.get('kind')=='dropdown' %}
-        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record | attr(entry['value'])), '') }}</p>
+        <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['values'].get(record | attr(entry['value']), '') }}</p>
 
         {% elif entry.get('kind')=='user' %}
         <p id="display-value-{{ entry['value'] }}-{{ loop.index0 }}"><a href="{{ (record | attr(entry['value'])).permalink }}">{{ (record | attr(entry['value'])).name }}</a></p>
