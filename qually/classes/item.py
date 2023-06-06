@@ -269,6 +269,22 @@ class Item(Base, core_mixin, revisioned_process_mixin):
     @property
     def files(self):
         return self.effective_revision.files
+
+    def new_revision():
+
+        new_ir = self._revision_class(
+            item_id=self.id,
+            change_id=self.id,
+            object_name=self.effective_revision.object_name,
+            object_description=self.effective_revision.object_description,
+            object_description_raw=self.effective_revision.object_description_raw,
+            created_utc=g.time
+            )
+
+        g.db.add(new_ir)
+        g.db.commit()
+
+        return new_ir
     
 
 

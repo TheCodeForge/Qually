@@ -195,17 +195,10 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             if item.id in [x.item_id for x in self.proposed_revisions]:
                 return toast_error(_("Item {x} is already associated with this change").format(x=item.name), 409)
 
-            new_ir = item._revision_class(
-                item_id=item.id,
-                change_id=self.id,
-                object_name=item.effective_revision.object_name,
-                object_description=item.effective_revision.object_description,
-                object_description_raw=item.effective_revision.object_description_raw,
-                created_utc=g.time
-                )
+            new_ir = item.new_revision()
 
+            new_ir.change_id=self.id
             g.db.add(new_ir)
-
             g.db.commit()
 
             return _("Add Item"), item.name, "", True
