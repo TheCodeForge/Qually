@@ -136,54 +136,60 @@ class process_mixin():
         with force_locale(g.user.organization.lang):
             phases = [x for x in self._lifecycle if self.can_edit(x)]
 
-            entries=[]
+            key=None
             for phase in phases:
-                entries += self._layout()[phase]
 
-        for entry in entries:
-            if entry['value'] in request.form:
-                if entry['kind']=='multi':
-                    setattr(self, f"{entry['value']}_raw", request.form[entry['value']])
-                    setattr(self, entry['value'], html(request.form[entry['value']]))
-                    key=entry['name']
-                    value=txt(request.form[entry['value']])
-                    response=getattr(self, entry['value']) or "<p></p>"
-                elif entry['kind']=='dropdown':
+                source=phase.get("object_data", self)
+                for entry in source._layout()[phase]:
 
-                    if int(request.form[entry['value']]) not in entry['values']:
-                        return toast_error(_("Invalid selection for {x}").format(x=entry['name']))
 
-                    setattr(self, entry['value'], int(request.form[entry['value']]))
-                    key=entry['name']
-                    value=entry['values'].get(int(request.form[entry['value']]))
-                    response=value
-                elif entry['kind']=='user':
-                    n=request.form.get(entry['value'])
-                    if n:
-                        if not g.user.organization.users.filter_by(id=int(n)).first():
-                            return toast_error(_("Invalid user"))
-                        setattr(self, f"{entry['value']}_id", int(n))
-                        g.db.add(self)
-                        g.db.flush()
-                        g.db.refresh(self)
-                        value=getattr(self, entry['value']).name
-                        response=f'<a href="{getattr(self, entry["value"]).permalink}">{getattr(self, entry["value"]).name}</a>'
-                    else:
-                        setattr(self, entry['value'], None)
-                        response="<p></p>"
-                        value=""
-                    key=entry['name']
-                else:
-                    setattr(self, entry['value'], txt(request.form[entry['value']]))
-                    key=entry['name']
-                    value=getattr(self, entry['value'])
-                    response=value
+                    if entry['value'] in request.form:
+                        if entry['kind']=='multi':
+                            setattr(source, f"{entry['value']}_raw", request.form[entry['value']])
+                            setattr(source, entry['value'], html(request.form[entry['value']]))
+                            key=entry['name']
+                            value=txt(request.form[entry['value']])
+                            response=getattr(source, entry['value']) or "<p></p>"
+                        elif entry['kind']=='dropdown':
 
-                break
-        else:
+                            if int(request.form[entry['value']]) not in entry['values']:
+                                return toast_error(_("Invalid selection for {x}").format(x=entry['name']))
+
+                            setattr(source, entry['value'], int(request.form[entry['value']]))
+                            key=entry['name']
+                            value=entry['values'].get(int(request.form[entry['value']]))
+                            response=value
+                        elif entry['kind']=='user':
+                            n=request.form.get(entry['value'])
+                            if n:
+                                if not g.user.organization.users.filter_by(id=int(n)).first():
+                                    return toast_error(_("Invalid user"))
+                                setattr(source, f"{entry['value']}_id", int(n))
+                                g.db.add(source)
+                                g.db.flush()
+                                g.db.refresh(source)
+                                value=getattr(source, entry['value']).name
+                                response=f'<a href="{getattr(source, entry["value"]).permalink}">{getattr(source, entry["value"]).name}</a>'
+                            else:
+                                setattr(source, entry['value'], None)
+                                response="<p></p>"
+                                value=""
+                            key=entry['name']
+                        else:
+                            setattr(source, entry['value'], txt(request.form[entry['value']]))
+                            key=entry['name']
+                            value=getattr(source, entry['value'])
+                            response=value
+
+                        break
+
+                if key!=None:
+                    break
+
+        if key==None:
             return None, None, None, None
 
-        g.db.add(self)
+        g.db.add(source)
 
         return key, value, response, entry.get("reload", False)
 
