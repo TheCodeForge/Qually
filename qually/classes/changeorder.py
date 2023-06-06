@@ -108,7 +108,10 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 {
                     "name":_("Remove Item"),
                     "value":"delete_item",
-                    "kind":"text"
+                    "kind":"dropdown",
+                    "values":{
+                        x.base36id:x.name for x in self.proposed_revisions
+                    }
                 }
             )
 
