@@ -1,7 +1,7 @@
 {% macro kv(record, section) %}
 
 {% set can_edit= record.can_edit(section) %}
-{% set source=record._layout()[section].get('object_data', record) %}
+{% set source=record._lifecycle[section].get('object_data', record) %}
 
 <div>
 
