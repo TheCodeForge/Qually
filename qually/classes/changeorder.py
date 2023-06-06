@@ -157,7 +157,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         name=request.form.get("add_item")
 
         if self._status>0:
-            return toast_error(_("This record's status has changed. Please reload this page"), 400)
+            return toast_error(_("This record has changed status. Please reload this page."), 403)
 
         
         try:
