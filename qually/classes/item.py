@@ -85,7 +85,7 @@ class Item(Base, core_mixin, revisioned_process_mixin):
 
     @property
     def _lifecycle(self):
-        return {
+        return self.__dict__.get("_lifecycle") or {
             0: {
                 'name': _("Draft"),
                 'users': [self.owner],
@@ -159,6 +159,28 @@ class Item(Base, core_mixin, revisioned_process_mixin):
 
         return data
 
+    def modify_layout(self):
+        #Override this to customize the record display based on custom data
+        layout=self._layout()
+        lifecycle=self._lifecycle
+
+        lifecycle[0]={
+            'name': _("Draft"),
+            'users': [g.user],
+            'files': True,
+            'hide_title':True
+            'object_data':self.effective_revision
+        }
+
+        self.__dict__["_layout"]=lambda:layout
+        self.__dict__["_lifecycle"]=lifecycle
+
+        #At the same time, adjust _lifecycle as follows
+        # @property
+        # def _lifecycle(self)
+        #     return self.__dict__.get("_lifecycle") or {.....}
+        pass
+
     @property
     def name(self):
 
@@ -184,65 +206,65 @@ class Item(Base, core_mixin, revisioned_process_mixin):
         g.db.add(self)
         g.db.commit()
     
-    def _edit_form(self):
+    # def _edit_form(self):
 
-        checks= process_mixin._edit_form(self)
-        if checks[0]:
-            return checks
+    #     checks= process_mixin._edit_form(self)
+    #     if checks[0]:
+    #         return checks
 
-        if self._status==0:
-            return self.effective_revision._edit_form()
+    #     if self._status==0:
+    #         return self.effective_revision._edit_form()
 
-        elif self._status==1:
+    #     elif self._status==1:
 
-            self.proposed_revision._status=2
+    #         self.proposed_revision._status=2
 
-            ir = ItemRevision(
-                item_id=self.id,
-                created_utc=g.time,
-                object_name=self.object_name,
-                object_description=self.object_description,
-                object_description_raw=self.object_description_raw,
-                _status=0,
-                revision_number = self.current_revision+1
-                )
+    #         ir = ItemRevision(
+    #             item_id=self.id,
+    #             created_utc=g.time,
+    #             object_name=self.object_name,
+    #             object_description=self.object_description,
+    #             object_description_raw=self.object_description_raw,
+    #             _status=0,
+    #             revision_number = self.current_revision+1
+    #             )
 
-            g.db.add(ir)
-            g.db.add(self.proposed_revision)
-            g.db.flush()
-            results = ir._edit_form()
-            g.db.flush()
-            return results
+    #         g.db.add(ir)
+    #         g.db.add(self.proposed_revision)
+    #         g.db.flush()
+    #         results = ir._edit_form()
+    #         g.db.flush()
+    #         return results
 
-        else:
-            return toast_error("Can't edit that right now")
+    #     else:
+    #         return toast_error("Can't edit that right now")
 
-    @property
-    def object_name(self):
-        return self.effective_revision.object_name
+    # @property
+    # def object_name(self):
+    #     return self.effective_revision.object_name
 
-    @object_name.setter
-    def object_name(self, value):
-        if self._status==0:
-            self.effective_revision.object_name = value
+    # @object_name.setter
+    # def object_name(self, value):
+    #     if self._status==0:
+    #         self.effective_revision.object_name = value
 
-    @property
-    def object_description(self):
-        return self.effective_revision.object_description
+    # @property
+    # def object_description(self):
+    #     return self.effective_revision.object_description
 
-    @object_description.setter
-    def object_description(self, value):
-        if self._status==0:
-            self.effective_revision.object_description = value
+    # @object_description.setter
+    # def object_description(self, value):
+    #     if self._status==0:
+    #         self.effective_revision.object_description = value
 
-    @property
-    def object_description_raw(self):
-        return self.effective_revision.object_description_raw
+    # @property
+    # def object_description_raw(self):
+    #     return self.effective_revision.object_description_raw
 
-    @object_description_raw.setter
-    def object_description_raw(self, value):
-        if self._status==0:
-            self.effective_revision.object_description_raw = value
+    # @object_description_raw.setter
+    # def object_description_raw(self, value):
+    #     if self._status==0:
+    #         self.effective_revision.object_description_raw = value
 
     @property
     def files(self):
