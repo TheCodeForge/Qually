@@ -168,7 +168,7 @@ class Item(Base, core_mixin, revisioned_process_mixin):
             'name': _("Draft"),
             'users': [g.user],
             'files': True,
-            'hide_title':True
+            'hide_title':True,
             'object_data':self.effective_revision
         }
 
