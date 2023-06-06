@@ -211,7 +211,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             if self._status>0:
                 return toast_error(_("This record has changed status. Please reload this page."), 403)
 
-            rev=[x for x in self.proposed_revisions if x.item.name==request.form.get("delete_item")][0]
+            rev=[x for x in self.proposed_revisions if x.id==int(request.form.get("delete_item"), 36)][0]
 
             name=rev.item.name
 
