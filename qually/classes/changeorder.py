@@ -67,7 +67,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
     @classmethod
     def _layout(cls):
-        return {
+        data= {
             0:[
                 {
                     "name":_("Name"),
@@ -86,6 +86,18 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 }
             ]
         }
+
+        if not request.path.startswith("/create_"):
+            data[0].append(
+                {
+                    "name":_("Add Item"),
+                    "value":"add_item",
+                    "kind":"text",
+                    "column":False
+                }
+            )
+
+        return data
 
     @property
     @lazy
@@ -111,6 +123,39 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 }
             ]
         }
+
+    def _edit_form(self):
+
+        if not request.form.get("add_item"):
+            return process_mixin._edit_form(self)
+
+        name=request.form.get("add_item")
+        
+        try:
+            prefix, number=name.split('-')
+        except:
+            return toast_error(_("Invalid item number"), 400)
+
+        item=g.user.organization.get_record(prefix, number)
+
+        if not item:
+            return toast_error(_("No item found with number {x}").format(x=name), 400)
+
+        new_ir = ItemRevision(
+            item_id=item.id,
+            change_id=self.id,
+            object_name=item.object_name,
+            object_description=item.object_description,
+            object_description_raw=item.object_description_raw
+            )
+
+        g.db.add(new_ir)
+
+        g.db.commit()
+
+        return _("Add Item"), item.name, "", True
+
+
 
 ChangeOrder._cols()
     

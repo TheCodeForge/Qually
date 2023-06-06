@@ -90,6 +90,9 @@ class process_mixin():
             #for each field...
             for entry in data[status]:
 
+                if not entry.get("column",True):
+                    continue
+
                 #single line text - safe html only
                 if entry['kind']=='text':
                     setattr(cls, entry['value'], Column(String, default=''))
