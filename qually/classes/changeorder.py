@@ -125,6 +125,11 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         print(self._lifecycle)
 
     @property
+    def files(self):
+        return [x.files for x in self.proposed_revisions]
+    
+
+    @property
     @lazy
     def _transitions(self):
         return {
