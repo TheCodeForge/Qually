@@ -339,3 +339,6 @@ class ItemLog(Base, core_mixin):
     value=Column(String)
 
     user=relationship("User", lazy="joined", innerjoin=True)
+
+
+Item._revision_class=ItemRevision
