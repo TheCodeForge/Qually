@@ -33,7 +33,7 @@
         <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
 
         {% if source!=record %}
-        <input type="hidden" name="data_obj" value="{{ source.name }}">
+        <input type="hidden" name="data_obj" value="{{ source.__repr__() }}">
         {% endif %}
 
         {% if entry.get('kind')=='multi' %} 

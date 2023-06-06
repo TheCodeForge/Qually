@@ -135,18 +135,19 @@ class process_mixin():
 
     def _edit_form(self):
 
-        #allow saving of future things if editable
-        phases = [x for x in self._lifecycle if self.can_edit(x)]
 
         key=None
-        for phase in phases:
+        for phase in self._lifecycle:
+
+            if not self.can_edit(phase):
+                continue
 
             source=self._lifecycle[phase].get("object_data", self)
 
             for entry in self._layout()[phase]:
 
 
-                if entry['value'] in request.form and (source==self or source.name==request.form.get("data_obj")):
+                if entry['value'] in request.form and (source==self or source.__repr__()==request.form.get("data_obj")):
                     if entry['kind']=='multi':
                         setattr(source, f"{entry['value']}_raw", request.form[entry['value']])
                         setattr(source, entry['value'], html(request.form[entry['value']]))
