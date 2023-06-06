@@ -165,7 +165,9 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             change_id=self.id,
             object_name=item.object_name,
             object_description=item.object_description,
-            object_description_raw=item.object_description_raw
+            object_description_raw=item.object_description_raw,
+            created_utc=g.time,
+            revision_number=None
             )
 
         g.db.add(new_ir)
