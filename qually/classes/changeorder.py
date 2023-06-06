@@ -160,7 +160,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         if not item:
             return toast_error(_("No item found with number {x}").format(x=name), 400)
 
-        new_ir = ItemRevision(
+        new_ir = eval("ItemRevision")(
             item_id=item.id,
             change_id=self.id,
             object_name=item.object_name,
