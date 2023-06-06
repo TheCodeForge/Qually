@@ -35,7 +35,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
     @property
     def _lifecycle(self):
-        return {
+        return self.__dict__.get("_lifecycle") or {
             0: {
                 'name': _("New"),
                 'users': [self.owner]
@@ -117,13 +117,12 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             }
 
         self.__dict__["_layout"]=lambda:layout
-        self._lifecycle=lifecycle
+        self.__dict__['_lifecycle']=lifecycle
 
         print("layout")
         print(self._layout())
         print("lifecycle")
         print(self._lifecycle)
-        print(self.__dict__['_lifecycle'])
 
     @property
     @lazy

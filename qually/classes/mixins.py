@@ -195,6 +195,11 @@ class process_mixin():
         # modify lifecycle
         # self.__dict__["_layout"]=lambda:layout
         # self.__dict__["_lifecycle"]=lifecycle
+
+        #At the same time, adjust _lifecycle as follows
+        # @property
+        # def _lifecycle(self)
+        #     return self.__dict__.get("_lifecycle") or {.....}
         pass
 
 class revisioned_process_mixin(process_mixin):
