@@ -117,7 +117,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             }
 
         self.__dict__["_layout"]=lambda:layout
-        self.__dict__["_lifecycle"]=lifecycle
+        self._lifecycle=lifecycle
 
         print("layout")
         print(self._layout())
