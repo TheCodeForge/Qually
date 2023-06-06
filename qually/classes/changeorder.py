@@ -17,6 +17,8 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
     _name="CHNG"
 
+    proposed_revisions=relationship(ItemRevision, order_by="ItemRevision.id.asc()")
+
     __table_args__=(
             UniqueConstraint(
                 'number', 
@@ -38,11 +40,11 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 'name': _("New"),
                 'users': [self.owner]
                 },
-            1: {
+            96: {
                 'name': _("Initial Review"),
                 'users': self.organization.doc_control_users
                 },
-            2: {
+            97: {
                 'name': _("Approvals"),
                 'users': []
                 },
@@ -90,16 +92,25 @@ class ChangeOrder(Base, core_mixin, process_mixin):
     def modify_layout(self):
 
         self._layout = self.__class__._layout()
+        self._lifecycle = self._lifecycle
 
-        if not request.path.startswith("/create_"):
-            self._layout[0].append(
-                {
-                    "name":_("Add Item"),
-                    "value":"add_item",
-                    "kind":"text",
-                    "column":False
-                }
-            )
+        self._layout[0].append(
+            {
+                "name":_("Add Item"),
+                "value":"add_item",
+                "kind":"text"
+            }
+        )
+
+        i=1
+
+        for rev in self.proposed_revisions:
+            self._layout[i]= rev._layout
+            self._lifecycle[i]={
+                'name':rev.item.name,
+                'users': [g.user],
+                'files':True
+            }
 
     @property
     @lazy
