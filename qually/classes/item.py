@@ -274,7 +274,6 @@ class Item(Base, core_mixin, revisioned_process_mixin):
 
         new_ir = self._revision_class(
             item_id=self.id,
-            change_id=self.id,
             object_name=self.effective_revision.object_name,
             object_description=self.effective_revision.object_description,
             object_description_raw=self.effective_revision.object_description_raw,
