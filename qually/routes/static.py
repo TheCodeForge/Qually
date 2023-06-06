@@ -80,6 +80,7 @@ def help_home():
     return render_template("help.html")
 
 @app.get("/favicon.ico")
+@cf_cache
 def get_favicon_ico():
     return send_file('./assets/images/logo.png')
 
@@ -96,6 +97,7 @@ def get_s3_object_path(oid, path):
     return send_file(file, mimetype=mimetype)
 
 @app.get("/manifest.json")
+@cf_cache
 def get_manifest_json():
     data={
       "name": app.config["SITE_NAME"],
