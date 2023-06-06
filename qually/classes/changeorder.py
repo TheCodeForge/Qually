@@ -94,7 +94,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         #Modify display based on attached items
 
         layout = self.__class__._layout()
-        self.__dict__["_lifecycle"] = self._lifecycle
+        lifecycle = self._lifecycle
 
         if self._status==0 and self.can_edit(0):
             layout[0].append(
@@ -109,7 +109,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
         for rev in self.proposed_revisions:
             layout[i]= rev._layout
-            self._lifecycle[i]={
+            lifecycle[i]={
                 'name':rev.item.name,
                 'users': [g.user],
                 'files':True,
@@ -117,6 +117,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             }
 
         self.__dict__["_layout"]=lambda:layout
+        self.__dict__["_lifecycle"]=lifecycle
 
     @property
     @lazy
