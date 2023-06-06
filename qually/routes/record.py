@@ -329,6 +329,8 @@ def kind_number_add_file(kind, number):
     if not record.can_edit(int(request.form.get("status_id"))):
         return toast_error(_("This record has changed status. Please reload this page."), 403)
 
+    source=record._lifecycle[int(request.form.get("status_id"))].get("object_data", record)
+
     uploads=request.files.getlist('file')
     for upload in uploads:
 
@@ -337,10 +339,10 @@ def kind_number_add_file(kind, number):
             creator_id=g.user.id,
             created_utc=g.time,
             status_id=int(request.form.get("status_id")),
-            ncmr_id=record.id if isinstance(record, NCMR) else None,
-            capa_id=record.id if isinstance(record, CAPA) else None,
-            dvtn_id=record.id if isinstance(record, Deviation) else None,
-            rvsn_id=record.effective_revision.id if isinstance(record, Item) else None,
+            ncmr_id=source.id if isinstance(source, NCMR) else None,
+            capa_id=source.id if isinstance(source, CAPA) else None,
+            dvtn_id=source.id if isinstance(source, Deviation) else None,
+            rvsn_id=source.id if ininstance(source, ItemRevision) else source.effective_revision.id if isinstance(source, Item) else None,
             file_name=upload.filename
             )
 
