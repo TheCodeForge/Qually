@@ -155,7 +155,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         except:
             return toast_error(_("Invalid item number"), 400)
 
-        item=g.user.organization.get_record(prefix, number)
+        item=g.user.organization.get_record(prefix, number, graceful=True)
 
         if not item:
             return toast_error(_("No item found with number {x}").format(x=name), 400)
