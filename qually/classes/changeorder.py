@@ -128,7 +128,12 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
     @property
     def files(self):
-        return [x.files for x in self.proposed_revisions]
+        output=[]
+        for rev in self.proposed_revisions:
+            for f in ref.files:
+                output.append(f)
+
+        return output
     
 
     @property

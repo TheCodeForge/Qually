@@ -23,7 +23,7 @@ class File(Base, core_mixin):
     ncmr=           relationship("NCMR",            lazy="joined", backref="files")
     capa=           relationship("CAPA",            lazy="joined", backref="files")
     deviation=      relationship("Deviation",       lazy="joined", backref="files")
-    itemrevision=   relationship("ItemRevision",    lazy="joined", viewonly=True)
+    itemrevision=   relationship("ItemRevision",    lazy="joined", backref="files")
 
     stage_id=Column(Integer)
 

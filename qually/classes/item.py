@@ -289,7 +289,6 @@ class ItemRevision(Base, core_mixin, process_mixin):
     change_id = Column(Integer, ForeignKey("chng.id"))
 
     item=relationship("Item", lazy="joined", viewonly=True)
-    files=relationship("File", lazy="joined", viewonly=True)
     change=relationship("ChangeOrder")
 
     __table_args__=(
