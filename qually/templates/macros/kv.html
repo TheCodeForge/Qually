@@ -107,7 +107,7 @@
       {% endfor %}
       {% if can_edit %}
       <div>
-        <form id="form-attach-file-{{ section }}" action="{{ source.permalink }}/file" method="post" enctype="multipart/form-data" class="toasted">
+        <form id="form-attach-file-{{ section }}" action="{{ record.permalink }}/file" method="post" enctype="multipart/form-data" class="toasted">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <input type="hidden" name="status_id" value="{{ section }}">
           <input multiple type="file" name="file" class="form-control toast-form-change-submit" data-form="form-attach-file-{{ section }}">
