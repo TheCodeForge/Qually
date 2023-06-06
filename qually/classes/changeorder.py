@@ -130,7 +130,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
     def files(self):
         output=[]
         for rev in self.proposed_revisions:
-            for f in ref.files:
+            for f in rev.files:
                 output.append(f)
 
         return output
