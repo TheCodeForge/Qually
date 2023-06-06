@@ -212,7 +212,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
         elif x=="delete_item":
 
-            rev=[x for x in self.revisions if x.item.name==request.form.get("delete_item")][0]
+            rev=[x for x in self.proposed_revisions if x.item.name==request.form.get("delete_item")][0]
 
             name=rev.item.name
 
