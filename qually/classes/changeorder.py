@@ -118,6 +118,8 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             }
             i+=1
 
+        lifecycle[0]['name']=_("Summary")
+
         self.__dict__["_layout"]=lambda:layout
         self.__dict__['_lifecycle']=lifecycle
 
