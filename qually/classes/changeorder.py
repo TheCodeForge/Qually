@@ -113,7 +113,8 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 'name':rev.item.name,
                 'users': [g.user],
                 'files':True,
-                'early':'edit'
+                'early':'edit',
+                'object_data': rev
             }
 
         self.__dict__["_layout"]=lambda:layout
