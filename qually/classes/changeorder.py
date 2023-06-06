@@ -198,9 +198,9 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             new_ir = item._revision_class(
                 item_id=item.id,
                 change_id=self.id,
-                object_name=item.object_name,
-                object_description=item.object_description,
-                object_description_raw=item.object_description_raw,
+                object_name=item.effective_revision.object_name,
+                object_description=item.effective_revision.object_description,
+                object_description_raw=item.effective_revision.object_description_raw,
                 created_utc=g.time
                 )
 
@@ -211,6 +211,9 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             return _("Add Item"), item.name, "", True
 
         elif x=="delete_item":
+
+            if self._status>0:
+                return toast_error(_("This record has changed status. Please reload this page."), 403)
 
             rev=[x for x in self.proposed_revisions if x.item.name==request.form.get("delete_item")][0]
 
