@@ -209,6 +209,7 @@ class Item(Base, core_mixin, revisioned_process_mixin):
 
             g.db.add(ir)
             g.db.add(self.proposed_revision)
+            g.db.flush()
             results = ir._edit_form()
             g.db.flush()
             return results
