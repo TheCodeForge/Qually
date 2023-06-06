@@ -21,6 +21,7 @@ def get_record_number(kind, number):
 def post_record_number(kind, number):
 
     record = g.user.organization.get_record(kind, number)
+    record.modify_layout()
 
     key, value, response, do_reload = record._edit_form()
 
