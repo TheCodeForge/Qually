@@ -108,7 +108,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         i=1
 
         for rev in self.proposed_revisions:
-            layout[i]= rev._layout
+            layout[i]= rev._layout()[0]
             lifecycle[i]={
                 'name':rev.item.name,
                 'users': [g.user],
