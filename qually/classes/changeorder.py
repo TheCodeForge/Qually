@@ -120,7 +120,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         self.__dict__["_layout"]=lambda:layout
         self.__dict__['_lifecycle']=lifecycle
 
-        print(self._layout)
+        print(self._layout())
         print(self._lifecycle)
 
     @property
