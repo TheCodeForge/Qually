@@ -324,6 +324,7 @@ def post_record_record(kind):
 def kind_number_add_file(kind, number):
 
     record=g.user.organization.get_record(kind, number)
+    record.modify_layout()
 
     if not record.can_edit(int(request.form.get("status_id"))):
         return toast_error(_("This record has changed status. Please reload this page."), 403)
