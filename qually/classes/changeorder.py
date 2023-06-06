@@ -17,7 +17,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
     _name="CHNG"
 
-    proposed_revisions=relationship("ItemRevision", order_by="ItemRevision.id.asc()")
+    proposed_revisions=relationship("ItemRevision", order_by="ItemRevision.id.asc()", viewonly=True)
 
     __table_args__=(
             UniqueConstraint(
