@@ -91,8 +91,8 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
     def modify_layout(self):
 
-        self.__dict__._layout = self.__class__._layout()
-        self.__dict__._lifecycle = self._lifecycle
+        self.__dict__["_layout"] = self.__class__._layout()
+        self.__dict__["_lifecycle"] = self._lifecycle
 
         self._layout[0].append(
             {
