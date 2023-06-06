@@ -154,6 +154,10 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             return process_mixin._edit_form(self)
 
         name=request.form.get("add_item")
+
+        if self._status>0:
+            return toast_error(_("This record's status has changed. Please reload this page"), 400)
+
         
         try:
             prefix, number=name.split('-')

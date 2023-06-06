@@ -86,7 +86,7 @@
   </div>
   {% endfor %}
 
-  {% if source._lifecycle[section].get('files') %}
+  {% if record._lifecycle[section].get('files') %}
   <div class="d-lg-flex mt-3">
     <div class="title w-lg-25">
       <label>{{ _("Attached Files") }}</label>
@@ -119,7 +119,7 @@
   {% endif %}
   
 
-  {% if source.phase_approvals(section) %}
+  {% if record.phase_approvals(section) %}
   <div id="container-approvals-{{ section }}" class="d-lg-flex mt-3">
     <div class="title w-lg-25">
       <label class="">{{ _("Approvals") }}</label>
