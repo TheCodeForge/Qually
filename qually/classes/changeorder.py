@@ -67,7 +67,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
     @classmethod
     def _layout(cls):
-        data= {
+        return {
             0:[
                 {
                     "name":_("Name"),
@@ -87,8 +87,12 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             ]
         }
 
+    def modify_layout(self):
+
+        self._layout = self.__class__._layout()
+
         if not request.path.startswith("/create_"):
-            data[0].append(
+            self._layout[0].append(
                 {
                     "name":_("Add Item"),
                     "value":"add_item",
@@ -96,8 +100,6 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "column":False
                 }
             )
-
-        return data
 
     @property
     @lazy

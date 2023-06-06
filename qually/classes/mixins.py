@@ -45,7 +45,6 @@ class core_mixin():
 
 class process_mixin():
 
-
     @property
     def name(self):
         return f"{getattr(g.user.organization, f'{self._name.lower()}_prefix')}-{self.number:0>5}"
@@ -187,6 +186,9 @@ class process_mixin():
         g.db.add(self)
 
         return key, value, response, entry.get("reload", False)
+
+    def modify_layout(self):
+        pass
 
 class revisioned_process_mixin(process_mixin):
 
