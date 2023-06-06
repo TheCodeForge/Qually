@@ -188,6 +188,13 @@ class process_mixin():
         return key, value, response, entry.get("reload", False)
 
     def modify_layout(self):
+        #Override this to customize the record display based on custom data
+        # layout=self._layout()
+        # lifecycle=self._lifecycle
+        # modify layout
+        # modify lifecycle
+        # self.__dict__["_layout"]=lambda:layout
+        # self.__dict__["_lifecycle"]=lifecycle
         pass
 
 class revisioned_process_mixin(process_mixin):
