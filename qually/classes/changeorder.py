@@ -91,10 +91,10 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
     def modify_layout(self):
 
-        self.__dict__["_layout"] = self.__class__._layout()
+        layout = self.__class__._layout()
         self.__dict__["_lifecycle"] = self._lifecycle
 
-        self._layout[0].append(
+        layout[0].append(
             {
                 "name":_("Add Item"),
                 "value":"add_item",
@@ -105,12 +105,14 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         i=1
 
         for rev in self.proposed_revisions:
-            self._layout[i]= rev._layout
+            layout= rev._layout
             self._lifecycle[i]={
                 'name':rev.item.name,
                 'users': [g.user],
                 'files':True
             }
+
+        self.__dict__["_layout"]=lambda:layout
 
     @property
     @lazy
