@@ -139,7 +139,8 @@ class process_mixin():
             key=None
             for phase in phases:
 
-                source=phase.get("object_data", self)
+                source=self._lifecycle[phase].get("object_data", self)
+
                 for entry in source._layout()[phase]:
 
 
