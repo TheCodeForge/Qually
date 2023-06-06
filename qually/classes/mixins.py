@@ -143,7 +143,7 @@ class process_mixin():
 
             source=self._lifecycle[phase].get("object_data", self)
 
-            for entry in record._layout()[phase]:
+            for entry in self._layout()[phase]:
 
 
                 if entry['value'] in request.form and (source==self or source.name==request.form.get("data_obj")):
