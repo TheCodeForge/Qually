@@ -116,6 +116,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 'early':'edit',
                 'object_data': rev
             }
+            i+=1
 
         self.__dict__["_layout"]=lambda:layout
         self.__dict__['_lifecycle']=lifecycle
