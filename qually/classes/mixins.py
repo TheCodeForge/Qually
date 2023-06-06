@@ -144,7 +144,7 @@ class process_mixin():
                 for entry in source._layout()[phase]:
 
 
-                    if entry['value'] in request.form:
+                    if entry['value'] in request.form and (source==self or source.name=request.form.get("data_obj")):
                         if entry['kind']=='multi':
                             setattr(source, f"{entry['value']}_raw", request.form[entry['value']])
                             setattr(source, entry['value'], html(request.form[entry['value']]))

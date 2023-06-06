@@ -32,6 +32,10 @@
       <form id="form-update-{{ entry['value'] }}-{{ loop.index0 }}" action="{{ source.permalink }}" method="post" class="toasted w-100 me-4">
         <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
 
+        {% if source!=record %}
+        <input type="hidden" name="data_obj" value="{{ source.name }}"
+        {% endif %}
+
         {% if entry.get('kind')=='multi' %} 
         <textarea id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" name="{{ entry['value'] }}" placeholder="{{ entry.get('placeholder','') }}">{{ source | attr(entry['value']+'_raw') }}</textarea>
 
