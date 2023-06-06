@@ -200,6 +200,9 @@ class Item(Base, core_mixin, revisioned_process_mixin):
             ir = ItemRevision(
                 item_id=self.id,
                 created_utc=g.time,
+                object_name=self.object_name,
+                object_description=self.object_description,
+                object_description_raw=self.object_description_raw,
                 _status=0,
                 revision_number = self.current_revision+1
                 )
@@ -256,7 +259,7 @@ class ItemRevision(Base, core_mixin, process_mixin):
     object_name=Column(String, default="")
     object_description=Column(String, default="")
     object_description_raw=Column(String, default="")
-    revision_number=Column(Integer, default=0)
+    revision_number=Column(Integer, default=None)
 
     _status=Column(Integer, default=0)
 
