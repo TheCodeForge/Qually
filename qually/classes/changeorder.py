@@ -104,6 +104,13 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "kind":"text"
                 }
             )
+            layout[0].append(
+                {
+                    "name":_("Remove Item"),
+                    "value":"delete_item",
+                    "kind":"text"
+                }
+            )
 
         i=1
 
@@ -205,7 +212,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
         elif x=="delete_item":
 
-            rev=[x for x in self.revisions if x.id==int(request.form.get("delete_item"), 36)][0]
+            rev=[x for x in self.revisions if x.item.name==request.form.get("delete_item")][0]
 
             name=rev.item.name
 
