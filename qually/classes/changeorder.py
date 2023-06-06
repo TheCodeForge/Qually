@@ -123,6 +123,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         print(self._layout())
         print("lifecycle")
         print(self._lifecycle)
+        print(self.__dict__['_lifecycle'])
 
     @property
     @lazy
