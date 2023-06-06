@@ -72,7 +72,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         return {
             0:[
                 {
-                    "name":_("Name"),
+                    "name":_("Summary"),
                     "value":"record_name",
                     "kind": "text"
                 },
@@ -118,8 +118,6 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             }
             i+=1
 
-        lifecycle[0]['name']=_("Summary")
-
         self.__dict__["_layout"]=lambda:layout
         self.__dict__['_lifecycle']=lifecycle
 
@@ -163,42 +161,61 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
     def _edit_form(self):
 
-        if not request.form.get("add_item"):
+        special_handling=["add_item", "delete_item"]
+        for x in special_handling:
+            if request.form.get(x):
+                break
+        else:
             return process_mixin._edit_form(self)
 
-        name=request.form.get("add_item")
+        if x=="add_item":
 
-        if self._status>0:
-            return toast_error(_("This record has changed status. Please reload this page."), 403)
+            name=request.form.get("add_item")
 
-        
-        try:
-            prefix, number=name.split('-')
-        except:
-            return toast_error(_("Invalid item number"), 400)
+            if self._status>0:
+                return toast_error(_("This record has changed status. Please reload this page."), 403)
 
-        item=g.user.organization.get_record(prefix, number, graceful=True)
+            try:
+                prefix, number=name.split('-')
+            except:
+                return toast_error(_("Invalid item number"), 400)
 
-        if not item:
-            return toast_error(_("No item found with number {x}").format(x=name), 400)
+            item=g.user.organization.get_record(prefix, number, graceful=True)
 
-        if item.id in [x.item_id for x in self.proposed_revisions]:
-            return toast_error(_("Item {x} is already associated with this change").format(x=item.name), 409)
+            if not item:
+                return toast_error(_("No item found with number {x}").format(x=name), 400)
 
-        new_ir = item._revision_class(
-            item_id=item.id,
-            change_id=self.id,
-            object_name=item.object_name,
-            object_description=item.object_description,
-            object_description_raw=item.object_description_raw,
-            created_utc=g.time
-            )
+            if item.id in [x.item_id for x in self.proposed_revisions]:
+                return toast_error(_("Item {x} is already associated with this change").format(x=item.name), 409)
 
-        g.db.add(new_ir)
+            new_ir = item._revision_class(
+                item_id=item.id,
+                change_id=self.id,
+                object_name=item.object_name,
+                object_description=item.object_description,
+                object_description_raw=item.object_description_raw,
+                created_utc=g.time
+                )
 
-        g.db.commit()
+            g.db.add(new_ir)
 
-        return _("Add Item"), item.name, "", True
+            g.db.commit()
+
+            return _("Add Item"), item.name, "", True
+
+        elif x=="delete_item":
+
+            rev=[x for x in self.revisions if x.id==int(request.form.get("delete_item"), 36)][0]
+
+            name=rev.item.name
+
+            for file in rev.files:
+                aws.delete_file(file.s3_name)
+                g.db.delete(file)
+            g.db.delete(rev)
+            g.db.commit()
+
+            return  _("Remove Item"), name, "", True
 
 
 
