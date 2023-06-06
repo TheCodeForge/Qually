@@ -270,7 +270,7 @@ class Item(Base, core_mixin, revisioned_process_mixin):
     def files(self):
         return self.effective_revision.files
 
-    def new_revision():
+    def new_revision(self):
 
         new_ir = self._revision_class(
             item_id=self.id,
@@ -282,7 +282,7 @@ class Item(Base, core_mixin, revisioned_process_mixin):
             )
 
         g.db.add(new_ir)
-        g.db.commit()
+        g.db.flush()
 
         return new_ir
     
