@@ -17,6 +17,9 @@ from qually.__main__ import app, Base
 
 class core_mixin():
 
+    def __repr__(self):
+        return f"<{self.__class__.__name__}(id={self.id})>"
+
     @property
     @lazy
     def base36id(self):
