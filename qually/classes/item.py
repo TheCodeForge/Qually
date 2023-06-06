@@ -275,6 +275,11 @@ class ItemRevision(Base, core_mixin, process_mixin):
             'revision_number',
             name=f'item_rev_number_unique'
             ),
+        UniqueConstraint(
+            'item_id', 
+            'change_id',
+            name=f'item_change_unique'
+            )
         )   
 
 
