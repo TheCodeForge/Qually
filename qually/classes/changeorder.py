@@ -114,7 +114,8 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             ]
             lifecycle[1]={
                 'name': _("Add/Remove Items"),
-                'users': [self.owner]
+                'users': [self.owner],
+                'early':'edit'
             }
 
         i=2
