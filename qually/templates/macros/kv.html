@@ -7,11 +7,11 @@
 
   {% for entry in record._layout()[section] if not entry.get('hide', (False|lambda(arg=True)))(record) %}
   <div class="d-lg-flex mt-3 on-hover">
-    <div class="title w-lg-25" role="button" class="toggle-target-class" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
-      <label>{{ entry['name'] }}</label>
-    </div>
 
     {% if can_edit %}
+    <div class="title w-lg-25 toggle-target-class" role="button" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
+      <label>{{ entry['name'] }}</label>
+    </div>
     <div role="button" class="body ms-3 w-lg-100 d-flex vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} toggle-target-class" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
         {% if entry.get('kind')=='multi' %} 
@@ -65,7 +65,11 @@
       <a href="javascript:void(0)" class="btn btn-secondary toggle-target-class ms-auto mb-auto" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">Cancel</a>
       <a href="javascript:void(0)" class="btn btn-primary toggle-target-class record-value-edit ms-2 mb-auto" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}" data-form="form-update-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}" data-value-target="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}" data-approvals-target="container-approvals-{{ section }}">Save</a>
     </div>
+
     {% else %}
+    <div class="title w-lg-25">
+      <label>{{ entry['name'] }}</label>
+    </div>
     <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
         {% if entry.get('kind')=='multi' %} 
