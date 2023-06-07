@@ -261,6 +261,9 @@ class ItemRevision(Base, core_mixin, process_mixin):
             )
         )   
 
+    @property
+    def name:
+        return self.item.name
 
     @property
     def _lifecycle(self):
