@@ -170,6 +170,15 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "description": _("Permanently archive this record. This cannot be undone."),
                     "color": "danger",
                     "users": [self.owner]+g.user.organization.doc_control_users
+                },
+                {
+                    "id":"super_advance",
+                    "to": 100,
+                    "name": _("Sudo Advance"),
+                    "description": _("Instantly approve and close this change order"),
+                    "color": "success",
+                    "users": [self.owner],
+                    "approval":True
                 }
             ]
         }
@@ -243,7 +252,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
             rev._status=1
             g.db.add(rev)
-            
+
         g.db.commit()
 
 
