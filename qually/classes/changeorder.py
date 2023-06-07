@@ -154,15 +154,15 @@ class ChangeOrder(Base, core_mixin, process_mixin):
     def _transitions(self):
         return {
             0: [
-                # {
-                #     "id":"submit",
-                #     "to": 1,
-                #     "name": _("Submit"),
-                #     "description": _("Submit this record to Document Control for review."),
-                #     "color": "success",
-                #     "users": [self.owner],
-                #     "approval":True
-                # },
+                {
+                    "id":"submit",
+                    "to": 1,
+                    "name": _("Submit"),
+                    "description": _("Submit this record to Document Control for review."),
+                    "color": "success",
+                    "users": [self.owner]+g.user.organization.doc_control_users,
+                    "approval":True
+                },
                 {
                     "id":"terminate",
                     "to": 101,
@@ -170,15 +170,16 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "description": _("Permanently archive this record. This cannot be undone."),
                     "color": "danger",
                     "users": [self.owner]+g.user.organization.doc_control_users
-                },
+                }
+            ],
+            1: [
                 {
-                    "id":"super_advance",
-                    "to": 100,
-                    "name": _("Sudo Advance"),
-                    "description": _("Instantly approve and close this change order"),
-                    "color": "success",
-                    "users": [self.owner],
-                    "approval":True
+                    "id":"reject",
+                    "to": 0,
+                    "name": _("Reject"),
+                    "description": _("Return this record to the Summary phase."),
+                    "color": "warning",
+                    "users": g.user.organization.doc_control_users
                 }
             ]
         }
