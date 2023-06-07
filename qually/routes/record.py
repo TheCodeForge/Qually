@@ -10,7 +10,6 @@ except ModuleNotFoundError:
 def get_record_number(kind, number):
 
     record = g.user.organization.get_record(kind, number)
-    record.modify_layout()
 
     if request.path != record.permalink:
         return redirect(record.permalink)
@@ -22,7 +21,6 @@ def get_record_number(kind, number):
 def post_record_number(kind, number):
 
     record = g.user.organization.get_record(kind, number)
-    record.modify_layout()
 
     key, value, response, do_reload = record._edit_form()
 
@@ -330,7 +328,6 @@ def post_record_record(kind):
 def kind_number_add_file(kind, number):
 
     record=g.user.organization.get_record(kind, number)
-    record.modify_layout()
 
     if not record.can_edit(int(request.form.get("status_id"))):
         return toast_error(_("This record has changed status. Please reload this page."), 403)
@@ -385,7 +382,6 @@ def kind_number_add_file(kind, number):
 def kind_number_delete_file(kind, number, fid):
 
     record=g.user.organization.get_record(kind, number)
-    record.modify_layout()
 
     file_obj=[f for f in record.files if f.id==int(fid, 36)][0]
 

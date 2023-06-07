@@ -109,6 +109,8 @@ class Organization(Base, core_mixin):
         if not record and not graceful:
             abort(404)
 
+        record.modify_layout()
+
         return record
 
     def next_id(self, kind):
