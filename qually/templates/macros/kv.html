@@ -10,7 +10,7 @@
 
     {% if can_edit %}
     <div class="title w-lg-25 toggle-target-class" role="button" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
-      <label>{{ entry['name'] }}</label>
+      <label role="button" for="input-update-{{ entry['value'] }}-{{ loop.index0 }}">{{ entry['name'] }}</label>
     </div>
     <div role="button" class="body ms-3 w-lg-100 d-flex vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} toggle-target-class" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
