@@ -37,7 +37,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
     def _lifecycle(self):
         return self.__dict__.get("_lifecycle") or {
             0: {
-                'name': _("New"),
+                'name': _("Summary"),
                 'users': [self.owner]
                 },
             96: {
@@ -72,7 +72,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         return {
             0:[
                 {
-                    "name":_("Summary"),
+                    "name":_("Name"),
                     "value":"record_name",
                     "kind": "text"
                 },
