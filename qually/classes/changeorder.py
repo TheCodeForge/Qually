@@ -229,6 +229,23 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             return  _("Remove Item"), name, "", True
 
 
+    def _after_phase_change(self):
+
+        if self._status!=100:
+            return
+
+        for rev in self.proposed_revisions:
+
+            #supersede current revisions
+            existing=rev.item.effective_revision
+            existing._status=2
+            g.db.add(existing)
+
+            rev._status=1
+            g.db.add(rev)
+            
+        g.db.commit()
+
 
 ChangeOrder._cols()
     
