@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} d-none">
-      <form id="form-update-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}" action="{{ source.permalink }}" method="post" class="toasted w-100 me-4">
+      <form id="form-update-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}" action="{{ record.permalink }}" method="post" class="toasted w-100 me-4">
         <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
 
         {% if source!=record %}
