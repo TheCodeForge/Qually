@@ -90,7 +90,8 @@ class Item(Base, core_mixin, revisioned_process_mixin):
                 'name': _("Draft"),
                 'users': [self.owner],
                 'files': True,
-                'hide_title':True
+                'hide_title':True,
+                'files_label':_("Item Files")
                 },
             1: {
                 'name': _("Design"),
@@ -206,65 +207,6 @@ class Item(Base, core_mixin, revisioned_process_mixin):
         g.db.add(self)
         g.db.commit()
     
-    # def _edit_form(self):
-
-    #     checks= process_mixin._edit_form(self)
-    #     if checks[0]:
-    #         return checks
-
-    #     if self._status==0:
-    #         return self.effective_revision._edit_form()
-
-    #     elif self._status==1:
-
-    #         self.proposed_revision._status=2
-
-    #         ir = ItemRevision(
-    #             item_id=self.id,
-    #             created_utc=g.time,
-    #             object_name=self.object_name,
-    #             object_description=self.object_description,
-    #             object_description_raw=self.object_description_raw,
-    #             _status=0,
-    #             revision_number = self.current_revision+1
-    #             )
-
-    #         g.db.add(ir)
-    #         g.db.add(self.proposed_revision)
-    #         g.db.flush()
-    #         results = ir._edit_form()
-    #         g.db.flush()
-    #         return results
-
-    #     else:
-    #         return toast_error("Can't edit that right now")
-
-    # @property
-    # def object_name(self):
-    #     return self.effective_revision.object_name
-
-    # @object_name.setter
-    # def object_name(self, value):
-    #     if self._status==0:
-    #         self.effective_revision.object_name = value
-
-    # @property
-    # def object_description(self):
-    #     return self.effective_revision.object_description
-
-    # @object_description.setter
-    # def object_description(self, value):
-    #     if self._status==0:
-    #         self.effective_revision.object_description = value
-
-    # @property
-    # def object_description_raw(self):
-    #     return self.effective_revision.object_description_raw
-
-    # @object_description_raw.setter
-    # def object_description_raw(self, value):
-    #     if self._status==0:
-    #         self.effective_revision.object_description_raw = value
 
     @property
     def files(self):
