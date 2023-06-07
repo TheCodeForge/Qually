@@ -93,11 +93,11 @@ class NCMR(Base, core_mixin, process_mixin):
     def _dispositions(cls):
 
         return {
-                    0: _("Scrap"),
-                    1: _("Return to Supplier"),
-                    2: _("Rework"),
-                    3: _("Use As-Is"),
-                    4: _("Reclassify")
+                    1: _("Scrap"),
+                    2: _("Return to Supplier"),
+                    3: _("Rework"),
+                    4: _("Use As-Is"),
+                    5: _("Reclassify")
             }
 
     @classmethod

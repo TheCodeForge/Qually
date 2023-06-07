@@ -89,8 +89,8 @@ class Deviation(Base, core_mixin, process_mixin):
     def _plan_types(cls):
 
         return {
-                    0: _("Planned"),
-                    1: _("Unplanned")
+                    1: _("Planned"),
+                    2: _("Unplanned")
             }
 
     @classmethod

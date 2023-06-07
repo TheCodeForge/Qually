@@ -104,14 +104,14 @@ class CAPA(Base, core_mixin, process_mixin):
     def _sources(cls):
 
         return {
-                0: _("Service request"),
-                1: _("Internal audit finding"),
-                2: _("External audit finding"),
-                3: _("Quality Assurance inspection"),
-                4: _("General observation"),
-                5: _("Risk assessment"),
-                6: _("Management review"),
-                7: _("Failure analysis")
+                1: _("Service request"),
+                2: _("Internal audit finding"),
+                3: _("External audit finding"),
+                4: _("Quality Assurance inspection"),
+                5: _("General observation"),
+                6: _("Risk assessment"),
+                7: _("Management review"),
+                8: _("Failure analysis")
             }
 
     @classmethod
