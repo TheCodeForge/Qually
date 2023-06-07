@@ -97,14 +97,12 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         lifecycle = self._lifecycle
 
         if self._status==0 and self.can_edit(0):
-            layout[0].append(
+            layout[1]=[
                 {
                     "name":_("Add Item"),
                     "value":"add_item",
                     "kind":"text"
-                }
-            )
-            layout[0].append(
+                },
                 {
                     "name":_("Remove Item"),
                     "value":"delete_item",
@@ -113,9 +111,13 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                         x.base36id:x.item.name for x in self.proposed_revisions
                     }
                 }
-            )
+            ]
+            lifecycle[1]={
+                'name': _("Add/Remove Items"),
+                'users': [self.owner]
+            }
 
-        i=1
+        i=2
 
         for rev in self.proposed_revisions:
             layout[i]= rev._layout()[0]
