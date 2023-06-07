@@ -185,6 +185,8 @@ class process_mixin():
                         value=getattr(source, entry['value'])
                         response=value
 
+                    
+                    g.db.add(source)
                     break
 
             if key!=None:
@@ -193,7 +195,6 @@ class process_mixin():
         if key==None:
             return None, None, None, None
 
-        g.db.add(source)
 
         return key, value, response, entry.get("reload", False)
 
