@@ -212,6 +212,9 @@ class process_mixin():
         #     return self.__dict__.get("_lifecycle") or {.....}
         pass
 
+    def _after_phase_change(self):
+        pass
+
 class revisioned_process_mixin(process_mixin):
 
     @property
