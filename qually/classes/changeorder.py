@@ -174,7 +174,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "users": [self.owner]+g.user.organization.doc_control_users
                 }
             ],
-            1: [
+            96: [
                 {
                     "id":"reject",
                     "to": 0,
