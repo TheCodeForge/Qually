@@ -158,7 +158,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             0: [
                 {
                     "id":"submit",
-                    "to": 1,
+                    "to": 96,
                     "name": _("Submit"),
                     "description": _("Submit this record to Document Control for review."),
                     "color": "success",
