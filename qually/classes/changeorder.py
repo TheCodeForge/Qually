@@ -110,7 +110,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "value":"delete_item",
                     "kind":"dropdown",
                     "values":{
-                        x.base36id:x.name for x in self.proposed_revisions
+                        x.base36id:x.item.name for x in self.proposed_revisions
                     }
                 }
             )
