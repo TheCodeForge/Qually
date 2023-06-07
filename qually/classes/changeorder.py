@@ -129,7 +129,8 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 'users': [g.user],
                 'files':True,
                 'early':'edit',
-                'object_data': rev
+                'object_data': rev,
+                'title_link': rev.item.permalink
             }
             i+=1
 
