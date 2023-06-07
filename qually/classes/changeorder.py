@@ -182,6 +182,14 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "description": _("Return this record to the Summary phase."),
                     "color": "warning",
                     "users": g.user.organization.doc_control_users
+                },
+                {
+                    "id":"withdraw",
+                    "to": 0,
+                    "name": _("Withdraw"),
+                    "description": _("Return this record to the Summary phase."),
+                    "color": "warning",
+                    "users": [self.owner]
                 }
             ]
         }
