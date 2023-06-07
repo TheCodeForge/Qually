@@ -187,6 +187,8 @@ class process_mixin():
 
                     
                     g.db.add(source)
+                    if source != self:
+                        key= f"{source.name} / {key}"
                     break
 
             if key!=None:
