@@ -200,7 +200,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             name=request.form.get("add_item")
 
             if self._status>0:
-                return toast_error(_("This record has changed status. Please reload this page."), 403)
+                return toast_error(_("This record has changed status. Please reload this page."), 409)
 
             try:
                 prefix, number=name.split('-')
@@ -210,7 +210,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             item=g.user.organization.items.filter_by(number=int(number)).first()
 
             if not item:
-                return toast_error(_("No item found with number {x}").format(x=name), 400)
+                return toast_error(_("No item found with number {x}").format(x=name), 404)
 
             if item.id in [x.item_id for x in self.proposed_revisions]:
                 return toast_error(_("Item {x} is already associated with this change").format(x=item.name), 409)
@@ -226,7 +226,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         elif x=="delete_item":
 
             if self._status>0:
-                return toast_error(_("This record has changed status. Please reload this page."), 403)
+                return toast_error(_("This record has changed status. Please reload this page."), 409)
 
             rev=[x for x in self.proposed_revisions if x.id==int(request.form.get("delete_item"), 36)][0]
 
