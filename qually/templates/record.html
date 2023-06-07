@@ -26,9 +26,9 @@
     {% for stage in (record._layout().keys() | sort) if (stage<=record._status or record._lifecycle[stage].get('early')) and not record._lifecycle[stage].get('hide', False) %}
     {% if not record._lifecycle[stage].get('hide_title', False) %}
     {% if record._lifecycle[stage].get('title_link') %}
-    <h3 class="h4 text-primary {% if loop.index0 %}mt-3{% endif %}"><a href="{{ record._lifecycle[stage]['title_link'] }}">{{ record._lifecycle[stage]['name'] }}</a></h3>
+    <h3 class="h4 text-primary {% if loop.index0 %}mt-3{% endif %}"><a href="{{ record._lifecycle[stage]['title_link'] }}">{{ record._lifecycle[stage].get('title_text', record._lifecycle[stage]['name']) }}</a></h3>
     {% else %}
-    <h3 class="h4 text-primary {% if loop.index0 %}mt-3{% endif %}">{{ record._lifecycle[stage]['name'] }}</h3>
+    <h3 class="h4 text-primary {% if loop.index0 %}mt-3{% endif %}">{{ record._lifecycle[stage].get('title_text', record._lifecycle[stage]['name']) }}</h3>
     {% endif %}
     {% endif %}
     {{ kv.kv(record, stage) }}
