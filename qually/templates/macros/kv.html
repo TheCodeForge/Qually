@@ -41,7 +41,7 @@
 
         {% elif entry.get('kind')=='dropdown' %}
         <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}">
-          <option disabled {% if (source | attr(entry['value'])==None %}selected{% endif %}>{{_("Select One")}}</option>
+          <option disabled {% if (source | attr(entry['value']))==None %}selected{% endif %}>{{_("Select One")}}</option>
           {% for x in entry['values'] %}
           <option value="{{ x }}" {% if x==(source | attr(entry['value'])) %}selected{% endif %}>{{ entry['values'][x] }}</option>
           {% endfor %}
