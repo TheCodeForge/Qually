@@ -6,13 +6,13 @@
 <div>
 
   {% for entry in record._layout()[section] if not entry.get('hide', (False|lambda(arg=True)))(record) %}
-  <div class="d-lg-flex mt-3">
-    <div class="title w-lg-25">
+  <div class="d-lg-flex mt-3 on-hover">
+    <div class="title w-lg-25" role="button" class="toggle-target-class" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <label>{{ entry['name'] }}</label>
     </div>
 
     {% if can_edit %}
-    <div role="button" class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} toggle-target-class" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
+    <div role="button" class="body ms-3 w-lg-100 d-flex vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} toggle-target-class" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
         {% if entry.get('kind')=='multi' %} 
         <div id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{{ (source | attr(entry['value']) | safe) or ('<p></p>'|safe) }}</div>
@@ -28,7 +28,7 @@
         <i class="fas fa-pen fa-fw"></i>
       </div>
     </div>
-    <div class="body ms-3 w-lg-100 d-flex on-hover vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} d-none">
+    <div class="body ms-3 w-lg-100 d-flex vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} d-none">
       <form id="form-update-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}" action="{{ record.permalink }}" method="post" class="toasted w-100 me-4">
         <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
 
