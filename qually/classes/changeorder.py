@@ -162,7 +162,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "name": _("Submit"),
                     "description": _("Submit this record to Document Control for review."),
                     "color": "success",
-                    "users": [self.owner]+g.user.organization.doc_control_users,
+                    "users": [g.user],
                     "approval":True
                 },
                 {
