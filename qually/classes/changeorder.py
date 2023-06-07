@@ -102,7 +102,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "name":_("Add Item"),
                     "value":"add_item",
                     "kind":"text",
-                    "hide":lambda:len(self.proposed_revisions)>=90
+                    "hide":lambda x:len(self.proposed_revisions)>=90
                 },
                 {
                     "name":_("Remove Item"),
@@ -111,7 +111,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "values":{
                         x.base36id:x.item.name for x in self.proposed_revisions
                     },
-                    "hide":lambda:len(self.proposed_revisions)==0
+                    "hide":lambda x:len(self.proposed_revisions)==0
                 }
             ]
             lifecycle[1]={
