@@ -303,7 +303,7 @@ class ItemRevision(Base, core_mixin, process_mixin):
                     "name": _("Revision"),
                     "value":"revision_number",
                     "kind": "int",
-                    "hide": lambda x:x.revision_number==None,
+                    #"hide": lambda x:x.revision_number==None,
                     "readonly":True
                 },
                 {
