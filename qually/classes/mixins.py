@@ -119,6 +119,9 @@ class process_mixin():
                 elif entry['kind']=='dropdown':
                     setattr(cls, entry['value'], Column(Integer, default=None))
 
+                elif entry['kind']=='int':
+                    setattr(cls, entry['value'], Column(Integer, default=None))
+
                 else:
                     raise ValueError(f"unknown template data type {entry['kind']}")
 
@@ -157,6 +160,11 @@ class process_mixin():
 
 
                 if entry['value'] in request.form and (source==self or source.__repr__()==request.form.get("data_obj")):
+
+                    if entry.get('readonly'):
+                        return toast_error(_("Property {x} is read-only").format(x=entry['name']), 403)
+
+
                     if entry['kind']=='multi':
                         setattr(source, f"{entry['value']}_raw", request.form[entry['value']])
                         setattr(source, entry['value'], html(request.form[entry['value']]))
@@ -188,6 +196,11 @@ class process_mixin():
                             response="<p></p>"
                             value=""
                         key=entry['name']
+                    elif entry['kind']=='int':
+                        setattr(source, entry['value'], int(request.form[entry['value']]))
+                        key=entry['name']
+                        value=getattr(source, entry['value'])
+                        response=value
                     else:
                         setattr(source, entry['value'], txt(request.form[entry['value']]))
                         key=entry['name']

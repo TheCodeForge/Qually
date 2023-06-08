@@ -300,6 +300,13 @@ class ItemRevision(Base, core_mixin, process_mixin):
                     "kind": "text"
                 },
                 {
+                    "name": _("Revision"),
+                    "value":"revision_number",
+                    "kind": "int",
+                    "hide": lambda x:x.revision_number==None,
+                    "readonly":True
+                },
+                {
                     "name": _("Description"),
                     "value":"object_description",
                     "kind": "multi"
