@@ -280,6 +280,8 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             rev.revision_number = int(existing.revision_number)+1
             g.db.add(rev)
 
+            rev.item._status = rev.item._status or 2
+
         g.db.commit()
 
 
