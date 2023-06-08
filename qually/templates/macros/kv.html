@@ -102,7 +102,7 @@
       {% for file in source.files if file.status_id==section %}
       <div class="d-flex">
         <a href="{{ file.s3_link }}" target="_blank">{{ file.file_name }}</a>
-        {% if can_edit %}
+        {% if can_edit_section %}
         <div class="ms-auto">
           <form id="form-delete-file-{{ file.base36id }}" action="{{ record.permalink }}/file/{{ file.base36id }}/delete" method="post" class="toasted">
             <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
