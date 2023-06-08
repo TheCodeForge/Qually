@@ -1,11 +1,14 @@
 {% macro kv(record, section) %}
 
-{% set can_edit= record.can_edit(section) %}
+{% set can_edit_section = record.can_edit(section) %}
+
 {% set source=record._lifecycle[section].get('object_data', record) %}
 
 <div>
 
   {% for entry in record._layout()[section] if not entry.get('hide', (False|lambda(arg=True)))(record) %}
+  {% set can_edit = can_edit_section and not entry.get('readonly',False) %}
+
   <div class="d-lg-flex mt-3 on-hover">
 
     {% if can_edit %}
