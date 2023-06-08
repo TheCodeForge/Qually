@@ -6,7 +6,7 @@
 
 <div>
 
-  {% for entry in record._layout()[section] if not entry.get('hide', (False|lambda(arg=True)))(record) %}
+  {% for entry in record._layout()[section] if not source.get('hide', (False|lambda(arg=True)))(record) %}
   {% set can_edit = can_edit_section and not entry.get('readonly',False) %}
 
   <div class="d-lg-flex mt-3 on-hover">
