@@ -87,6 +87,13 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "value":"change_rationale",
                     "kind": "multi"
                 }
+            ],
+            96:[
+                {
+                    "name":_("Impact Assessors"),
+                    "value":"impact_assessor",
+                    "kind":"user_multi"
+                }
             ]
         }
 
@@ -268,6 +275,29 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
 
 ChangeOrder._cols()
+
+class ChangeOrderAssessorRelationship(Base, core_mixin):
+
+    __tablename__="chng_assessor_relationship"
+
+    id=Column(Integer, primary_key=True)
+    change_id=Column(Integer, ForeignKey('chng.id'))
+    user_id=Column(Integer, ForeignKey('user.id'))
+
+    change=relationship("Change", backref="assessor_relationships")
+    user=relationship("User", backref="change_assessor_relationships")
+
+class ChangeOrderApproverRelationship(Base, core_mixin):
+
+    __tablename__="chng_approver_relationship"
+
+    id=Column(Integer, primary_key=True)
+    change_id=Column(Integer, ForeignKey('chng.id'))
+    user_id=Column(Integer, ForeignKey('user.id'))
+
+    change=relationship("Change", backref="approver_relationships")
+    user=relationship("User", backref="change_approver_relationships")
+
     
 class ChangeOrderApproval(Base, core_mixin):
 

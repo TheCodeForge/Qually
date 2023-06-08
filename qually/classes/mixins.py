@@ -2,6 +2,9 @@ from flask import request, g
 import time
 from sqlalchemy import Column, Integer, BigInteger, Float, String, Boolean, ForeignKey, Index, UniqueConstraint, text, or_, and_
 from sqlalchemy.orm import deferred, relationship
+from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy.ext.mutable import MutableList
+
 try:
     from flask_babel import format_datetime, force_locale, gettext as _
 except ModuleNotFoundError:
@@ -109,9 +112,15 @@ class process_mixin():
                     setattr(cls, f"{entry['value']}_id", Column(Integer, ForeignKey("users.id")))
                     setattr(cls, entry['value'], relationship("User", primaryjoin=f"User.id=={cls.__name__}.{entry['value']}_id"))
 
+                # elif entry['kind']=='user_multi':
+                #     setattr(cls, f"{entry['value']}_ids", Column(MutableList.as_mutable(ARRAY(Integer)), ForeignKey("users.id")))
+
                 #other dropdown property, stored as int
                 elif entry['kind']=='dropdown':
                     setattr(cls, entry['value'], Column(Integer, default=None))
+
+                else:
+                    raise ValueError(f"unknown template data type {entry['kind']}")
 
         cls.owner=      relationship("User", primaryjoin=f"User.id=={cls.__name__}.owner_id")
         cls.logs=       relationship(f"{cls.__name__}Log", order_by=f"{cls.__name__}Log.id.desc()")
