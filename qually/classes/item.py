@@ -139,7 +139,7 @@ class Item(Base, core_mixin, revisioned_process_mixin):
     @classmethod
     @org_lang
     def _layout(cls):
-        data = eval("ItemRevision._layout()")
+        data = cls._revision_class._layout()
 
         data[0] =[
             {
