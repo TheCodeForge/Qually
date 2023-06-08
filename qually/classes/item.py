@@ -148,13 +148,13 @@ class Item(Base, core_mixin, revisioned_process_mixin):
                 "kind": "dropdown",
                 "values": {x:cls._kinds()[x]['name'] for x in cls._kinds()},
                 "hide": lambda self: True
-            },
-            {
-                "name": _("Custom Number"),
-                "value":"custom_number",
-                "kind": "text",
-                "placeholder": _("Assign a custom number to this item."),
-                "hide": lambda self: not bool(self.item.custom_number)
+            # },
+            # {
+            #     "name": _("Custom Number"),
+            #     "value":"custom_number",
+            #     "kind": "text",
+            #     "placeholder": _("Assign a custom number to this item."),
+            #     "hide": lambda self: not bool(self.item.custom_number) #phase 0 is ItemRev object
             }
         ]+data[0]
 
