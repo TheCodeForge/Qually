@@ -186,7 +186,8 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "name": _("Sudo Complete"),
                     "description": _("Approve and advance this straight to closure. For testing purposes only"),
                     "color": "success",
-                    "users": [self.owner]
+                    "users": [self.owner],
+                    "approval":True
                 }
             ],
             96: [
