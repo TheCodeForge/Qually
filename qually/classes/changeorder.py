@@ -203,7 +203,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
     def _edit_form(self):
 
-        special_handling=["add_item", "delete_item"]
+        special_handling=["add_item", "delete_item", "add_assessor", "delete_assessor", "add_approver","delete_approver"]
         for x in special_handling:
             if request.form.get(x):
                 break
@@ -284,7 +284,7 @@ class ChangeOrderAssessorRelationship(Base, core_mixin):
     change_id=Column(Integer, ForeignKey('chng.id'))
     user_id=Column(Integer, ForeignKey('users.id'))
 
-    change=relationship("Change", backref="assessor_relationships")
+    change=relationship("ChangeOrder", backref="assessor_relationships")
     user=relationship("User", backref="change_assessor_relationships")
 
 class ChangeOrderApproverRelationship(Base, core_mixin):
@@ -295,7 +295,7 @@ class ChangeOrderApproverRelationship(Base, core_mixin):
     change_id=Column(Integer, ForeignKey('chng.id'))
     user_id=Column(Integer, ForeignKey('users.id'))
 
-    change=relationship("Change", backref="approver_relationships")
+    change=relationship("ChangeOrder", backref="approver_relationships")
     user=relationship("User", backref="change_approver_relationships")
 
     
