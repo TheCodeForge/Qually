@@ -89,11 +89,11 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 }
             ],
             96:[
-                {
-                    "name":_("Impact Assessors"),
-                    "value":"impact_assessor",
-                    "kind":"user_multi"
-                }
+                # {
+                #     "name":_("Impact Assessors"),
+                #     "value":"impact_assessor",
+                #     "kind":"user"
+                # }
             ]
         }
 
@@ -282,7 +282,7 @@ class ChangeOrderAssessorRelationship(Base, core_mixin):
 
     id=Column(Integer, primary_key=True)
     change_id=Column(Integer, ForeignKey('chng.id'))
-    user_id=Column(Integer, ForeignKey('user.id'))
+    user_id=Column(Integer, ForeignKey('users.id'))
 
     change=relationship("Change", backref="assessor_relationships")
     user=relationship("User", backref="change_assessor_relationships")
@@ -293,7 +293,7 @@ class ChangeOrderApproverRelationship(Base, core_mixin):
 
     id=Column(Integer, primary_key=True)
     change_id=Column(Integer, ForeignKey('chng.id'))
-    user_id=Column(Integer, ForeignKey('user.id'))
+    user_id=Column(Integer, ForeignKey('users.id'))
 
     change=relationship("Change", backref="approver_relationships")
     user=relationship("User", backref="change_approver_relationships")
