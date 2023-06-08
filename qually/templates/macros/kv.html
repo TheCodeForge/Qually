@@ -112,7 +112,7 @@
         {% endif %}
       </div>
       {% endfor %}
-      {% if can_edit %}
+      {% if can_edit_section %}
       <div>
         <form id="form-attach-file-{{ section }}" action="{{ record.permalink }}/file" method="post" enctype="multipart/form-data" class="toasted">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
