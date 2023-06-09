@@ -90,8 +90,7 @@ class Item(Base, core_mixin, revisioned_process_mixin):
                 'name': _("Draft"),
                 'users': [self.owner],
                 'files': True,
-                'hide_title':True,
-                'files_label':_("Item Files")
+                'hide_title':True
                 },
             1: {
                 'name': _("Design"),
@@ -147,7 +146,7 @@ class Item(Base, core_mixin, revisioned_process_mixin):
                 "value":"_kind_id",
                 "kind": "dropdown",
                 "values": {x:cls._kinds()[x]['name'] for x in cls._kinds()},
-                "hide": lambda self: True
+                "hide": lambda x:True
             # },
             # {
             #     "name": _("Custom Number"),
@@ -170,7 +169,9 @@ class Item(Base, core_mixin, revisioned_process_mixin):
             'users': [g.user],
             'files': True,
             'hide_title':True,
-            'object_data':self.effective_revision
+            'object_data':self.effective_revision,
+            'files_label':_("Item Files"),
+            'ignore_file_section':True
         }
 
         self.__dict__["_layout"]=lambda:layout

@@ -99,7 +99,7 @@
       <label>{{ record._lifecycle[section].get("files_label", _("Attached Files")) }}</label>
     </div>
     <div class="body ms-3 w-lg-100">
-      {% for file in source.files if file.status_id==section %}
+      {% for file in source.files if file.status_id==section or record._lifecycle[section].get('ignore_file_section') %}
       <div class="d-flex">
         <a href="{{ file.s3_link }}" target="_blank">{{ file.file_name }}</a>
         {% if can_edit_section %}
