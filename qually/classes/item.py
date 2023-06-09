@@ -267,6 +267,11 @@ class ItemRevision(Base, core_mixin, process_mixin):
         return self.item.name
 
     @property
+    def permalink(self):
+        return f"{self.item.permalink}/revision/{self.revision_number}"
+    
+
+    @property
     def _lifecycle(self):
         return {
             0:{
