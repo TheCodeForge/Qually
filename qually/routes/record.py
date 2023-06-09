@@ -12,10 +12,10 @@ def get_record_number(kind, number, rev=None):
 
     record = g.user.organization.get_record(kind, number, rev=rev)
 
-    if request.path != record.permalink and not rev:
-        return redirect(record.permalink)
-    elif request.path != record.display_revision.permalink:
+    if rev and request.path != record.display_revision.permalink:
         return redirect(record.display_revision.permalink)
+    elif request.path != record.permalink:
+        return redirect(record.permalink)
     
     print(record._lifecycle)
 
