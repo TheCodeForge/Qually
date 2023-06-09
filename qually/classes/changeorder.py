@@ -55,7 +55,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 },
             98: {
                 'name': _("Implementation"),
-                'users': [self.owner],
+                'users': [self.implementation_assignee],
                 'files': True
                 },
             99: {
@@ -109,7 +109,8 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "kind":"user"
                 }
             ],
-            96:[]
+            96:[],
+            97:[]
         }
 
     def modify_layout(self):
@@ -218,6 +219,34 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "description": _("Return this record to the Summary phase."),
                     "color": "warning",
                     "users": [self.owner]
+                }
+            ],
+            # 96: [
+            #     {
+            #         "id":"withdraw",
+            #         "to": 95,
+            #         "name": _("Withdraw"),
+            #         "description": _("Return this record to the Initial Review phase."),
+            #         "color": "warning",
+            #         "users": g.user.organization.doc_control_users
+            #     }
+            # ],
+            97: [
+                {
+                    "id":"reject",
+                    "to": 95,
+                    "name": _("reject"),
+                    "description": _("Reject this change order."),
+                    "color": "danger",
+                    "users": [x.user for x in self.approver_relationships]
+                },
+                {
+                    "id":"approve",
+                    "to": 95,
+                    "name": _("Approve"),
+                    "description": _("Approve this change order."),
+                    "color": "danger",
+                    "users": [x.user for x in self.approver_relationships]
                 }
             ]
         }
