@@ -168,8 +168,8 @@ class Item(Base, core_mixin, revisioned_process_mixin):
             'name': _("Draft"),
             'users': [g.user],
             'files': True,
-            'hide_title':True,
-            'object_data':self.effective_revision,
+            'title_text': self.display_revision.status,
+            'object_data':self.display_revision,
             'files_label':_("Item Files"),
             'ignore_file_section':True
         }
@@ -211,7 +211,7 @@ class Item(Base, core_mixin, revisioned_process_mixin):
 
     @property
     def files(self):
-        return self.effective_revision.files
+        return self.display_revision.files
 
     def new_revision(self):
 

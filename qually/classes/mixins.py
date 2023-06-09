@@ -246,3 +246,8 @@ class revisioned_process_mixin(process_mixin):
     @lazy
     def effective_revision(self):
         return self.revisions.filter_by(_status=1).first()
+
+    @property
+    def display_revision(self):
+        return self.__dict__.get("display_revision", self.effective_revision)
+    

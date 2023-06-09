@@ -6,12 +6,16 @@ except ModuleNotFoundError:
 
 
 @app.get("/<kind>-<number>")
+@app.get("/<kind>-<number>/revision/<rev>")
 @logged_in
-def get_record_number(kind, number):
+def get_record_number(kind, number, rev=None):
 
     record = g.user.organization.get_record(kind, number)
 
-    if request.path != record.permalink:
+    if rev:
+        record.__dict__['display_revision']=record.revisions.filter_by(revision_number=int(rev)).first()
+
+    if request.path != record.permalink and '/revision/' not in request.path:
         return redirect(record.permalink)
     
     return render_template("record.html", record=record)
