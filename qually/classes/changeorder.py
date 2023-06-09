@@ -300,6 +300,14 @@ class ChangeOrderAssessorRelationship(Base, core_mixin):
     change=relationship("ChangeOrder", backref="assessor_relationships")
     user=relationship("User", backref="change_assessor_relationships")
 
+    __table_args__=(
+            UniqueConstraint(
+                'change_id', 
+                'user_id',
+                name=f'chng_user_assessor_rel_unique'
+                ),
+            )
+
 class ChangeOrderApproverRelationship(Base, core_mixin):
 
     __tablename__="chng_approver_relationship"
@@ -310,6 +318,14 @@ class ChangeOrderApproverRelationship(Base, core_mixin):
 
     change=relationship("ChangeOrder", backref="approver_relationships")
     user=relationship("User", backref="change_approver_relationships")
+
+    __table_args__=(
+            UniqueConstraint(
+                'change_id', 
+                'user_id',
+                name=f'chng_user_approver_rel_unique'
+                ),
+            )
 
     
 class ChangeOrderApproval(Base, core_mixin):
