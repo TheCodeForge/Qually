@@ -39,3 +39,20 @@
   {% endif %}
 </table>
 {% endmacro %}
+
+{% macro revisions(thing) %}
+<table class="table table-striped mb-5">
+  <thead class="bg-primary text-white">
+    <tr>
+      <th>{{ _("Revision") }}</th>
+      <th>{{ _("Change Order") }}</th>
+    </tr>
+  </thead>
+  {% for entry in thing.history_revisions %}
+  <tr>
+    <td><a href="{{ entry.permalink }}">{{ entry.revision_number }}</a></td>
+    <td><a href="{{ entry.change.permalink }}">{{ entry.change.name }}</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endmacro %}

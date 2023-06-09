@@ -257,3 +257,7 @@ class revisioned_process_mixin(process_mixin):
         else:
             print("using effective revision")
             return self.effective_revision
+
+    @property
+    def history_revisions(self):
+        return self.revisions.filter_by(self._revision_class.revision_number != None).order_by(self._revision_class.revision_number.desc()).all()
