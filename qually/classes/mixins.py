@@ -122,6 +122,9 @@ class process_mixin():
                 elif entry['kind']=='int':
                     setattr(cls, entry['value'], Column(Integer, default=None))
 
+                elif entry['kind']=='user_multi':
+                    pass
+
                 else:
                     raise ValueError(f"unknown template data type {entry['kind']}")
 
@@ -201,7 +204,7 @@ class process_mixin():
                         key=entry['name']
                         value=getattr(source, entry['value'])
                         response=value
-                    else:
+                    elif entry['kind']=='text':
                         setattr(source, entry['value'], txt(request.form[entry['value']]))
                         key=entry['name']
                         value=getattr(source, entry['value'])

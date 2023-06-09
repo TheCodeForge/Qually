@@ -23,7 +23,9 @@
         <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{{ entry['values'].get(source | attr(entry['value']), '') }}</p>
         {% elif entry.get('kind')=='user' %}
         <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}"><a href="{{ (source | attr(entry['value'])).permalink }}">{{ (source | attr(entry['value'])).name }}</a></p>
-        {% else %}
+        {% elif entry.get('kind')=='user_multi' %}
+        <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{% for rel in (source|attr(entry['rel'])) %}{% if loop.index0 %}, {% endfor %}<a href="{{ rel.user.permalink }}">{{ rel.user.name }}</a>{% endfor %}</p>
+        {% elif entry.get('kind')=="text" %}
         <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{{ source | attr(entry['value']) }}</p>
         {% endif %}
       </div>

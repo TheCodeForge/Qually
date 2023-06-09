@@ -89,11 +89,11 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 }
             ],
             96:[
-                # {
-                #     "name":_("Impact Assessors"),
-                #     "value":"impact_assessor",
-                #     "kind":"user"
-                # }
+                {
+                    "name":_("Impact Assessors"),
+                    "rel":"assessor_relationships",
+                    "kind":"user_multi"
+                }
             ]
         }
 
@@ -212,7 +212,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
     def _edit_form(self):
 
-        special_handling=["add_item", "delete_item", "add_assessor", "delete_assessor", "add_approver","delete_approver"]
+        special_handling=["add_item", "delete_item"]
         for x in special_handling:
             if request.form.get(x):
                 break
