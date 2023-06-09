@@ -41,9 +41,13 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 'users': [self.owner],
                 'title_text':_("Summary")
                 },
-            96: {
+            95: {
                 'name': _("Initial Review"),
                 'users': self.organization.doc_control_users
+                },
+            96: {
+                'name': _("Impact Assessment"),
+                'users': [x.user for x in self.assessor_relationships]
                 },
             97: {
                 'name': _("Approvals"),
@@ -88,7 +92,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "kind": "multi"
                 }
             ],
-            96:[
+            95:[
                 {
                     "name":_("Impact Assessors"),
                     "value":"assessor_relationships",
@@ -105,7 +109,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "kind":"user"
                 }
             ],
-            97:[]
+            96:[]
         }
 
     def modify_layout(self):
@@ -173,7 +177,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             0: [
                 {
                     "id":"submit",
-                    "to": 96,
+                    "to": 95,
                     "name": _("Submit"),
                     "description": _("Submit this record to Document Control for review."),
                     "color": "success",
@@ -198,7 +202,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "approval":True
                 }
             ],
-            96: [
+            95: [
                 {
                     "id":"reject",
                     "to": 0,
