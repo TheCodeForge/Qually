@@ -291,7 +291,7 @@ class ChangeOrderAssessorRelationship(Base, core_mixin):
     __tablename__="chng_assessor_relationship"
 
     id=Column(Integer, primary_key=True)
-    change_id=Column(Integer, ForeignKey('chng.id'))
+    record_id=Column(Integer, ForeignKey('chng.id'))
     user_id=Column(Integer, ForeignKey('users.id'))
 
     change=relationship("ChangeOrder", backref="assessor_relationships")
@@ -310,7 +310,7 @@ class ChangeOrderApproverRelationship(Base, core_mixin):
     __tablename__="chng_approver_relationship"
 
     id=Column(Integer, primary_key=True)
-    change_id=Column(Integer, ForeignKey('chng.id'))
+    record_id=Column(Integer, ForeignKey('chng.id'))
     user_id=Column(Integer, ForeignKey('users.id'))
 
     change=relationship("ChangeOrder", backref="approver_relationships")
@@ -352,3 +352,6 @@ class ChangeOrderLog(Base, core_mixin):
     value=Column(String)
 
     user=relationship("User", lazy="joined", innerjoin=True)
+
+ChangeOrder._assessor_relationships_obj = ChangeOrderAssessorRelationship
+ChangeOrder._approver_relationships_obj = ChangeOrderApproverRelationship

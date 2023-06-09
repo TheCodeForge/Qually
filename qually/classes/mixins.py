@@ -199,6 +199,41 @@ class process_mixin():
                             response="<p></p>"
                             value=""
                         key=entry['name']
+
+                    elif entry['kind']=='user_multi':
+                        selections=request.form.getlist(entry['value'])
+
+                        relationships=getattr(source, entry['value'])
+
+                        existing=[x.user.id for x in relationships]
+
+                        for rel in relationships:
+                            if rel.user.id not in selections:
+                                g.db.delete(rel)
+
+
+                        for selection in selections:
+                            if selection not in existing:
+
+                                user=g.user.organization.users.filter_by(id=int(selection)).first()
+
+                                if not user:
+                                    return toast_error(f"Invalid user ID {selection}")
+
+                                new_rel = getattr(self, f"_{entry['value']}_obj")(
+                                        record_id=self.id,
+                                        user_id=selection
+                                    )
+                                g.db.add(new_rel)
+
+                        g.db.flush()
+                        g.db.refresh(self)
+
+                        link='<a href="{url}">{text}</a>'
+                        response=", ".join([link.format(url=x.user.permalink, text=x.user.name) for x in getattr(source, entry['value'])])
+                        key=entry['name']
+                        value=", ".join([x.user.name for x in getattr(source, entry['value'])])
+
                     elif entry['kind']=='int':
                         setattr(source, entry['value'], int(request.form[entry['value']]))
                         key=entry['name']
