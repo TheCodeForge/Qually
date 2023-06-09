@@ -62,7 +62,7 @@
 
         {% elif entry.get('kind')=='user_multi' %}
         <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}" multiple>
-          {% set selected_ids=[x.user.id for x in (source|attr(entry['value']))] %}
+          {% set selected_ids=((source|attr(entry['value']))|user_ids) %}
           {% for user in g.user.organization.assignable_users %}
           <option value="{{ user.id }}" {% if user.id in selected_ids %}selected{% endif %}>{{ user.name }}</option>
           {% endfor %}

@@ -98,6 +98,11 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "name":_("Approvals"),
                     "value":"approval_relationships",
                     "kind":"user_multi"
+                },
+                {
+                    "name":_("Implementation Assignee"),
+                    "value":"implementation_assignee",
+                    "kind":"user"
                 }
             ],
             97:[]

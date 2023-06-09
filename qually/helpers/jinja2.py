@@ -159,3 +159,8 @@ def jinja_lambda(value, arg=False):
         return lambda x: value
     else:
         return lambda:value
+
+@app.template_filter("user_ids")
+def user_ids_filter(iterable):
+
+    return [x.user.id for x in iterable]
