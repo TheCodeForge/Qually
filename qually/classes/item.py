@@ -294,7 +294,7 @@ class ItemRevision(Base, core_mixin, process_mixin):
 
     @property
     def status(self):
-        return self._lifecycle[self._status]
+        return self._lifecycle[self._status]['name']
 
     @classmethod
     def _layout(cls):
