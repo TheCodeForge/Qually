@@ -18,7 +18,7 @@ def get_record_number(kind, number, rev=None):
     if request.path != record.permalink and not rev:
         return redirect(record.permalink)
     elif request.path != record.display_revision.permalink:
-        return redirect(rev.permalink)
+        return redirect(record.display_revision.permalink)
     
     return render_template("record.html", record=record)
 
