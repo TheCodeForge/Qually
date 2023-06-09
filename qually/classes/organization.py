@@ -95,7 +95,7 @@ class Organization(Base, core_mixin):
 
         super().__init__(**kwargs)
 
-    def get_record(self, prefix, number, graceful=False):
+    def get_record(self, prefix, number, rev=None, graceful=False):
 
         for kind in ['ncmr', 'capa', 'dvtn', 'chng', 'part', 'sop', 'wi']:
             if getattr(self, f"{kind.lower()}_prefix").lower()==prefix.lower():
@@ -105,6 +105,9 @@ class Organization(Base, core_mixin):
             abort(404)
 
         record= getattr(self, f"{kind.lower()}s").filter_by(number=int(number)).first()
+
+        if rev:
+            record.__dict__['display_revision']=record.revisions.filter_by(revision_number=int(rev)).first()
 
         if not record and not graceful:
             abort(404)

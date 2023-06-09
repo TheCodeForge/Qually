@@ -10,10 +10,7 @@ except ModuleNotFoundError:
 @logged_in
 def get_record_number(kind, number, rev=None):
 
-    record = g.user.organization.get_record(kind, number)
-
-    if rev:
-        record.__dict__['display_revision']=record.revisions.filter_by(revision_number=int(rev)).first()
+    record = g.user.organization.get_record(kind, number, rev=rev)
 
     if request.path != record.permalink and not rev:
         return redirect(record.permalink)
