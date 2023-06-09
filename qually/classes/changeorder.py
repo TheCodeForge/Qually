@@ -299,7 +299,7 @@ class ChangeOrderAssessorRelationship(Base, core_mixin):
 
     __table_args__=(
             UniqueConstraint(
-                'change_id', 
+                'record_id', 
                 'user_id',
                 name=f'chng_user_assessor_rel_unique'
                 ),
@@ -318,7 +318,7 @@ class ChangeOrderApproverRelationship(Base, core_mixin):
 
     __table_args__=(
             UniqueConstraint(
-                'change_id', 
+                'record_id', 
                 'user_id',
                 name=f'chng_user_approver_rel_unique'
                 ),
