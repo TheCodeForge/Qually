@@ -17,8 +17,10 @@ def get_record_number(kind, number, rev=None):
         print(display)
         record.__dict__['display_revision']=record.revisions.filter_by(revision_number=int(rev)).first()
 
-    if request.path != record.permalink and '/revision/' not in request.path:
+    if request.path != record.permalink and not rev:
         return redirect(record.permalink)
+    elif request.path != rev.permalink:
+        return redirect(rev.permalink)
     
     return render_template("record.html", record=record)
 
