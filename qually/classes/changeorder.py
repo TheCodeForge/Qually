@@ -94,6 +94,13 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "value":"assessor_relationships",
                     "kind":"user_multi"
                 }
+            ],
+            97:[
+                {
+                    "name":_("Approvals"),
+                    "value":"approval_relationships",
+                    "kind":"user_multi"
+                }
             ]
         }
 
