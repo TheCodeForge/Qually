@@ -20,7 +20,7 @@ def get_record_number(kind, number, rev=None):
     elif request.path != record.display_revision.permalink:
         return redirect(record.display_revision.permalink)
     
-    print app._lifecycle
+    print(app._lifecycle)
 
     return render_template("record.html", record=record)
 
