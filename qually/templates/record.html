@@ -37,7 +37,7 @@
   </div>
   <div class="tab-pane fade p-2 overflow-x-scroll" id="pane-history" role="tabpanel" aria-labelledby="tab-history">
 
-    {% if record | attr("_revision_class") %}
+    {% if record | attr("revisions") %}
     {{ logs.revisions(record) }}
     {% else %}
     {{ logs.logs(record) }}
