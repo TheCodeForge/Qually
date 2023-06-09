@@ -24,7 +24,7 @@
         {% elif entry.get('kind')=='user' %}
         <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}"><a href="{{ (source | attr(entry['value'])).permalink }}">{{ (source | attr(entry['value'])).name }}</a></p>
         {% elif entry.get('kind')=='user_multi' %}
-        <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{% for rel in (source|attr(entry['rel'])) %}{% if loop.index0 %}, {% endfor %}<a href="{{ rel.user.permalink }}">{{ rel.user.name }}</a>{% endfor %}</p>
+        <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{% for rel in (source|attr(entry['value'])) %}{% if loop.index0 %}, {% endfor %}<a href="{{ rel.user.permalink }}">{{ rel.user.name }}</a>{% endfor %}</p>
         {% elif entry.get('kind')=="text" %}
         <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{{ source | attr(entry['value']) }}</p>
         {% endif %}
@@ -60,6 +60,13 @@
           {% endfor %}
         </select>
 
+        {% elif entry.get('kind')=='user_multi' %}
+        <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}" multiple>
+          {% for user in g.user.organization.assignable_users %}
+          <option value="{{ user.id }}" {% if user.id==(source | attr(entry['value']+'_id')) %}selected{% endif %}>{{ user.name }}</option>
+          {% endfor %}
+        </select>
+
         {% else %}
         <input id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" type="text" name="{{ entry['value'] }}" value="{{ source | attr(entry['value']) }}" placeholder="{{ entry.get('placeholder','') }}">
         {% endif %}
@@ -84,6 +91,9 @@
 
         {% elif entry.get('kind')=='user' %}
         <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}"><a href="{{ (source | attr(entry['value'])).permalink }}">{{ (source | attr(entry['value'])).name }}</a></p>
+
+        {% elif entry.get('kind')=='user_multi' %}
+        <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{% for rel in (source|attr(entry['value'])) %}{% if loop.index0 %}, {% endfor %}<a href="{{ rel.user.permalink }}">{{ rel.user.name }}</a>{% endfor %}</p>
 
         {% else %}
         <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{{ source | attr(entry['value']) }}</p>
