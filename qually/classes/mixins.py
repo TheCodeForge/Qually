@@ -249,5 +249,11 @@ class revisioned_process_mixin(process_mixin):
 
     @property
     def display_revision(self):
-        return self.__dict__.get("display_revision", self.effective_revision)
-    
+        set_display= self.__dict__.get("display_revision")
+
+        if set_display:
+            print(f"found set display revision {set_display}")
+            return set_display
+        else:
+            print("using effective revision")
+            return self.effective_revision
