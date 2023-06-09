@@ -13,13 +13,11 @@ def get_record_number(kind, number, rev=None):
     record = g.user.organization.get_record(kind, number)
 
     if rev:
-        display=record.revisions.filter_by(revision_number=int(rev)).first()
-        print(display)
         record.__dict__['display_revision']=record.revisions.filter_by(revision_number=int(rev)).first()
 
     if request.path != record.permalink and not rev:
         return redirect(record.permalink)
-    elif request.path != rev.permalink:
+    elif request.path != rev.display_revision.permalink:
         return redirect(rev.permalink)
     
     return render_template("record.html", record=record)
