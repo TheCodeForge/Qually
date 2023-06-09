@@ -286,7 +286,7 @@ class ItemRevision(Base, core_mixin, process_mixin):
                 'name':_("Superceded"),
                 'users':[]
             },
-            2:{
+            3:{
                 'name':_("Expired"),
                 'users':[]
             }
