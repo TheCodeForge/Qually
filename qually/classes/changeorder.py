@@ -93,15 +93,14 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "name":_("Impact Assessors"),
                     "value":"assessor_relationships",
                     "kind":"user_multi"
-                }
-            ],
-            97:[
+                },
                 {
                     "name":_("Approvals"),
                     "value":"approval_relationships",
                     "kind":"user_multi"
                 }
-            ]
+            ],
+            97:[]
         }
 
     def modify_layout(self):
