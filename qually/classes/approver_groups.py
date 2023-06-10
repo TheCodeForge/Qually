@@ -14,6 +14,7 @@ class ChangeApproverGroup(Base, core_mixin, process_mixin):
 
     organization_id=Column(Integer, ForeignKey("organizations.id"))
     name=Column(String(128), nullable=False)
+    requires_all=Column(Boolean, default=False, nullable=False)
 
     user_relationships=relationship("ChangeApproverGroupRelationship")
     organization=relationship("Organization", viewonly=True)
