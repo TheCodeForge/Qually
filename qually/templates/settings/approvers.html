@@ -40,7 +40,7 @@
 
         <form id="form-new-approver-group" method="post" action="/settings/approvers" class="w-100 toasted">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-          <input type="text" name="new_group_name" class="form-control" value="{{ group.name }}">
+          <input type="text" name="new_group_name" class="form-control">
         </form>
         <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-new-approver-group">{{_("Save")}}</a>
 
@@ -62,9 +62,9 @@
         <form id="form-approver-group-name" method="post" action="/settings/approvers" class="w-100 toasted">
           <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
           <input type="hidden" name="group_id" value="{{ group.base36id }}">
-          <input type="text" name="group_name" class="form-control">
+          <input type="text" name="group_name" class="form-control" value="{{ group.name }}">
         </form>
-        <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-new-approver-group">{{_("Save")}}</a>
+        <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-approver-group-name">{{_("Save")}}</a>
 
       </div>
     </div>
