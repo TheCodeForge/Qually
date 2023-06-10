@@ -71,16 +71,34 @@
   </div>
   <div class="d-lg-flex">
 
-    <div class="title w-lg-25">
-      <label for="org_name">{{_("Group Members")}}</label>
+    <div class="title w-lg-25 toggle-target-class" role="button" data-toggle-target="vis-toggle-userlist">
+      <label role="button" for="input-update-userlist">{{ _("Group <embers") }}</label>
     </div>
-
-    <div class="body w-lg-100">
-      <div class="input-group d-flex">
-
-        WIP
-
+    <div role="button" class="body ms-3 w-lg-100 d-flex vis-toggle-userlist toggle-target-class" data-toggle-target="vis-toggle-userlist">
+      <div>
+        <p id="display-value-userlist">{% for rel in group.user_relationships %}{% if loop.index0 %}, {% endif %}<a href="{{ rel.user.permalink }}">{{ rel.user.name }}</a>{% endfor %}</p>
       </div>
+      <div class="ms-auto on-hover-show">
+        <i class="fas fa-pen fa-fw"></i>
+      </div>
+    </div>
+    <div class="body ms-3 w-lg-100 d-flex vis-toggle-userlist d-none">
+      <form id="form-update-userlist" action="{{ record.permalink }}" method="post" class="toasted w-100 me-4">
+        <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+
+        <select id="input-update-userlist" class="form-select" name="{{ entry['value'] }}" multiple>
+          {% set selected_ids=(group.user_relationships|user_ids) %}
+          {% for user in g.user.organization.assignable_users %}
+          <option value="{{ user.id }}" {% if user.id in selected_ids %}selected{% endif %}>{{ user.name }}</option>
+          {% endfor %}
+        </select>
+
+        {% if entry.get('help') %}
+        <p class="text-small">{{ _("Select the users to add to this approval group") }}</p>
+        {% endif %}
+      </form>
+      <a href="javascript:void(0)" class="btn btn-secondary toggle-target-class ms-auto mb-auto" data-toggle-target="vis-toggle-userlist">Cancel</a>
+      <a href="javascript:void(0)" class="btn btn-primary toggle-target-class record-value-edit ms-2 mb-auto" data-toggle-target="vis-toggle-userlist" data-form="form-update-userlist" data-value-target="display-value-userlist" data-approvals-target="container-approvals-{{ section }}">Save</a>
     </div>
   </div>
   {% endif %}
