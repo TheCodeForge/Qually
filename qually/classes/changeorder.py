@@ -247,6 +247,14 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "description": _("Return this record to the Summary phase."),
                     "color": "warning",
                     "users": [self.owner]
+                },
+                {
+                    "id":"advance",
+                    "to": 97,
+                    "name": _("Advance"),
+                    "description": _("Send this change order out for approvals."),
+                    "color": "success",
+                    "users": g.user.organization.doc_control_users
                 }
             ],
             96: [
@@ -270,7 +278,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 },
                 {
                     "id":"approve",
-                    "to": 95,
+                    "to": 98,
                     "name": _("Approve"),
                     "description": _("Approve this change order."),
                     "color": "danger",
