@@ -68,5 +68,13 @@ class ChangeApproverGroupRelationship(Base):
 
     user=relationship("User")
 
+    __table_args__=(
+        UniqueConstraint(
+            'record_id', 
+            'user_id',
+            name=f'approver_group_rel_grp_user_unique'
+            ),
+        )
+
 
 ChangeApproverGroup._user_relationships_obj = ChangeApproverGroupRelationship
