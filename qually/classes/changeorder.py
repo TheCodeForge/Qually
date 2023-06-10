@@ -51,7 +51,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 # },
             97: {
                 'name': _("Approvals"),
-                'users': [x.user for x in self.approver_relationships]
+                'users': list(set([x.user for x in [y.group for y in self.approver_relationships]]))
                 },
             98: {
                 'name': _("Implementation"),
