@@ -14,6 +14,13 @@ def post_settings_approvers():
     if not g.user.is_doc_control:
         abort(403)
 
+    if request.form.get("get_group"):
+        group=g.user.organization.approver_groups.filter_by(id=int(request.form.get('get_group'), 36)).first()
+        if group:
+            return toast_redirect(group.permalink)
+        else:
+            return toast_redirect("/settings/approvers")
+
     if request.form.get("new_group_name"):
 
         new_group=ChangeApproverGroup(
