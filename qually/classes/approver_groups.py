@@ -17,6 +17,7 @@ class ChangeApproverGroup(Base, core_mixin, process_mixin):
 
     user_relationships=relationship("ChangeApproverGroupRelationship")
     organization=relationship("Organization", viewonly=True)
+    _status=0
 
     @property
     def users(self):
