@@ -46,6 +46,8 @@ def post_settings_approvers_gid(gid):
     if do_reload:
         return toast_redirect(group.permalink)
 
+    g.db.commit()
+
     return toast(_("Changes saved"), data={"new":response})
 
 @app.post("/settings/organization")
