@@ -107,13 +107,14 @@ class Organization(Base, core_mixin):
 
         record= getattr(self, f"{kind.lower()}s").filter_by(number=int(number)).first()
 
+        if not record:
+            if graceful:
+                return None
+            else:
+                abort(404)
+
         if rev:
             record.__dict__['display_revision']=record.revisions.filter_by(revision_number=int(rev)).first()
-
-        if not record and not graceful:
-            abort(404)
-        elif not record:
-            return None
 
         record.modify_layout()
 
