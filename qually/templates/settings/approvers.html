@@ -21,7 +21,6 @@
             <option value="{{ grp.base36id }}" {% if group and group.id==grp.id %}selected{% endif %}>{{ grp.name }}</option>
             {% endfor %}
           </select>
-          <input type="submit" value="{{_('Go')}}" class="btn btn-success">
         </form>
 
       </div>
@@ -39,7 +38,8 @@
       <div class="input-group d-flex">
 
         <form method="post" action="/settings/approvers">
-          <input type="text" name="name" class="form-control">
+          <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+          <input type="text" name="new_group_name" class="form-control">
           <input type="submit" class="btn btn-success" value="{{_('Save')}}">
         </form>
 
