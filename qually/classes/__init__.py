@@ -1,3 +1,4 @@
+from .approver_groups import ChangeApproverGroup, ChangeApproverGroupRelationship
 from .capa import CAPA, CAPAApproval, CAPALog
 from .changeorder import ChangeOrder, ChangeOrderApproval, ChangeOrderLog
 from .deviation import Deviation, DeviationApproval, DeviationLog
