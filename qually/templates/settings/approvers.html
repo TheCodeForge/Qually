@@ -15,7 +15,7 @@
       <div class="input-group d-flex">
 
         <form method="get" action="/settings/approvers">
-          <select name="group_id">
+          <select name="group_id" class="form-select">
             <option disabled {% if not group %}selected{% endif %}>Select One</option>
             {% for grp in g.user.organization.approver_groups %}
             <option value="{{ grp.base36id }}" {% if group and group.id==grp.id %}selected{% endif %}>{{ grp.name }}</option>
@@ -55,7 +55,7 @@
     <div class="body w-lg-100">
       <div class="input-group d-flex">
 
-        <input type="text" name="name" value="{{ group.name }}">
+        <input type="text" name="name" value="{{ group.name }}" class="form-control">
 
       </div>
     </div>
