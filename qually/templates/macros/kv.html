@@ -36,9 +36,6 @@
         {% elif entry.get('kind')=="text" %}
         <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{{ source | attr(entry['value']) }}</p>
 
-        {% elif entry.get('kind')=="bool"}
-        <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{{ source | attr(entry['value']) }}</p>
-
         {% endif %}
 
       </div>
