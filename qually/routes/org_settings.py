@@ -18,7 +18,7 @@ def post_settings_approvers():
 
         new_group=ChangeApproverGroup(
             organization_id=g.user.organization.id,
-            name=txt(request.form.get(new_group_name))
+            name=txt(request.form.get("new_group_name"))
             )
 
         g.db.add(new_group)
