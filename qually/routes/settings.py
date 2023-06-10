@@ -16,11 +16,12 @@ def get_settings_profile():
     return render_template(f"settings/{page}.html")
 
 @app.get("/settings/approvers")
-@app.get("/settings/approvers/<gid>")
-def get_settings_approvers(gid=None):
+def get_settings_approvers():
 
     if not g.user.is_doc_control:
         abort(403)
+
+    gid=request.args.get("group_id")
 
     if gid:
         group = g.user.organization.approver_groups.filter_by(id=int(gid, 36)).first()

@@ -8,13 +8,21 @@
   <div class="d-lg-flex">
 
     <div class="title w-lg-25">
-      <label for="org_name">{{_("Approver Group")}}</label>
+      <label for="org_name">{{_("Select Approver Group")}}</label>
     </div>
 
     <div class="body w-lg-100">
       <div class="input-group d-flex">
 
-        WIP
+        <form method="get" action="/settings/approvers">
+          <select name="group_id">
+            <option disabled {% if not group %}selected{% endif %}>Select One</option>
+            {% for grp in g.user.organization.approver_groups %}
+            <option value="{{ grp.base36id }}" {% if group and group.id==grp.id %}selected{% endif %}>{{ grp.name }}</option>
+            {% endfor %}
+          </select>
+          <input type="submit" value="{{_('Go')}}">
+        </form>
 
       </div>
     </div>
@@ -37,6 +45,7 @@
   </div>
   {% endif %}
 
+  {% if group %}
   <div class="d-lg-flex">
 
     <div class="title w-lg-25">
@@ -51,6 +60,7 @@
       </div>
     </div>
   </div>
+  {% endif %}
 
 </div>
 {% endblock %}
