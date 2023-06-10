@@ -84,12 +84,14 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 {
                     "name":_("Description of Changes"),
                     "value":"change_description",
-                    "kind": "multi"
+                    "kind": "multi",
+                    "required":True
                 },
                 {
                     "name":_("Rationale for Changes"),
                     "value":"change_rationale",
-                    "kind": "multi"
+                    "kind": "multi",
+                    "required":True
                 }
             ],
             95:[
@@ -101,7 +103,8 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 {
                     "name":_("Approvals"),
                     "value":"approver_relationships",
-                    "kind":"user_multi"
+                    "kind":"user_multi",
+                    "required":True
                 },
                 {
                     "name":_("Implementation Assignee"),
