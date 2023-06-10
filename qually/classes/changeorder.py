@@ -379,7 +379,7 @@ class ChangeOrderApproverRelationship(Base, core_mixin):
 
     id=Column(Integer, primary_key=True)
     record_id=Column(Integer, ForeignKey('chng.id'))
-    group_id=Column(Integer, ForeignKey('users.id'))
+    group_id=Column(Integer, ForeignKey('chng_approver_group.id'))
 
     change=relationship("ChangeOrder", backref="approver_relationships")
     group=relationship("ChangeApproverGroup")
