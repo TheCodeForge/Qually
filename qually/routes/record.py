@@ -188,27 +188,44 @@ def post_record_number_approve(kind, number):
     #refresh record and get number of apprs
     #if all have approved, advance phase
     g.db.refresh(record)
-    if len(record.phase_approvals(record._status)) >= len(transition['users']):
-        record._status=transition['to']
-        g.db.add(record)
-        log=eval(f"{record.__class__.__name__}Log")(
-            user_id=g.user.id,
-            record_id=record.id,
-            created_utc=g.time,
-            key=_("Status"),
-            value=record.status,
-            created_ip=request.remote_addr
-            )
+    phase_approvals=record.phase_approvals(record._status)
 
-        g.db.add(log)
+    #if there are custom logic relationships, run that,
+    #otherwise, all must approve
+    if transition.get("approval_logic"):
+        
+        phase_approvers=[x.user for x in phase_approvals]
+        for rel in transition.get("approval_logic"):
+            if rel.group.requires_all and not all([x in phase_approvers for x in [y.user for y in rel.group.user_relationships]]):
+                return toast_redirect(record.permalink)
+            elif not any([x in phase_approvers for x in [y.user for y in rel.group.user_relationships]]):
+                return toast_redirect(record.permalink)
 
-        #delete any pre-existing approvals on the new status
-        for approval in record.approvals:
-            if approval.status_id==record._status:
-                g.db.delete(approval)
 
-        #phase change hook
-        record._after_phase_change()
+    elif len(phase_approvals) < len(transition['users']):
+        return toast_redirect(record.permalink)
+
+
+    record._status=transition['to']
+    g.db.add(record)
+    log=eval(f"{record.__class__.__name__}Log")(
+        user_id=g.user.id,
+        record_id=record.id,
+        created_utc=g.time,
+        key=_("Status"),
+        value=record.status,
+        created_ip=request.remote_addr
+        )
+
+    g.db.add(log)
+
+    #delete any pre-existing approvals on the new status
+    for approval in record.approvals:
+        if approval.status_id==record._status:
+            g.db.delete(approval)
+
+    #phase change hook
+    record._after_phase_change()
 
 
     g.db.commit()
