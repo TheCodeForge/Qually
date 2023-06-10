@@ -93,7 +93,7 @@ def post_record_number_status(kind, number):
     if transition['to']!=101:
         for entry in record._layout()[record._status]:
             if entry.get('required') and not getattr(record, entry['value']):
-                return toast_error(_("Missing value for required field {entry['name']}"), 400)
+                return toast_error(_(f"Missing value for required field {x}").format(x=entry['name']), 400)
 
 
     #transition is approved by system, update record and log
@@ -160,7 +160,7 @@ def post_record_number_approve(kind, number):
     if transition['to']!=101
         for entry in record._layout()[record._status]:
             if entry.get('required') and not getattr(record, entry['value']):
-                return toast_error(_("Missing value for required field {entry['name']}"), 400)
+                return toast_error(_(f"Missing value for required field {x}").format(x=entry['name']), 400)
 
     #approval is approved by system, update data log
 
