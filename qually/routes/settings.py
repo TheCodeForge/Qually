@@ -17,7 +17,7 @@ def get_settings_profile():
 
 @app.get("/settings/approvers")
 @app.get("/settings/approvers/<gid>")
-def get_settings_approvers(gid):
+def get_settings_approvers(gid=None):
 
     if not g.user.is_doc_control:
         abort(403)
