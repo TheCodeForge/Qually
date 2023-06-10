@@ -4,7 +4,7 @@ from mistletoe.block_token import BlockToken
 from mistletoe.span_token import SpanToken
 from mistletoe.html_renderer import HTMLRenderer
 
-from qually.classes import ALL_PROCESSES
+from flask import g
 
 
 class RecordMention(SpanToken):
@@ -24,8 +24,11 @@ class CustomRenderer(HTMLRenderer):
 
     def render_record_mention(self, token):
 
-        prefix=token.split('-')[0]
+        prefix, number=token.split('-')
 
-        if prefix.lower() not in 
+        record=g.user.organization.get_record(prefix, number, graceful=True)
 
-        return f'<a href="/{token.target}">{token.target}</a>'
+        if record:
+            return f'<a href="{record.permalink}">{record.name}</a>'
+        else:
+            return token
