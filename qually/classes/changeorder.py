@@ -145,9 +145,13 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "name":_("Implementation Tasks"),
                     "value":"implementation_tasks_done",
                     "kind":"multi",
-                    "required":True
+                    "required":True,
+                    "help": _(
+                        "Describe implementation tasks performed. This should reflect the approved implementation plan. Attach evidence of completion if needed."
+                        )
                 }
-            ]
+            ],
+            99:[]
         }
 
     def modify_layout(self):
@@ -285,6 +289,36 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "users": self.assigned_approvers,
                     "approval":True,
                     "approval_logic": self.approver_relationships
+                }
+            ]
+            98: [
+                {
+                    "id":"submit",
+                    "to": 99,
+                    "name": _("Submit"),
+                    "description": _("Submit this record to Quality Management for final review."),
+                    "color": "success",
+                    "users": [self.implementation_assignee],
+                    "approval":True
+                }
+            ],
+            99:[
+                {
+                    "id":"reject",
+                    "to": 95,
+                    "name": _("Reject"),
+                    "description": _("Reject the implementation."),
+                    "color": "danger",
+                    "users": g.user.organization.quality_mgmt_users
+                },
+                {
+                    "id":"approve",
+                    "to": 98,
+                    "name": _("Approve"),
+                    "description": _("Approve the implementation and close this change order."),
+                    "color": "success",
+                    "users": g.user.organization.quality_mgmt_users
+                    "approval":True
                 }
             ]
         }
