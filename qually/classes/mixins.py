@@ -267,8 +267,7 @@ class process_mixin():
                         g.db.flush()
                         g.db.refresh(self)
 
-                        link='<a href="{url}">{text}</a>'
-                        response=", ".join([link.format(url=x.user.permalink, text=x.user.name) for x in getattr(source, entry['value'])])
+                        response=", ".join([x.group.name for x in getattr(source, entry['value'])])
                         key=entry['name']
                         value=", ".join([x.user.name for x in getattr(source, entry['value'])])
 
