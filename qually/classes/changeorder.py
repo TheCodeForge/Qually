@@ -387,7 +387,7 @@ class ChangeOrderApproverRelationship(Base, core_mixin):
     __table_args__=(
             UniqueConstraint(
                 'record_id', 
-                'user_id',
+                'group_id',
                 name=f'chng_user_approver_rel_unique'
                 ),
             )
