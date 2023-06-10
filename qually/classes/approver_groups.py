@@ -16,7 +16,7 @@ class ChangeApproverGroup(Base):
     name=Column(String(128), nullable=False)
 
     user_relationships=relationship("ChangeApproverGroupRelationship")
-    organization=relationship("Organization", backref="approver_groups")
+    organization=relationship("Organization", viewonly=True)
 
     @property
     def users(self):

@@ -15,6 +15,23 @@ def get_settings_profile():
     page=request.path.split("/")[2]
     return render_template(f"settings/{page}.html")
 
+@app.get("/settings/approvers")
+@app.get("/settings/approvers/<gid>")
+def get_settings_approvers(gid):
+
+    if not g.user.is_doc_control:
+        abort(403)
+
+    if gid:
+        group = g.user.organization.approver_groups.filter_by(id=int(gid, 36)).first()
+    else:
+        group=None
+
+    return render_template(
+        "settings/approvers.html",
+        group=group
+        )
+
 @app.get("/settings/organization")
 @app.get("/settings/plan")
 @is_admin
