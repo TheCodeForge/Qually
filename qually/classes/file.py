@@ -19,6 +19,7 @@ class File(Base, core_mixin):
     capa_id = Column(Integer, ForeignKey("capa.id"))
     dvtn_id = Column(Integer, ForeignKey("dvtn.id"))
     rvsn_id = Column(Integer, ForeignKey("itemrevision.id"))
+    chng_id = Column(Integer, ForeignKey("chng.id"))
 
     ncmr=           relationship("NCMR",            lazy="joined", backref="files")
     capa=           relationship("CAPA",            lazy="joined", backref="files")
