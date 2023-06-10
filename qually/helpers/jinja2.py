@@ -160,7 +160,7 @@ def jinja_lambda(value, arg=False):
     else:
         return lambda:value
 
-@app.template_filter("user_ids")
-def user_ids_filter(iterable):
+@app.template_filter("list_comp")
+def user_ids_filter(iterable, prop):
 
-    return [x.user.id for x in iterable]
+    return [getattr(x, prop) for x in iterable]
