@@ -48,7 +48,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             # 96: {
             #     'name': _("Impact Assessment"),
             #     'users': [x.user for x in self.assessor_relationships]
-                },
+                # },
             97: {
                 'name': _("Approvals"),
                 'users': [x.user for x in self.approver_relationships]
