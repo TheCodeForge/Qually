@@ -14,8 +14,8 @@
     <div class="body w-lg-100">
       <div class="input-group d-flex">
 
-        <form id="form-select-approver-group" method="post" action="/settings/approvers" class="toasted" id="form-select-approver-group">
-          <select name="get_group" class="form-select toast-form-change-submit" data-form=>
+        <form id="form-select-approver-group" method="post" action="/settings/approvers" class="toasted">
+          <select name="get_group" class="form-select toast-form-change-submit" data-form="form-select-approver-group">
             <option disabled {% if not group %}selected{% endif %}>Select One</option>
             {% for grp in g.user.organization.approver_groups %}
             <option value="{{ grp.base36id }}" {% if group and group.id==grp.id %}selected{% endif %}>{{ grp.name }}</option>
