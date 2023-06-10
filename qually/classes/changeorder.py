@@ -317,7 +317,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "name": _("Approve"),
                     "description": _("Approve the implementation and close this change order."),
                     "color": "success",
-                    "users": g.user.organization.quality_mgmt_users
+                    "users": g.user.organization.quality_mgmt_users,
                     "approval":True
                 }
             ]
