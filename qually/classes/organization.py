@@ -52,7 +52,13 @@ class Organization(Base, core_mixin):
     #relationships
     _users=relationship("User", lazy="dynamic")
     logs=relationship("OrganizationAuditLog", lazy="dynamic", order_by="OrganizationAuditLog.id.desc()")
-    approver_groups=relationship("ChangeApproverGroup", lazy="dynamic", viewonly=True, order_by="ChangeApproverGroup.id.asc()")
+    approver_groups=relationship(
+        "ChangeApproverGroup", 
+        lazy="dynamic", 
+        primaryjoin="chng_approver_group.organization_id=organizations.id and chng_approver_group.is_active=true", 
+        viewonly=True, 
+        order_by="ChangeApproverGroup.id.asc()"
+        )
     
     ncmrs=relationship("NCMR",      lazy="dynamic", viewonly=True)
     capas=relationship("CAPA",      lazy="dynamic", viewonly=True)
