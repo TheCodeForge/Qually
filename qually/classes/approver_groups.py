@@ -6,7 +6,7 @@ except ModuleNotFoundError:
         return x
 
 
-class ChangeApproverGroup(Base):
+class ChangeApproverGroup(Base, core_mixin):
 
     __tablename__="chng_approver_group"
 
@@ -21,6 +21,11 @@ class ChangeApproverGroup(Base):
     @property
     def users(self):
         return [x.user for x in self.user_relationships]
+
+    @property
+    def permalink(self):
+        return f"/settings/approvers/{self.base36id}"
+    
 
 class ChangeApproverGroupRelationship(Base):
 
