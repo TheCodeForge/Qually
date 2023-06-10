@@ -18,7 +18,7 @@ class ChangeApproverGroup(Base, core_mixin, process_mixin):
 
     user_relationships=relationship("ChangeApproverGroupRelationship")
     organization=relationship("Organization", viewonly=True)
-    is_active=Column(Boolean, default=True)
+    is_active=Column(Boolean, default=True, nullable=False)
 
     _status=0
 
