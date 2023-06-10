@@ -123,23 +123,32 @@
 
 
   {% for kind in (0|processes) if kind != "item" %}
-  <div class="d-lg-flex">
+  <div class="d-lg-flex mt-3 on-hover">
 
-    <div class="title w-lg-25">
-      <label for="input-org-prefix-{{ kind }}">{{ (kind|processes).name_readable() }}</label>
+    <div class="title w-lg-25 toggle-target-class" role="button" data-toggle-target="vis-toggle-prefix-{{ loop.index0 }}">
+      <label role="button" for="input-update-prefix-{{ loop.index0 }}">{{ (kind|processes)._name_readable() }}</label>
     </div>
+    <div role="button" class="body ms-3 w-lg-100 d-flex vis-toggle-prefix-{{ loop.index0 }} toggle-target-class" data-toggle-target="vis-toggle-prefix-{{ loop.index0 }}">
+      <div>
 
-    <div class="body w-lg-100">
-      <div class="input-group d-flex">
-
-        <form id="form-org-prefix-{{ kind }}" action="/settings/organization/prefix" method="post" class="toasted">
-          <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-          <input type="hidden" name="kind" value="{{ kind }}">
-          <input id="input-org-prefix-{{ kind }}" type="text" name="prefix" value="{{ g.user.organization | attr(kind+'_prefix') }}" class="toast-form-change-submit form-control w-100" data-form="form-org-prefix-{{ kind }}">
-        </form>
+        <p id="display-value-prefix-{{ loop.index0 }}">{{ g.user.organization | attr(kind+"_prefix") }}</p>
 
       </div>
+      <div class="ms-auto on-hover-show">
+        <i class="fas fa-pen fa-fw"></i>
+      </div>
     </div>
+    <div class="body ms-3 w-lg-100 d-flex vis-toggle-prefix-{{ loop.index0 }} d-none">
+      <form id="form-update-prefix-{{ loop.index0 }}" action="/settings/organization/prefix" method="post" class="toasted w-100 me-4">
+        <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+        <input type="hidden" name="kind" value="{{ kind }}">
+        <input id="input-update-prefix-{{ loop.index0 }}" class="form-control" type="text" name="prefix" value="{{ g.user.organization | attr(kind+'_prefix') }}">
+
+      </form>
+      <a href="javascript:void(0)" class="btn btn-secondary toggle-target-class ms-auto mb-auto" data-toggle-target="vis-toggle-prefix-{{ loop.index0 }}">Cancel</a>
+      <a href="javascript:void(0)" class="btn btn-primary toggle-target-class record-value-edit ms-2 mb-auto" data-toggle-target="vis-toggle-prefix-{{ loop.index0 }}" data-form="form-update-prefix-{{ loop.index0 }}" data-value-target="display-value-prefix-{{ loop.index0 }}" >Save</a>
+    </div>
+
   </div>
   {% endfor %}
 
