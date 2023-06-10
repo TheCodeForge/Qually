@@ -35,6 +35,10 @@
         
         {% elif entry.get('kind')=="text" %}
         <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{{ source | attr(entry['value']) }}</p>
+
+        {% elif entry.get('kind')=="bool"}
+        <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{{ source | attr(entry['value']) }}</p>
+
         {% endif %}
 
       </div>
@@ -70,7 +74,7 @@
         </select>
 
         {% elif entry.get('kind')=='user_multi' %}
-        <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}" multiple>
+        <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}" multiple size="{{[([3,(g.user.organization.assignable_users|length)]|min), 15]|max}}">
           {% set selected_ids=((source|attr(entry['value']))|list_comp("user")|list_comp("id")) %}
           {% for user in g.user.organization.assignable_users %}
           <option value="{{ user.base36id }}" {% if user.id in selected_ids %}selected{% endif %}>{{ user.name }}</option>
@@ -78,7 +82,7 @@
         </select>
 
         {% elif entry.get('kind')=='approver_group_multi' %}
-        <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}" multiple>
+        <select id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-select" name="{{ entry['value'] }}" multiple size="{{[([3,(g.user.organization.approver_groups|length)]|min), 15]|max}}">
           {% set selected_ids=((source|attr(entry['value']))|list_comp("group")|list_comp("id")) %}
           {% for grp in g.user.organization.approver_groups %}
           <option value="{{ grp.base36id }}" {% if grp.id in selected_ids %}selected{% endif %}>{{ grp.name }}</option>
