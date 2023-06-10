@@ -89,6 +89,11 @@ def post_record_number_status(kind, number):
     if transition['to']<100 and (not record._lifecycle[transition['to']]['users'] or not record._lifecycle[transition['to']]['users'][0]):
         return toast_error(_("A user must be assigned to the {x} phase first.").format(x=record._lifecycle[transition['to']]['name']), 409)
 
+    #check for required
+    for entry in record._layout()[record._status]:
+        if entry.get('required') and not getattr(record, entry['value']):
+            return toast_error(_("Missing value for required field {entry['name']}"), 400)
+
 
     #transition is approved by system, update record and log
 
@@ -149,6 +154,11 @@ def post_record_number_approve(kind, number):
 
     if not transition.get("approval"):
         return toast_error(_("This transition does not require approval signatures."), 403)
+        
+    #check for required
+    for entry in record._layout()[record._status]:
+        if entry.get('required') and not getattr(record, entry['value']):
+            return toast_error(_("Missing value for required field {entry['name']}"), 400)
 
     #approval is approved by system, update data log
 

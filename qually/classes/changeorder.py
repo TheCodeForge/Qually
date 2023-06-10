@@ -45,9 +45,9 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 'name': _("Initial Review"),
                 'users': self.organization.doc_control_users
                 },
-            96: {
-                'name': _("Impact Assessment"),
-                'users': [x.user for x in self.assessor_relationships]
+            # 96: {
+            #     'name': _("Impact Assessment"),
+            #     'users': [x.user for x in self.assessor_relationships]
                 },
             97: {
                 'name': _("Approvals"),
@@ -93,11 +93,11 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 }
             ],
             95:[
-                {
-                    "name":_("Impact Assessors"),
-                    "value":"assessor_relationships",
-                    "kind":"user_multi"
-                },
+                # {
+                #     "name":_("Impact Assessors"),
+                #     "value":"assessor_relationships",
+                #     "kind":"user_multi"
+                # },
                 {
                     "name":_("Approvals"),
                     "value":"approver_relationships",
@@ -106,7 +106,8 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 {
                     "name":_("Implementation Assignee"),
                     "value":"implementation_assignee",
-                    "kind":"user"
+                    "kind":"user",
+                    "required":True
                 }
             ],
             96:[],
