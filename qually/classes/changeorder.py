@@ -196,15 +196,15 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "description": _("Permanently archive this record. This cannot be undone."),
                     "color": "danger",
                     "users": [self.owner]+g.user.organization.doc_control_users
-                },
-                {
-                    "id":"forcefinish",
-                    "to": 100,
-                    "name": _("Sudo Complete"),
-                    "description": _("Approve and advance this straight to closure. For testing purposes only"),
-                    "color": "success",
-                    "users": [self.owner],
-                    "approval":True
+                # },
+                # {
+                #     "id":"forcefinish",
+                #     "to": 100,
+                #     "name": _("Sudo Complete"),
+                #     "description": _("Approve and advance this straight to closure. For testing purposes only"),
+                #     "color": "success",
+                #     "users": [self.owner],
+                #     "approval":True
                 }
             ],
             95: [
