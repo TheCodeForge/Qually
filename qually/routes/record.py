@@ -157,7 +157,7 @@ def post_record_number_approve(kind, number):
         return toast_error(_("This transition does not require approval signatures."), 403)
 
     #check for required
-    if transition['to']!=101
+    if transition['to']!=101:
         for entry in record._layout()[record._status]:
             if entry.get('required') and not getattr(record, entry['value']):
                 return toast_error(_("Missing value for required field {x}").format(x=entry['name']), 400)
