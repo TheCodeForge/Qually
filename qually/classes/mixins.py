@@ -225,7 +225,7 @@ class process_mixin():
 
                                 new_rel = getattr(self, f"_{entry['value']}_obj")(
                                         record_id=self.id,
-                                        user_id=selection
+                                        user_id=int(selection, 36)
                                     )
                                 g.db.add(new_rel)
 
@@ -260,7 +260,7 @@ class process_mixin():
 
                                 new_rel = getattr(self, f"_{entry['value']}_obj")(
                                         record_id=self.id,
-                                        user_id=selection
+                                        group_id=int(selection, 36)
                                     )
                                 g.db.add(new_rel)
 
