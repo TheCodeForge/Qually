@@ -8,6 +8,25 @@ try:
 except ModuleNotFoundError:
     pass
 
+@app.post("/settings/approvers")
+def post_settings_approvers():
+
+    if not g.user.is_doc_control:
+        abort(403)
+
+    if request.form.get("new_group_name"):
+
+        new_group=ChangeApproverGroup(
+            organization_id=g.user.organization.id,
+            name=txt(request.form.get(new_group_name))
+            )
+
+        g.db.add(new_group)
+        g.db.commit()
+
+        return toast_redirect(new_group.permalink)
+
+
 @app.post("/settings/organization")
 @is_admin
 def post_settings_organization():
