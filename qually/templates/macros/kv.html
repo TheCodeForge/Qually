@@ -31,7 +31,7 @@
         <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{% for rel in (source|attr(entry['value'])) %}{% if loop.index0 %}, {% endif %}<a href="{{ rel.user.permalink }}">{{ rel.user.name }}</a>{% endfor %}</p>
         
         {% elif entry.get('kind')=='approver_group_multi' %}
-        <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{% for rel in (source|attr(entry['value'])) %}{% if loop.index0 %}, {% endif %}<a href="{{ rel.group.permalink }}">{{ rel.group.name }}</a>{% endfor %}</p>
+        <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{% for rel in (source|attr(entry['value'])) %}{% if loop.index0 %}, {% endif %}{{ rel.group.name }}{% endfor %}</p>
         
         {% elif entry.get('kind')=="text" %}
         <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{{ source | attr(entry['value']) }}</p>
@@ -112,6 +112,9 @@
 
         {% elif entry.get('kind')=='user_multi' %}
         <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{% for rel in (source|attr(entry['value'])) %}{% if loop.index0 %}, {% endif %}<a href="{{ rel.user.permalink }}">{{ rel.user.name }}</a>{% endfor %}</p>
+        
+        {% elif entry.get('kind')=='approver_group_multi' %}
+        <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{% for rel in (source|attr(entry['value'])) %}{% if loop.index0 %}, {% endif %}{{ rel.group.name }}{% endfor %}</p>
 
         {% else %}
         <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{{ source | attr(entry['value']) }}</p>
