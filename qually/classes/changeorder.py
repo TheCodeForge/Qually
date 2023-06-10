@@ -51,7 +51,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 # },
             97: {
                 'name': _("Approvals"),
-                'users': list(set([x.user for x in [y.group for y in self.approver_relationships]]))
+                'users': self.assigned_approvers
                 },
             98: {
                 'name': _("Implementation"),
@@ -71,6 +71,19 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 'users': []
                 }
         }
+
+    @property
+    @lazy
+    def assigned_approvers(self):
+        output=[]
+        for crel in self.approver_relationships:
+            group=crel.group
+            for urel in group.user_relationships:
+                output.append(urel.user)
+
+        return list(set(output))
+
+    
 
     @classmethod
     def _layout(cls):
