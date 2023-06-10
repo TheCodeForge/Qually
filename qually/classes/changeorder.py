@@ -290,7 +290,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "approval":True,
                     "approval_logic": self.approver_relationships
                 }
-            ]
+            ],
             98: [
                 {
                     "id":"submit",
