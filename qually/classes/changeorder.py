@@ -271,7 +271,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 {
                     "id":"reject",
                     "to": 95,
-                    "name": _("reject"),
+                    "name": _("Reject"),
                     "description": _("Reject this change order."),
                     "color": "danger",
                     "users": self.assigned_approvers
@@ -281,7 +281,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "to": 98,
                     "name": _("Approve"),
                     "description": _("Approve this change order."),
-                    "color": "danger",
+                    "color": "success",
                     "users": self.assigned_approvers
                 }
             ]
