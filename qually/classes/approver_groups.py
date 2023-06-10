@@ -30,11 +30,11 @@ class ChangeApproverGroup(Base, core_mixin):
     def _lifecycle(self):
 
         return {
-            0:[
+            0:{
                 'name': self.name,
                 'users': g.user.organization.doc_control_users,
                 'hide_title':True
-            ]
+            }
         }
 
     @classmethod
