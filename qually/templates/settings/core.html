@@ -19,6 +19,11 @@
     <li class="nav-item">
       <a class="nav-link{% if request.path=='/settings/directory' %} active{% endif %}" href="/settings/directory">{{ _("Directory") }}</a>
     </li>
+    {% if g.user.is_doc_control %}
+    <li class="nav-item">
+      <a class="nav-link{% if request.path=='/settings/approvers' %} active{% endif %}" href="/settings/approvers">{{ _("Approvers") }}</a>
+    </li>
+    {% endif %}
     {% if g.user.is_org_admin %}
     <li class="nav-item">
       <a class="nav-link{% if request.path=='/settings/organization' %} active{% endif %}" href="/settings/organization">{{ _("Organization") }}</a>
@@ -48,6 +53,11 @@
     <li class="nav-item">
       <a class="nav-link{% if request.path=='/settings/directory' %} active{% endif %}" href="/settings/directory"><i class="fas fa-fw fa-users text-lg me-0"></i></a>
     </li>
+    {% if g.user.is_doc_control %}
+    <li class="nav-item">
+      <a class="nav-link{% if request.path=='/settings/approvers' %} active{% endif %}" href="/settings/approvers"><i class="fas fa-fw fa-user-check text-lg me-0"></i></a>
+    </li>
+    {% endif %}
     {% if g.user.is_org_admin %}
     <li class="nav-item">
       <a class="nav-link{% if request.path=='/settings/organization' %} active{% endif %}" href="/settings/organization"><i class="fas fa-fw fa-buildings text-lg me-0"></i></a>
