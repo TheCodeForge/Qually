@@ -205,10 +205,10 @@ class process_mixin():
 
                         relationships=getattr(source, entry['value'])
 
-                        existing=[x.user.id for x in relationships]
+                        existing=[x.user.base36id for x in relationships]
 
                         for rel in relationships:
-                            if rel.user.id not in selections:
+                            if rel.user.base36id not in selections:
                                 g.db.delete(rel)
 
 

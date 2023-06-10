@@ -43,6 +43,37 @@ def post_settings_approvers():
 
         return toast(_("Changes saved"))
 
+    elif request.form.getlist('approver_users'):
+        group=g.user.organization.approver_groups.filter_by(id=int(request.form.get('group_id'), 36)).first()
+
+        selections=request.form.getlist(approver_users)
+
+        relationships=group.user_relationships
+
+        existing=[x.user.base36id for x in relationships]
+
+        for rel in relationships:
+            if rel.user.base36id not in selections:
+                g.db.delete(rel)
+
+        for selection in selections:
+            if selection not in existing:
+
+                user=g.user.organization.users.filter_by(id=int(selection)).first()
+
+                if not user:
+                    return toast_error(f"Invalid user ID {selection}")
+
+                new_rel = ChangeApproverGroupRelationship(
+                        group_id=group.id,
+                        user_id=selection
+                    )
+                g.db.add(new_rel)
+
+        g.db.commit()
+
+        return toast(_("Changes saved"))
+
 
 
 
