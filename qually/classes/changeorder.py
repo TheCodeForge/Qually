@@ -92,6 +92,18 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "value":"change_rationale",
                     "kind": "multi",
                     "required":True
+                },
+                {
+                    "name":_("Implementation Plan"),
+                    "value":"implementation_plan",
+                    "kind":"multi",
+                    "required":True
+                },
+                {
+                    "name":_("Training Impacts"),
+                    "value":"training_impacts",
+                    "kind":"multi",
+                    "required":True
                 }
             ],
             95:[
@@ -114,7 +126,15 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 }
             ],
             #96:[],
-            97:[]
+            97:[],
+            98:[
+                {
+                    "name":_("Implementation Tasks"),
+                    "value":"implementation_tasks_done",
+                    "kind":"multi",
+                    "required":True
+                }
+            ]
         }
 
     def modify_layout(self):
