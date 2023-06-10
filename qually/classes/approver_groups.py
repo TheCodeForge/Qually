@@ -63,7 +63,7 @@ class ChangeApproverGroupRelationship(Base):
 
     id=Column(Integer, primary_key=True)
 
-    group_id=Column(Integer, ForeignKey("chng_approver_group.id"))
+    record_id=Column(Integer, ForeignKey("chng_approver_group.id"))
     user_id=Column(Integer, ForeignKey("users.id"))
 
     user=relationship("User")
