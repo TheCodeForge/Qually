@@ -382,7 +382,7 @@ class ChangeOrderApproverRelationship(Base, core_mixin):
     group_id=Column(Integer, ForeignKey('users.id'))
 
     change=relationship("ChangeOrder", backref="approver_relationships")
-    user=relationship("User", backref="change_approver_relationships")
+    group=relationship("ChangeApproverGroup")
 
     __table_args__=(
             UniqueConstraint(

@@ -17,17 +17,26 @@
     </div>
     <div role="button" class="body ms-3 w-lg-100 d-flex vis-toggle-{{ entry['value'] }}-{{ loop.index0 }} toggle-target-class" data-toggle-target="vis-toggle-{{ entry['value'] }}-{{ loop.index0 }}">
       <div>
+
         {% if entry.get('kind')=='multi' %} 
         <div id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{{ (source | attr(entry['value']) | safe) or ('<p></p>'|safe) }}</div>
+        
         {% elif entry.get('kind')=='dropdown' %}
         <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{{ entry['values'].get(source | attr(entry['value']), '') }}</p>
+        
         {% elif entry.get('kind')=='user' %}
         <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}"><a href="{{ (source | attr(entry['value'])).permalink }}">{{ (source | attr(entry['value'])).name }}</a></p>
+        
         {% elif entry.get('kind')=='user_multi' %}
         <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{% for rel in (source|attr(entry['value'])) %}{% if loop.index0 %}, {% endif %}<a href="{{ rel.user.permalink }}">{{ rel.user.name }}</a>{% endfor %}</p>
+        
+        {% elif entry.get('kind')=='approver_group_multi' %}
+        <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{% for rel in (source|attr(entry['value'])) %}{% if loop.index0 %}, {% endif %}<a href="{{ rel.group.permalink }}">{{ rel.group.name }}</a>{% endfor %}</p>
+        
         {% elif entry.get('kind')=="text" %}
         <p id="display-value-{{ entry['value'] }}-{{ section }}-{{ loop.index0 }}">{{ source | attr(entry['value']) }}</p>
         {% endif %}
+
       </div>
       <div class="ms-auto on-hover-show">
         <i class="fas fa-pen fa-fw"></i>
