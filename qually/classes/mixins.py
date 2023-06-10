@@ -246,7 +246,7 @@ class process_mixin():
                         existing=[x.group.base36id for x in relationships]
 
                         for rel in relationships:
-                            if rel.user.base36id not in selections:
+                            if rel.group.base36id not in selections:
                                 g.db.delete(rel)
 
 
