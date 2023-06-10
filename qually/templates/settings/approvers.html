@@ -1,4 +1,5 @@
 {% extends "settings/core.html" %}
+{% import "macros/kv.html" as kv %}
 
 {% block content %}
 <h2 class="h5 mt-3">{{_("Approver Groups")}}</h2>
@@ -50,57 +51,7 @@
   {% endif %}
 
   {% if group %}
-  <div class="d-lg-flex">
-
-    <div class="title w-lg-25">
-      <label for="org_name">{{_("Group Name")}}</label>
-    </div>
-
-    <div class="body w-lg-100">
-      <div class="input-group d-flex">
-
-        <form id="form-approver-group-name" method="post" action="/settings/approvers" class="w-100 toasted">
-          <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-          <input type="hidden" name="group_id" value="{{ group.base36id }}">
-          <input type="text" name="group_name" class="form-control" value="{{ group.name }}">
-        </form>
-        <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-approver-group-name">{{_("Save")}}</a>
-
-      </div>
-    </div>
-  </div>
-  <div class="d-lg-flex">
-
-    <div class="title w-lg-25 toggle-target-class" role="button" data-toggle-target="vis-toggle-userlist">
-      <label role="button" for="input-update-userlist">{{ _("Group Members") }}</label>
-    </div>
-    <div role="button" class="body ms-3 w-lg-100 d-flex vis-toggle-userlist toggle-target-class" data-toggle-target="vis-toggle-userlist">
-      <div>
-        <p id="display-value-userlist">{% for rel in group.user_relationships %}{% if loop.index0 %}, {% endif %}<a href="{{ rel.user.permalink }}">{{ rel.user.name }}</a>{% endfor %}</p>
-      </div>
-      <div class="ms-auto on-hover-show">
-        <i class="fas fa-pen fa-fw"></i>
-      </div>
-    </div>
-    <div class="body ms-3 w-lg-100 d-flex vis-toggle-userlist d-none">
-      <form id="form-update-userlist" action="/settings/approvers" method="post" class="toasted w-100 me-4">
-        <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
-        <input type="hidden" name="group_id" value="{{ group.base36id }}">
-
-        <select id="input-update-userlist" class="form-select" name="approver_users" multiple>
-          {% set selected_ids=(group.user_relationships|user_ids) %}
-          {% for user in g.user.organization.assignable_users %}
-          <option value="{{ user.base36id }}" {% if user.id in selected_ids %}selected{% endif %}>{{ user.name }}</option>
-          {% endfor %}
-        </select>
-
-        <p class="text-small">{{ _("Select the users to add to this approval group") }}</p>
-
-      </form>
-      <a href="javascript:void(0)" class="btn btn-secondary toggle-target-class ms-auto mb-auto" data-toggle-target="vis-toggle-userlist">Cancel</a>
-      <a href="javascript:void(0)" class="btn btn-primary toggle-target-class record-value-edit ms-2 mb-auto" data-toggle-target="vis-toggle-userlist" data-form="form-update-userlist" data-value-target="display-value-userlist">Save</a>
-    </div>
-  </div>
+  {{ kv.kv(group, 0) }}
   {% endif %}
 
 </div>

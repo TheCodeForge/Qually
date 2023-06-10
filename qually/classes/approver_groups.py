@@ -25,6 +25,35 @@ class ChangeApproverGroup(Base, core_mixin):
     @property
     def permalink(self):
         return f"/settings/approvers/{self.base36id}"
+
+    @property
+    def _lifecycle(self):
+
+        return {
+            0:[
+                'name': self.name,
+                'users': g.user.organization.doc_control_users,
+                'hide_title':True
+            ]
+        }
+
+    @classmethod
+    def _layout(cls):
+
+        return {
+            0:[
+                {
+                    "name":_("Group Name"),
+                    "value":"name",
+                    "kind": "text"
+                },
+                {
+                    "name":_("Group Members"),
+                    "value":"user_relationships",
+                    "kind":"user_multi"
+                }
+            ]
+        }
     
 
 class ChangeApproverGroupRelationship(Base):
@@ -37,3 +66,6 @@ class ChangeApproverGroupRelationship(Base):
     user_id=Column(Integer, ForeignKey("users.id"))
 
     user=relationship("User")
+
+
+ChangeApproverGroup._user_relationships_obj = ChangeApproverGroupRelationship
