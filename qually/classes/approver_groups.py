@@ -50,6 +50,12 @@ class ChangeApproverGroup(Base, core_mixin, process_mixin):
                     "kind": "text"
                 },
                 {
+                    "name":_("Requires All"),
+                    "value":"requires_all",
+                    "kind":"bool",
+                    "help":_("Enable to require all members to approve, when this approval group is selected")
+                },
+                {
                     "name":_("Group Members"),
                     "value":"user_relationships",
                     "kind":"user_multi"
