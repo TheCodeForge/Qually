@@ -361,6 +361,7 @@ def kind_number_add_file(kind, number):
             capa_id=source.id if isinstance(source, CAPA) else None,
             dvtn_id=source.id if isinstance(source, Deviation) else None,
             rvsn_id=source.id if isinstance(source, ItemRevision) else source.effective_revision.id if isinstance(source, Item) else None,
+            chng_id = source.id if isinstance(source, ChangeOrder) else None
             file_name=upload.filename
             )
 
