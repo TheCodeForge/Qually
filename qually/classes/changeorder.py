@@ -229,15 +229,6 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "description": _("Permanently archive this record. This cannot be undone."),
                     "color": "danger",
                     "users": [self.owner]+g.user.organization.doc_control_users
-                # },
-                # {
-                #     "id":"forcefinish",
-                #     "to": 100,
-                #     "name": _("Sudo Complete"),
-                #     "description": _("Approve and advance this straight to closure. For testing purposes only"),
-                #     "color": "success",
-                #     "users": [self.owner],
-                #     "approval":True
                 }
             ],
             95: [
@@ -258,16 +249,16 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "users": [self.owner]
                 }
             ],
-            # 96: [
-            #     {
-            #         "id":"withdraw",
-            #         "to": 95,
-            #         "name": _("Withdraw"),
-            #         "description": _("Return this record to the Initial Review phase."),
-            #         "color": "warning",
-            #         "users": g.user.organization.doc_control_users
-            #     }
-            # ],
+            96: [
+                {
+                    "id":"withdraw",
+                    "to": 95,
+                    "name": _("Withdraw"),
+                    "description": _("Return this record to the Initial Review phase."),
+                    "color": "warning",
+                    "users": g.user.organization.doc_control_users
+                }
+            ],
             97: [
                 {
                     "id":"reject",
@@ -275,7 +266,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "name": _("reject"),
                     "description": _("Reject this change order."),
                     "color": "danger",
-                    "users": [x.user for x in self.approver_relationships]
+                    "users": self.assigned_approvers
                 },
                 {
                     "id":"approve",
@@ -283,7 +274,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "name": _("Approve"),
                     "description": _("Approve this change order."),
                     "color": "danger",
-                    "users": [x.user for x in self.approver_relationships]
+                    "users": self.assigned_approvers
                 }
             ]
         }
