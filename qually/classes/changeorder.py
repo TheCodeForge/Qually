@@ -113,7 +113,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "required":True
                 }
             ],
-            96:[],
+            #96:[],
             97:[]
         }
 
