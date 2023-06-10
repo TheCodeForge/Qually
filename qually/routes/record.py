@@ -183,7 +183,7 @@ def post_record_number_approve(kind, number):
         )
     g.db.add(approval)
 
-    g.db.flush()
+    g.db.commit()
     
     #refresh record and get number of apprs
     #if all have approved, advance phase
@@ -193,7 +193,7 @@ def post_record_number_approve(kind, number):
     #if there are custom logic relationships, run that,
     #otherwise, all must approve
     if transition.get("approval_logic"):
-        
+
         phase_approvers=[x.user for x in phase_approvals]
         for rel in transition.get("approval_logic"):
             if rel.group.requires_all and not all([x in phase_approvers for x in [y.user for y in rel.group.user_relationships]]):
