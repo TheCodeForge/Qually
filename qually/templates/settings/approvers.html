@@ -72,7 +72,7 @@
   <div class="d-lg-flex">
 
     <div class="title w-lg-25 toggle-target-class" role="button" data-toggle-target="vis-toggle-userlist">
-      <label role="button" for="input-update-userlist">{{ _("Group <embers") }}</label>
+      <label role="button" for="input-update-userlist">{{ _("Group Members") }}</label>
     </div>
     <div role="button" class="body ms-3 w-lg-100 d-flex vis-toggle-userlist toggle-target-class" data-toggle-target="vis-toggle-userlist">
       <div>
@@ -83,7 +83,7 @@
       </div>
     </div>
     <div class="body ms-3 w-lg-100 d-flex vis-toggle-userlist d-none">
-      <form id="form-update-userlist" action="{{ record.permalink }}" method="post" class="toasted w-100 me-4">
+      <form id="form-update-userlist" action="/settings/approvers" method="post" class="toasted w-100 me-4">
         <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
 
         <select id="input-update-userlist" class="form-select" name="{{ entry['value'] }}" multiple>
@@ -93,12 +93,11 @@
           {% endfor %}
         </select>
 
-        {% if entry.get('help') %}
         <p class="text-small">{{ _("Select the users to add to this approval group") }}</p>
-        {% endif %}
+
       </form>
       <a href="javascript:void(0)" class="btn btn-secondary toggle-target-class ms-auto mb-auto" data-toggle-target="vis-toggle-userlist">Cancel</a>
-      <a href="javascript:void(0)" class="btn btn-primary toggle-target-class record-value-edit ms-2 mb-auto" data-toggle-target="vis-toggle-userlist" data-form="form-update-userlist" data-value-target="display-value-userlist" data-approvals-target="container-approvals-{{ section }}">Save</a>
+      <a href="javascript:void(0)" class="btn btn-primary toggle-target-class record-value-edit ms-2 mb-auto" data-toggle-target="vis-toggle-userlist" data-form="form-update-userlist" data-value-target="display-value-userlist">Save</a>
     </div>
   </div>
   {% endif %}
