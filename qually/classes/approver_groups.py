@@ -24,7 +24,7 @@ class ChangeApproverGroup(Base, core_mixin):
 
     @property
     def permalink(self):
-        return f"/settings/approvers?group_id={self.base36id}"
+        return f"/settings/approvers/{self.base36id}"
     
 
 class ChangeApproverGroupRelationship(Base):
