@@ -282,7 +282,8 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                     "name": _("Approve"),
                     "description": _("Approve this change order."),
                     "color": "success",
-                    "users": self.assigned_approvers
+                    "users": self.assigned_approvers,
+                    "approval":True
                 }
             ]
         }
