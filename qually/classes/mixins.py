@@ -269,7 +269,7 @@ class process_mixin():
 
                         response=", ".join([x.group.name for x in getattr(source, entry['value'])])
                         key=entry['name']
-                        value=", ".join([x.user.name for x in getattr(source, entry['value'])])
+                        value=response
 
                     elif entry['kind']=='int':
                         setattr(source, entry['value'], int(request.form[entry['value']]))
