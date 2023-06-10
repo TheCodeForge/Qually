@@ -24,11 +24,11 @@ class CustomRenderer(HTMLRenderer):
 
     def render_record_mention(self, token):
 
-        prefix, number=token.split('-')
+        prefix, number=token.target.split('-')
 
         record=g.user.organization.get_record(prefix, number, graceful=True)
 
         if record:
             return f'<a href="{record.permalink}">{record.name}</a>'
         else:
-            return token
+            return token.target
