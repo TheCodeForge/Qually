@@ -103,7 +103,10 @@ class Organization(Base, core_mixin):
                 break
 
         else:
-            abort(404)
+            if graceful:
+                return None
+            else:
+                abort(404)
 
         record= getattr(self, f"{kind.lower()}s").filter_by(number=int(number)).first()
 
