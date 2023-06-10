@@ -112,6 +112,8 @@ class Organization(Base, core_mixin):
 
         if not record and not graceful:
             abort(404)
+        elif not record:
+            return None
 
         record.modify_layout()
 
