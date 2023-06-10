@@ -215,7 +215,7 @@ class process_mixin():
                         for selection in selections:
                             if selection not in existing:
 
-                                user=g.user.organization.users.filter_by(id=int(selection)).first()
+                                user=g.user.organization.users.filter_by(id=int(selection, 36)).first()
 
                                 if not user:
                                     return toast_error(f"Invalid user ID {selection}")
