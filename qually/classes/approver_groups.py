@@ -6,7 +6,7 @@ except ModuleNotFoundError:
         return x
 
 
-class ChangeApproverGroup(Base, core_mixin):
+class ChangeApproverGroup(Base, core_mixin, process_mixin):
 
     __tablename__="chng_approver_group"
 
