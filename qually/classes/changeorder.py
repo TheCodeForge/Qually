@@ -113,9 +113,9 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 #     "kind":"user_multi"
                 # },
                 {
-                    "name":_("Approvals"),
+                    "name":_("Select Approvers"),
                     "value":"approver_relationships",
-                    "kind":"user_multi",
+                    "kind":"approver_group_multi",
                     "required":True
                 },
                 {
@@ -354,24 +354,24 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
 ChangeOrder._cols()
 
-class ChangeOrderAssessorRelationship(Base, core_mixin):
+# class ChangeOrderAssessorRelationship(Base, core_mixin):
 
-    __tablename__="chng_assessor_relationship"
+#     __tablename__="chng_assessor_relationship"
 
-    id=Column(Integer, primary_key=True)
-    record_id=Column(Integer, ForeignKey('chng.id'))
-    user_id=Column(Integer, ForeignKey('users.id'))
+#     id=Column(Integer, primary_key=True)
+#     record_id=Column(Integer, ForeignKey('chng.id'))
+#     user_id=Column(Integer, ForeignKey('users.id'))
 
-    change=relationship("ChangeOrder", backref="assessor_relationships")
-    user=relationship("User", backref="change_assessor_relationships")
+#     change=relationship("ChangeOrder", backref="assessor_relationships")
+#     user=relationship("User", backref="change_assessor_relationships")
 
-    __table_args__=(
-            UniqueConstraint(
-                'record_id', 
-                'user_id',
-                name=f'chng_user_assessor_rel_unique'
-                ),
-            )
+#     __table_args__=(
+#             UniqueConstraint(
+#                 'record_id', 
+#                 'user_id',
+#                 name=f'chng_user_assessor_rel_unique'
+#                 ),
+#             )
 
 class ChangeOrderApproverRelationship(Base, core_mixin):
 
@@ -379,7 +379,7 @@ class ChangeOrderApproverRelationship(Base, core_mixin):
 
     id=Column(Integer, primary_key=True)
     record_id=Column(Integer, ForeignKey('chng.id'))
-    user_id=Column(Integer, ForeignKey('users.id'))
+    group_id=Column(Integer, ForeignKey('users.id'))
 
     change=relationship("ChangeOrder", backref="approver_relationships")
     user=relationship("User", backref="change_approver_relationships")
@@ -421,5 +421,5 @@ class ChangeOrderLog(Base, core_mixin):
 
     user=relationship("User", lazy="joined", innerjoin=True)
 
-ChangeOrder._assessor_relationships_obj = ChangeOrderAssessorRelationship
+# ChangeOrder._assessor_relationships_obj = ChangeOrderAssessorRelationship
 ChangeOrder._approver_relationships_obj = ChangeOrderApproverRelationship

@@ -125,7 +125,10 @@ class process_mixin():
                 elif entry['kind']=='user_multi':
                     pass
 
-                else:
+                elif entry['kind']=='approver_group_multi':
+                    pass
+
+                elif entry['kind']:
                     raise ValueError(f"unknown template data type {entry['kind']}")
 
         cls.owner=      relationship("User", primaryjoin=f"User.id=={cls.__name__}.owner_id")
@@ -216,6 +219,41 @@ class process_mixin():
                             if selection not in existing:
 
                                 user=g.user.organization.users.filter_by(id=int(selection, 36)).first()
+
+                                if not user:
+                                    return toast_error(f"Invalid user ID {selection}")
+
+                                new_rel = getattr(self, f"_{entry['value']}_obj")(
+                                        record_id=self.id,
+                                        user_id=selection
+                                    )
+                                g.db.add(new_rel)
+
+                        g.db.flush()
+                        g.db.refresh(self)
+
+                        link='<a href="{url}">{text}</a>'
+                        response=", ".join([link.format(url=x.user.permalink, text=x.user.name) for x in getattr(source, entry['value'])])
+                        key=entry['name']
+                        value=", ".join([x.user.name for x in getattr(source, entry['value'])])
+
+                    elif entry['kind']=='approver_group_multi':
+
+                        selections=request.form.getlist(entry['value'])
+
+                        relationships=getattr(source, entry['value'])
+
+                        existing=[x.group.base36id for x in relationships]
+
+                        for rel in relationships:
+                            if rel.user.base36id not in selections:
+                                g.db.delete(rel)
+
+
+                        for selection in selections:
+                            if selection not in existing:
+
+                                user=g.user.organization.approver_groups.filter_by(id=int(selection, 36)).first()
 
                                 if not user:
                                     return toast_error(f"Invalid user ID {selection}")
