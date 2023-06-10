@@ -21,7 +21,7 @@ def post_settings_approvers():
         else:
             return toast_redirect("/settings/approvers")
 
-    if request.form.get("new_group_name"):
+    elif request.form.get("new_group_name"):
 
         new_group=ChangeApproverGroup(
             organization_id=g.user.organization.id,
@@ -32,6 +32,18 @@ def post_settings_approvers():
         g.db.commit()
 
         return toast_redirect(new_group.permalink)
+
+    elif request.form.get("group_name"):
+        group=g.user.organization.approver_groups.filter_by(id=int(request.form.get('group_id'), 36)).first()
+
+        group.name=txt(request.form.get("group_name"))
+
+        g.db.add(group)
+        g.db.commit()
+
+        return toast(_("Changes saved"))
+
+
 
 
 @app.post("/settings/organization")

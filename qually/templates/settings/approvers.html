@@ -58,7 +58,12 @@
     <div class="body w-lg-100">
       <div class="input-group d-flex">
 
-        <input type="text" name="name" value="{{ group.name }}" class="form-control">
+        <form id="form-approver-group-name" method="post" action="/settings/approvers" class="w-100 toasted">
+          <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+          <input type="hidden" name="group_id" value="{{ group.base36id }}">
+          <input type="text" name="group_name" class="form-control">
+        </form>
+        <a href="javascript:void(0)" class="btn ms-auto toast-form-submit btn-primary rounded" data-form="form-new-approver-group">{{_("Save")}}</a>
 
       </div>
     </div>
