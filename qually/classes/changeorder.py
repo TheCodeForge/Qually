@@ -209,7 +209,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
     
 
     @property
-    @lazy
+    @trier
     def _transitions(self):
         return {
             0: [
