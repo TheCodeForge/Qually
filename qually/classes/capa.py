@@ -265,7 +265,7 @@ class CAPA(Base, core_mixin, process_mixin):
                     "id":"advance",
                     "to": 2,
                     "name": _("Approve"),
-                    "description": _("Send this record to the Material Review Board."),
+                    "description": _("Advance this record to investigation."),
                     "users": g.user.organization.quality_mgmt_users,
                     "color": "success",
                     "approval":True
