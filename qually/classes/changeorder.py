@@ -83,7 +83,6 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
         return list(set(output))
 
-    
 
     @classmethod
     def _layout(cls):
@@ -450,6 +449,7 @@ class ChangeOrderApproval(Base, core_mixin):
     user_id=Column(Integer, ForeignKey("users.id"))
     status_id=Column(Integer)
     created_utc=Column(Integer)
+    user_name=Column(String)
 
     user=relationship("User", lazy="joined", innerjoin=True)
 

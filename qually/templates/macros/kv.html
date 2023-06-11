@@ -168,7 +168,7 @@
     <div class="body ms-3 w-lg-100 d-flex flex-wrap">
       {% for approval in source.phase_approvals(section) %}
       <div>
-        <a href="{{ approval.user.permalink }}" class="btn btn-success m-1"><i class="fas fa-signature me-2"></i>{{ approval.user.name }} | {{ approval.created_datetime }}</a>
+        <a href="{{ approval.user.permalink }}" class="btn btn-success m-1"><i class="fas fa-signature me-2"></i>{{ approval.user_name or approval.user.name }} | {{ approval.created_datetime }}</a>
       </div>
       {% endfor %}
     </div>

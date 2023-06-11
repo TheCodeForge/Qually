@@ -179,7 +179,8 @@ def post_record_number_approve(kind, number):
         user_id=g.user.id,
         record_id=record.id,
         status_id=record._status,
-        created_utc=g.time
+        created_utc=g.time,
+        user_name = g.user.name
         )
     g.db.add(approval)
 

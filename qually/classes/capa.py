@@ -378,6 +378,7 @@ class CAPAApproval(Base, core_mixin):
     user_id=Column(Integer, ForeignKey("users.id"))
     status_id=Column(Integer)
     created_utc=Column(Integer)
+    user_name=Column(String)
 
     user=relationship("User", lazy="joined", innerjoin=True)
 
