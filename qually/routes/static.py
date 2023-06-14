@@ -121,7 +121,7 @@ def get_s3_object_path(oid, fid, path):
                     today=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
                     ),
                 font_color="ff0000",
-                rect=(50,50, 1000, 100),
+                rect=(50,50, 100, 100),
                 font_size="20pt",
                 border_color="0000ff",
                 background_color="cdcdcd",
@@ -135,7 +135,7 @@ def get_s3_object_path(oid, fid, path):
                     today=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
                     ),
                 font_color="ff0000",
-                rect=(50,50, 1000, 100),
+                rect=(50,50, 100, 100),
                 font_size="20pt",
                 border_color="0000ff",
                 background_color="cdcdcd",
