@@ -202,7 +202,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         self.__dict__['_lifecycle']=lifecycle
 
     @property
-    def files(self):
+    def proposed_files(self):
         output=[]
         for rev in self.proposed_revisions:
             for f in rev.files:
