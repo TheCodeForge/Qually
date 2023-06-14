@@ -140,21 +140,12 @@ def get_s3_object_path(oid, fid, path):
 
         for index in list(range(0, len(reader.pages))):
 
+
             source_page=reader.pages[index]
 
-            print(source_page.__dict__)
-
-            template_page=pypdf.PdfWriter()
-            template_page.add_page(source_page)
-
-            stamp_page = pypdf.PageObject.create_blank_page(
-                pdf=template_page
-            )
-            stamp_page.add_annotation(page_number=index, annotation=annotation)
-
-            source_page.merge_page(stamp_page)
-
             writer.add_page(source_page)
+
+            writer.add_annotation(page_number=index, annotation=annotation)
 
         buffer=io.BytesIO()
         writer.write(buffer)
