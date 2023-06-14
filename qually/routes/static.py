@@ -146,6 +146,8 @@ def get_s3_object_path(oid, fid, path):
 
         for index in list(range(0, len(reader.pages))):
 
+            print(f"modifying page {index}")
+
 
             source_page=reader.pages[index]
 
