@@ -142,6 +142,8 @@ def get_s3_object_path(oid, fid, path):
 
             source_page=reader.pages[index]
 
+            print(source_page.__dict__)
+
             template_page=pypdf.PdfWriter()
             template_page.add_page(source_page)
 
