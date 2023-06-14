@@ -124,7 +124,6 @@ def get_s3_object_path(oid, fid, path):
         border_color="0000ff",
         background_color="cdcdcd",
     )
-    stamp_page.add_annotation(page_number=0, annotation=annotation)
       
 
     writer=pypdf.PdfWriter()
