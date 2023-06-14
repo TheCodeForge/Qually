@@ -243,6 +243,7 @@ class ItemRevision(Base, core_mixin, process_mixin):
     revision_number=Column(Integer, default=None)
 
     _status=Column(Integer, default=0)
+    status_utc=Column(BigInteger, default=None)
 
     change_id = Column(Integer, ForeignKey("chng.id"))
 
