@@ -113,10 +113,6 @@ def get_s3_object_path(oid, fid, path):
 
     reader=pypdf.PdfReader(file)
 
-    stamp_page=pypdf.PdfWriter()
-    stamp_page.add_blank_page()
-
-
     annotation = AnnotationBuilder.free_text(
         "Hello World\nThis is the second line!",
         rect=(50, 550, 200, 650),
