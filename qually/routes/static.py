@@ -108,6 +108,8 @@ def get_s3_object_path(oid, fid, path):
 
     if mimetype=='application/pdf' and isinstance(file_obj.owning_object, ItemRevision):
 
+        reader=pypdf.PdfReader(file)
+
         if file_obj.owning_object.revision_number:
             annotation=AnnotationBuilder.free_text(
                 _("{number} rev. {revision} | {status} {date} | {changeorder} | Accessed {today}").format(
@@ -132,13 +134,23 @@ def get_s3_object_path(oid, fid, path):
                 font_color="ff0000",
                 rect=(50,50, 1000, 100)
                 )
+        
 
-        reader=pypdf.PdfReader(file)
         writer=pypdf.PdfWriter()
 
         for index in list(range(0, len(reader.pages))):
-            writer.add_page(reader.pages[index])
-            writer.add_annotation(page_number=index, annotation=annotation)
+
+            source_page=reader.pages[index]
+
+            stamp_page = pypdf.create_blank_page(
+                width=source_page.width,
+                height=source_page.height
+            )
+            stamp_page.add_annotation(page_number=index, annotation=annotation)
+
+            source_page.merge_page(stamp_page)
+
+            writer.add_page(source_page)
 
         buffer=io.BytesIO()
         writer.write(buffer)
