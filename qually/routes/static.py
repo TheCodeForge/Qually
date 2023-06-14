@@ -134,8 +134,9 @@ def get_s3_object_path(oid, fid, path):
         template_pdf=pypdf.PdfWriter()
         template_pdf.add_page(source_page)
 
-        stamp_page=pypdf.PdfWriter()
-        stamp_page.add_blank_page(pdf=template_pdf)
+        stamp_pdf=pypdf.PdfWriter()
+        stamp_page=pypdf.PageObject.create_blank_page(pdf=template_pdf)
+        stamp_page.add_page(stamp_page)
 
         stamp_page.add_annotation(page_number=0, annotation=annotation)
 
