@@ -114,7 +114,7 @@ def get_s3_object_path(oid, fid, path):
                     number=file_obj.owning_object.item.name,
                     revision=file_obj.owning_object.revision_number,
                     status=file_obj.owning_object.status,
-                    date=format_datetime(datetime.datetime.fromtimestamp(file_obj.owning_object.status_utc), "dd MMMM yyyy"),
+                    date=format_datetime(datetime.datetime.fromtimestamp(file_obj.owning_object.status_utc), "dd MMMM yyyy") if file_obj.owning_object.status_utc else '',
                     changeorder=file_obj.owning_object.change.name,
                     today=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
                     ),
