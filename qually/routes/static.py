@@ -140,9 +140,9 @@ def get_s3_object_path(oid, fid, path):
 
         stamp_pdf.add_annotation(page_number=0, annotation=annotation)
 
-        writer.add_page(reader.pages[index])
+        source_page.merge_page(stamp_pdf.pages[0])
 
-        writer.pages[index].merge_page(stamp_pdf.pages[0])
+        writer.add_page(source_page)
 
     buffer=io.BytesIO()
     writer.write_stream(buffer)
