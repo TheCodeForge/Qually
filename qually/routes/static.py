@@ -1,8 +1,16 @@
 from jinja2.exceptions import TemplateNotFound
 import pyotp
+import pypdf
+from pypdf.generic import AnnotationBuilder
 import sass
 
+
 from qually.helpers.route_imports import *
+
+try:
+    from flask_babel import _, format_datetime
+except:
+    pass
 
 # take care of misc pages that never really change (much)
 
@@ -100,10 +108,45 @@ def get_s3_object_path(oid, fid, path):
 
     if mimetype=='application/pdf' and isinstance(file_obj.owning_object, ItemRevision):
 
-        #watermark pdf code here
-        pass
+        if file_obj.owning_object.revision_number:
+            annotation=AnnotationBuilder.free_text(
+                _("{number} rev. {revision} | {status} {date} | {changeorder} | Accessed {today}").format(
+                    number=file_obj.owning_object.item.name,
+                    revision=file_obj.owning_object.revision_number,
+                    status=file_obj.owning_object.status,
+                    date=format_datetime(datetime.datetime.fromtimestamp(file_obj.status_utc), "dd MMMM yyyy"),
+                    changeorder=file_obj.owning_object.change.name,
+                    today=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
+                    ),
+                font_color="ff0000",
+                rect=(50,50, 1000, 100)
+                )
+        else:
+            annotation=AnnotationBuilder.free_text(
+                _("{number} rev. {revision} | Proposed | {changeorder} | Accessed {today}").format(
+                    number=file_obj.owning_object.item.name,
+                    revision=file_obj.owning_object.revision_number,
+                    changeorder=file_obj.owning_object.change.name,
+                    today=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
+                    ),
+                font_color="ff0000",
+                rect=(50,50, 1000, 100)
+                )
 
-    return send_file(file, mimetype=mimetype)
+        reader=pypdf.PdfReader(file)
+        writer=pypdf.PdfWriter()
+
+        for index in list(range(0, len(reader.pages))):
+            writer.add_page(reader.pages[index])
+            writer.add_annotation(page_number=index, annotation=annotation)
+
+        buffer=io.BytesIO()
+        writer.write(buffer)
+        buffer.seek(0)
+    else:
+        buffer=None
+
+    return send_file(buffer or file, mimetype=mimetype)
 
 @app.get("/manifest.json")
 @cf_cache
