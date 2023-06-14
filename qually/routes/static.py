@@ -142,7 +142,7 @@ def get_s3_object_path(oid, fid, path):
 
         writer.add_page(reader.pages[index])
 
-        writer.pages[index].merge_page(stamp_page.pages[0])
+        writer.pages[index].merge_page(stamp_pdf.pages[0])
 
     buffer=io.BytesIO()
     writer.write_stream(buffer)
