@@ -109,6 +109,7 @@ def get_s3_object_path(oid, fid, path):
     if mimetype!='application/pdf' or not isinstance(file_obj.owning_object, ItemRevision):
         return send_file(file, mimetype=mimetype)
 
+    #if it's a PDF that's attached to an Item, stamp it
 
     reader=pypdf.PdfReader(file)
 
@@ -135,13 +136,20 @@ def get_s3_object_path(oid, fid, path):
     for index in list(range(0, len(reader.pages))):
 
         source_page=reader.pages[index]
+        template_pdf=pypdf.PdfWriter()
+        template_pdf.add_page(source_page)
 
-        writer.add_page(source_page)
+        stamp_page=pypdf.PdfWriter()
+        stamp_page.add_blank_page(pdf=template_pdf)
+
+        stamp_page.add_annotation(page_number=0, annotation=annotation)
+
+        writer.add_page(reader.pages[index])
 
         writer.pages[index].merge_page(stamp_page.pages[0])
 
     buffer=io.BytesIO()
-    writer.write(buffer)
+    writer.write_stream(buffer)
     buffer.seek(0)
 
     return send_file(buffer, mimetype=mimetype)
