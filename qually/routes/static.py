@@ -166,7 +166,7 @@ def get_s3_object_path(oid, fid, path):
         writer=pypdf.PdfWriter()
 
         for index in list(range(0, len(reader.pages))):
-            
+
             source_page=reader.pages[index]
 
             writer.add_page(source_page)
@@ -176,10 +176,10 @@ def get_s3_object_path(oid, fid, path):
         buffer=io.BytesIO()
         writer.write(buffer)
         buffer.seek(0)
-    else:
-        buffer=None
 
-    return send_file(buffer or file, mimetype=mimetype)
+        return send_file(buffer, mimetype=mimetype)
+    else:
+        return send_file(file, mimetype=mimetype)
 
 @app.get("/manifest.json")
 @cf_cache
