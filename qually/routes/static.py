@@ -84,15 +84,24 @@ def help_home():
 def get_favicon_ico():
     return send_file('./assets/images/logo.png')
 
-@app.get("/s3/organization/<oid>/<path:path>")
+@app.get("/s3/organization/<oid>/file/<fid>/<path:path>")
 @logged_in
-def get_s3_object_path(oid, path):
-
+def get_s3_object_path(oid, fid, path):
 
     if not g.user.organization_id==int(oid, 36):
         abort(404)
 
-    file, mimetype = aws.download_file(f"organization/{oid}/{path}")
+    file_obj=g.user.organization.files.filter_by(id=int(fid, 36)).first()
+
+    if not file_obj:
+        abort(404)
+
+    file, mimetype = aws.download_file(f"organization/{oid}/file/{fid}/{path}")
+
+    if mimetype=='application/pdf' and isinstance(file_obj.owning_object, ItemRevision):
+
+        #watermark pdf code here
+        pass
 
     return send_file(file, mimetype=mimetype)
 
