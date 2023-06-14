@@ -387,10 +387,12 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             #supersede current revisions
             existing=rev.item.effective_revision
             existing._status=2
+            existing.status_utc=g.time
             g.db.add(existing)
 
             rev._status=1
             rev.revision_number = int(existing.revision_number or 0)+1
+            existing.status_utc=g.time
             g.db.add(rev)
 
             rev.item._status = rev.item._status or 2
