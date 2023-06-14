@@ -112,7 +112,7 @@ def get_s3_object_path(oid, fid, path):
 
         if file_obj.owning_object.revision_number:
             annotation=AnnotationBuilder.free_text(
-                _("{number} rev. {revision} | {status} {date} | {changeorder} | Accessed {today}").format(
+                _("{number} rev. {revision} | {status} {date} | {changeorder} | Accessed {today} | Uncontrolled if printed").format(
                     number=file_obj.owning_object.item.name,
                     revision=file_obj.owning_object.revision_number,
                     status=file_obj.owning_object.status,
@@ -122,11 +122,13 @@ def get_s3_object_path(oid, fid, path):
                     ),
                 font_color="ff0000",
                 rect=(50,50, 1000, 100),
-                font_size="20pt"
+                font_size="20pt",
+                border_color="0000ff",
+                background_color="cdcdcd",
                 )
         else:
             annotation=AnnotationBuilder.free_text(
-                _("{number} rev. {revision} | Proposed | {changeorder} | Accessed {today}").format(
+                _("{number} | Proposed, Uncontrolled | {changeorder} | Accessed {today}").format(
                     number=file_obj.owning_object.item.name,
                     revision=file_obj.owning_object.revision_number,
                     changeorder=file_obj.owning_object.change.name,
@@ -134,7 +136,9 @@ def get_s3_object_path(oid, fid, path):
                     ),
                 font_color="ff0000",
                 rect=(50,50, 1000, 100),
-                font_size="20pt"
+                font_size="20pt",
+                border_color="0000ff",
+                background_color="cdcdcd",
                 )
         
 
