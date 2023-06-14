@@ -30,7 +30,7 @@ class File(Base, core_mixin):
     stage_id=Column(Integer)
 
     #relationships
-    organization=relationship("Organization", lazy="joined")
+    organization=relationship("Organization", lazy="joined", viewonly=True)
     creator=relationship("User", lazy="joined")
 
     @property

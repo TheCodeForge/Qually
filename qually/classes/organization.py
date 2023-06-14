@@ -68,6 +68,7 @@ class Organization(Base, core_mixin):
     parts=relationship("Item",      lazy="dynamic", viewonly=True, primaryjoin="Item.organization_id==Organization.id and Item._kind_id==1")
     sops =relationship("Item",      lazy="dynamic", viewonly=True, primaryjoin="Item.organization_id==Organization.id and Item._kind_id==2")
     wis  =relationship("Item",      lazy="dynamic", viewonly=True, primaryjoin="Item.organization_id==Organization.id and Item._kind_id==3")
+    files=relationship("File",      lazy="dynamic", viewonly=True)
 
     @classmethod
     def _cols(cls):
