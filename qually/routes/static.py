@@ -106,80 +106,45 @@ def get_s3_object_path(oid, fid, path):
 
     file, mimetype = aws.download_file(file_obj.s3_name)
 
-    if mimetype=='application/pdf' and isinstance(file_obj.owning_object, ItemRevision):
-
-        reader=pypdf.PdfReader(file)
-
-        if file_obj.owning_object.revision_number:
-            # annotation=AnnotationBuilder.free_text(
-            #     _("{number} rev. {revision} | {status} {date} | {changeorder} | Accessed {today} | Uncontrolled if printed").format(
-            #         number=file_obj.owning_object.item.name,
-            #         revision=file_obj.owning_object.revision_number,
-            #         status=file_obj.owning_object.status,
-            #         date=format_datetime(datetime.datetime.fromtimestamp(file_obj.owning_object.status_utc), "dd MMMM yyyy") if file_obj.owning_object.status_utc else '',
-            #         changeorder=file_obj.owning_object.change.name if file_obj.owning_object.change else '',
-            #         today=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
-            #         ),
-            #     font_color="ff0000",
-            #     rect=(50,50, 100, 100),
-            #     font_size="20pt",
-            #     border_color="0000ff",
-            #     background_color="cdcdcd",
-            #     )
-            annotation = AnnotationBuilder.free_text(
-                "Hello World\nThis is the second line!",
-                rect=(50, 550, 200, 650),
-                font="Arial",
-                bold=True,
-                italic=True,
-                font_size="20pt",
-                font_color="00ff00",
-                border_color="0000ff",
-                background_color="cdcdcd",
-            )
-        else:
-            # annotation=AnnotationBuilder.free_text(
-            #     _("{number} | Proposed, Uncontrolled | {changeorder} | Accessed {today}").format(
-            #         number=file_obj.owning_object.item.name,
-            #         revision=file_obj.owning_object.revision_number,
-            #         changeorder=file_obj.owning_object.change.name if file_obj.owning_object.change else '',
-            #         today=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
-            #         ),
-            #     font_color="ff0000",
-            #     rect=(50,50, 100, 100),
-            #     font_size="20pt",
-            #     border_color="0000ff",
-            #     background_color="cdcdcd",
-            #     )
-            annotation = AnnotationBuilder.free_text(
-                "Hello World\nThis is the second line!",
-                rect=(50, 550, 200, 650),
-                font="Arial",
-                bold=True,
-                italic=True,
-                font_size="20pt",
-                font_color="00ff00",
-                border_color="0000ff",
-                background_color="cdcdcd",
-            )        
-
-        writer=pypdf.PdfWriter()
-
-        for index in list(range(0, len(reader.pages))):
-
-            source_page=reader.pages[index]
-
-            writer.add_page(source_page)
-
-            writer.add_annotation(page_number=index, annotation=annotation)
-
-        buffer=io.BytesIO()
-        writer.write(buffer)
-        buffer.seek(0)
-
-        return send_file(buffer, mimetype=mimetype)
-    else:
+    if mimetype!='application/pdf' or not isinstance(file_obj.owning_object, ItemRevision):
         return send_file(file, mimetype=mimetype)
+
+
+    reader=pypdf.PdfReader(file)
+
+    stamp_page=pypdf.PdfWriter()
+    stamp_page.add_blank_page()
+
+
+    annotation = AnnotationBuilder.free_text(
+        "Hello World\nThis is the second line!",
+        rect=(50, 550, 200, 650),
+        font="Arial",
+        bold=True,
+        italic=True,
+        font_size="20pt",
+        font_color="00ff00",
+        border_color="0000ff",
+        background_color="cdcdcd",
+    )
+    stamp_page.add_annotation(page_number=0, annotation=annotation)
+      
+
+    writer=pypdf.PdfWriter()
+
+    for index in list(range(0, len(reader.pages))):
+
+        source_page=reader.pages[index]
+
+        writer.add_page(source_page)
+
+        writer.pages[index].merge_page(page_number=index, annotation=annotation)
+
+    buffer=io.BytesIO()
+    writer.write(buffer)
+    buffer.seek(0)
+
+    return send_file(buffer, mimetype=mimetype)
 
 @app.get("/manifest.json")
 @cf_cache
