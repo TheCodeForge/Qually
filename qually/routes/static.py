@@ -96,7 +96,7 @@ def get_s3_object_path(oid, fid, path):
     if not file_obj:
         abort(404)
 
-    file, mimetype = aws.download_file(f"organization/{oid}/file/{fid}/{path}")
+    file, mimetype = aws.download_file(file_obj.s3_name)
 
     if mimetype=='application/pdf' and isinstance(file_obj.owning_object, ItemRevision):
 
