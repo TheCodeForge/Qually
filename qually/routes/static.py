@@ -138,7 +138,7 @@ def get_s3_object_path(oid, fid, path):
 
         writer.add_page(source_page)
 
-        writer.pages[index].merge_page(page_number=index, annotation=annotation)
+        writer.pages[index].merge_page(stamp_page.pages[0])
 
     buffer=io.BytesIO()
     writer.write(buffer)
