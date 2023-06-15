@@ -1,7 +1,7 @@
 from jinja2.exceptions import TemplateNotFound
 import pyotp
 import pypdf
-from pypdf.generic import AnnotationBuilder
+improt reportlab
 import sass
 
 
@@ -111,34 +111,44 @@ def get_s3_object_path(oid, fid, path):
 
     #if it's a PDF that's attached to an Item, stamp it
 
+    #set the basic input and output
     reader=pypdf.PdfReader(file)
-
-    annotation = AnnotationBuilder.free_text(
-        "Hello World\nThis is the second line!",
-        rect=(50, 550, 200, 650),
-        font="Arial",
-        bold=True,
-        italic=True,
-        font_size="20pt",
-        font_color="00ff00",
-        border_color="0000ff",
-        background_color="cdcdcd",
-    )
-      
-
     writer=pypdf.PdfWriter()
+
+    #Determine the stamp text
+    if file_obj.owning_object.revision_number:
+        stamp_text = _("{name} Rev. {revision} | {status} {status_date} | {changeorder} | Accessed {now}").format(
+            name=file_obj.owning_object.item.name,
+            revision=file_obj.owning_object.revision_number,
+            status=file_obj.owning_object.status,
+            status_date=format_datetime(datetime.datetime.fromtimestamp(file_obj.owning_object.status_utc), "dd MMMM yyyy"),
+            changeorder=file_obj.owning_object.change.name,
+            now=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
+            )
+    elif file_obj.owning_object.item._status==0:
+        stamp_text = _("{name} | Draft {now}").format(
+            name=file_obj.owning_object.item.name,
+            now=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
+            )
+    else:
+        stamp_text = _("{name} | Proposed in {changeorder} | Accessed {now}").format(
+            name=file_obj.owning_object.item.name,
+            changeorder=file_obj.owning_object.change.name,
+            now=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
+            )
+
+    #create the stamp canvas
+    packet=io.BytesIO()
+    can=reportlab.pdfgen.canvas.Canvas(packet, pagesize=reportlab.lib.pagesizes.letter)
+    can.drawString(36,36, stamp_text)
+    can.save()
+    packet.seek(0)
+    stamp_pdf=PdfReader(packet)
+
 
     for index in list(range(0, len(reader.pages))):
 
         source_page=reader.pages[index]
-        template_pdf=pypdf.PdfWriter()
-        template_pdf.add_page(source_page)
-
-        stamp_pdf=pypdf.PdfWriter()
-        stamp_page=pypdf.PageObject.create_blank_page(pdf=template_pdf)
-        stamp_pdf.add_page(stamp_page)
-
-        stamp_pdf = stamp_pdf.add_annotation(page_number=0, annotation=annotation)
 
         source_page.merge_page(stamp_pdf.pages[0])
 
