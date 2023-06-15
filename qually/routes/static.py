@@ -128,7 +128,7 @@ def get_s3_object_path(oid, fid, path):
             now=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
             )
 
-    elif file_obj.owning_object.revision_number:
+    elif file_obj.owning_object.revision_number != None:
         stamp_text = _("{name} Rev. {revision} | {status} | Accessed {now}").format(
             name=file_obj.owning_object.item.name,
             revision=file_obj.owning_object.revision_number,
