@@ -226,7 +226,7 @@ class Item(Base, core_mixin, revisioned_process_mixin):
         g.db.flush()
 
         for file_obj in self.effective_revision.files:
-            new_file_obj=File(
+            new_file_obj=file_obj.__class__(
                 created_utc=g.time,
                 organization_id=g.user.organization.id,
                 rvsn_id=new_ir.id,
