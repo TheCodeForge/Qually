@@ -40,6 +40,25 @@ def crop_and_resize(img, resize):
 
     return i.resize(resize, box=box)
 
+def upload_buffer(name, buffer, resize=None):
+
+    tempname=name.replace("/","_")
+    
+    with open(tempname, "wb+") as f:
+        f.write(buffer.read())
+
+    S3.upload_file(
+        tempname,
+        Bucket=app.config["S3_BUCKET"],
+        Key=name,
+        ExtraArgs={
+            "ContentType":magic.from_file(tempname, mime=True),
+            "StorageClass":"INTELLIGENT_TIERING"
+            }
+        )
+
+    remove(tempname)
+
 def upload_file(name, file, resize=None):
 
     tempname=name.replace("/","_")

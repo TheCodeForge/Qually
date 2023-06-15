@@ -239,7 +239,7 @@ class Item(Base, core_mixin, revisioned_process_mixin):
             g.db.flush()
 
             f, mime = aws.download_file(file_obj.s3_name)
-            aws.upload_file(new_file_obj.s3_name, f)
+            aws.upload_buffer(new_file_obj.s3_name, f)
 
         g.db.commit()
 
