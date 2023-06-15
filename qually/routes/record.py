@@ -90,7 +90,7 @@ def post_record_number_status(kind, number):
         return toast_error(_("A user must be assigned to the {x} phase first.").format(x=record._lifecycle[transition['to']]['name']), 409)
 
     #check for required
-    if transition['to']!=101:
+    if transition['to']!=101 and transition['to']>record._status:
         for entry in record._layout()[record._status]:
             if entry.get('required') and not getattr(record, entry['value']):
                 return toast_error(_("Missing value for required field {x}").format(x=entry['name']), 400)
