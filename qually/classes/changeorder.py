@@ -354,8 +354,14 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             new_ir = item.new_revision()
 
             new_ir.change_id=self.id
+
             g.db.add(new_ir)
             g.db.commit()
+
+            g.db.refresh(self)
+            for file in new_ir.files:
+                file.status_id=len(self.proposed_revisions)+2
+
 
             return _("Add Item"), item.name, "", True
 
