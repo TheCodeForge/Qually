@@ -2,6 +2,8 @@ from jinja2.exceptions import TemplateNotFound
 import pyotp
 import pypdf
 import reportlab
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
 import sass
 
 
@@ -150,7 +152,7 @@ def get_s3_object_path(oid, fid, path):
 
     #create the stamp canvas
     packet=io.BytesIO()
-    can=reportlab.pdfgen.canvas.Canvas(packet, pagesize=reportlab.lib.pagesizes.letter)
+    can=canvas.Canvas(packet, pagesize=letter)
     can.drawString(36,36, stamp_text)
     can.save()
     packet.seek(0)
