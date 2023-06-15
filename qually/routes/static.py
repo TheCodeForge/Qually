@@ -116,7 +116,7 @@ def get_s3_object_path(oid, fid, path):
     writer=pypdf.PdfWriter()
 
     #Determine the stamp text
-    if file_obj.owning_object.revision_number:
+    if file_obj.owning_object.revision_number and file_obj.owning_object.status_utc:
         stamp_text = _("{name} Rev. {revision} | {status} {status_date} | {changeorder} | Accessed {now}").format(
             name=file_obj.owning_object.item.name,
             revision=file_obj.owning_object.revision_number,
@@ -125,11 +125,22 @@ def get_s3_object_path(oid, fid, path):
             changeorder=file_obj.owning_object.change.name,
             now=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
             )
+
+    elif file_obj.owning_object.revision_number:
+        stamp_text = _("{name} Rev. {revision} | {status} | {changeorder} | Accessed {now}").format(
+            name=file_obj.owning_object.item.name,
+            revision=file_obj.owning_object.revision_number,
+            status=file_obj.owning_object.status,
+            changeorder=file_obj.owning_object.change.name,
+            now=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
+            )
+
     elif file_obj.owning_object.item._status==0:
         stamp_text = _("{name} | Draft {now}").format(
             name=file_obj.owning_object.item.name,
             now=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
             )
+
     else:
         stamp_text = _("{name} | Proposed in {changeorder} | Accessed {now}").format(
             name=file_obj.owning_object.item.name,
