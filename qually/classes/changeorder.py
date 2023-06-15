@@ -360,7 +360,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
 
             g.db.refresh(self)
             for file in new_ir.files:
-                file.status_id=len(self.proposed_revisions)+2
+                file.status_id=len(self.proposed_revisions)+1
 
 
             return _("Add Item"), item.name, "", True
