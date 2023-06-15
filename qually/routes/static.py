@@ -138,7 +138,7 @@ def get_s3_object_path(oid, fid, path):
         stamp_page=pypdf.PageObject.create_blank_page(pdf=template_pdf)
         stamp_pdf.add_page(stamp_page)
 
-        stamp_pdf.add_annotation(page_number=0, annotation=annotation)
+        stamp_pdf = stamp_pdf.add_annotation(page_number=0, annotation=annotation)
 
         source_page.merge_page(stamp_pdf.pages[0])
 
