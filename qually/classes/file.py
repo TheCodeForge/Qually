@@ -25,7 +25,7 @@ class File(Base, core_mixin):
     capa=           relationship("CAPA",            lazy="joined", backref="files")
     deviation=      relationship("Deviation",       lazy="joined", backref="files")
     itemrevision=   relationship("ItemRevision",    lazy="joined", backref="files")
-    change=         relationship("ChangeOrder",     lazy="joined", backref="files")
+    change=         relationship("ChangeOrder",     lazy="joined", backref="_files")
 
     stage_id=Column(Integer)
 

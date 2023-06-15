@@ -209,6 +209,11 @@ class ChangeOrder(Base, core_mixin, process_mixin):
                 output.append(f)
 
         return output
+
+    @property
+    def files(self):
+        return self.proposed_files + self._files
+    
     
 
     @property
