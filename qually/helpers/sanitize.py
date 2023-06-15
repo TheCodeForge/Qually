@@ -7,8 +7,6 @@ from functools import partial
 from mistletoe import Document
 import re
 
-from .get import *
-
 from .mistletoe import CustomRenderer
 
 _allowed_tags =[
