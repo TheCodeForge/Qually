@@ -153,6 +153,7 @@ def get_s3_object_path(oid, fid, path):
     #create the stamp canvas
     packet=io.BytesIO()
     can=canvas.Canvas(packet, pagesize=letter)
+    can.setFillColorRGB(1,0,0)
     can.setStrokeColorRGB(1,0,0)
     can.drawString(36,36, stamp_text)
     can.save()
