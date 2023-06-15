@@ -1,4 +1,5 @@
 from qually.helpers.class_imports import *
+from .user import User
 
 class Organization(Base, core_mixin):
 
@@ -145,14 +146,14 @@ class Organization(Base, core_mixin):
     @lazy
     def users(self):
         if g.user.is_org_admin:
-            return self._users.order_by("User.name.asc()")
+            return self._users.order_by(User.name.asc())
         else:
-            return self._users.filter_by(is_active=True).order_by("User.name.asc()")
+            return self._users.filter_by(is_active=True).order_by(User.name.asc())
 
     @property
     @lazy
     def assignable_users(self):
-        return self._users.filter_by(is_active=True, has_license=True).order_by("User.name.asc()")
+        return self._users.filter_by(is_active=True, has_license=True).order_by(User.name.asc())
     
 
     @property
