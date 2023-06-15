@@ -136,17 +136,17 @@ def get_s3_object_path(oid, fid, path):
             now=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
             )
 
-    elif file_obj.owning_object.item._status==0:
-        stamp_text = _("{name} | Draft {t}").format(
-            name=file_obj.owning_object.item.name,
-            t=file_obj.owning_object.created_date
-            )
-
-    else:
+    elif file_obj.owning_object.change:
         stamp_text = _("{name} | Proposed revision | {changeorder}").format(
             name=file_obj.owning_object.item.name,
             changeorder=file_obj.owning_object.change.name,
             now=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
+            )
+
+    else:
+        stamp_text = _("{name} | Draft {t}").format(
+            name=file_obj.owning_object.item.name,
+            t=file_obj.owning_object.created_date
             )
 
     #create the stamp canvas
