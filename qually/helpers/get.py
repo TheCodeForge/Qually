@@ -5,6 +5,7 @@ from flask import g, abort, request
 # from sqlalchemy.orm import *
 
 from qually.classes import *
+from qually.classes.user import User
 
 def get_account(b36uid, graceful=False):
     
