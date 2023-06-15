@@ -222,9 +222,26 @@ class Item(Base, core_mixin, revisioned_process_mixin):
             object_description_raw=self.effective_revision.object_description_raw,
             created_utc=g.time
             )
-
         g.db.add(new_ir)
         g.db.flush()
+
+        for file_obj in self.effective_revision.files:
+            new_file_obj=File(
+                created_utc=g.time,
+                organization_id=g.user.organization.id,
+                rvsn_id=new_ir.id,
+                file_name=file_obj.file_name,
+                status_id=file_obj.status_id,
+                creator_id=g.user.id,
+                stage_id=file_obj.stage_id
+                )
+            g.db.add(new_file_obj)
+            g.db.flush()
+
+            f, mime = aws.download_file(file_obj.s3_name)
+            aws.upload_file(new_file_obj.s3_name, f)
+
+        g.db.commit()
 
         return new_ir
     
