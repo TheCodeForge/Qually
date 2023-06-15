@@ -156,7 +156,7 @@ def get_s3_object_path(oid, fid, path):
     can.drawString(36,36, stamp_text)
     can.save()
     packet.seek(0)
-    stamp_pdf=PdfReader(packet)
+    stamp_pdf=pypdf.PdfReader(packet)
 
 
     for index in list(range(0, len(reader.pages))):
