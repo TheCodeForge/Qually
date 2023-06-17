@@ -94,9 +94,21 @@ def help_home():
 def get_favicon_ico():
     return send_file('./assets/images/logo.png')
 
+@app.get("/s3/organization/<oid>/<path:path>")
+@logged_in
+def get_s3_object_path(oid, path):
+
+    if not g.user.organization_id==int(oid, 36):
+        abort(404)
+
+    file, mimetype = aws.download_file(f"organization/{oid}/{path}")
+    
+    return send_file(file, mimetype=mimetype)
+
+
 @app.get("/s3/organization/<oid>/file/<fid>/<path:path>")
 @logged_in
-def get_s3_object_path(oid, fid, path):
+def get_s3_file_path(oid, path, fid=None):
 
     if not g.user.organization_id==int(oid, 36):
         abort(404)
