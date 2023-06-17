@@ -2,6 +2,11 @@
   <thead class="bg-primary text-white">
     <tr>
       <th>{{_("ID")}}</th>
+
+      {% for entry in listing[0]._display_columns %}
+      <th>{{ entry['name'] }}</th>
+      {% endfor %}
+
       <th>{{_("Status")}}</th>
       <th>{{_("Assigned To")}}</th>
       <th>{{_("Due Date")}}</th>
@@ -10,6 +15,11 @@
   {% for thing in listing %}
   <tr>
     <td><a href="{{ thing.permalink }}">{{ thing.name }}</a></td>
+
+    {% for entry in thing._display_columns %}
+    <td>{{ thing | attr(entry['value']) }}</td>
+    {% endfor %}
+
     <td>{{ thing.status }}</td>
     <td>{% for u in thing._lifecycle[thing._status]['users']%}{% if loop.index0 %}, {% endif %}<a href="{{ u.permalink }}">{{ u.name }}</a>{% endfor %}</td>
     <td>{% if thing | attr('phase_{x}_due_utc'.format(x=thing._status)) %}{{ thing | attr('phase_{x}_due_utc'.format(x=thing._status)) | date }}{% endif %}</td>

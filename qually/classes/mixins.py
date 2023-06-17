@@ -56,6 +56,10 @@ class process_mixin():
         return f"{getattr(g.user.organization, f'{self._name.lower()}_prefix')}-{self.number:0>5}"
 
     @property
+    def _display_columns(self):
+        return []
+
+    @property
     def permalink(self):
         return f"/{self.name}"
     

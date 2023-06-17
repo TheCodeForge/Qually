@@ -202,6 +202,16 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         self.__dict__['_lifecycle']=lifecycle
 
     @property
+    def _display_columns(self):
+        return [
+            {
+                'name':_("Name"),
+                'value':"record_name"
+            }
+        ]
+    
+
+    @property
     def proposed_files(self):
         output=[]
         for rev in self.proposed_revisions:
