@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-06-17 11:37-0400\n"
+"POT-Creation-Date: 2023-06-17 11:42-0400\n"
 "PO-Revision-Date: 2023-05-07 09:47-0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: es\n"
@@ -340,7 +340,7 @@ msgstr "Órden de cambio"
 msgid "Summary"
 msgstr "Resumen"
 
-#: classes/changeorder.py:53 templates/macros/kv.html:166
+#: classes/changeorder.py:53 templates/macros/kv.html:170
 msgid "Approvals"
 msgstr "Aprobaciones"
 
@@ -769,7 +769,7 @@ msgid "Administrator"
 msgstr "Administrador"
 
 #: helpers/jinja2.py:127 templates/create_record.html:29
-#: templates/macros/kv.html:67
+#: templates/macros/kv.html:67 templates/macros/kv.html:150
 msgid "None"
 msgstr "Ninguno"
 
@@ -1144,7 +1144,9 @@ msgstr "La licencia de su organización ha caducado."
 
 #: templates/core.html:171
 msgid "Renew your license to restore full functionality for your users."
-msgstr "Renueve su licencia para restaurar la funcionalidad completa para sus usuarios."
+msgstr ""
+"Renueve su licencia para restaurar la funcionalidad completa para sus "
+"usuarios."
 
 #: templates/core.html:171
 msgid "Contact your organization's {x} admin for renewal."
@@ -1154,7 +1156,9 @@ msgstr "Comuníquese con el administrador de {x} de su organización para renova
 msgid ""
 "Your organization's license expires in {x} days. Renew to ensure "
 "continuous, uninterrupted access for your users."
-msgstr "La licencia de su organización caduca en {x} días. Renueve para garantizar un acceso continuo e ininterrumpido para sus usuarios."
+msgstr ""
+"La licencia de su organización caduca en {x} días. Renueve para "
+"garantizar un acceso continuo e ininterrumpido para sus usuarios."
 
 #: templates/core.html:193
 msgid "Tools"
@@ -1588,3 +1592,4 @@ msgstr "Deshabilitar la autenticación de dos factores"
 #: templates/settings/security.html:58
 msgid "Enable Two-Factor Authentication"
 msgstr "Habilitar la autenticación de dos factores"
+
