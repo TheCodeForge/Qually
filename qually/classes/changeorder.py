@@ -201,7 +201,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
         self.__dict__["_layout"]=lambda:layout
         self.__dict__['_lifecycle']=lifecycle
 
-    @property
+    @classmethod
     def _display_columns(self):
         return [
             {

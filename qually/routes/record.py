@@ -290,6 +290,7 @@ def get_record_records(kind):
     return render_template(
         f"records.html",
         listing=listing,
+        obj=ALL_PROCESSES[kind],
         name=ALL_PROCESSES[kind].name_readable()
         )
 

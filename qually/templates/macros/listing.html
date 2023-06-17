@@ -3,7 +3,7 @@
     <tr>
       <th>{{_("ID")}}</th>
 
-      {% for entry in listing[0]._display_columns %}
+      {% for entry in obj._display_columns() %}
       <th>{{ entry['name'] }}</th>
       {% endfor %}
 
@@ -16,7 +16,7 @@
   <tr>
     <td><a href="{{ thing.permalink }}">{{ thing.name }}</a></td>
 
-    {% for entry in thing._display_columns %}
+    {% for entry in thing._display_columns() %}
     <td>{{ thing | attr(entry['value']) }}</td>
     {% endfor %}
 

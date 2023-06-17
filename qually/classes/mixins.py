@@ -55,7 +55,7 @@ class process_mixin():
     def name(self):
         return f"{getattr(g.user.organization, f'{self._name.lower()}_prefix')}-{self.number:0>5}"
 
-    @property
+    @classmethod
     def _display_columns(self):
         return []
 
