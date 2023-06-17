@@ -145,6 +145,10 @@
         </div>
         {% endif %}
       </div>
+      {% else %}
+      <div>
+        <p>{{_("None")}}</p>
+      </div>
       {% endfor %}
       {% if can_edit_section %}
       <div>
