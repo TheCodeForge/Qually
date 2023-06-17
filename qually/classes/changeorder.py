@@ -361,10 +361,10 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             item=g.user.organization.items.filter_by(number=int(number)).first()
 
             if not item:
-                return toast_error(_("No item found with number {x}").format(x=name), 404)
+                return toast_error(_("No item found with number {x}.").format(x=name), 404)
 
             if item.id in [x.item_id for x in self.proposed_revisions]:
-                return toast_error(_("Item {x} is already associated with this change").format(x=item.name), 409)
+                return toast_error(_("Item {x} is already associated with this change.").format(x=item.name), 409)
 
             new_ir = item.new_revision()
 

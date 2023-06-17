@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-28 10:25-0400\n"
+"POT-Creation-Date: 2023-06-17 11:37-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,497 +17,734 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.12.1\n"
 
-#: classes/capa.py:33
+#: classes/approver_groups.py:50
+msgid "Group Name"
+msgstr ""
+
+#: classes/approver_groups.py:55
+msgid "Mode"
+msgstr ""
+
+#: classes/approver_groups.py:58
+msgid ""
+"Set the number of approvals required, when this approval group is "
+"assigned."
+msgstr ""
+
+#: classes/approver_groups.py:60
+msgid "One Required"
+msgstr ""
+
+#: classes/approver_groups.py:61
+msgid "All Required"
+msgstr ""
+
+#: classes/approver_groups.py:65
+msgid "Group Members"
+msgstr ""
+
+#: classes/capa.py:32
 msgid "Corrective and Preventive Action"
 msgstr ""
 
-#: classes/capa.py:62 classes/deviation.py:59 classes/ncmr.py:61
+#: classes/capa.py:61 classes/changeorder.py:40 classes/deviation.py:58
+#: classes/ncmr.py:60
 msgid "New"
 msgstr ""
 
-#: classes/capa.py:67 classes/deviation.py:64 classes/ncmr.py:66
+#: classes/capa.py:66 classes/changeorder.py:45 classes/deviation.py:63
+#: classes/ncmr.py:65
 msgid "Initial Review"
 msgstr ""
 
-#: classes/capa.py:71
+#: classes/capa.py:70
 msgid "Investigation"
 msgstr ""
 
-#: classes/capa.py:76
+#: classes/capa.py:75
 msgid "Approval to Implement"
 msgstr ""
 
-#: classes/capa.py:80
+#: classes/capa.py:79 classes/changeorder.py:57
 msgid "Implementation"
 msgstr ""
 
-#: classes/capa.py:85 classes/capa.py:215
+#: classes/capa.py:84 classes/capa.py:214
 msgid "Verification of Effectiveness"
 msgstr ""
 
-#: classes/capa.py:90 classes/deviation.py:74 classes/ncmr.py:79
+#: classes/capa.py:89 classes/deviation.py:73 classes/ncmr.py:78
 msgid "Final Review"
 msgstr ""
 
-#: classes/capa.py:94 classes/deviation.py:79 classes/ncmr.py:83
+#: classes/capa.py:93 classes/changeorder.py:66 classes/deviation.py:78
+#: classes/ncmr.py:82
 msgid "Closed"
 msgstr ""
 
-#: classes/capa.py:98 classes/deviation.py:83 classes/ncmr.py:87
+#: classes/capa.py:97 classes/changeorder.py:70 classes/deviation.py:82
+#: classes/ncmr.py:86
 msgid "Terminated"
 msgstr ""
 
-#: classes/capa.py:108
+#: classes/capa.py:107
 msgid "Service request"
 msgstr ""
 
-#: classes/capa.py:109
+#: classes/capa.py:108
 msgid "Internal audit finding"
 msgstr ""
 
-#: classes/capa.py:110
+#: classes/capa.py:109
 msgid "External audit finding"
 msgstr ""
 
-#: classes/capa.py:111
+#: classes/capa.py:110
 msgid "Quality Assurance inspection"
 msgstr ""
 
-#: classes/capa.py:112
+#: classes/capa.py:111
 msgid "General observation"
 msgstr ""
 
-#: classes/capa.py:113 classes/capa.py:179
+#: classes/capa.py:112 classes/capa.py:178
 msgid "Risk assessment"
 msgstr ""
 
-#: classes/capa.py:114
+#: classes/capa.py:113
 msgid "Management review"
 msgstr ""
 
-#: classes/capa.py:115
+#: classes/capa.py:114
 msgid "Failure analysis"
 msgstr ""
 
-#: classes/capa.py:123
+#: classes/capa.py:122
 msgid "Issue Source"
 msgstr ""
 
-#: classes/capa.py:129
+#: classes/capa.py:128
 msgid "Describe Issue"
 msgstr ""
 
-#: classes/capa.py:132
+#: classes/capa.py:131
 msgid ""
 "Include a reference to the particular regulation, SOP, or other standard "
 "that is not being complied with."
 msgstr ""
 
-#: classes/capa.py:135
+#: classes/capa.py:134
 msgid "Who discovered issue?"
 msgstr ""
 
-#: classes/capa.py:140
+#: classes/capa.py:139
 msgid "How was issue discovered?"
 msgstr ""
 
-#: classes/capa.py:145 classes/ncmr.py:129
+#: classes/capa.py:144 classes/ncmr.py:128
 msgid "Description of Non-Conformance"
 msgstr ""
 
-#: classes/capa.py:148 classes/ncmr.py:132
+#: classes/capa.py:147 classes/ncmr.py:131
 msgid ""
 "Identify the specification or requirement to which the material fails to "
 "conform."
 msgstr ""
 
-#: classes/capa.py:151
+#: classes/capa.py:150
 msgid "Immediate Actions"
 msgstr ""
 
-#: classes/capa.py:154
+#: classes/capa.py:153
 msgid ""
 "Describe any immediate corrections that were taken, such as quarantining "
 "nonconforming product."
 msgstr ""
 
-#: classes/capa.py:159
+#: classes/capa.py:158
 msgid "Root Cause Investigator"
 msgstr ""
 
-#: classes/capa.py:162
+#: classes/capa.py:161
 msgid "Assign someone to investigate this issue."
 msgstr ""
 
-#: classes/capa.py:167
+#: classes/capa.py:166
 msgid "Root Cause Analysis"
 msgstr ""
 
-#: classes/capa.py:170
+#: classes/capa.py:169
 msgid ""
 "Describe the root cause investigation analysis and conclusions. Use "
 "investigative techniques such as 5-Whys, fault-tree analysis, or fishbone"
 " analysis."
 msgstr ""
 
-#: classes/capa.py:173
+#: classes/capa.py:172
 msgid "Scope and Impact"
 msgstr ""
 
-#: classes/capa.py:176
+#: classes/capa.py:175
 msgid ""
 "Identify the bracketing boundaries of the problem. How extensive is the "
 "impact?"
 msgstr ""
 
-#: classes/capa.py:182
+#: classes/capa.py:181
 msgid ""
 "Identify and evaluate potential risks to the patient, to the process, and"
 " to compliance."
 msgstr ""
 
-#: classes/capa.py:185
+#: classes/capa.py:184
 msgid "Action Plan"
 msgstr ""
 
-#: classes/capa.py:188
+#: classes/capa.py:187
 msgid "Describe the actions to remedy the issue's root cause."
 msgstr ""
 
-#: classes/capa.py:191
+#: classes/capa.py:190
 msgid "Verification of Effectiveness Plan"
 msgstr ""
 
-#: classes/capa.py:194
+#: classes/capa.py:193
 msgid "How will the effectiveness of the action plan be measured and evaluated?"
 msgstr ""
 
-#: classes/capa.py:199
+#: classes/capa.py:198 classes/changeorder.py:134
 msgid "Implementation Assignee"
 msgstr ""
 
-#: classes/capa.py:202
+#: classes/capa.py:201
 msgid "Assign someone to execute the action plan."
 msgstr ""
 
-#: classes/capa.py:207
+#: classes/capa.py:206
 msgid "Actions taken"
 msgstr ""
 
-#: classes/capa.py:210
+#: classes/capa.py:209
 msgid "Describe actions performed. These should reflect the approved plan."
 msgstr ""
 
-#: classes/capa.py:218
+#: classes/capa.py:217
 msgid ""
 "Measure and evaluate the effectiveness of the actions performed, "
 "following the approved Verification of Effectiveness plan."
 msgstr ""
 
-#: classes/capa.py:233 classes/capa.py:287 classes/capa.py:335
-#: classes/deviation.py:174 classes/deviation.py:228 classes/ncmr.py:185
-#: classes/ncmr.py:258
+#: classes/capa.py:232 classes/capa.py:286 classes/capa.py:334
+#: classes/changeorder.py:237 classes/changeorder.py:312
+#: classes/deviation.py:173 classes/deviation.py:227 classes/ncmr.py:184
+#: classes/ncmr.py:257
 msgid "Submit"
 msgstr ""
 
-#: classes/capa.py:234
+#: classes/capa.py:233
 msgid "Submit this record to Quality Assurance for review."
 msgstr ""
 
-#: classes/capa.py:242 classes/capa.py:277 classes/deviation.py:183
-#: classes/deviation.py:218 classes/ncmr.py:194 classes/ncmr.py:229
+#: classes/capa.py:241 classes/capa.py:276 classes/changeorder.py:246
+#: classes/deviation.py:182 classes/deviation.py:217 classes/ncmr.py:193
+#: classes/ncmr.py:228
 msgid "Terminate"
 msgstr ""
 
-#: classes/capa.py:243 classes/capa.py:278 classes/deviation.py:184
-#: classes/deviation.py:219 classes/ncmr.py:195 classes/ncmr.py:230
+#: classes/capa.py:242 classes/capa.py:277 classes/changeorder.py:247
+#: classes/deviation.py:183 classes/deviation.py:218 classes/ncmr.py:194
+#: classes/ncmr.py:229
 msgid "Permanently archive this record. This cannot be undone."
+msgstr ""
+
+#: classes/capa.py:251 classes/capa.py:297 classes/changeorder.py:256
+#: classes/changeorder.py:292 classes/changeorder.py:323
+#: classes/deviation.py:192 classes/ncmr.py:203
+msgid "Reject"
 msgstr ""
 
 #: classes/capa.py:252 classes/capa.py:298 classes/deviation.py:193
 #: classes/ncmr.py:204
-msgid "Reject"
-msgstr ""
-
-#: classes/capa.py:253 classes/capa.py:299 classes/deviation.py:194
-#: classes/ncmr.py:205
 msgid "Send this record back to its initiator for revision."
 msgstr ""
 
-#: classes/capa.py:261 classes/capa.py:307 classes/deviation.py:202
-#: classes/ncmr.py:213
+#: classes/capa.py:260 classes/capa.py:306 classes/changeorder.py:264
+#: classes/changeorder.py:282 classes/deviation.py:201 classes/ncmr.py:212
 msgid "Withdraw"
 msgstr ""
 
-#: classes/capa.py:268 classes/capa.py:314 classes/ncmr.py:239
+#: classes/capa.py:267 classes/capa.py:313 classes/changeorder.py:300
+#: classes/changeorder.py:331 classes/ncmr.py:238
 msgid "Approve"
 msgstr ""
 
-#: classes/capa.py:269 classes/ncmr.py:221
-msgid "Send this record to the Material Review Board."
+#: classes/capa.py:268
+msgid "Advance this record to investigation."
 msgstr ""
 
-#: classes/capa.py:288
+#: classes/capa.py:287
 msgid "Submit investigative results to quality management."
 msgstr ""
 
-#: classes/capa.py:315
+#: classes/capa.py:314
 msgid "Advance to implementation."
 msgstr ""
 
-#: classes/capa.py:325
+#: classes/capa.py:324
 msgid "Continue to Verification of Effectiveness"
 msgstr ""
 
-#: classes/capa.py:326
+#: classes/capa.py:325
 msgid "Continue to Verification of Effectiveness."
 msgstr ""
 
-#: classes/capa.py:336
+#: classes/capa.py:335
 msgid "Submit to Final Review"
 msgstr ""
 
-#: classes/capa.py:344
+#: classes/capa.py:343 classes/capa.py:344
 msgid "Return to Implementation"
 msgstr ""
 
-#: classes/capa.py:345
-msgid "Return to Implementation."
-msgstr ""
-
-#: classes/capa.py:354 classes/deviation.py:256
+#: classes/capa.py:353 classes/capa.py:354 classes/deviation.py:255
 msgid "Approve and Close"
 msgstr ""
 
-#: classes/capa.py:355
-msgid "Approve and close."
-msgstr ""
-
-#: classes/capa.py:363
+#: classes/capa.py:362 classes/capa.py:363
 msgid "Reject to Verification of Effectiveness"
 msgstr ""
 
-#: classes/capa.py:364
-msgid "Reject to Verification of Effectiveness."
+#: classes/changeorder.py:34 templates/macros/logs.html:48
+msgid "Change Order"
 msgstr ""
 
-#: classes/deviation.py:33
+#: classes/changeorder.py:42
+msgid "Summary"
+msgstr ""
+
+#: classes/changeorder.py:53 templates/macros/kv.html:166
+msgid "Approvals"
+msgstr ""
+
+#: classes/changeorder.py:62
+msgid "Approval of Implementation"
+msgstr ""
+
+#: classes/changeorder.py:92 classes/changeorder.py:208 classes/item.py:322
+#: templates/auth/register.html:17 templates/settings/directory.html:9
+#: templates/settings/directory.html:22
+msgid "Name"
+msgstr ""
+
+#: classes/changeorder.py:97
+msgid "Description of Changes"
+msgstr ""
+
+#: classes/changeorder.py:103
+msgid "Rationale for Changes"
+msgstr ""
+
+#: classes/changeorder.py:109
+msgid "Implementation Plan"
+msgstr ""
+
+#: classes/changeorder.py:115
+msgid "Training Impacts"
+msgstr ""
+
+#: classes/changeorder.py:128
+msgid "Select Approvers"
+msgstr ""
+
+#: classes/changeorder.py:144
+msgid "Implementation Tasks"
+msgstr ""
+
+#: classes/changeorder.py:148
+msgid ""
+"Describe implementation tasks performed. This should reflect the approved"
+" implementation plan. Attach evidence of completion if needed."
+msgstr ""
+
+#: classes/changeorder.py:166 classes/changeorder.py:381
+msgid "Add Item"
+msgstr ""
+
+#: classes/changeorder.py:172 classes/changeorder.py:398
+msgid "Remove Item"
+msgstr ""
+
+#: classes/changeorder.py:182
+msgid "Add/Remove Items"
+msgstr ""
+
+#: classes/changeorder.py:238 classes/deviation.py:174 classes/ncmr.py:185
+msgid "Submit this record to Document Control for review."
+msgstr ""
+
+#: classes/changeorder.py:257 classes/changeorder.py:265
+msgid "Return this record to the Summary phase."
+msgstr ""
+
+#: classes/changeorder.py:272 classes/deviation.py:208 classes/ncmr.py:219
+msgid "Advance"
+msgstr ""
+
+#: classes/changeorder.py:273
+msgid "Send this change order out for approvals."
+msgstr ""
+
+#: classes/changeorder.py:283
+msgid "Return this record to the Initial Review phase."
+msgstr ""
+
+#: classes/changeorder.py:293
+msgid "Reject this change order."
+msgstr ""
+
+#: classes/changeorder.py:301
+msgid "Approve this change order."
+msgstr ""
+
+#: classes/changeorder.py:313
+msgid "Submit this record to Quality Management for final review."
+msgstr ""
+
+#: classes/changeorder.py:324
+msgid "Reject the implementation."
+msgstr ""
+
+#: classes/changeorder.py:332
+msgid "Approve the implementation and close this change order."
+msgstr ""
+
+#: classes/changeorder.py:354 classes/changeorder.py:386 routes/record.py:81
+#: routes/record.py:141 routes/record.py:243 routes/record.py:367
+#: routes/record.py:426
+msgid "This record has changed status. Please reload this page."
+msgstr ""
+
+#: classes/changeorder.py:359
+msgid "Invalid item number"
+msgstr ""
+
+#: classes/changeorder.py:364
+msgid "No item found with number {x}."
+msgstr ""
+
+#: classes/changeorder.py:367
+msgid "Item {x} is already associated with this change."
+msgstr ""
+
+#: classes/deviation.py:32
 msgid "Deviation"
 msgstr ""
 
-#: classes/deviation.py:68
+#: classes/deviation.py:67
 msgid "Corrections"
 msgstr ""
 
-#: classes/deviation.py:93
+#: classes/deviation.py:92
 msgid "Planned"
 msgstr ""
 
-#: classes/deviation.py:94
+#: classes/deviation.py:93
 msgid "Unplanned"
 msgstr ""
 
-#: classes/deviation.py:102
+#: classes/deviation.py:101
 msgid "Yes"
 msgstr ""
 
-#: classes/deviation.py:103
+#: classes/deviation.py:102
 msgid "No"
 msgstr ""
 
-#: classes/deviation.py:111
+#: classes/deviation.py:110
 msgid "Description of deviation"
 msgstr ""
 
-#: classes/deviation.py:114
+#: classes/deviation.py:113
 msgid ""
 "Identify the process or procedure deviated from, and the manner in which "
 "that deviation occurred."
 msgstr ""
 
-#: classes/deviation.py:117
+#: classes/deviation.py:116
 msgid "Planned?"
 msgstr ""
 
-#: classes/deviation.py:123
+#: classes/deviation.py:122
 msgid "Immediate Corrections"
 msgstr ""
 
-#: classes/deviation.py:127
+#: classes/deviation.py:126
 msgid "Describe initial corrections performed, if any."
 msgstr ""
 
-#: classes/deviation.py:132
+#: classes/deviation.py:131
 msgid "Further corrections needed?"
 msgstr ""
 
-#: classes/deviation.py:139
+#: classes/deviation.py:138
 msgid "Further corrections"
 msgstr ""
 
-#: classes/deviation.py:142
+#: classes/deviation.py:141
 msgid "Identify outstanding corrections needed, if any."
 msgstr ""
 
-#: classes/deviation.py:146
+#: classes/deviation.py:145
 msgid "Corrections Assignee"
 msgstr ""
 
-#: classes/deviation.py:149
+#: classes/deviation.py:148
 msgid "Identify individual responsible for completing further corrections."
 msgstr ""
 
-#: classes/deviation.py:155
+#: classes/deviation.py:154
 msgid "Final corrections"
 msgstr ""
 
-#: classes/deviation.py:158
+#: classes/deviation.py:157
 msgid "Record corrective actions performed."
 msgstr ""
 
-#: classes/deviation.py:175 classes/ncmr.py:186
-msgid "Submit this record to Document Control for review."
-msgstr ""
-
-#: classes/deviation.py:209 classes/deviation.py:283 classes/ncmr.py:285
-#: templates/record.html:92 templates/record.html:120
+#: classes/deviation.py:208 classes/deviation.py:282 classes/ncmr.py:284
+#: templates/record.html:103 templates/record.html:131
 msgid "Close"
 msgstr ""
 
-#: classes/deviation.py:209 classes/ncmr.py:220
-msgid "Advance"
-msgstr ""
-
-#: classes/deviation.py:210
+#: classes/deviation.py:209
 msgid "Advance this record to {x}."
 msgstr ""
 
-#: classes/deviation.py:229 classes/deviation.py:257 classes/ncmr.py:259
+#: classes/deviation.py:228 classes/deviation.py:256 classes/ncmr.py:258
 msgid "Submit for final review."
 msgstr ""
 
-#: classes/deviation.py:237
+#: classes/deviation.py:236
 msgid "Return to Quality Management"
 msgstr ""
 
-#: classes/deviation.py:238
+#: classes/deviation.py:237
 msgid "Return this record back to Quality Management."
 msgstr ""
 
-#: classes/deviation.py:248
+#: classes/deviation.py:247
 msgid "Return to Corrections"
 msgstr ""
 
-#: classes/deviation.py:249
+#: classes/deviation.py:248
 msgid "Return to Corrections."
 msgstr ""
 
-#: classes/deviation.py:267 classes/ncmr.py:269
+#: classes/deviation.py:266 classes/ncmr.py:268
 msgid "Reject to MRB"
 msgstr ""
 
-#: classes/deviation.py:268 classes/ncmr.py:270
+#: classes/deviation.py:267 classes/ncmr.py:269
 msgid "Reject back to the Material Review Board."
 msgstr ""
 
-#: classes/deviation.py:275 classes/ncmr.py:277
+#: classes/deviation.py:274 classes/ncmr.py:276
 msgid "Reject to  Disposition"
 msgstr ""
 
-#: classes/deviation.py:276 classes/ncmr.py:278
+#: classes/deviation.py:275 classes/ncmr.py:277
 msgid "Reject back to the Disposition assignee."
 msgstr ""
 
-#: classes/deviation.py:284 classes/ncmr.py:286
+#: classes/deviation.py:283 classes/ncmr.py:285
 msgid "Approve and close this record."
 msgstr ""
 
-#: classes/ncmr.py:33
+#: classes/item.py:52
+msgid "Item"
+msgstr ""
+
+#: classes/item.py:69
+msgid "Part"
+msgstr ""
+
+#: classes/item.py:73
+msgid "Standard Operating Procedure"
+msgstr ""
+
+#: classes/item.py:77
+msgid "Work Instruction"
+msgstr ""
+
+#: classes/item.py:90 classes/item.py:168
+msgid "Draft"
+msgstr ""
+
+#: classes/item.py:96
+msgid "Design"
+msgstr ""
+
+#: classes/item.py:100
+msgid "Production"
+msgstr ""
+
+#: classes/item.py:104
+msgid "Obsolete"
+msgstr ""
+
+#: classes/item.py:108
+msgid "Abandoned"
+msgstr ""
+
+#: classes/item.py:120
+msgid "Abandon"
+msgstr ""
+
+#: classes/item.py:121
+msgid "Abandon this record. You may recover it later if you wish."
+msgstr ""
+
+#: classes/item.py:130
+msgid "Restore"
+msgstr ""
+
+#: classes/item.py:131
+msgid "Restore this record to the draft state."
+msgstr ""
+
+#: classes/item.py:145
+msgid "Type"
+msgstr ""
+
+#: classes/item.py:173
+msgid "Item Files"
+msgstr ""
+
+#: classes/item.py:296
+msgid "Proposed"
+msgstr ""
+
+#: classes/item.py:300
+msgid "Effective"
+msgstr ""
+
+#: classes/item.py:304
+msgid "Superceded"
+msgstr ""
+
+#: classes/item.py:308
+msgid "Expired"
+msgstr ""
+
+#: classes/item.py:327 templates/macros/logs.html:47
+msgid "Revision"
+msgstr ""
+
+#: classes/item.py:334
+msgid "Description"
+msgstr ""
+
+#: classes/mixins.py:175
+msgid "Property {x} is read-only."
+msgstr ""
+
+#: classes/mixins.py:187 routes/record.py:330
+msgid "Invalid selection for {x}"
+msgstr ""
+
+#: classes/mixins.py:197
+msgid "Invalid user"
+msgstr ""
+
+#: classes/ncmr.py:32
 msgid "Non-Conforming Material Report"
 msgstr ""
 
-#: classes/ncmr.py:70 helpers/jinja2.py:129 helpers/roles.py:14
+#: classes/ncmr.py:69 helpers/jinja2.py:129 helpers/roles.py:14
 msgid "Material Review Board"
 msgstr ""
 
-#: classes/ncmr.py:74
+#: classes/ncmr.py:73
 msgid "Disposition"
 msgstr ""
 
-#: classes/ncmr.py:97
+#: classes/ncmr.py:96
 msgid "Scrap"
 msgstr ""
 
-#: classes/ncmr.py:98
+#: classes/ncmr.py:97
 msgid "Return to Supplier"
 msgstr ""
 
-#: classes/ncmr.py:99
+#: classes/ncmr.py:98
 msgid "Rework"
 msgstr ""
 
-#: classes/ncmr.py:100
+#: classes/ncmr.py:99
 msgid "Use As-Is"
 msgstr ""
 
-#: classes/ncmr.py:101
+#: classes/ncmr.py:100
 msgid "Reclassify"
 msgstr ""
 
-#: classes/ncmr.py:109
+#: classes/ncmr.py:108
 msgid "Item Number"
 msgstr ""
 
-#: classes/ncmr.py:114
+#: classes/ncmr.py:113
 msgid "Revision Number"
 msgstr ""
 
-#: classes/ncmr.py:119
+#: classes/ncmr.py:118
 msgid "Serial or Lot Number"
 msgstr ""
 
-#: classes/ncmr.py:124
+#: classes/ncmr.py:123
 msgid "Quantity"
 msgstr ""
 
-#: classes/ncmr.py:135 classes/ncmr.py:168
+#: classes/ncmr.py:134 classes/ncmr.py:167
 msgid "Additional Comments"
 msgstr ""
 
-#: classes/ncmr.py:143
+#: classes/ncmr.py:142
 msgid "Assigned Disposition"
 msgstr ""
 
-#: classes/ncmr.py:149
+#: classes/ncmr.py:148
 msgid "Material Review Board Comments"
 msgstr ""
 
-#: classes/ncmr.py:154
+#: classes/ncmr.py:153
 msgid "Disposition Assignee"
 msgstr ""
 
-#: classes/ncmr.py:162
+#: classes/ncmr.py:161
 msgid "Executed Disposition"
 msgstr ""
 
-#: classes/ncmr.py:240
+#: classes/ncmr.py:220
+msgid "Send this record to the Material Review Board."
+msgstr ""
+
+#: classes/ncmr.py:239
 msgid "Approve of the planned disposition."
 msgstr ""
 
-#: classes/ncmr.py:250
+#: classes/ncmr.py:249
 msgid "Return to Material Review Board"
 msgstr ""
 
-#: classes/ncmr.py:251
+#: classes/ncmr.py:250
 msgid "Return to Material Review Board."
 msgstr ""
 
-#: classes/user.py:202 templates/settings/directory.html:27
+#: classes/user.py:203 templates/settings/directory.html:27
 msgid "Administrator"
 msgstr ""
 
 #: helpers/jinja2.py:127 templates/create_record.html:29
-#: templates/macros/kv.html:47
+#: templates/macros/kv.html:67
 msgid "None"
 msgstr ""
 
@@ -519,11 +756,11 @@ msgstr ""
 msgid "Quality Management"
 msgstr ""
 
-#: helpers/wrappers.py:141
+#: helpers/wrappers.py:142
 msgid "This link has expired."
 msgstr ""
 
-#: helpers/wrappers.py:170
+#: helpers/wrappers.py:171
 msgid "This page may not be embedded in other webpages."
 msgstr ""
 
@@ -535,11 +772,11 @@ msgstr ""
 msgid "Corrective and Preventive Actions"
 msgstr ""
 
-#: routes/front.py:32 templates/core.html:77
+#: routes/front.py:32 templates/core.html:85
 msgid "Deviations"
 msgstr ""
 
-#: routes/front.py:50 routes/org_settings.py:37 routes/settings.py:99
+#: routes/front.py:50 routes/org_settings.py:79 routes/settings.py:116
 msgid "That language is not currently supported."
 msgstr ""
 
@@ -559,7 +796,7 @@ msgstr ""
 msgid "Organization name is required"
 msgstr ""
 
-#: routes/login.py:40 routes/org_settings.py:363
+#: routes/login.py:40 routes/org_settings.py:405
 msgid "Invalid email address"
 msgstr ""
 
@@ -571,7 +808,7 @@ msgstr ""
 msgid "You must accept the terms of service."
 msgstr ""
 
-#: routes/login.py:50 routes/login.py:250 routes/org_settings.py:367
+#: routes/login.py:50 routes/login.py:250 routes/org_settings.py:409
 msgid "That email is already in use."
 msgstr ""
 
@@ -601,7 +838,7 @@ msgstr ""
 msgid "Invalid two-factor code"
 msgstr ""
 
-#: routes/login.py:208 routes/record.py:190
+#: routes/login.py:208 routes/record.py:154
 msgid "Incorrect password"
 msgstr ""
 
@@ -609,204 +846,192 @@ msgstr ""
 msgid "Incorrect two-factor code"
 msgstr ""
 
-#: routes/org_settings.py:19 routes/org_settings.py:292
+#: routes/org_settings.py:44 routes/record.py:31
+msgid "Unable to save changes"
+msgstr ""
+
+#: routes/org_settings.py:51 routes/org_settings.py:324
+#: routes/org_settings.py:467 routes/record.py:68
+msgid "Changes saved"
+msgstr ""
+
+#: routes/org_settings.py:61 routes/org_settings.py:334
 msgid "You didn't change anything!"
 msgstr ""
 
-#: routes/org_settings.py:29 templates/auth/register.html:23
+#: routes/org_settings.py:71 templates/auth/register.html:23
 #: templates/settings/organization.html:10
 msgid "Organization Name"
 msgstr ""
 
-#: routes/org_settings.py:47 templates/settings/profile.html:62
+#: routes/org_settings.py:89 templates/settings/profile.html:62
 msgid "Language"
 msgstr ""
 
-#: routes/org_settings.py:55 routes/settings.py:107
+#: routes/org_settings.py:97 routes/settings.py:124
 msgid "Invalid timezone"
 msgstr ""
 
-#: routes/org_settings.py:64
+#: routes/org_settings.py:106
 msgid "Timezone"
 msgstr ""
 
-#: routes/org_settings.py:83 templates/settings/organization.html:28
+#: routes/org_settings.py:125 templates/settings/organization.html:28
 msgid "Color"
 msgstr ""
 
-#: routes/org_settings.py:97
+#: routes/org_settings.py:139
 msgid "Enable two-factor authentication on your own account first."
 msgstr ""
 
-#: routes/org_settings.py:106
+#: routes/org_settings.py:148
 msgid "Require Two-Factor Authentication"
 msgstr ""
 
-#: routes/org_settings.py:112 routes/settings.py:113
+#: routes/org_settings.py:154 routes/settings.py:130
 msgid "Settings saved"
 msgstr ""
 
-#: routes/org_settings.py:123
+#: routes/org_settings.py:165
 msgid "Administrators must have an assigned license."
 msgstr ""
 
-#: routes/org_settings.py:126
+#: routes/org_settings.py:168
 msgid "There is a {n} day cooldown to unassign licenses."
 msgstr ""
 
-#: routes/org_settings.py:137
+#: routes/org_settings.py:179
 msgid "You can't assign a license to deactivated users."
 msgstr ""
 
-#: routes/org_settings.py:140
+#: routes/org_settings.py:182
 msgid "Your organization licenses have expired."
 msgstr ""
 
-#: routes/org_settings.py:143 routes/org_settings.py:154
+#: routes/org_settings.py:185 routes/org_settings.py:196
 msgid "Your organization has reached its purchased license count."
 msgstr ""
 
-#: routes/org_settings.py:178
+#: routes/org_settings.py:220
 msgid "Administrator accounts may not be deactivated."
 msgstr ""
 
-#: routes/org_settings.py:183
+#: routes/org_settings.py:225
 msgid "{name} user account deactivated"
 msgstr ""
 
-#: routes/org_settings.py:187
+#: routes/org_settings.py:229
 msgid "{name} user account activated"
 msgstr ""
 
-#: routes/org_settings.py:215
+#: routes/org_settings.py:257
 msgid "You cannot remove your own administrator status."
 msgstr ""
 
-#: routes/org_settings.py:217
+#: routes/org_settings.py:259
 msgid "Administrator status removed from {name}"
 msgstr ""
 
-#: routes/org_settings.py:222
+#: routes/org_settings.py:264
 msgid "Deactivated users cannot be administrators."
 msgstr ""
 
-#: routes/org_settings.py:225
+#: routes/org_settings.py:267
 msgid "Administrators require a full license."
 msgstr ""
 
-#: routes/org_settings.py:227
+#: routes/org_settings.py:269
 msgid "Administrator status granted to {name}"
 msgstr ""
 
-#: routes/org_settings.py:262
+#: routes/org_settings.py:304
 msgid "Deactivated users cannot be assigned roles."
 msgstr ""
 
-#: routes/org_settings.py:265
+#: routes/org_settings.py:307
 msgid "Special roles require a full license."
 msgstr ""
 
-#: routes/org_settings.py:282 routes/org_settings.py:423 routes/record.py:115
-msgid "Changes saved"
-msgstr ""
-
-#: routes/org_settings.py:295
+#: routes/org_settings.py:337
 msgid "You can't reduce your organization license count below current usage."
 msgstr ""
 
-#: routes/org_settings.py:298
+#: routes/org_settings.py:340
 msgid ""
 "There is a {n} day cooldown after increasing license count before it may "
 "be decreased."
 msgstr ""
 
-#: routes/org_settings.py:340
+#: routes/org_settings.py:382
 msgid "License Count"
 msgstr ""
 
-#: routes/org_settings.py:380 routes/org_settings.py:384
+#: routes/org_settings.py:422 routes/org_settings.py:426
 msgid "You've been invited to join {orgname} on {sitename}"
 msgstr ""
 
-#: routes/org_settings.py:392
+#: routes/org_settings.py:434
 msgid "Invitated"
 msgstr ""
 
-#: routes/org_settings.py:399
+#: routes/org_settings.py:441
 msgid "Invitation sent to {email}"
 msgstr ""
 
-#: routes/org_settings.py:417
+#: routes/org_settings.py:461
 msgid "Prefix {x} already in use"
 msgstr ""
 
-#: routes/record.py:49 routes/record.py:336
-msgid "Invalid selection for {x}"
-msgstr ""
-
-#: routes/record.py:59
-msgid "Invalid user"
-msgstr ""
-
-#: routes/record.py:79
-msgid "Unable to save changes"
-msgstr ""
-
-#: routes/record.py:94
+#: routes/record.py:44
 msgid "Cleared"
 msgstr ""
 
-#: routes/record.py:128 routes/record.py:177 routes/record.py:252
-#: routes/record.py:371 routes/record.py:425
-msgid "This record has changed status. Please reload this page."
-msgstr ""
-
-#: routes/record.py:131 routes/record.py:180
+#: routes/record.py:84 routes/record.py:144
 msgid "You are not authorized to do that."
 msgstr ""
 
-#: routes/record.py:134
+#: routes/record.py:87
 msgid "This transition requires approval signatures."
 msgstr ""
 
-#: routes/record.py:137 routes/record.py:186
+#: routes/record.py:90 routes/record.py:150
 msgid "A user must be assigned to the {x} phase first."
 msgstr ""
 
-#: routes/record.py:150 routes/record.py:228 templates/dashboard.html:27
-#: templates/macros/listing.html:5
+#: routes/record.py:96 routes/record.py:163
+msgid "Missing value for required field {x}"
+msgstr ""
+
+#: routes/record.py:110 routes/record.py:216 templates/dashboard.html:27
+#: templates/macros/listing.html:10
 msgid "Status"
 msgstr ""
 
-#: routes/record.py:183
+#: routes/record.py:147
 msgid "You already approved this."
 msgstr ""
 
-#: routes/record.py:193
+#: routes/record.py:157
 msgid "This transition does not require approval signatures."
 msgstr ""
 
-#: routes/record.py:203
+#: routes/record.py:173
 msgid "Approved"
 msgstr ""
 
-#: routes/record.py:257
+#: routes/record.py:248
 msgid "You don't have any approvals to clear."
 msgstr ""
 
-#: routes/record.py:269
+#: routes/record.py:260
 msgid "Unapproved"
 msgstr ""
 
-#: routes/record.py:355
+#: routes/record.py:351
 msgid "State"
 msgstr ""
 
-#: routes/record.py:356
-msgid "Open"
-msgstr ""
-
-#: routes/record.py:403 routes/record.py:440
+#: routes/record.py:403 routes/record.py:441
 msgid "Files"
 msgstr ""
 
@@ -814,8 +1039,24 @@ msgstr ""
 msgid "Upload to {stage}: {names}"
 msgstr ""
 
-#: routes/record.py:441
+#: routes/record.py:442
 msgid "Delete from {stage}: {name}"
+msgstr ""
+
+#: routes/static.py:122
+msgid "{name} Rev. {revision} | {status} {status_date} | Accessed {now}"
+msgstr ""
+
+#: routes/static.py:132
+msgid "{name} Rev. {revision} | {status} | Accessed {now}"
+msgstr ""
+
+#: routes/static.py:140
+msgid "{name} | Proposed revision | {changeorder}"
+msgstr ""
+
+#: routes/static.py:147
+msgid "{name} | Draft {t}"
 msgstr ""
 
 #: templates/core.html:56 templates/dashboard.html:6 templates/dashboard.html:7
@@ -827,38 +1068,60 @@ msgid "NCMRs"
 msgstr ""
 
 #: templates/core.html:67
+msgid "Items"
+msgstr ""
+
+#: templates/core.html:73
 msgid "Change Orders"
 msgstr ""
 
-#: templates/core.html:71
+#: templates/core.html:79
 msgid "CAPAs"
 msgstr ""
 
-#: templates/core.html:83
+#: templates/core.html:91
 msgid "Training"
 msgstr ""
 
-#: templates/core.html:87
+#: templates/core.html:95
 msgid "Test Protocol"
 msgstr ""
 
-#: templates/core.html:91
+#: templates/core.html:99
 msgid "Test Report"
 msgstr ""
 
-#: templates/core.html:95
+#: templates/core.html:103
 msgid "Requirements"
 msgstr ""
 
-#: templates/core.html:137
+#: templates/core.html:155
 msgid "Free Trial"
 msgstr ""
 
-#: templates/auth/otp.html:8 templates/core.html:140
+#: templates/auth/otp.html:8 templates/core.html:158
 msgid "Sign In"
 msgstr ""
 
-#: templates/core.html:168
+#: templates/core.html:171
+msgid "Your organization's license has expired."
+msgstr ""
+
+#: templates/core.html:171
+msgid "Renew your license to restore full functionality for your users."
+msgstr ""
+
+#: templates/core.html:171
+msgid "Contact your organization's {x} admin for renewal."
+msgstr ""
+
+#: templates/core.html:176
+msgid ""
+"Your organization's license expires in {x} days. Renew to ensure "
+"continuous, uninterrupted access for your users."
+msgstr ""
+
+#: templates/core.html:193
 msgid "Tools"
 msgstr ""
 
@@ -866,7 +1129,8 @@ msgstr ""
 msgid "Create {x}"
 msgstr ""
 
-#: templates/create_record.html:21 templates/macros/kv.html:39
+#: templates/create_record.html:21 templates/macros/kv.html:59
+#: templates/settings/approvers.html:21
 msgid "Select One"
 msgstr ""
 
@@ -882,7 +1146,7 @@ msgstr ""
 msgid "ID"
 msgstr ""
 
-#: templates/dashboard.html:28 templates/macros/listing.html:7
+#: templates/dashboard.html:28 templates/macros/listing.html:12
 msgid "Due Date"
 msgstr ""
 
@@ -910,29 +1174,29 @@ msgstr ""
 msgid "Try for free"
 msgstr ""
 
-#: templates/record.html:20 templates/settings/core.html:30
+#: templates/record.html:20 templates/settings/core.html:35
 msgid "History"
 msgstr ""
 
-#: templates/record.html:63
+#: templates/record.html:74
 msgid "Remove Signature"
 msgstr ""
 
-#: templates/record.html:89
+#: templates/record.html:100
 msgid ""
 "When all required signatures have been collected, {x} will be "
 "automatically advanced to the {y} phase"
 msgstr ""
 
-#: templates/record.html:93
+#: templates/record.html:104
 msgid "Sign and Approve"
 msgstr ""
 
-#: templates/record.html:106
+#: templates/record.html:117
 msgid "Confirm Action on {x}"
 msgstr ""
 
-#: templates/record.html:121
+#: templates/record.html:132
 msgid "Confirm"
 msgstr ""
 
@@ -958,11 +1222,6 @@ msgstr ""
 
 #: templates/auth/register.html:10
 msgid "Create a new organization on Qually, and get a 5-seat, 30-day free trial"
-msgstr ""
-
-#: templates/auth/register.html:17 templates/settings/directory.html:9
-#: templates/settings/directory.html:22
-msgid "Name"
 msgstr ""
 
 #: templates/auth/register.html:20
@@ -1009,15 +1268,11 @@ msgstr ""
 msgid "Something went wrong. We're working on fixing it."
 msgstr ""
 
-#: templates/macros/kv.html:87
+#: templates/macros/kv.html:133
 msgid "Attached Files"
 msgstr ""
 
-#: templates/macros/kv.html:120
-msgid "Approvals"
-msgstr ""
-
-#: templates/macros/listing.html:6
+#: templates/macros/listing.html:11
 msgid "Assigned To"
 msgstr ""
 
@@ -1043,6 +1298,22 @@ msgstr ""
 msgid "Value"
 msgstr ""
 
+#: templates/settings/approvers.html:5
+msgid "Approver Groups"
+msgstr ""
+
+#: templates/settings/approvers.html:12
+msgid "Select Approver Group"
+msgstr ""
+
+#: templates/settings/approvers.html:36
+msgid "Create new Approver Group"
+msgstr ""
+
+#: templates/settings/approvers.html:46 templates/settings/profile.html:47
+msgid "Save"
+msgstr ""
+
 #: templates/settings/audit.html:12
 msgid "Target"
 msgstr ""
@@ -1064,10 +1335,14 @@ msgid "Directory"
 msgstr ""
 
 #: templates/settings/core.html:24
+msgid "Approvers"
+msgstr ""
+
+#: templates/settings/core.html:29
 msgid "Organization"
 msgstr ""
 
-#: templates/settings/core.html:27
+#: templates/settings/core.html:32
 msgid "Plan"
 msgstr ""
 
@@ -1196,10 +1471,6 @@ msgstr ""
 
 #: templates/settings/profile.html:38
 msgid "Title"
-msgstr ""
-
-#: templates/settings/profile.html:47
-msgid "Save"
 msgstr ""
 
 #: templates/settings/profile.html:83

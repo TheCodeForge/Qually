@@ -172,7 +172,7 @@ class process_mixin():
                 if entry['value'] in request.form and (source==self or source.__repr__()==request.form.get("data_obj")):
 
                     if entry.get('readonly'):
-                        return toast_error(_("Property {x} is read-only").format(x=entry['name']), 403)
+                        return toast_error(_("Property {x} is read-only.").format(x=entry['name']), 403)
 
 
                     if entry['kind']=='multi':

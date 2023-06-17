@@ -351,7 +351,7 @@ class CAPA(Base, core_mixin, process_mixin):
                     "id":"approve",
                     "to": 100,
                     "name": _("Approve and Close"),
-                    "description":_("Approve and close"),
+                    "description":_("Approve and Close"),
                     "users": g.user.organization.quality_mgmt_users,
                     "color": "success",
                     "approval":True
