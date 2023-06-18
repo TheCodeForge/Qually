@@ -130,36 +130,37 @@ def get_s3_file_path(oid, path, fid=None):
     writer=pypdf.PdfWriter()
 
     #Determine the stamp text
-    if file_obj.owning_object.revision_number and file_obj.owning_object.status_utc:
-        stamp_text = _("{name} Rev. {revision} | {status} {status_date} | Accessed {now}").format(
-            name=file_obj.owning_object.item.name,
-            revision=file_obj.owning_object.revision_number,
-            status=file_obj.owning_object.status,
-            status_date=format_datetime(datetime.datetime.fromtimestamp(file_obj.owning_object.status_utc), "dd MMMM yyyy"),
-            changeorder=file_obj.owning_object.change.name,
-            now=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
-            )
+    with force_locale(g.user.organization.lang):
+        if file_obj.owning_object.revision_number and file_obj.owning_object.status_utc:
+            stamp_text = _("{name} Rev. {revision} | {status} {status_date} | Accessed {now}").format(
+                name=file_obj.owning_object.item.name,
+                revision=file_obj.owning_object.revision_number,
+                status=file_obj.owning_object.status,
+                status_date=format_datetime(datetime.datetime.fromtimestamp(file_obj.owning_object.status_utc), "dd MMMM yyyy"),
+                changeorder=file_obj.owning_object.change.name,
+                now=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
+                )
 
-    elif file_obj.owning_object.revision_number:
-        stamp_text = _("{name} Rev. {revision} | {status} | Accessed {now}").format(
-            name=file_obj.owning_object.item.name,
-            revision=file_obj.owning_object.revision_number,
-            status=file_obj.owning_object.status,
-            now=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
-            )
+        elif file_obj.owning_object.revision_number:
+            stamp_text = _("{name} Rev. {revision} | {status} | Accessed {now}").format(
+                name=file_obj.owning_object.item.name,
+                revision=file_obj.owning_object.revision_number,
+                status=file_obj.owning_object.status,
+                now=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
+                )
 
-    elif file_obj.owning_object.change:
-        stamp_text = _("{name} | Proposed revision | {changeorder}").format(
-            name=file_obj.owning_object.item.name,
-            changeorder=file_obj.owning_object.change.name,
-            now=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
-            )
+        elif file_obj.owning_object.change:
+            stamp_text = _("{name} | Proposed revision | {changeorder}").format(
+                name=file_obj.owning_object.item.name,
+                changeorder=file_obj.owning_object.change.name,
+                now=format_datetime(datetime.datetime.fromtimestamp(g.time), "dd MMMM yyyy")
+                )
 
-    else:
-        stamp_text = _("{name} | Draft {t}").format(
-            name=file_obj.owning_object.item.name,
-            t=file_obj.owning_object.created_date
-            )
+        else:
+            stamp_text = _("{name} | Draft {t}").format(
+                name=file_obj.owning_object.item.name,
+                t=file_obj.owning_object.created_date
+                )
 
     #create the stamp canvas
     packet=io.BytesIO()
