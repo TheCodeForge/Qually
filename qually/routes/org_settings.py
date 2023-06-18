@@ -464,7 +464,7 @@ def post_settings_org_prefix():
     if new_prefix.lower() in reserved:
 
         if kind in ALL_PROCESSES:
-            if new_prefix.lower() != ALL_PROCESSES.[kind]._name.lower():
+            if new_prefix.lower() != ALL_PROCESSES[kind]._name.lower():
                 return toast_error(_("Prefix {x} already in use").format(x=new_prefix))
 
         else:
