@@ -205,6 +205,11 @@ class Organization(Base, core_mixin, process_mixin):
                     'kind':"text"
                 },
                 {
+                    'name':_("Part"),
+                    'value':'part_prefix',
+                    'kind':"text"
+                },
+                {
                     'name':_("Standard Operating Procedure"),
                     'value':'sop_prefix',
                     'kind':"text"
