@@ -166,7 +166,7 @@ class Organization(Base, core_mixin, process_mixin):
 
         return {
             0:{
-                'name': Prefixes,
+                'name': _("Prefixes"),
                 'users': [g.user] if g.user.is_org_admin else [],
                 'hide_title':True
             }
