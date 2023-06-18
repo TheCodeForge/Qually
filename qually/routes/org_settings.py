@@ -454,7 +454,7 @@ def post_settings_org_prefix():
 
     for x in g.user.organization.__dict__:
 
-        if not x.endswith("_prefix") or x==name::
+        if not x.endswith("_prefix") or x==name:
             continue
 
         reserved.append(getattr(g.user.organization, x).lower())
