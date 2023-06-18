@@ -1,7 +1,7 @@
 from qually.helpers.class_imports import *
 from .user import User
 
-class Organization(Base, core_mixin):
+class Organization(Base, core_mixin, process_mixin):
 
     __tablename__="organizations"
 
@@ -160,6 +160,55 @@ class Organization(Base, core_mixin):
     @lazy
     def license_expire_date(self):
         return time.strftime("%d %B %Y", time.gmtime(self.license_expire_utc))
+
+    @property
+    def _lifecycle(self):
+
+        return {
+            0:{
+                'name': Prefixes,
+                'users': [g.user] if g.user.is_org_admin else [],
+                'hide_title':True
+            }
+        }
+
+    @classmethod
+    def layout(self):
+        return {
+            0:[
+                {
+                    'name':_("Corrective and Preventive Action"),
+                    'value':'capa_prefix',
+                    'kind':"text"
+                },
+                {
+                    'name':_("Change Order"),
+                    'value':'chng_prefix',
+                    'kind':"text"
+                },
+                {
+                    'name':_("Deviation"),
+                    'value':'dvtn_prefix',
+                    'kind':"text"
+                },
+                {
+                    'name':_("Non-Conforming Material Report"),
+                    'value':'ncmr_prefix',
+                    'kind':"text"
+                },
+                {
+                    'name':_("Standard Operating Procedure"),
+                    'value':'sop_prefix',
+                    'kind':"text"
+                },
+                {
+                    'name':_("Work Instruction"),
+                    'value':'wi_prefix',
+                    'kind':"text"
+                }
+            ]
+        }
+    
     
 Organization._cols()
     

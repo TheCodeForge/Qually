@@ -139,7 +139,7 @@
       </div>
     </div>
     <div class="body ms-3 w-lg-100 d-flex vis-toggle-prefix-{{ loop.index0 }} d-none">
-      <form id="form-update-prefix-{{ loop.index0 }}" action="/settings/organization/prefix" method="post" class="toasted w-100 me-4">
+      <form id="form-update-prefix-{{ loop.index0 }}" action="/settings/organization" method="post" class="toasted w-100 me-4">
         <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
         <input type="hidden" name="kind" value="{{ kind }}">
         <input id="input-update-prefix-{{ loop.index0 }}" class="form-control" type="text" name="prefix" value="{{ g.user.organization | attr(kind+'_prefix') }}">
