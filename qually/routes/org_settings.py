@@ -459,7 +459,7 @@ def post_settings_org_prefix():
         if getattr(g.user.organization, f'{x.lower()}_prefix', None):
             reserved.append(getattr(g.user.organization, f'{x.lower()}_prefix').lower())
 
-    new_prefix=request.form.get('prefix')
+    new_prefix=request.form.get(name)
 
     if new_prefix.lower() in reserved and new_prefix.lower() != ALL_PROCESSES[request.form['kind']]._name.lower():
         return toast_error(_("Prefix {x} already in use").format(x=new_prefix))
