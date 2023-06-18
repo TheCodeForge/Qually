@@ -126,7 +126,7 @@
   <div class="d-lg-flex mt-3 on-hover">
 
     <div class="title w-lg-25 toggle-target-class" role="button" data-toggle-target="vis-toggle-prefix-{{ loop.index0 }}">
-      <label role="button" for="input-update-prefix-{{ loop.index0 }}">{{ (kind|processes)._name_readable() }}</label>
+      <label role="button" for="input-update-prefix-{{ loop.index0 }}">{{ (kind|processes).name_readable() }}</label>
     </div>
     <div role="button" class="body ms-3 w-lg-100 d-flex vis-toggle-prefix-{{ loop.index0 }} toggle-target-class" data-toggle-target="vis-toggle-prefix-{{ loop.index0 }}">
       <div>
