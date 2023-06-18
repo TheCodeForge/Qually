@@ -374,7 +374,7 @@ class ItemView(Base, core_mixin):
     __tablename__="item_view"
 
     id = Column(Integer, primary_key=True)
-    record_id=Column(Integer, ForeignKey("item.id"))
+    item_id=Column(Integer, ForeignKey("item.id"))
     user_id=Column(Integer, ForeignKey("users.id"))
     created_utc=Column(BigInteger)
 
