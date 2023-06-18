@@ -10,7 +10,7 @@ import sass
 from qually.helpers.route_imports import *
 
 try:
-    from flask_babel import _, format_datetime
+    from flask_babel import _, format_datetime, force_locale
 except:
     pass
 
