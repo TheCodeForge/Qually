@@ -469,4 +469,4 @@ def post_settings_org_prefix():
     g.db.add(g.user.organization)
     g.db.commit()
 
-    return toast(_("Changes saved"))
+    return toast(_("Changes saved"), data={"new":new_prefix})
