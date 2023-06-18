@@ -285,7 +285,14 @@ def get_record_records(kind):
     if kind not in ALL_PROCESSES:
         abort(404)
 
-    listing=getattr(g.user.organization, f"{kind}s").filter(ALL_PROCESSES[kind]._status<100).all()
+
+    if hasattr(ALL_PROCESSES[kind], "_list_query"):
+        filters, orders, limit = ALL_PROCESSES[kind]._list_query()
+
+        listing=getattr(g.user.organization, f"{kind}s").filter_by(*filters).order_by(*orders).limit(limit).all()
+
+    else:
+        listing=getattr(g.user.organization, f"{kind}s").filter(ALL_PROCESSES[kind]._status<100).all()
 
     return render_template(
         f"records.html",

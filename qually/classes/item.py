@@ -43,6 +43,13 @@ class Item(Base, core_mixin, revisioned_process_mixin):
             )
 
     @classmethod
+    def _list_query(cls):
+        filters=(
+            Item.id.in_(g.db.query(ItemView.item_id).filter_by(user_id=g.user.id).order_by(ItemView.created_utc.desc()).subquery())
+            )
+
+
+    @classmethod
     def _next_number(cls):
 
         return g.user.organization.next_id(cls._kinds()[int(request.form.get('_kind_id'))]['orgname'])
@@ -360,6 +367,18 @@ class ItemLog(Base, core_mixin):
     key=Column(String)
     value=Column(String)
 
+    user=relationship("User", lazy="joined", innerjoin=True)
+
+class ItemView(Base, core_mixin):
+
+    __tablename__="item_view"
+
+    id = Column(Integer, primary_key=True)
+    record_id=Column(Integer, ForeignKey("item.id"))
+    user_id=Column(Integer, ForeignKey("users.id"))
+    created_utc=Column(BigInteger)
+
+    item=relationship("Item", lazy="joined", innerjoin=True)
     user=relationship("User", lazy="joined", innerjoin=True)
 
 
