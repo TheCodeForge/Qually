@@ -181,7 +181,7 @@ class Organization(Base, core_mixin, process_mixin):
         }
 
     @classmethod
-    def layout(self):
+    def _layout(self):
         return {
             0:[
                 {
