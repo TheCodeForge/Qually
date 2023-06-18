@@ -447,23 +447,28 @@ def post_settings_org_prefix():
     name=[x for x in request.form if x.endswith("_prefix")][0]
 
     kind=name.split("_")[0]
-    print(kind, ALL_PROCESSES.get(kind))
-
-    if kind not in ALL_PROCESSES:
-        abort(404)
 
     reserved=list(
         [ALL_PROCESSES[x]._name.lower() for x in ALL_PROCESSES]
     )
 
-    for x in ALL_PROCESSES:
-        if getattr(g.user.organization, f'{x.lower()}_prefix', None):
-            reserved.append(getattr(g.user.organization, f'{x.lower()}_prefix').lower())
+    for x in g.user.organization.__dict__ if x.endswith("_prefix") and x!=name:
+
+        reserved.append(getattr(g.user.organization, x).lower())
 
     new_prefix=request.form.get(name)
 
-    if new_prefix.lower() in reserved and new_prefix.lower() != ALL_PROCESSES[request.form['kind']]._name.lower():
-        return toast_error(_("Prefix {x} already in use").format(x=new_prefix))
+    if new_prefix.lower() in reserved:
+
+        if kind in ALL_PROCESSES:
+            if new_prefix.lower() != ALL_PROCESSES.[kind]._name.lower():
+                return toast_error(_("Prefix {x} already in use").format(x=new_prefix))
+
+        else:
+            return toast_error(_("Prefix {x} already in use").format(x=new_prefix))
+
+
+    if new_prefix.lower() in reserved and new_prefix.lower() != ALL_PROCESSES.get(request.form['kind'])._name.lower():
 
     setattr(g.user.organization, f"{ALL_PROCESSES[kind]._name.lower()}_prefix", new_prefix)
     g.db.add(g.user.organization)
