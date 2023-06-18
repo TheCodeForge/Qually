@@ -1,6 +1,11 @@
 from qually.helpers.class_imports import *
 from .user import User
-
+try:
+    from flask_babel import gettext as _
+except ModuleNotFoundError:
+    def _(x):
+        return x
+        
 class Organization(Base, core_mixin, process_mixin):
 
     __tablename__="organizations"
