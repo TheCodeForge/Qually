@@ -452,7 +452,10 @@ def post_settings_org_prefix():
         [ALL_PROCESSES[x]._name.lower() for x in ALL_PROCESSES]
     )
 
-    for x in g.user.organization.__dict__ if x.endswith("_prefix") and x!=name:
+    for x in g.user.organization.__dict__:
+
+        if not x.endswith("_prefix") or x==name::
+            continue
 
         reserved.append(getattr(g.user.organization, x).lower())
 
