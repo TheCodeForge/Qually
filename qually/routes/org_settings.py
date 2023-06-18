@@ -447,6 +447,7 @@ def post_settings_org_prefix():
     name=[x for x in request.form if x.endswith("_prefix")][0]
 
     kind=name.split("_")[0]
+    print(kind)
 
     if kind not in ALL_PROCESSES:
         abort(404)
