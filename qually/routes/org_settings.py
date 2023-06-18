@@ -444,7 +444,10 @@ def post_settings_directory_invite():
 @app.post('/settings/organization/prefix')
 def post_settings_org_prefix():
 
-    name=[x for x in request.form if x.endswith("_prefix")][0]
+    try:
+        name=[x for x in request.form if x.endswith("_prefix")][0]
+    except IndexError:
+        abort(400)
 
     kind=name.split("_")[0]
 
