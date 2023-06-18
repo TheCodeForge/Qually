@@ -5,7 +5,7 @@ try:
 except ModuleNotFoundError:
     def _(x):
         return x
-        
+
 class Organization(Base, core_mixin, process_mixin):
 
     __tablename__="organizations"
@@ -74,6 +74,8 @@ class Organization(Base, core_mixin, process_mixin):
     sops =relationship("Item",      lazy="dynamic", viewonly=True, primaryjoin="Item.organization_id==Organization.id and Item._kind_id==2")
     wis  =relationship("Item",      lazy="dynamic", viewonly=True, primaryjoin="Item.organization_id==Organization.id and Item._kind_id==3")
     files=relationship("File",      lazy="dynamic", viewonly=True)
+
+    _status=0
 
     @classmethod
     def _cols(cls):
@@ -173,7 +175,8 @@ class Organization(Base, core_mixin, process_mixin):
             0:{
                 'name': _("Prefixes"),
                 'users': [g.user] if g.user.is_org_admin else [],
-                'hide_title':True
+                'hide_title':True,
+                'early':'edit'
             }
         }
 
