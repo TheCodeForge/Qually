@@ -291,13 +291,16 @@ def get_record_records(kind):
 
     if hasattr(ALL_PROCESSES[kind], "_view_class"):
 
-        listing=getattr(g.user.organization, f"{kind}s").filter(
-            ALL_PROCESSES[kind].id.in_(
-                g.db.query(
-                    ALL_PROCESSES[kind]._view_class.record_id
-                    ).filter_by(user_id=g.user.id).order_by(ALL_PROCESSES[kind]._view_class.created_utc.desc()).limit(20).subquery()
-                )
-            ).all() or []
+        views=g.db.query(
+                    ALL_PROCESSES[kind]._view_class
+                    ).filter_by(user_id=g.user.id).subquery()
+
+        listing=getattr(g.user.organization, f"{kind}s").join(
+            views,
+            ALL_PROCESSES[kind].id=views.c.record_id
+            innerjoin=True
+            ).order_by(views.c.created_utc.desc()).limit(20).all()
+
 
     else:
         listing=getattr(g.user.organization, f"{kind}s").filter(ALL_PROCESSES[kind]._status<100).all()
