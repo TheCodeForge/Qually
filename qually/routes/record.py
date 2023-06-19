@@ -17,6 +17,9 @@ def get_record_number(kind, number, rev=None):
     elif not rev and request.path != record.permalink:
         return redirect(record.permalink)
 
+    #on view hook
+    record._on_view()
+
     return render_template("record.html", record=record)
 
 @app.post("/<kind>-<number>")
