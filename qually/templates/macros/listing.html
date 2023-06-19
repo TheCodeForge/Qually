@@ -3,9 +3,11 @@
     <tr>
       <th>{{_("ID")}}</th>
 
+      {% if obj %}
       {% for entry in obj._display_columns() %}
       <th>{{ entry['name'] }}</th>
       {% endfor %}
+      {% endif %}
 
       <th>{{_("Status")}}</th>
       <th>{{_("Assigned To")}}</th>
@@ -16,9 +18,11 @@
   <tr>
     <td><a href="{{ thing.permalink }}">{{ thing.name }}</a></td>
 
+    {% if obj %}
     {% for entry in thing._display_columns() %}
     <td>{{ thing | attr(entry['value']) }}</td>
     {% endfor %}
+    {% endif %}
 
     <td>{{ thing.status }}</td>
     <td>{% for u in thing._lifecycle[thing._status]['users']%}{% if loop.index0 %}, {% endif %}<a href="{{ u.permalink }}">{{ u.name }}</a>{% endfor %}</td>
