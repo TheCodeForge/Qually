@@ -47,9 +47,11 @@ class Item(Base, core_mixin, revisioned_process_mixin):
         
         query = query.filter(
             Item.id.in_(
-                g.db.query(ItemView.item_id).filter_by(user_id=g.user.id).order_by(ItemView.created_utc.desc()).subquery()
+                g.db.query(ItemView.item_id).filter_by(user_id=g.user.id).order_by(ItemView.created_utc.desc()).limit(20).subquery()
                 )
             )
+
+        return query
 
 
     @classmethod
@@ -400,7 +402,13 @@ class ItemView(Base, core_mixin):
 
     item=relationship("Item", lazy="joined", innerjoin=True)
     user=relationship("User", lazy="joined", innerjoin=True)
-
+    __table_args__=(
+        UniqueConstraint(
+            'item_id', 
+            'user_id',
+            name=f'item_view_user_unique'
+            ),
+        )   
 
 Item._revision_class=ItemRevision
 Item._view_class=ItemView
