@@ -297,7 +297,7 @@ def get_record_records(kind):
 
         listing=getattr(g.user.organization, f"{kind}s").join(
             views,
-            ALL_PROCESSES[kind].id=views.c.record_id
+            ALL_PROCESSES[kind].id==views.c.record_id
             innerjoin=True
             ).order_by(views.c.created_utc.desc()).limit(20).all()
 
