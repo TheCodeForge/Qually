@@ -8,18 +8,18 @@ class File(Base, core_mixin):
 
     id = Column(Integer, primary_key=True)
     created_utc=Column(Integer)
-    organization_id = Column(Integer, ForeignKey("organizations.id"))
+    organization_id = Column(Integer, ForeignKey("organizations.id"), index=True)
     creator_id=Column(Integer, ForeignKey("users.id"))
     sha512=Column(String(128))
     status_id=Column(Integer)
     file_name=Column(String)
 
     #connection IDs
-    ncmr_id = Column(Integer, ForeignKey("ncmr.id"))
-    capa_id = Column(Integer, ForeignKey("capa.id"))
-    dvtn_id = Column(Integer, ForeignKey("dvtn.id"))
-    rvsn_id = Column(Integer, ForeignKey("itemrevision.id"))
-    chng_id = Column(Integer, ForeignKey("chng.id"))
+    ncmr_id = Column(Integer, ForeignKey("ncmr.id"),            index=True)
+    capa_id = Column(Integer, ForeignKey("capa.id"),            index=True)
+    dvtn_id = Column(Integer, ForeignKey("dvtn.id"),            index=True)
+    rvsn_id = Column(Integer, ForeignKey("itemrevision.id"),    index=True)
+    chng_id = Column(Integer, ForeignKey("chng.id"),            index=True)
 
     ncmr=           relationship("NCMR",            lazy="joined", backref="files")
     capa=           relationship("CAPA",            lazy="joined", backref="files")

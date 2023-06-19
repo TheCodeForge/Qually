@@ -23,7 +23,7 @@ class User(Base, core_mixin):
     is_active = Column(Boolean, default=True)
     has_license = Column(Boolean, default=False)
     license_assigned_utc=Column(Integer, default=0)
-    organization_id = Column(Integer, ForeignKey("organizations.id"))
+    organization_id = Column(Integer, ForeignKey("organizations.id"), index=True)
     is_org_admin = Column(Boolean, default=False)
 
     #security

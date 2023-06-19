@@ -280,7 +280,7 @@ class ItemRevision(Base, core_mixin, process_mixin):
 
     id=Column(Integer, primary_key=True)
     created_utc=Column(Integer)
-    item_id=Column(Integer, ForeignKey(Item.id))
+    item_id=Column(Integer, ForeignKey(Item.id), index=True)
     object_name=Column(String, default="")
     object_description=Column(String, default="")
     object_description_raw=Column(String, default="")
@@ -370,8 +370,8 @@ class ItemRelationship(Base, core_mixin):
     __tablename__="itemrelationship"
 
     id=Column(Integer, primary_key=True)
-    parent_id=Column(Integer, ForeignKey(Item.id))
-    child_id=Column(Integer, ForeignKey(Item.id))
+    parent_id=Column(Integer, ForeignKey(Item.id), index=True)
+    child_id=Column(Integer, ForeignKey(Item.id), index=True)
     quantity=Column(Integer)
 
 class ItemLog(Base, core_mixin):
@@ -379,7 +379,7 @@ class ItemLog(Base, core_mixin):
     __tablename__="item_audit"
 
     id = Column(Integer, primary_key=True)
-    record_id=Column(Integer, ForeignKey("item.id"))
+    record_id=Column(Integer, ForeignKey("item.id"), index=True)
     user_id=Column(Integer, ForeignKey("users.id"))
     created_utc=Column(Integer)
     created_ip=Column(String(64))
@@ -394,8 +394,8 @@ class ItemView(Base, core_mixin):
     __tablename__="item_view"
 
     id = Column(Integer, primary_key=True)
-    item_id=Column(Integer, ForeignKey("item.id"))
-    user_id=Column(Integer, ForeignKey("users.id"))
+    item_id=Column(Integer, ForeignKey("item.id"), index=True)
+    user_id=Column(Integer, ForeignKey("users.id"), index=True)
     created_utc=Column(BigInteger)
 
     item=relationship("Item", lazy="joined", innerjoin=True)

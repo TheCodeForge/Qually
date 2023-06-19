@@ -12,7 +12,7 @@ class ChangeApproverGroup(Base, core_mixin, process_mixin):
 
     id=Column(Integer, primary_key=True)
 
-    organization_id=Column(Integer, ForeignKey("organizations.id"))
+    organization_id=Column(Integer, ForeignKey("organizations.id"), index=True)
     name=Column(String(128), nullable=False)
     requires_all=Column(Boolean, default=True, nullable=False)
 
@@ -76,8 +76,8 @@ class ChangeApproverGroupRelationship(Base):
 
     id=Column(Integer, primary_key=True)
 
-    record_id=Column(Integer, ForeignKey("chng_approver_group.id"), nullable=False)
-    user_id=Column(Integer, ForeignKey("users.id"), nullable=False)
+    record_id = Column(Integer, ForeignKey("chng_approver_group.id"),   nullable=False, index=True)
+    user_id =   Column(Integer, ForeignKey("users.id"),                 nullable=False, index=True)
 
     user=relationship("User")
 
