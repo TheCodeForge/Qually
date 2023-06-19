@@ -288,8 +288,6 @@ def get_record_records(kind):
 
     if hasattr(ALL_PROCESSES[kind], "_list_query"):
 
-        print(getattr(g.user.organization, f"{kind}s"))
-
         listing=ALL_PROCESSES[kind]._list_query(getattr(g.user.organization, f"{kind}s"))
 
     else:
