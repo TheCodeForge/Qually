@@ -1,9 +1,5 @@
 from jinja2.exceptions import TemplateNotFound
 import pyotp
-import pypdf
-import reportlab
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import letter
 import sass
 
 
@@ -11,6 +7,10 @@ from qually.helpers.route_imports import *
 
 try:
     from flask_babel import _, format_datetime, force_locale
+    import pypdf
+    import reportlab
+    from reportlab.pdfgen import canvas
+    from reportlab.lib.pagesizes import letter
 except:
     pass
 
