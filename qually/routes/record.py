@@ -289,9 +289,14 @@ def get_record_records(kind):
         abort(404)
 
 
-    if hasattr(ALL_PROCESSES[kind], "_list_query"):
+    if hasattr(ALL_PROCESSES[kind], "_view_class"):
 
-        listing=ALL_PROCESSES[kind]._list_query(getattr(g.user.organization, f"{kind}s")) or []
+        listing=getattr(g.user.organization, f"{kind}s").filter(
+            ALL_PROCESSES[kind].id.in_(
+                g.db.query(
+                    ALL_PROCESSES[kind]._view_class.record_id
+                    ).filter_by(user_id=g.user.id).order_by(ALL_PROCESSES[kind]._view_class.created_utc.desc()).limit(20).subquery()
+                )
 
     else:
         listing=getattr(g.user.organization, f"{kind}s").filter(ALL_PROCESSES[kind]._status<100).all()

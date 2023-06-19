@@ -43,18 +43,6 @@ class Item(Base, core_mixin, revisioned_process_mixin):
             )
 
     @classmethod
-    def _list_query(cls, query):
-        
-        query = query.filter(
-            Item.id.in_(
-                g.db.query(ItemView.item_id).filter_by(user_id=g.user.id).order_by(ItemView.created_utc.desc()).limit(20).subquery()
-                )
-            )
-
-        return query
-
-
-    @classmethod
     def _next_number(cls):
 
         return g.user.organization.next_id(cls._kinds()[int(request.form.get('_kind_id'))]['orgname'])
