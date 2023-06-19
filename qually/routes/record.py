@@ -287,9 +287,8 @@ def get_record_records(kind):
 
 
     if hasattr(ALL_PROCESSES[kind], "_list_query"):
-        filters, orders, limit = ALL_PROCESSES[kind]._list_query()
 
-        listing=getattr(g.user.organization, f"{kind}s").filter_by(*filters).order_by(*orders).limit(limit).all()
+        listing=ALL_PROCESSES[kind]._list_query(getattr(g.user.organization, f"{kind}s"))
 
     else:
         listing=getattr(g.user.organization, f"{kind}s").filter(ALL_PROCESSES[kind]._status<100).all()
