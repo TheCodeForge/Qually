@@ -255,25 +255,7 @@ class Item(Base, core_mixin, revisioned_process_mixin):
 
         g.db.commit()
 
-        return new_ir
-
-    def _on_view(self):
-
-        existing=g.db.query(self._view_class).filter_by(item_id=self.id, user_id=g.user.id).first()
-
-        if existing:
-            existing.created_utc=g.time
-            g.db.add(existing)
-            g.db.commit()
-        else:
-            new=self._view_class(
-                item_id=self.id,
-                user_id=g.user.id,
-                created_utc=g.time)
-            g.db.add(new)
-            g.db.commit()
-
-    
+        return new_ir    
 
 
 class ItemRevision(Base, core_mixin, process_mixin):
@@ -396,15 +378,15 @@ class ItemView(Base, core_mixin):
     __tablename__="item_view"
 
     id = Column(Integer, primary_key=True)
-    item_id=Column(Integer, ForeignKey("item.id"), index=True)
+    record_id=Column(Integer, ForeignKey("item.id"), index=True)
     user_id=Column(Integer, ForeignKey("users.id"), index=True)
     created_utc=Column(BigInteger)
 
-    item=relationship("Item", lazy="joined", innerjoin=True)
+    record=relationship("Item", lazy="joined", innerjoin=True)
     user=relationship("User", lazy="joined", innerjoin=True)
     __table_args__=(
         UniqueConstraint(
-            'item_id', 
+            'record_id', 
             'user_id',
             name=f'item_view_user_unique'
             ),

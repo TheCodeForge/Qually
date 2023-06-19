@@ -320,3 +320,24 @@ class NCMRLog(Base, core_mixin):
     value=Column(String)
 
     user=relationship("User", lazy="joined", innerjoin=True)
+
+class NCMRView(Base, core_mixin):
+
+    __tablename__="ncmr_view"
+
+    id = Column(Integer, primary_key=True)
+    record_id=Column(Integer, ForeignKey("ncmr.id"), index=True)
+    user_id=Column(Integer, ForeignKey("users.id"), index=True)
+    created_utc=Column(BigInteger)
+
+    record=relationship("NCMR", lazy="joined", innerjoin=True)
+    user=relationship("User", lazy="joined", innerjoin=True)
+    __table_args__=(
+        UniqueConstraint(
+            'record_id', 
+            'user_id',
+            name=f'ncmr_view_user_unique'
+            ),
+        )   
+
+NCMR._view_class=NCMRView

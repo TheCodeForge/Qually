@@ -320,7 +320,20 @@ class process_mixin():
         pass
 
     def _on_view(self):
-        pass
+
+        existing=g.db.query(self._view_class).filter_by(item_id=self.id, user_id=g.user.id).first()
+
+        if existing:
+            existing.created_utc=g.time
+            g.db.add(existing)
+            g.db.commit()
+        else:
+            new=self._view_class(
+                record_id=self.id,
+                user_id=g.user.id,
+                created_utc=g.time)
+            g.db.add(new)
+            g.db.commit()
 
 class revisioned_process_mixin(process_mixin):
 

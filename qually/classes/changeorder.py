@@ -494,3 +494,26 @@ class ChangeOrderLog(Base, core_mixin):
 
 # ChangeOrder._assessor_relationships_obj = ChangeOrderAssessorRelationship
 ChangeOrder._approver_relationships_obj = ChangeOrderApproverRelationship
+
+
+
+class ChangeView(Base, core_mixin):
+
+    __tablename__="chng_view"
+
+    id = Column(Integer, primary_key=True)
+    record_id=Column(Integer, ForeignKey("chng.id"), index=True)
+    user_id=Column(Integer, ForeignKey("users.id"), index=True)
+    created_utc=Column(BigInteger)
+
+    record=relationship("ChangeOrder", lazy="joined", innerjoin=True)
+    user=relationship("User", lazy="joined", innerjoin=True)
+    __table_args__=(
+        UniqueConstraint(
+            'record_id', 
+            'user_id',
+            name=f'change_view_user_unique'
+            ),
+        )
+
+ChangeOrder._view_class=ChangeView
