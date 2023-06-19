@@ -254,6 +254,23 @@ class Item(Base, core_mixin, revisioned_process_mixin):
         g.db.commit()
 
         return new_ir
+
+    def _on_view(self):
+
+        existing=g.db.query(self._view_class).filter_by(item_id=self.id, user_id=g.user.id).first()
+
+        if existing:
+            existing.created_utc=g.time
+            g.db.add(existing)
+            g.db.commit()
+        else:
+            new=self._view_class(
+                item_id=self.id,
+                user_id=g.user.id,
+                created_utc=g.time)
+            g.db.add(new)
+            g.db.commit()
+
     
 
 
@@ -386,3 +403,4 @@ class ItemView(Base, core_mixin):
 
 
 Item._revision_class=ItemRevision
+Item._view_class=ItemView
