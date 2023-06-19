@@ -319,6 +319,9 @@ class process_mixin():
     def _after_phase_change(self):
         pass
 
+    def _on_view(self):
+        pass
+
 class revisioned_process_mixin(process_mixin):
 
     @property
