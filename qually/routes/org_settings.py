@@ -33,10 +33,38 @@ def post_settings_approvers():
 
         return toast_redirect(new_group.permalink)
 
+@app.post("/settings/approvers/<gid>/archive")
+@is_doc_control
+def post_settings_approvers_gid_archive(gid):
+
+    group=g.user.organization.approver_groups.filter_by(id=base36decode(gid)).first()
+
+    if not group:
+        abort(404)
+
+    if not group.is_active:
+        return toast_error(_("This group has already been archived."))
+
+    group.is_active=False
+
+    g.db.add(group)
+    g.db.commit()
+    return toast('Group "{{ group.name }}" permanently archived')
+
+
+
+
 @app.post('/settings/approvers/<gid>')
+@is_doc_control
 def post_settings_approvers_gid(gid):
 
     group=g.user.organization.approver_groups.filter_by(id=base36decode(gid)).first()
+
+    if not group:
+        abort(404)
+
+    if not group.is_active:
+        return toast_error(_("This group has been archived."))
 
     key, value, response, do_reload = group._edit_form()
 

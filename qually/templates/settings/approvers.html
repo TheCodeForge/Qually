@@ -56,3 +56,35 @@
 
 </div>
 {% endblock %}
+
+{% block rightbar %}
+{% if group %}
+<button type="button" class="btn btn-danger w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modal-deactivate-group">{{_("Deactivate Group")}}</button>
+{% endif %}
+{% endblock %}
+
+{% block modals %}
+{% if group %}
+<div class="modal fade" id="modal-deactivate-group" tabindex="-1" aria-labelledby="modal-approve-label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-approve-label">{{ _("Confirm Action on {x}").format(x=record.name) }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>{{_("Archive Approval Group")}}</p>
+        <form id="form-archive-group" action="/settings/approvers/{{ group.base36id }}/archive" method="post" class="toasted">
+          <input type="hidden" name="csrf_token" value="{{ g.user.csrf_token }}">
+        </form>
+        <p class="text-center">{{_("This group will remain assigned to records.")}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{_("Close")}}</button>
+        <button type="button" class="btn btn-success toast-form-submit" data-form="form-archive-group">{{_("Confirm")}}</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
