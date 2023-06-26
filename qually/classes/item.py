@@ -257,6 +257,7 @@ class ItemRevision(Base, core_mixin, process_mixin):
     object_description=Column(String, default="")
     object_description_raw=Column(String, default="")
     revision_number=Column(Integer, default=None)
+    revision_item_lifecycle_to=Column(Integer, default=None)
 
     _status=Column(Integer, default=0)
     status_utc=Column(BigInteger, default=None)
@@ -328,6 +329,15 @@ class ItemRevision(Base, core_mixin, process_mixin):
                     "kind": "int",
                     "hide": lambda x:x.revision_number in [None,0],
                     "readonly":True
+                },
+                {
+                    "name": _("Status"),
+                    "value": "revision_item_lifecycle_to",
+                    "kind":"dropdown",
+                    "values":{
+                        2: _("Production"),
+                        100: _("Obsolete")
+                    }
                 },
                 {
                     "name": _("Description"),
