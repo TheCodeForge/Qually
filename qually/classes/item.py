@@ -338,7 +338,7 @@ class ItemRevision(Base, core_mixin, process_mixin):
                         2: _("Production"),
                         100: _("Obsolete")
                     },
-                    "hide": lambda x: request.path == self.item.permalink
+                    "hide": lambda x: request.path == x.item.permalink
                 },
                 {
                     "name": _("Description"),
