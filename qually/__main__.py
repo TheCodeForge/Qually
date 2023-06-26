@@ -269,8 +269,8 @@ def after_request(response):
             f"default-src https:; form-action {app.config['SERVER_NAME']}; frame-src {app.config['SERVER_NAME']}  challenges.cloudflare.com *.hcaptcha.com *.youtube.com youtube.com platform.twitter.com; object-src none; style-src 'self' 'nonce-{g.nonce}' maxcdn.bootstrapcdn.com unpkg.com cdn.jsdelivr.net; script-src 'self' 'nonce-{g.nonce}' challenges.cloudflare.com *.hcaptcha.com hcaptcha.com code.jquery.com cdnjs.cloudflare.com stackpath.bootstrapcdn.com cdn.jsdelivr.net unpkg.com platform.twitter.com; img-src https: data:")
 
     if g.user:
-        resp.headers.add("Cache-Control", "private")
-        resp.headers.add("Access-Control-Allow-Origin", app.config["SERVER_NAME"])
+        response.headers.add("Cache-Control", "private")
+        response.headers.add("Access-Control-Allow-Origin", app.config["SERVER_NAME"])
 
 
     if not request.path.startswith(("/assets/js/", "/assets/css/", "/logo/")):
