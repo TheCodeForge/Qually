@@ -60,7 +60,7 @@ class Organization(Base, core_mixin, process_mixin):
     approver_groups=relationship(
         "ChangeApproverGroup", 
         lazy="dynamic", 
-        primaryjoin="ChangeApproverGroup.organization_id==Organization.id and ChangeApproverGroup.is_active==true", 
+        primaryjoin="ChangeApproverGroup.organization_id==Organization.id and ChangeApproverGroup.is_active==True", 
         viewonly=True, 
         order_by="ChangeApproverGroup.id.asc()"
         )
