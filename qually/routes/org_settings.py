@@ -15,7 +15,7 @@ def post_settings_approvers():
         abort(403)
 
     if request.form.get("get_group"):
-        group=g.user.organization.approver_groups.filter_by(id=int(request.form.get('get_group'), 36)).first()
+        group=g.user.organization.approver_groups.filter_by(id=int(request.form.get('get_group'), 36), is_active=True).first()
         if group:
             return toast_redirect(group.permalink)
         else:
@@ -37,19 +37,17 @@ def post_settings_approvers():
 @is_doc_control
 def post_settings_approvers_gid_archive(gid):
 
-    group=g.user.organization.approver_groups.filter_by(id=base36decode(gid)).first()
+    group=g.user.organization.approver_groups.filter_by(id=base36decode(gid), is_active=True).first()
 
     if not group:
         abort(404)
-
-    if not group.is_active:
-        return toast_error(_("This group has already been archived."))
 
     group.is_active=False
 
     g.db.add(group)
     g.db.commit()
-    return toast('Group "{{ group.name }}" permanently archived')
+
+    return toast(_('Group "{x}" permanently archived').format(x=group.name))
 
 
 
@@ -58,7 +56,7 @@ def post_settings_approvers_gid_archive(gid):
 @is_doc_control
 def post_settings_approvers_gid(gid):
 
-    group=g.user.organization.approver_groups.filter_by(id=base36decode(gid)).first()
+    group=g.user.organization.approver_groups.filter_by(id=base36decode(gid), is_active=True).first()
 
     if not group:
         abort(404)
