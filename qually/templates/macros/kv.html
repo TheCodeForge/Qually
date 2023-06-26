@@ -85,6 +85,7 @@
           <option value="{{ grp.base36id }}" {% if grp.id in selected_ids %}selected{% endif %}>{{ grp.name }}</option>
           {% endfor %}
         </select>
+        <p class="text-small">{{_("Use Ctrl+Click to make multiple selections.")}}</p>
 
         {% else %}
         <input id="input-update-{{ entry['value'] }}-{{ loop.index0 }}" class="form-control" type="text" name="{{ entry['value'] }}" value="{{ source | attr(entry['value']) }}" placeholder="{{ entry.get('placeholder','') }}">
