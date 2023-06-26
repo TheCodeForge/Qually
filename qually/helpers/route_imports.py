@@ -17,7 +17,7 @@ from qually.helpers.posttoast import toast, toast_redirect, toast_error
 from qually.helpers.roles import ROLES
 from qually.helpers.sanitize import txt, html
 from qually.helpers.security import generate_hash, validate_hash, tokenify
-from qually.helpers.wrappers import logged_in, not_logged_in, has_seat, is_admin, user_update_lock, org_update_lock, no_cors, no_sanctions, cf_cache, token_auth
+from qually.helpers.wrappers import logged_in, not_logged_in, has_seat, is_admin, is_doc_control, user_update_lock, org_update_lock, no_cors, no_sanctions, cf_cache, token_auth
 import qually.helpers.aws as aws
 
 try:
