@@ -220,7 +220,8 @@ class Item(Base, core_mixin, revisioned_process_mixin):
             object_name=self.effective_revision.object_name,
             object_description=self.effective_revision.object_description,
             object_description_raw=self.effective_revision.object_description_raw,
-            created_utc=g.time
+            created_utc=g.time,
+            revision_item_lifecycle_to=self._status or 2
             )
         g.db.add(new_ir)
         g.db.flush()
@@ -233,8 +234,7 @@ class Item(Base, core_mixin, revisioned_process_mixin):
                 file_name=file_obj.file_name,
                 status_id=file_obj.status_id,
                 creator_id=g.user.id,
-                stage_id=file_obj.stage_id,
-                revision_item_lifecycle_to=self._status or 2
+                stage_id=file_obj.stage_id
                 )
             g.db.add(new_file_obj)
             g.db.flush()
