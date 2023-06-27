@@ -416,7 +416,7 @@ class ChangeOrder(Base, core_mixin, process_mixin):
             existing.status_utc=g.time
             g.db.add(rev)
 
-            rev.item._status = rev.item._status or 2
+            rev.item._status = rev.revision_item_lifecycle_to
             g.db.add(rev.item)
 
         g.db.commit()
