@@ -218,7 +218,17 @@ class Organization(Base, core_mixin, process_mixin):
                     'value': 'color'
                 }
             ],
-            1:[],
+            1:[
+                {
+                    'name': _("Require Two-Factor Authentication"),
+                    'kind': 'dropdown',
+                    'value': 'requires_otp',
+                    'values': {
+                        0:_("No"),
+                        1:_("Yes")
+                    }
+                }
+            ],
             2:[
                 {
                     'name': _("Default Language"),
