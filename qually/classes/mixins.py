@@ -183,8 +183,12 @@ class process_mixin():
                         response=getattr(source, entry['value']) or "<p></p>"
                     elif entry['kind']=='dropdown':
 
-                        if int(request.form[entry['value']]) not in entry['values']:
-                            return toast_error(_("Invalid selection for {x}").format(x=entry['name']))
+                        try:           
+                            if int(request.form[entry['value']]) not in entry['values']:
+                                return toast_error(_("Invalid selection for {x}").format(x=entry['name']))
+                        except ValueError:
+                            if request.form[entry['value']] not in entry['values']:
+                                return toast_error(_("Invalid selection for {x}").format(x=entry['name']))
 
                         setattr(source, entry['value'], int(request.form[entry['value']]))
                         key=entry['name']
