@@ -89,7 +89,7 @@ def post_settings_organization():
             user_id=g.user.id,
             created_utc=g.time,
             key=key,
-            value=value,
+            new_value=value,
             created_ip=request.remote_addr
             )
         g.db.add(log)
