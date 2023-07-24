@@ -172,18 +172,55 @@ class Organization(Base, core_mixin, process_mixin):
     def _lifecycle(self):
 
         return {
-            0:{
+            0: {
+                'name': _("Branding"),
+                'users': [g.user] if g.user.is_org_admin else [],
+                'early':'edit' 
+            },
+            1: {
+                'name': _("Security"),
+                'users': [g.user] if g.user.is_org_admin else [],
+                'early':'edit' 
+            },
+            2: {
+                'name': _("Localization"),
+                'users': [g.user] if g.user.is_org_admin else [],
+                'early':'edit' 
+            },
+            3: {
                 'name': _("Prefixes"),
                 'users': [g.user] if g.user.is_org_admin else [],
-                'hide_title':True,
-                'early':'edit'
+                'early':'edit' 
             }
         }
+
+        # return {
+        #     0:{
+        #         'name': _("Prefixes"),
+        #         'users': [g.user] if g.user.is_org_admin else [],
+        #         'hide_title':True,
+        #         'early':'edit'
+        #     }
+        # }
 
     @classmethod
     def _layout(self):
         return {
             0:[
+                {
+                    'name': _("Organization Name"),
+                    'kind':'text',
+                    'value': 'name'
+                },
+                {
+                    'name': _("Color"),
+                    'kind': 'text',
+                    'value': 'color'
+                }
+            ],
+            1:[],
+            2:[],
+            3:[
                 {
                     'name':_("Corrective and Preventive Action"),
                     'value':'capa_prefix',
