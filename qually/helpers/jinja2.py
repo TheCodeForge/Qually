@@ -44,7 +44,7 @@ def qrcode_filter(secret):
     qr.add_data(x.provisioning_uri(g.user.email, issuer_name=app.config["SITE_NAME"]))
 
     img=qr.make_image(
-        fill_color=f"#{app.config['COLOR_PRIMARY']}",
+        fill_color=f"#{g.user.organization.color}",
         back_color="white",
     )
 
