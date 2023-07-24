@@ -128,7 +128,7 @@
 <h3 class="h4 text-primary {% if loop.index0 %}mt-3{% endif %}">{{ g.user.organization._lifecycle[stage].get('title_text', g.user.organization._lifecycle[stage]['name']) }}</h3>
 {% endif %}
 {% endif %}
-{{ kv.kv(g.user.organization, stage, action="/settings/organization) }}
+{{ kv.kv(g.user.organization, stage, action='/settings/organization') }}
 {% endfor %}
 
 {% endblock %}
