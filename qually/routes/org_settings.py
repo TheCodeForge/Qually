@@ -50,8 +50,6 @@ def post_settings_approvers_gid_archive(gid):
     return toast(_('Group "{x}" permanently archived').format(x=group.name))
 
 
-
-
 @app.post('/settings/approvers/<gid>')
 @is_doc_control
 def post_settings_approvers_gid(gid):
@@ -76,108 +74,33 @@ def post_settings_approvers_gid(gid):
 
     return toast(_("Changes saved"), data={"new":response})
 
+
 @app.post("/settings/organization")
 @is_admin
 def post_settings_organization():
 
+    key, value, response, do_reload = g.user.organization._edit_form()
 
-    if request.form.get("org_name"):
+    if not key:
+        return toast_error(_("Unable to save changes"))
 
-        if request.form.get("org_name")==g.user.organization.name:
-            return toast_error(_("You didn't change anything!"))
-
-        old_name=g.user.organization.name
-        g.user.organization.name=txt(request.form.get("org_name"))
-        g.db.add(g.user.organization)
-
-        with force_locale(g.user.organization.lang):
-            log=OrganizationAuditLog(
-                user_id=g.user.id,
-                organization_id=g.user.organization_id,
-                key=_("Organization Name"),
-                new_value=txt(request.form.get("org_name"))
-                )
-            g.db.add(log)
-
-    if request.form.get("lang"):
-
-        if request.form.get("lang") not in LANGUAGES.values():
-            return toast_error(_("That language is not currently supported."))
-
-        g.user.organization.lang=request.form.get("lang")
-        g.db.add(g.user.organization)
-
-
-        with force_locale(g.user.organization.lang):
-            log=OrganizationAuditLog(
-                user_id=g.user.id,
-                organization_id=g.user.organization_id,
-                key=_("Language"),
-                new_value=request.form.get("lang")
-                )
-            g.db.add(log)
-
-    if request.form.get("tz"):
-
-        if request.form.get("tz") not in TIMEZONES:
-            return toast_error(_("Invalid timezone"))
-
-        g.user.organization.tz=request.form.get("tz")
-        g.db.add(g.user.organization)
-
-        with force_locale(g.user.organization.lang):
-            log=OrganizationAuditLog(
-                user_id=g.user.id,
-                organization_id=g.user.organization_id,
-                key=_("Timezone"),
-                new_value=request.form.get("tz")
-                )
-            g.db.add(log)
-
-    if request.form.get("color"):
-
-        try:
-            i=int(request.form.get('color'), 16)
-        except:
-            return toast_error("Color code must be valid RGB hex value")
-
-        g.user.organization.color=request.form.get('color')
-        g.db.add(g.user.organization)
-
-        with force_locale(g.user.organization.lang):
-            log=OrganizationAuditLog(
-                user_id=g.user.id,
-                organization_id=g.user.organization_id,
-                key=_("Color"),
-                new_value=request.form.get("color")
-                )
-            g.db.add(log)
-
-    g.db.commit()
-
-    return toast("Changes saved")
-
-@app.post("/settings/organization/toggle_otp")
-@is_admin
-def post_settings_directory_toggle_otp():
-    
-    if not g.user.organization.requires_otp and not g.user.otp_secret:
-        return toast_error(_("Enable two-factor authentication on your own account first."))
-    
-    g.user.organization.requires_otp = not g.user.organization.requires_otp
-    g.db.add(g.user.organization)
-    
     with force_locale(g.user.organization.lang):
         log=OrganizationAuditLog(
             user_id=g.user.id,
-            organization_id=g.user.organization_id,
-            key=_("Require Two-Factor Authentication"),
-            new_value=f"{g.user.organization.requires_otp}"
+            created_utc=g.time,
+            key=key,
+            value=value,
+            created_ip=request.remote_addr
             )
         g.db.add(log)
-    
+
     g.db.commit()
-    return toast(_("Settings saved"))
+
+    if do_reload:
+        return toast_redirect(request.path)
+
+    return toast(_("Changes saved"), data={"new":response})
+    
 
 @app.post("/settings/directory/toggle_license/<uid>")
 @is_admin
