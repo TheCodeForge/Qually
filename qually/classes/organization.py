@@ -222,14 +222,16 @@ class Organization(Base, core_mixin, process_mixin):
             2:[
                 {
                     'name': _("Default Language"),
-                    'kind':'text',
-                    'value': 'name',
+                    'kind':'dropdown',
+                    'value': 'lang',
+                    'values': LANGUAGES,
                     'help': _("Sets the language for new users and audit logs.")
                 },
                 {
                     'name': _("Default Time Zone"),
-                    'kind': 'text',
-                    'value': 'color',
+                    'kind': 'dropdown',
+                    'value': 'tz',
+                    'values': TIMEZONES,
                     'help': _("Sets the default time zone for new users.")
                 }
             ],
