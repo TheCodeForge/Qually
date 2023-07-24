@@ -231,7 +231,7 @@ class Organization(Base, core_mixin, process_mixin):
                     'name': _("Default Time Zone"),
                     'kind': 'dropdown',
                     'value': 'tz',
-                    'values': TIMEZONES,
+                    'values': dict(TIMEZONES),
                     'help': _("Sets the default time zone for new users.")
                 }
             ],
