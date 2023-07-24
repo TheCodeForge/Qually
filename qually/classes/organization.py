@@ -227,7 +227,7 @@ class Organization(Base, core_mixin, process_mixin):
                         0:_("No"),
                         1:_("Yes")
                     },
-                    'validate': lambda x: bool(g.user.otp_secret),
+                    'validate': lambda x: bool(g.user.otp_secret) or not request.form.get("requires_otp"),
                     'validate_fail_msg': _("You must have two-factor authentication enabled on your own account first.")
                 }
             ],
