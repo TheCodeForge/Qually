@@ -224,7 +224,7 @@ class Organization(Base, core_mixin, process_mixin):
                     'name': _("Default Language"),
                     'kind':'dropdown',
                     'value': 'lang',
-                    'values': LANGUAGES,
+                    'values': {LANGUAGES[x]:x for x in LANGUAGES},
                     'help': _("Sets the language for new users and audit logs.")
                 },
                 {
