@@ -226,9 +226,9 @@ class Organization(Base, core_mixin, process_mixin):
                     'values': {
                         0:_("No"),
                         1:_("Yes")
-                    }
+                    },
                     'validate': lambda x: bool(g.user.otp_secret),
-                    'validate_fail_value': 0
+                    'validate_fail_msg': _("You must have two-factor authentication enabled on your own account first.")
                 }
             ],
             2:[
