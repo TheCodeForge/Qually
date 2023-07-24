@@ -174,6 +174,11 @@ class process_mixin():
                     if entry.get('readonly'):
                         return toast_error(_("Property {x} is read-only.").format(x=entry['name']), 403)
 
+                    if entry.get('validate'):
+                        f = entry['validate']
+                        if not f(self):
+                            return toast_error(entry['validate_fail_msg'])
+
 
                     if entry['kind']=='multi':
                         setattr(source, f"{entry['value']}_raw", request.form[entry['value']])
