@@ -116,7 +116,7 @@ def post_settings_directory_toggle_license_uid(uid):
         if g.time - user.license_assigned_utc < 60*60*24*7:
             return toast_error(_("There is a {n} day cooldown to unassign licenses.").format(n=7))
 
-        msg=f"License removed from {user.name}"
+        msg=_("License removed from {x}").format(x=user.name)
 
         user.has_license=False
 
