@@ -7,9 +7,9 @@
     <h1 class="h3">{{ user.name }}</h1>
     <h2 class="h4">{{ user.title }}</h2>
     {% if user.is_active %}
-    <h3 class="h5"><span data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="{{ _('Send email') }}"><a href="mailto:{{ user.email }}"><i class="fas fa-envelope"></i></a></span></h3>
+    <h3 class="h5"><span data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="bottom" data-bs-content="{{ _('Send email') }}"><a href="mailto:{{ user.email }}"><i class="fas fa-envelope"></i></a></span></h3>
     {% else %}
-    <h3 class="h5"><span data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="{{ _('This user has been deactivated.') }}"><i class="fas fa-user-minus"></i></span></h3>
+    <h3 class="h5"><span datadata-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="bottom" data-bs-content="{{ _('This user has been deactivated.') }}"><i class="fas fa-user-minus text-danger"></i></span></h3>
     {% endif %}
   </div>
 </div>
