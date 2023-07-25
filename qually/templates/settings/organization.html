@@ -3,13 +3,13 @@
 
 {% block content %}
 
-<div class="border p-2">
+<div class="p-2">
   {% for stage in (g.user.organization._layout().keys() | sort) %}
   {% if not g.user.organization._lifecycle[stage].get('hide_title', False) %}
   {% if g.user.organization._lifecycle[stage].get('title_link') %}
-  <h3 class="h4 text-primary {% if loop.index0 %}mt-3{% endif %}"><a href="{{ g.user.organization._lifecycle[stage]['title_link'] }}">{{ g.user.organization._lifecycle[stage].get('title_text', g.user.organization._lifecycle[stage]['name']) }}</a></h3>
+  <h3 class="h4 text-primary mt-3"><a href="{{ g.user.organization._lifecycle[stage]['title_link'] }}">{{ g.user.organization._lifecycle[stage].get('title_text', g.user.organization._lifecycle[stage]['name']) }}</a></h3>
   {% else %}
-  <h3 class="h4 text-primary {% if loop.index0 %}mt-3{% endif %}">{{ g.user.organization._lifecycle[stage].get('title_text', g.user.organization._lifecycle[stage]['name']) }}</h3>
+  <h3 class="h4 text-primary mt-3">{{ g.user.organization._lifecycle[stage].get('title_text', g.user.organization._lifecycle[stage]['name']) }}</h3>
   {% endif %}
   {% endif %}
   {{ kv.kv(g.user.organization, stage, action='/settings/organization') }}
