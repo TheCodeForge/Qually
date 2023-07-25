@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<div class="p-2">
+<div class="border p-2">
   {% for stage in (g.user.organization._layout().keys() | sort) %}
   {% if not g.user.organization._lifecycle[stage].get('hide_title', False) %}
   {% if g.user.organization._lifecycle[stage].get('title_link') %}

@@ -191,11 +191,12 @@ class process_mixin():
                         try:           
                             if int(request.form[entry['value']]) not in entry['values']:
                                 return toast_error(_("Invalid selection for {x}").format(x=entry['name']))
+                            setattr(source, entry['value'], int(request.form[entry['value']]))
                         except ValueError:
                             if request.form[entry['value']] not in entry['values']:
                                 return toast_error(_("Invalid selection for {x}").format(x=entry['name']))
+                            setattr(source, entry['value'], request.form[entry['value']])
 
-                        setattr(source, entry['value'], int(request.form[entry['value']]))
                         key=entry['name']
                         value=entry['values'].get(int(request.form[entry['value']]))
                         response=value
